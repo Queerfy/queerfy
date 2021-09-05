@@ -1,10 +1,9 @@
-package br.com.queerfy.backend.controllers.dto;
+package com.br.queerfy.backend.entities;
 
 import java.util.Date;
 
-public abstract class UserRequest {
+public abstract class User {
 
-    private Long id;
     private String name;
     private Date birthDate;
     private String rg;
@@ -16,14 +15,6 @@ public abstract class UserRequest {
     private String genre;
     private String likes;
     private Boolean admin;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
