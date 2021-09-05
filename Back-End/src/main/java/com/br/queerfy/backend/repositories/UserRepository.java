@@ -31,4 +31,32 @@ public class UserRepository implements IUsersRepositories{
     public List<User> listUsers() {
         return users;
     }
+
+    @Override
+    public User authenticate(String email, String password) {
+        var userExists =  users.stream()
+                .filter(user -> user.getEmail().equals(email) && user.getPassword().equals(password))
+                .findFirst().get();
+
+        if(userExists != null){
+            userExists.setAuthenticated(true);
+            return userExists;
+        }
+
+        return null;
+    }
+
+    @Override
+    public User logoff(String email, String password) {
+        var userExists =  users.stream()
+                .filter(user -> user.getEmail().equals(email) && user.getPassword().equals(password))
+                .findFirst().get();
+
+        if(userExists.getAuthenticated()){
+            userExists.setAuthenticated(null);
+            return userExists;
+        }
+
+        return null;
+    }
 }

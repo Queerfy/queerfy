@@ -8,4 +8,6 @@ public interface IUsersRepositories {
     public User create(User user);
     public Boolean exists(String cpf, String email);
     public List<User> listUsers();
+    public User authenticate(String email, String password);
+    public User logoff(String email, String password);
 }

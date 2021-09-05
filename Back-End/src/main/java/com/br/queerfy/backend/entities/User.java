@@ -15,6 +15,7 @@ public abstract class User {
     private String genre;
     private String likes;
     private Boolean admin;
+    private Boolean authenticated;
 
     public String getName() {
         return name;
@@ -104,4 +105,11 @@ public abstract class User {
         this.admin = admin;
     }
 
+    public Boolean getAuthenticated() {
+        return authenticated;
+    }
+
+    public void setAuthenticated(Boolean authenticated) {
+        this.authenticated = authenticated;
+    }
 }
