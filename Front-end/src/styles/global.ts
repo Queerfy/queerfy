@@ -9,8 +9,12 @@ export default createGlobalStyle<{ theme: Theme }>`
   }
 
   body {
-    background-color: ${(props) => props.theme.colors.background};
-    color: ${(props) => props.theme.colors.primary};
+    background-color: ${(props) => props.theme.assets.background};
+    color: ${(props) => props.theme.assets.font};
     font: 400 16px Poppins, sans-serif;
+  }
+
+  main {
+    padding: 0 32px;
   }
 `;
