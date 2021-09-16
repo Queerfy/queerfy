@@ -2,12 +2,11 @@ export const theme = {
   colors: {
     red: '#F15356',
     orange: '#F0BF5A',
-    yellow: '#',
-    green: '#',
-    blue: '#',
-    purple: '#',
-    pink: '#',
-    rainbow: '#',
+    yellow: '#FDE980',
+    green: '#85DB6B',
+    blue: '#439EFA',
+    purple: '#A993F5',
+    pink: '#F26B9C',
   },
   assets: {
     font: '#1A1A1A',
