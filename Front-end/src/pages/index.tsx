@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 
 import Head from 'next/head';
+import { House } from './House';
 
 const IndexPage: NextPage = () => {
   return (
@@ -10,7 +11,7 @@ const IndexPage: NextPage = () => {
       </Head>
 
       <main>
-        <h1>Hello world!</h1>
+        <House />
       </main>
     </div>
   );

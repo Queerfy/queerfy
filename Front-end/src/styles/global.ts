@@ -17,4 +17,12 @@ export default createGlobalStyle<{ theme: Theme }>`
   main {
     padding: 0 32px;
   }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
 `;
