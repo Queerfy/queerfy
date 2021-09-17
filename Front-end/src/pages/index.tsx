@@ -12,9 +12,8 @@ const IndexPage: NextPage = () => {
         <title>Queerfy</title>
       </Head>
 
-      <NavbarMobile />
-
       <Navbar />
+      <NavbarMobile />
 
       <main>
       </main>
