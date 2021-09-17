@@ -6,8 +6,12 @@ import {
   Local,
   Favorite,
   Subtitle,
-  Highlights,
   Informations,
+  AlignInformations,
+  Description,
+  BackgroundReservation,
+  BorderRainbow,
+  Reservation,
 } from './styles';
 
 export const House = () => {
@@ -29,20 +33,56 @@ export const House = () => {
 
       <img src="img-casa.svg" width="100%" height="100%" />
 
-      <Highlights>
-        <h2>nome do proprietário</h2>
-        <Informations>
-          <AdditionalInformation />
-          <AdditionalInformation />
-          <AdditionalInformation />
-        </Informations>
+      <Informations>
+        <h2>Nome do proprietário</h2>
 
-        <Informations>
+        <AlignInformations>
           <AdditionalInformation />
           <AdditionalInformation />
+        </AlignInformations>
+
+        <AlignInformations>
           <AdditionalInformation />
-        </Informations>
-      </Highlights>
+          <AdditionalInformation />
+        </AlignInformations>
+
+        <AlignInformations>
+          <AdditionalInformation />
+          <AdditionalInformation />
+        </AlignInformations>
+      </Informations>
+
+      <Informations>
+        <h2>Regras</h2>
+
+        <AlignInformations>
+          <AdditionalInformation />
+          <AdditionalInformation />
+        </AlignInformations>
+
+        <AlignInformations>
+          <AdditionalInformation />
+          <AdditionalInformation />
+        </AlignInformations>
+      </Informations>
+
+      <Description>
+        <h2>Descrição</h2>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged.
+        </p>
+      </Description>
+
+      <BackgroundReservation>
+        <BorderRainbow>
+          <Reservation />
+        </BorderRainbow>
+      </BackgroundReservation>
     </>
   );
 };

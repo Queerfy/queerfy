@@ -14,9 +14,11 @@ const IndexPage: NextPage = () => {
       </Head>
 
       <Navbar />
-      <NavbarMobile />
+      {/* <NavbarMobile /> */}
 
-      <main></main>
+      <main>
+        <House />
+      </main>
     </>
   );
 };
