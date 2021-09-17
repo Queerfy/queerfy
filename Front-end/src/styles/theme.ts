@@ -1,4 +1,5 @@
 export const theme = {
+  title: 'light',
   colors: {
     red: '#F15356',
     orange: '#F0BF5A',
