@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import Switch from "react-switch";
 
-import { Globe, Inbox, Search, Sun, User } from 'react-feather';
+import { Globe, Inbox, Moon, Search, Sun, User } from 'react-feather';
 
-import { Container, IconBox, InputBox, SearchInput, Separator } from './styles';
+import { Container, Functions, IconBox, InputBox, SearchInput, Separator } from './styles';
 
 export const Navbar = () => {
   const [theme, setTheme] = useState(true);
@@ -29,13 +29,19 @@ export const Navbar = () => {
       <span>Sobre nós</span>
       <span>Suporte</span>
       <Separator />
-      <Switch
-        checked={theme}
-        onChange={() => { handleTheme() }}
-      />
-      <Globe />
-      <Inbox />
-      <User />
+      <Functions>
+        <Switch
+          checked={theme}
+          onChange={() => { handleTheme() }}
+          onColor="#F0BF5A"
+          offColor="#A993F5"
+          checkedIcon={false}
+          uncheckedIcon={false}
+        />
+        <Globe size={30} />
+        <Inbox size={30} />
+        <User size={30} />
+      </Functions>
     </Container>
   );
 }

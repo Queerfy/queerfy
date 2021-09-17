@@ -8,28 +8,30 @@ const Center = styled.div`
 
 export const Container = styled.nav`
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
-  background-color: red;
   width: 100%;
-  height: 10vh;
+  height: 70px;
+  padding: 0 64px;
 
   > img {
     height: 50px;
   }
 
   > span {
-    margin-left: 32px;
     color: ${(props) => props.theme.assets.font};
-  }
+    transition: 0.3s;
 
-  > svg {
-    margin-left: 32px;
+    &:hover {
+      opacity: 0.9;
+      cursor: pointer;
+    }
   }
 `;
 
 export const InputBox = styled(Center)`
-  width: 380px;
+  width: 338px;
   height: 50px;
   border-radius: 100px;
   background: linear-gradient(
@@ -50,7 +52,7 @@ export const InputBox = styled(Center)`
 `;
 
 export const SearchInput = styled.input`
-  width: 322px;
+  width: 280px;
   height: 44px;
   border: none;
   border-top-left-radius: 100px;
@@ -67,18 +69,43 @@ export const SearchInput = styled.input`
 `;
 
 export const IconBox = styled(Center)`
-  background-color: blue;
-
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
   background-color: ${(props) => props.theme.assets.background};
   height: 44px;
   width: 50px;
+
+  > svg {
+    transform: scale(0.95);
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1);
+      opacity: 0.9;
+      cursor: pointer;
+    }
+  }
 `;
 
 export const Separator = styled.div`
-  margin: 0 64px;
-  height: 80%;
+  height: 70%;
   width: 1px;
   background-color: ${(props) => props.theme.assets.borderDark};
+`;
+
+export const Functions = styled.div`
+  color: ${(props) => props.theme.assets.font};
+  height: 35px;
+
+  > svg {
+    transform: scale(0.9);
+    margin-left: 64px;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1);
+      opacity: 0.9;
+      cursor: pointer;
+    }
+  }
 `;
