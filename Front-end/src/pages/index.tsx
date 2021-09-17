@@ -1,16 +1,17 @@
 import { NextPage } from 'next';
 
 import Head from 'next/head';
+import { AccountPage } from './Account';
 
 const IndexPage: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Homepage</title>
+        <title>Conta</title>
       </Head>
 
       <main>
-        <h1>Hello world!</h1>
+        <AccountPage />
       </main>
     </div>
   );
