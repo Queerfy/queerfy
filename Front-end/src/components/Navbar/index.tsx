@@ -38,9 +38,9 @@ export const Navbar = () => {
           checkedIcon={false}
           uncheckedIcon={false}
         />
-        <Globe size={30} />
-        <Inbox size={30} />
-        <User size={30} />
+        <Globe size={25} />
+        <Inbox size={25} />
+        <User size={25} />
       </Functions>
     </Container>
   );

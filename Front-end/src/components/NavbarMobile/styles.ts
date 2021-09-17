@@ -22,6 +22,10 @@ export const Container = styled.nav`
   div:nth-child(2) {
     margin: 0 16px;
   }
+
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const Item = styled.div`

@@ -16,7 +16,7 @@ export const Container = styled.nav`
   padding: 0 64px;
 
   > img {
-    height: 50px;
+    height: 45px;
   }
 
   > span {
@@ -28,11 +28,15 @@ export const Container = styled.nav`
       cursor: pointer;
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const InputBox = styled(Center)`
-  width: 338px;
-  height: 50px;
+  width: 300px;
+  height: 45px;
   border-radius: 100px;
   background: linear-gradient(
     to right,
@@ -52,8 +56,8 @@ export const InputBox = styled(Center)`
 `;
 
 export const SearchInput = styled.input`
-  width: 280px;
-  height: 44px;
+  width: 252px;
+  height: 38px;
   border: none;
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
@@ -72,12 +76,13 @@ export const IconBox = styled(Center)`
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
   background-color: ${(props) => props.theme.assets.background};
-  height: 44px;
-  width: 50px;
+  height: 38px;
+  width: 40px;
 
   > svg {
     transform: scale(0.95);
     transition: 0.3s;
+    margin-right: 16px;
 
     &:hover {
       transform: scale(1);
