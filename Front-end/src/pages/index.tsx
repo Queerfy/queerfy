@@ -2,17 +2,22 @@ import { NextPage } from 'next';
 
 import Head from 'next/head';
 
+import { Navbar } from '../components/Navbar';
+import { NavbarMobile } from '../components/NavbarMobile';
+
 const IndexPage: NextPage = () => {
   return (
-    <div>
+    <>
       <Head>
-        <title>Homepage</title>
+        <title>Queerfy</title>
       </Head>
 
+      <Navbar />
+      <NavbarMobile />
+
       <main>
-        <h1>Hello world!</h1>
       </main>
-    </div>
+    </>
   );
 };
 
