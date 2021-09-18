@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
 
 import Head from 'next/head';
-import { AccountPage } from './Account';
 
 import { Navbar } from '../components/Navbar';
 import { NavbarMobile } from '../components/NavbarMobile';
+import { AccountPage } from './Account/MainAccount';
 
 const IndexPage: NextPage = () => {
   return (
@@ -14,7 +14,7 @@ const IndexPage: NextPage = () => {
       </Head>
 
       <Navbar />
-      <NavbarMobile />
+      {/* <NavbarMobile /> */}
 
       <main>
         <AccountPage />
