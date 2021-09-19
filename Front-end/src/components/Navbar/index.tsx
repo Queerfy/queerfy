@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Switch from "react-switch";
+import Switch from 'react-switch';
 
 import { Globe, Inbox, Moon, Search, Sun, User } from 'react-feather';
 
@@ -19,9 +19,9 @@ export const Navbar = () => {
 
   return (
     <Container>
-      <img src="./logo.svg" alt="logo" />
+      <img src='./logo.svg' alt='logo' />
       <InputBox>
-        <SearchInput placeholder="Para onde você quer ir?" />
+        <SearchInput placeholder='Para onde você quer ir?' />
         <IconBox>
           <Search />
         </IconBox>
@@ -33,8 +33,8 @@ export const Navbar = () => {
         <Switch
           checked={theme}
           onChange={() => { handleTheme() }}
-          onColor="#F0BF5A"
-          offColor="#A993F5"
+          onColor='#F0BF5A'
+          offColor='#A993F5'
           checkedIcon={false}
           uncheckedIcon={false}
         />

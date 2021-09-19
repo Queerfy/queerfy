@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Body, Container, Item } from './styles';
+import { Body, Container, Header, Item } from './styles';
 
 import { Globe, Search, User } from 'react-feather'
 
@@ -8,6 +8,9 @@ export const NavbarMobile = () => {
 
   return (
     <Body>
+      <Header>
+        <img src="logo.svg" alt="" />
+      </Header>
       <Container>
         <Item>
           <Search />
