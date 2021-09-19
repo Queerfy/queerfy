@@ -12,6 +12,9 @@ import {
   BackgroundReservation,
   BorderRainbow,
   Reservation,
+  HeaderReservation,
+  Value,
+  AmountComments,
 } from './styles';
 
 export const House = () => {
@@ -80,7 +83,17 @@ export const House = () => {
 
       <BackgroundReservation>
         <BorderRainbow>
-          <Reservation />
+          <Reservation>
+            <HeaderReservation>
+              <Value>
+                <h1>R$60 / </h1>
+                <h2>diária</h2>
+              </Value>
+              <AmountComments>
+                <h3>0 comentários</h3>
+              </AmountComments>
+            </HeaderReservation>
+          </Reservation>
         </BorderRainbow>
       </BackgroundReservation>
     </>

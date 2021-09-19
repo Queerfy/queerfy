@@ -103,3 +103,21 @@ export const Reservation = styled.div`
   color: ${(props) => props.theme.assets.font};
   background-color: ${(props) => props.theme.assets.background};
 `;
+
+export const HeaderReservation = styled.div`
+  margin: 12px 0px 6px 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const Value = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const AmountComments = styled.div`
+  display: flex;
+  align-items: center;
+`;
