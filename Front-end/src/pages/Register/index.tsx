@@ -13,7 +13,7 @@ const Register: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Queerfy</title>
+        <title>Registre-se</title>
       </Head>
 
       <Container>
