@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 import Switch from 'react-switch';
 
@@ -40,7 +41,10 @@ export const Navbar = () => {
         />
         <Globe size={25} />
         <Inbox size={25} />
-        <User size={25} />
+        <Link href="/Register">
+          <User size={25} />
+        </Link>
+        
       </Functions>
     </Container>
   );
