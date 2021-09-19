@@ -12,9 +12,6 @@ export default createGlobalStyle<{ theme: Theme }>`
     background-color: ${(props) => props.theme.assets.background};
     color: ${(props) => props.theme.assets.font};
     font: 400 16px Poppins, sans-serif;
-  }
-
-  main {
     padding: 0 32px;
 
     @media screen and (min-width: 1024px) {
