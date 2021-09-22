@@ -1,9 +1,14 @@
 import { NextPage } from "next";
+import { useRouter } from 'next/router';
+import { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 
 import Link from 'next/link';
 
+import { api } from '../../services/api';
+
 import { UserPlus, LogIn, ArrowLeft } from 'react-feather';
+import { ToastContainer, toast } from 'react-toastify';
 
 import {
     Container,
@@ -14,64 +19,122 @@ import {
     InputsBox
 } from './style';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 const Login: NextPage = () => {
-    return (
-        <>
-            <Head>
-                <title>Login</title>
-            </Head>
+  const router = useRouter();
 
-            <Container>
-                <BannerContainer imageSrc={"./loginImage.jpeg"}>
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-                </BannerContainer>
+  const handleLogin = () => {
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
 
-                <LoginContainer>
+    if (email === '') {
+      return toast.error('Preencha o Email para prosseguir!');
+    }
 
-                    <Link href="/">
-                        <div id="login_back">
-                            <ArrowLeft size={30} />
-                        </div>
-                    </Link>
+    if (password === '') {
+      return toast.error('Preeencha a Senha para prosseguir!');
+    }
 
-                    <img id="login_logo" src='./logo.svg' alt="Logo" />
+    if (password.length < 3) {
+      return toast.error('Senha Invalida!');
+    }
 
-                    <ContainerBox>
-                        <ItemContainer>
-                            <h1>Bem-vinde</h1>
+    const credentials = {
+      email,
+      password,
+    };
 
-                            <Link href="/Register">
-                                <div id="firstElement">
-                                    <UserPlus size={25} />
-                                    <p>Crie sua conta na <span>Queerfy</span></p>
-                                </div>
-                            </Link>
+    api
+      .post('/users/authenticate', credentials)
+      .then((res) => {
+        const user = {
+          id: res.data.data.id,
+          name: res.data.data.name,
+          email: res.data.data.email,
+          perfilImg: res.data.data.perfilImg,
+        };
 
-                            <p id="container_textLogin">ou entre em sua conta</p>
+        localStorage.setItem('user', JSON.stringify(user));
 
-                            <InputsBox>
-                                <span>E-mail</span>
-                                <input type="text" placeholder="contato@purple.com.br" />
-                            </InputsBox>
+        toast.success('Logado com Sucesso!');
 
-                            <InputsBox>
-                                <span>Senha</span>
-                                <input type="text" placeholder="Senha" />
-                            </InputsBox>
+        setTimeout(() => {
+          router.push('/');
+        }, 2000);
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
+          console.log('Message Error:', err.response.data.message);
+          console.log('Status Error:', err.response.data.status);
+          return toast.error('Email/Senha Incorreta!');
+        }
+      });
+  };
 
-                            <div id="container_button">
-                                <LogIn size={25} />
-                                <p>Entrar na conta</p>
-                            </div>
+  return (
+    <>
+      <Head>
+        <title>Login</title>
+      </Head>
 
-                            <p id="container_forgoutPassword">Esqueci a senha</p>
+      <Container>
+        <BannerContainer imageSrc={'./loginImage.jpeg'}></BannerContainer>
 
-                        </ItemContainer>
-                    </ContainerBox>
-                </LoginContainer>
-            </Container>
-        </>
-    )
-}
+        <LoginContainer>
+          <Link href="/">
+            <div id="login_back">
+              <ArrowLeft size={30} />
+            </div>
+          </Link>
+
+          <img id="login_logo" src="./logo.svg" alt="Logo" />
+
+          <ContainerBox>
+            <ItemContainer>
+              <h1>Bem-vinde</h1>
+
+              <Link href="/Register">
+                <div id="firstElement">
+                  <UserPlus size={25} />
+                  <p>
+                    Crie sua conta na <span>Queerfy</span>
+                  </p>
+                </div>
+              </Link>
+
+              <p id="container_textLogin">ou entre em sua conta</p>
+
+              <InputsBox>
+                <span>E-mail</span>
+                <input
+                  type="email"
+                  ref={emailRef}
+                  placeholder="contato@purple.com.br"
+                />
+              </InputsBox>
+
+              <InputsBox>
+                <span>Senha</span>
+                <input type="password" ref={passwordRef} placeholder="Senha" />
+              </InputsBox>
+
+              <div id="container_button" onClick={handleLogin}>
+                <LogIn size={25} />
+                <p>Entrar na conta</p>
+              </div>
+
+              <p id="container_forgoutPassword">Esqueci a senha</p>
+              <ToastContainer />
+            </ItemContainer>
+          </ContainerBox>
+        </LoginContainer>
+      </Container>
+    </>
+  );
+};
 
 export default Login;
