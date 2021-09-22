@@ -5,12 +5,11 @@ import { theme } from '../styles/theme';
 
 import {
   MainContainer,
-  Header,
+  HeaderMobile,
   Categories,
   CategorieTypes,
   HostBanner,
-  PinkBunners,
-  NavbarSpace
+  PinkBunners
 } from '../styles/home';
 
 import { Navbar } from '../components/Navbar';
@@ -28,9 +27,9 @@ const IndexPage: NextPage = () => {
       <Navbar />
 
       <MainContainer>
-        <Header>
+        <HeaderMobile>
           <img src="logo.svg" alt="" />
-        </Header>
+        </HeaderMobile>
         <Categories>
           <h1>Qual tipo de acomodação você precisa?</h1>
           <CategorieTypes>
@@ -75,7 +74,6 @@ const IndexPage: NextPage = () => {
             buttonColor={theme.colors.pink}
           />
         </PinkBunners>
-        <NavbarSpace />
         <NavbarMobile />
       </MainContainer>
     </>

@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-const Center = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
@@ -21,8 +15,8 @@ export const MainContainer = styled.main`
   }
 `;
 
-// HEADER
-export const Header = styled.header`
+// HEADER MOBILE
+export const HeaderMobile = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,9 +86,4 @@ export const PinkBunners = styled.section`
       margin-right: 20px;
     }
   }
-`;
-
-export const NavbarSpace = styled.div`
-  width: 100%;
-  height: 10vh;
 `;
