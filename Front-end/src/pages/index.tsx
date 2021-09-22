@@ -3,13 +3,20 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { theme } from '../styles/theme';
 
-import { MainContainer, Header, Categories, CategorieTypes, HostBanner, HostContent, BannerFade } from '../styles/home';
+import {
+  MainContainer,
+  Header,
+  Categories,
+  CategorieTypes,
+  HostBanner,
+  PinkBunners,
+  NavbarSpace
+} from '../styles/home';
 
 import { Navbar } from '../components/Navbar';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { HandleCategorie } from '../components/Home/HandleCategorie';
-
-import { GeneralButton } from '../components/GeneralButton';
+import { Banner } from '../components/Home/Banner';
 
 const IndexPage: NextPage = () => {
   return (
@@ -42,17 +49,33 @@ const IndexPage: NextPage = () => {
           </CategorieTypes>
         </Categories>
         <HostBanner>
-          <BannerFade>
-            <HostContent>
-              <h1>Hospede sua casa e ajude alguém</h1>
-              <p>Ganhe dinheiro, tenha novas experiências e ajude a comunidade</p>
-              <GeneralButton
-                text="Hospedar"
-                bgColor={theme.colors.red}
-              />
-            </HostContent>
-          </BannerFade>
+          <Banner
+            backgroundImg="host-banner.svg"
+            title="Hospede sua casa e ajude alguém"
+            description="Ganhe dinheiro, tenha novas experiências e ajude a comunidade"
+            buttonLabel="Hospedar"
+            buttonColor={theme.colors.red}
+          />
         </HostBanner>
+        <PinkBunners>
+          <Banner
+            backgroundImg="post-banner.svg"
+            title="Conheça nosso mural de postagens!"
+            titleColor={theme.colors.pink}
+            description="Precisa de alguém para dividir as contas?"
+            buttonLabel="Conhecer"
+            buttonColor={theme.colors.pink}
+          />
+          <Banner
+            backgroundImg="support-banner.svg"
+            title="Precisa de ajuda?"
+            titleColor={theme.colors.pink}
+            description="Entre em contato conosco"
+            buttonLabel="Suporte"
+            buttonColor={theme.colors.pink}
+          />
+        </PinkBunners>
+        <NavbarSpace />
         <NavbarMobile />
       </MainContainer>
     </>

@@ -64,61 +64,37 @@ export const CategorieTypes = styled.div`
   }
 `;
 
-// HOST
+// BANNERS
 export const HostBanner = styled.section`
-  background-image: url('host-bg.svg');
-  background-size: cover;
-  background-position: right;
-  background-repeat: no-repeat;
-
   width: 100%;
   height: 350px;
   color: ${(props) => props.theme.assets.background};
   border-radius: 10px;
 `;
 
-export const BannerFade = styled.div`
+export const PinkBunners = styled.section`
   width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background: linear-gradient(to left, #1a1a1a 20%, transparent 70%);
+  height: auto;
+
+  > div {
+    height: 350px;
+  }
+
+  > :first-child {
+    margin-bottom: 32px;
+  }
 
   @media screen and (min-width: 1024px) {
-    background: linear-gradient(to right, #1a1a1a 20%, transparent 70%);
+    display: flex;
+    margin-bottom: 0px;
+
+    > :first-child {
+      margin-right: 20px;
+    }
   }
 `;
 
-export const HostContent = styled(Center)`
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-
+export const NavbarSpace = styled.div`
   width: 100%;
-  height: 100%;
-  font-size: 20px;
-  padding: 16px;
-
-  > h1 {
-    font-size: 26px;
-  }
-
-  > p {
-    margin: 32px 0 64px 0px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    align-items: flex-start;
-    text-align: left;
-
-    width: 50%;
-
-    > h1 {
-      font-size: 36px;
-    }
-
-    > p {
-      font-size: 24px;
-      margin: 16px 0 32px 0px;
-    }
-  }
+  height: 10vh;
 `;

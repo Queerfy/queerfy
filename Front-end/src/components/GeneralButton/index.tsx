@@ -4,7 +4,7 @@ import { Container } from "./styles";
 
 interface GeneralButtonProps {
   text: string;
-  bgColor: string;
+  bgColor?: string;
 }
 
 export const GeneralButton = (props: GeneralButtonProps) => {
