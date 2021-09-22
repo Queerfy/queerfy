@@ -1,21 +1,64 @@
-package com.br.queerfy.backend.entities;
+package br.com.queerfy.backend.entities;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.*;
+import javax.persistence.*;
+
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "typeuser")
+@Entity
+@Table(name = "Users")
 public abstract class User {
 
+    @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "birth_date")
     private Date birthDate;
+
+    @Column(name = "rg")
     private String rg;
+
+    @Column(name = "cpf")
     private String cpf;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "perfil_img")
     private String perfilImg;
+
+    @Column(name = "desc_user")
     private String descUser;
+
+    @Column(name = "genre")
     private String genre;
+
+    @Column(name = "likes")
     private String likes;
+
+    @Column(name = "admin")
     private Boolean admin;
-    private Boolean authenticated;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Adresses> adresses;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -105,11 +148,11 @@ public abstract class User {
         this.admin = admin;
     }
 
-    public Boolean getAuthenticated() {
-        return authenticated;
+    public Set<Adresses> getAdresses() {
+        return adresses;
     }
 
-    public void setAuthenticated(Boolean authenticated) {
-        this.authenticated = authenticated;
+    public void setAdresses(Set<Adresses> adresses) {
+        this.adresses = adresses;
     }
 }

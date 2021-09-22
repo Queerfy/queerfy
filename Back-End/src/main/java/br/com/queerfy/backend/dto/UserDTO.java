@@ -1,9 +1,12 @@
-package com.br.queerfy.backend.dto;
+package br.com.queerfy.backend.dto;
 
-import java.util.Date;
+import br.com.queerfy.backend.entities.Adresses;
 
-public abstract class UserRequest {
+import java.util.*;
 
+public abstract class UserDTO {
+
+    private Long id;
     private String name;
     private Date birthDate;
     private String rg;
@@ -15,7 +18,15 @@ public abstract class UserRequest {
     private String genre;
     private String likes;
     private Boolean admin;
-    private Boolean authenticated;
+    private Set<Adresses> adresses;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -105,12 +116,11 @@ public abstract class UserRequest {
         this.admin = admin;
     }
 
-    public Boolean getAuthenticated() {
-        return authenticated;
+    public Set<Adresses> getAdresses() {
+        return adresses;
     }
 
-    public void setAuthenticated(Boolean authenticated) {
-        this.authenticated = authenticated;
+    public void setAdresses(Set<Adresses> adresses) {
+        this.adresses = adresses;
     }
-
 }

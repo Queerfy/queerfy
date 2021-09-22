@@ -1,4 +1,4 @@
-package com.br.queerfy.backend;
+package br.com.queerfy.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
