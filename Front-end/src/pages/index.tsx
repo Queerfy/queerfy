@@ -5,17 +5,21 @@ import { theme } from '../styles/theme';
 
 import {
   MainContainer,
-  HeaderMobile,
   Categories,
   CategorieTypes,
   HostBanner,
-  PinkBunners
+  PinkBunners,
+  NearbyContainer,
+  Nearby
 } from '../styles/home';
 
 import { Navbar } from '../components/Navbar';
+import { HeaderMobile } from '../components/HeaderMobile';
 import { NavbarMobile } from '../components/NavbarMobile';
+
 import { HandleCategorie } from '../components/Home/HandleCategorie';
 import { Banner } from '../components/Home/Banner';
+import { NearbyPlaces } from '../components/Home/NearbyPlaces';
 
 const IndexPage: NextPage = () => {
   return (
@@ -27,9 +31,7 @@ const IndexPage: NextPage = () => {
       <Navbar />
 
       <MainContainer>
-        <HeaderMobile>
-          <img src="logo.svg" alt="" />
-        </HeaderMobile>
+        <HeaderMobile />
         <Categories>
           <h1>Qual tipo de acomodação você precisa?</h1>
           <CategorieTypes>
@@ -74,6 +76,31 @@ const IndexPage: NextPage = () => {
             buttonColor={theme.colors.pink}
           />
         </PinkBunners>
+        <Nearby>
+          <h1>Lugares pertinho de você</h1>
+          <NearbyContainer>
+            <NearbyPlaces
+              title="Balneário Camboriú"
+              hours={1}
+              image="city-example.jpg"
+            />
+            <NearbyPlaces
+              title="Balneário Camboriú"
+              hours={2}
+              image="city-example.jpg"
+            />
+            <NearbyPlaces
+              title="Balneário Camboriú"
+              hours={2}
+              image="city-example.jpg"
+            />
+            <NearbyPlaces
+              title="Balneário Camboriú"
+              hours={2}
+              image="city-example.jpg"
+            />
+          </NearbyContainer>
+        </Nearby>
         <NavbarMobile />
       </MainContainer>
     </>

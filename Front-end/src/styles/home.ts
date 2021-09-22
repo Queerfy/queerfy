@@ -15,22 +15,6 @@ export const MainContainer = styled.main`
   }
 `;
 
-// HEADER MOBILE
-export const HeaderMobile = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  height: 10vh;
-  border-bottom: 1px solid ${(props) => props.theme.assets.borderLight};
-  margin-bottom: 16px;
-
-  @media screen and (min-width: 1024px) {
-    display: none;
-  }
-`;
-
 // CATEGORIES
 export const Categories = styled.section`
   width: 100%;
@@ -84,6 +68,40 @@ export const PinkBunners = styled.section`
 
     > :first-child {
       margin-right: 20px;
+      margin-bottom: 0px;
+    }
+  }
+`;
+
+// NEARBY PLACES
+export const Nearby = styled.section`
+  width: 100%;
+  height: auto;
+
+  > h1 {
+    color: ${(props) => props.theme.colors.purple};
+    margin-bottom: 16px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    > h1 {
+      font-size: 36px;
+    }
+  }
+`;
+
+export const NearbyContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  > div {
+    margin-bottom: 32px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    > div {
+      margin: 0px;
     }
   }
 `;
