@@ -4,10 +4,6 @@ import Head from 'next/head';
 
 import { Navbar } from '../components/Navbar';
 import { NavbarMobile } from '../components/NavbarMobile';
-import { MainPage } from './Account/MainAccount';
-import { InfoAccount } from './Account/AccountInfo';
-import { NotificationPage } from './Account/Notification';
-import { PaymentsPage } from './Account/Payments';
 
 const IndexPage: NextPage = () => {
   return (
@@ -19,9 +15,7 @@ const IndexPage: NextPage = () => {
       <Navbar />
       {/* <NavbarMobile /> */}
 
-      <main>
-        <PaymentsPage />
-      </main>
+      <main></main>
     </>
   );
 };

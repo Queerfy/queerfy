@@ -1,41 +1,43 @@
 import React from 'react';
-import { NextPage } from 'next';
-import { MainDiv } from './styles';
-import { theme } from '../../../styles/theme';
+import Head from 'next/head';
 
-export const MainPage: NextPage = () => {
+import { NextPage } from 'next';
+import { ContainerAccount, Container, ImageArrow } from './styles';
+import { theme } from '../../../styles/theme';
+import { Navbar } from '../../../components/Navbar';
+
+const MainPage: NextPage = () => {
   return (
     <>
-      <MainDiv>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            margin: '0 0 32px 0',
-          }}
-        >
-          <img style={{ width: '20px', margin: '32px 0 16px 0' }} src="returnPink.svg" alt="return" />
-          <h1 style={{ width: '100%', fontSize: '28px', color: theme.colors.pink }}>Conta</h1>
-          <h2 style={{ color: theme.colors.pink, fontSize: '20px' }}>Olá, Nicolas</h2>
-        </div>
-        <div style={{ margin: '0 0 32px 0' }}>
-          <img src="./logo.svg" alt="logo" />
-          <h2 style={{ color: theme.colors.red, fontSize: '18px' }}>Informações da conta ></h2>
-          <h3 style={{ fontSize: '14px' }}>
-            Detalhes pessoais e informações de contato
-          </h3>
-        </div>
-        <div style={{ margin: '0 0 32px 0' }}>
-          <img src="./logo.svg" alt="logo" />
-          <h2 style={{ color: theme.colors.blue, fontSize: '18px' }}>Notificações ></h2>
-          <h3 style={{ fontSize: '14px' }}>Preferências de notificação</h3>
-        </div>
-        <div>
-          <img src="./logo.svg" alt="logo" />
-          <h2 style={{ color: theme.colors.orange, fontSize: '18px' }}>Pagamentos ></h2>
-          <h3 style={{ fontSize: '14px' }}>Revise pagamentos, Doações</h3>
-        </div>
-      </MainDiv>
+      <Head>
+        <title>Conta</title>
+      </Head>
+      <Navbar accountNavbar />
+      <main>
+        <ContainerAccount>
+          <Container title={theme.colors.pink} subtitle={theme.colors.pink}>
+            <ImageArrow src="../returnPink.svg" alt="return" />
+            <h1>Conta</h1>
+            <h2>Olá, Nicolas</h2>
+          </Container>
+          <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>Informações da conta</h2>
+            <h3>Detalhes pessoais e informações de contato</h3>
+          </Container>
+          <Container subtitle={theme.colors.blue} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>Notificações</h2>
+            <h3>Preferências de notificação</h3>
+          </Container>
+          <Container subtitle={theme.colors.orange} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>Pagamentos</h2>
+            <h3>Revise pagamentos, Doações</h3>
+          </Container>
+        </ContainerAccount>
+      </main>
     </>
   );
 };
+export default MainPage;

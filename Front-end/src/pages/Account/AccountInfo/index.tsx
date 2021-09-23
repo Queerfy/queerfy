@@ -1,82 +1,70 @@
 import React from 'react';
 
 import { NextPage } from 'next';
+import Head from 'next/head';
 import { theme } from '../../../styles/theme';
-import { MainDiv } from '../MainAccount/styles';
+import { Container, ContainerAccount, ImageArrow } from '../MainAccount/styles';
+import { StyledH2 } from './styles';
+import { Navbar } from '../../../components/Navbar';
 
-export const InfoAccount: NextPage = () => {
-    return(
-        <>
-            <MainDiv >
-                <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    margin: '0 0 32px 0',
-                }}
-                >
-                <img style={{ width: '20px', margin: '32px 0 16px 0' }} src="returnRed.svg" alt="return" />
-                <h1 style={{ width: '100%', fontSize: '28px' , color: theme.colors.red }}>Informações da conta</h1>
-                </div>
-                <h2 style={{ color: theme.colors.red, margin: '16px 0 8px 0', fontSize: '22px' }}>Informações pessoais</h2>
-                <div style={{ margin: '0 0 32px 0' }}>
-                <img src="./logo.svg" alt="logo" />
-                <h2 style={{ color: theme.colors.red, fontSize: '18px' }}>Nome</h2>
-                <h3 style={{ fontSize: '14px' }}>
-                    (Nicolas Conde)
-                </h3>
-                </div>
-                <div style={{ margin: '0 0 32px 0' }}>
-                <img src="./logo.svg" alt="logo" />
-                <h2 style={{ color: theme.colors.red, fontSize: '18px' }}>Orientação sexual</h2>
-                <h3 style={{ fontSize: '14px' }}>
-                    (Homem)
-                </h3>
-                </div>
-                <div style={{ margin: '0 0 32px 0' }}>
-                <img src="./logo.svg" alt="logo" />
-                <h2 style={{ color: theme.colors.red, fontSize: '18px' }}>Data de nascimento</h2>
-                <h3 style={{ fontSize: '14px' }}>
-                    (** de janeiro de ****)
-                </h3>
-                </div>
-                <h2 style={{ color: theme.colors.red, margin: '32px 0 8px 0', fontSize: '22px' }}>------------</h2>
-                <div style={{ margin: '0 0 32px 0' }}>
-                <img src="./logo.svg" alt="logo" />
-                <h2 style={{ color: theme.colors.red, fontSize: '18px' }}>E-mail</h2>
-                <h3 style={{ fontSize: '14px' }}>
-                    (**********@gmail.com)
-                </h3>
-                </div>
-                <div style={{ margin: '0 0 32px 0' }}>
-                <img src="./logo.svg" alt="logo" />
-                <h2 style={{ color: theme.colors.red, fontSize: '18px' }}>Senha</h2>
-                <h3 style={{ fontSize: '14px' }}>
-                    (***************)
-                </h3>
-                </div>
-                <div style={{ margin: '0 0 32px 0' }}>
-                <img src="./logo.svg" alt="logo" />
-                <h2 style={{ color: theme.colors.red, fontSize: '18px' }}>Número de telefone</h2>
-                <h3 style={{ fontSize: '14px' }}>
-                    (+** ** *****-****)
-                </h3>
-                </div>
-                <div style={{ margin: '0 0 32px 0' }}>
-                <img src="./logo.svg" alt="logo" />
-                <h2 style={{ color: theme.colors.red, fontSize: '18px' }}>Documentos</h2>
-                <h3 style={{ fontSize: '14px' }}>
-                    (CPF: ***.***.***-** / RG: **.***.***-*)
-                </h3>
-                </div>
-                <div style={{ margin: '0 0 32px 0' }}>
-                <img src="./logo.svg" alt="logo" />
-                <h2 style={{ color: theme.colors.red, fontSize: '18px' }}>Endereço</h2>
-                <h3 style={{ fontSize: '14px' }}>
-                    (Rua Haddock Lobo, 595 - Cerqueira César)
-                </h3>
-                </div>
-            </MainDiv>
-        </>
-    );
+const InfoAccount: NextPage = () => {
+  return (
+    <>
+      <Head>
+        <title>Informações da conta</title>
+      </Head>
+      <Navbar accountNavbar />
+      <main>
+        <ContainerAccount>
+          <Container title={theme.colors.red}>
+            <ImageArrow src="../returnRed.svg" alt="return" />
+            <h1>Informações da conta</h1>
+          </Container>
+          <StyledH2 title={theme.colors.red}>Pessoais</StyledH2>
+          <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>Nome</h2>
+            <h3>(Nicolas Conde)</h3>
+          </Container>
+          <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>Orientação sexual</h2>
+            <h3>(Homem)</h3>
+          </Container>
+          <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>Data de nascimento</h2>
+            <h3>(** de janeiro de ****)</h3>
+          </Container>
+          <StyledH2 title={theme.colors.red}>Configurações</StyledH2>
+          <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>E-mail</h2>
+            <h3>(**********@gmail.com)</h3>
+          </Container>
+          <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>Senha</h2>
+            <h3>(***************)</h3>
+          </Container>
+          <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>Número de telefone</h2>
+            <h3>(+** ** *****-****)</h3>
+          </Container>
+          <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>Documentos</h2>
+            <h3>(CPF: ***.***.***-** / RG: **.***.***-*)</h3>
+          </Container>
+          <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            <img src="../logo.svg" alt="logo" />
+            <h2>Endereço</h2>
+            <h3>(Rua Haddock Lobo, 595 - Cerqueira César)</h3>
+          </Container>
+        </ContainerAccount>
+      </main>
+    </>
+  );
 };
+export default InfoAccount;

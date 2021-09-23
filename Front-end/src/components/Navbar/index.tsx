@@ -5,9 +5,20 @@ import Switch from 'react-switch';
 
 import { Globe, Inbox, Moon, Search, Sun, User } from 'react-feather';
 
-import { Container, Functions, IconBox, InputBox, SearchInput, Separator } from './styles';
+import {
+  Container,
+  Functions,
+  IconBox,
+  InputBox,
+  SearchInput,
+  Separator,
+} from './styles';
 
-export const Navbar = () => {
+type NavbarProps = {
+  accountNavbar?: boolean;
+};
+
+export const Navbar = ({ accountNavbar }: NavbarProps) => {
   const [theme, setTheme] = useState(true);
 
   function handleTheme() {
@@ -20,22 +31,28 @@ export const Navbar = () => {
 
   return (
     <Container>
-      <img src='./logo.svg' alt='logo' />
-      <InputBox>
-        <SearchInput placeholder='Para onde você quer ir?' />
-        <IconBox>
-          <Search />
-        </IconBox>
-      </InputBox>
-      <span>Sobre nós</span>
-      <span>Suporte</span>
-      <Separator />
+      <img src="../logo.svg" alt="logo" />
+      {!accountNavbar && (
+        <>
+          <InputBox>
+            <SearchInput placeholder="Para onde você quer ir?" />
+            <IconBox>
+              <Search />
+            </IconBox>
+          </InputBox>
+          <span>Sobre nós</span>
+          <span>Suporte</span>
+          <Separator />
+        </>
+      )}
       <Functions>
         <Switch
           checked={theme}
-          onChange={() => { handleTheme() }}
-          onColor='#F0BF5A'
-          offColor='#A993F5'
+          onChange={() => {
+            handleTheme();
+          }}
+          onColor="#F0BF5A"
+          offColor="#A993F5"
           checkedIcon={false}
           uncheckedIcon={false}
         />
@@ -44,8 +61,7 @@ export const Navbar = () => {
         <Link href="/Register">
           <User size={25} />
         </Link>
-        
       </Functions>
     </Container>
   );
-}
+};
