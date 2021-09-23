@@ -42,7 +42,7 @@ export const Favorite = styled.div`
 export const Informations = styled.div`
   width: 100%;
   height: 100%;
-  padding: 6px 0px 6px 0px;
+  padding: 12px 0px 12px 0px;
 
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@ export const AlignInformations = styled.div`
 export const Description = styled.div`
   width: 100%;
   height: 100%;
-  padding: 6px 0px 6px 0px;
+  padding: 0px 0px 12px 0px;
 
   display: flex;
   flex-direction: column;
@@ -74,13 +74,13 @@ export const BackgroundReservation = styled.div`
 
 export const BorderRainbow = styled.div`
   width: 100%;
-  height: 348px;
+  height: 260px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
   background: linear-gradient(
     to right,
@@ -105,11 +105,12 @@ export const Reservation = styled.div`
 `;
 
 export const HeaderReservation = styled.div`
-  margin: 12px 0px 6px 6px;
+  width: 100%;
+  padding: 20px 20px;
 
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 export const Value = styled.div`
@@ -120,4 +121,68 @@ export const Value = styled.div`
 export const AmountComments = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const ChooseDate = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const CheckDate = styled.div`
+  width: 50%;
+  height: 20%;
+  padding: 0px 10px 0px 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  p {
+    color: ${(props) => props.theme.colors.red};
+  }
+`;
+
+export const InputDate = styled.input`
+  padding: 6px 6px;
+
+  border-radius: 10px;
+  border: 2px solid ${(props) => props.theme.assets.borderLight};
+`;
+
+export const Email = styled.div`
+  width: 100%;
+  padding-top: 35px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 14px;
+    padding-left: 6px;
+  }
+`;
+
+export const Proposal = styled.div`
+  width: 100%;
+  height: 25%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ButtonProposal = styled.button`
+  width: 30%;
+  height: 50%;
+
+  background: ${(props) => props.theme.colors.blue};
+
+  border-radius: 10px;
+  border: none;
+
+  color: ${(props) => props.theme.assets.background};
+
+  font-size: 14px;
 `;

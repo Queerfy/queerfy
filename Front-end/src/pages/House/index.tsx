@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, MapPin } from 'react-feather';
+import { Heart, MapPin, Mail } from 'react-feather';
 import { AdditionalInformation } from '../../components/AdditionalInformation';
 import {
   Header,
@@ -15,6 +15,12 @@ import {
   HeaderReservation,
   Value,
   AmountComments,
+  CheckDate,
+  InputDate,
+  ChooseDate,
+  Email,
+  Proposal,
+  ButtonProposal,
 } from './styles';
 
 export const House = () => {
@@ -93,6 +99,27 @@ export const House = () => {
                 <h3>0 comentários</h3>
               </AmountComments>
             </HeaderReservation>
+
+            <ChooseDate>
+              <CheckDate>
+                <p>Check-in</p>
+                <InputDate type="date" placeholder="dd/mm/aa" />
+              </CheckDate>
+
+              <CheckDate>
+                <p>Check-out</p>
+                <InputDate type="date" placeholder="dd/mm/aa" />
+              </CheckDate>
+            </ChooseDate>
+
+            <Email>
+              <Mail />
+              <p>Tem interesse? Envie uma mensagem para (nome)</p>
+            </Email>
+
+            <Proposal>
+              <ButtonProposal>Realizar proposta</ButtonProposal>
+            </Proposal>
           </Reservation>
         </BorderRainbow>
       </BackgroundReservation>
