@@ -56,4 +56,8 @@ export const Item = styled.div`
 export const NavbarSpace = styled.div`
   width: 100%;
   height: 20vh;
+
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
 `;

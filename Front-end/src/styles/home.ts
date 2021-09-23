@@ -110,4 +110,10 @@ export const NewslletterContainer = styled.section`
   > h1 {
     color: ${(props) => props.theme.colors.orange};
   }
+
+  @media screen and (min-width: 1024px) {
+    > h1 {
+      font-size: 36px;
+    }
+  }
 `;

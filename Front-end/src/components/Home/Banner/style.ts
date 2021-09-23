@@ -69,6 +69,7 @@ export const InputBox = styled.div`
 
   height: 100%;
   width: 30%;
+  padding: 16px;
 
   > h1 {
     color: ${(props) => props.theme.assets.background};

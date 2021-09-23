@@ -1,3 +1,4 @@
+import React from 'react';
 import { NextPage } from 'next';
 
 import Head from 'next/head';
@@ -17,11 +18,11 @@ import {
 import { Navbar } from '../components/Navbar';
 import { HeaderMobile } from '../components/HeaderMobile';
 import { NavbarMobile } from '../components/NavbarMobile';
+import { Footer } from '../components/Footer';
 
 import { HandleCategorie } from '../components/Home/HandleCategorie';
 import { Banner } from '../components/Home/Banner';
 import { NearbyPlaces } from '../components/Home/NearbyPlaces';
-import React from 'react';
 
 const IndexPage: NextPage = () => {
   return (
@@ -31,7 +32,6 @@ const IndexPage: NextPage = () => {
       </Head>
 
       <Navbar />
-
       <MainContainer>
         <HeaderMobile />
         <Categories>
@@ -113,8 +113,9 @@ const IndexPage: NextPage = () => {
             newsletter={true}
           />
         </NewslletterContainer>
-        <NavbarMobile />
+        <Footer />
       </MainContainer>
+      <NavbarMobile />
     </>
   );
 };
