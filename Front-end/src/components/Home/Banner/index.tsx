@@ -7,7 +7,7 @@ interface BannerProps {
   titleColor?: string;
   description: string;
   descriptionColor?: string;
-  buttonLabel: string;
+  buttonLabel?: string;
   buttonColor?: string;
   backgroundImg: string;
 }
@@ -24,6 +24,8 @@ export const Banner = (props: BannerProps) => {
             bgColor={props.buttonColor}
           />
         </BannerContent>
+
+        <input type="text" />
       </BannerFade>
     </BackgroundImage>
   );

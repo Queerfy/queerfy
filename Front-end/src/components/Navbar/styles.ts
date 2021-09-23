@@ -12,6 +12,7 @@ export const Container = styled.nav`
   align-items: center;
 
   width: 100%;
+  /* max-width: 1920px; definir largura máxima */
   height: 70px;
   padding: 0 64px;
 
@@ -29,6 +30,7 @@ export const Container = styled.nav`
     }
   }
 
+  // Ajustar responsividade da navbar (1024px bugado)
   @media screen and (max-width: 1024px) {
     display: none;
   }

@@ -5,6 +5,7 @@ export const MainContainer = styled.main`
   flex-direction: column;
 
   section {
+    width: 100%;
     margin-bottom: 32px;
   }
 
@@ -17,7 +18,6 @@ export const MainContainer = styled.main`
 
 // CATEGORIES
 export const Categories = styled.section`
-  width: 100%;
   height: auto;
   color: ${(props) => props.theme.colors.green};
 `;
@@ -44,14 +44,12 @@ export const CategorieTypes = styled.div`
 
 // BANNERS
 export const HostBanner = styled.section`
-  width: 100%;
   height: 350px;
   color: ${(props) => props.theme.assets.background};
   border-radius: 10px;
 `;
 
 export const PinkBunners = styled.section`
-  width: 100%;
   height: auto;
 
   > div {
@@ -75,7 +73,6 @@ export const PinkBunners = styled.section`
 
 // NEARBY PLACES
 export const Nearby = styled.section`
-  width: 100%;
   height: auto;
 
   > h1 {
@@ -103,5 +100,15 @@ export const NearbyContainer = styled.div`
     > div {
       margin: 0px;
     }
+  }
+`;
+
+// NEWSLETTER
+export const NewslletterContainer = styled.section`
+  height: auto;
+  background-color: ${(props) => props.theme.colors.purple};
+
+  > h1 {
+    color: ${(props) => props.theme.colors.orange};
   }
 `;

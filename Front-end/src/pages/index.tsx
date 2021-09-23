@@ -10,7 +10,8 @@ import {
   HostBanner,
   PinkBunners,
   NearbyContainer,
-  Nearby
+  Nearby,
+  NewslletterContainer
 } from '../styles/home';
 
 import { Navbar } from '../components/Navbar';
@@ -20,6 +21,7 @@ import { NavbarMobile } from '../components/NavbarMobile';
 import { HandleCategorie } from '../components/Home/HandleCategorie';
 import { Banner } from '../components/Home/Banner';
 import { NearbyPlaces } from '../components/Home/NearbyPlaces';
+import React from 'react';
 
 const IndexPage: NextPage = () => {
   return (
@@ -101,6 +103,15 @@ const IndexPage: NextPage = () => {
             />
           </NearbyContainer>
         </Nearby>
+        <NewslletterContainer>
+          <h1>Newsletter</h1>
+          <Banner
+            backgroundImg="newsletter-banner.svg"
+            title="Inscreva-se na nossa newsletter"
+            titleColor={theme.assets.background}
+            description="Aqui você fica por dentro de nossas campanhas para ajudar os membros da comunidade."
+          />
+        </NewslletterContainer>
         <NavbarMobile />
       </MainContainer>
     </>
