@@ -105,7 +105,7 @@ export const NearbyContainer = styled.div`
 
 // NEWSLETTER
 export const NewslletterContainer = styled.section`
-  height: auto;
+  height: 350px;
   background-color: ${(props) => props.theme.colors.purple};
 
   > h1 {

@@ -55,5 +55,5 @@ export const Item = styled.div`
 
 export const NavbarSpace = styled.div`
   width: 100%;
-  height: 10vh;
+  height: 20vh;
 `;

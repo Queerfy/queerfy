@@ -1,6 +1,15 @@
 import React from "react";
+
+import { Send } from "react-feather";
+
 import { GeneralButton } from "../../GeneralButton";
-import { BackgroundImage, BannerContent, BannerFade } from "./style";
+import { NewsletterInput } from "../../NewsletterInput";
+
+import {
+  BackgroundImage,
+  BannerContent,
+  BannerFade,
+} from "./style";
 
 interface BannerProps {
   title: string;
@@ -23,9 +32,8 @@ export const Banner = (props: BannerProps) => {
             text={props.buttonLabel}
             bgColor={props.buttonColor}
           />
+          <NewsletterInput />
         </BannerContent>
-
-        <input type="text" />
       </BannerFade>
     </BackgroundImage>
   );
