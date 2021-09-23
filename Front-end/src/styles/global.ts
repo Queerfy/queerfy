@@ -16,6 +16,10 @@ export default createGlobalStyle<{ theme: Theme }>`
 
   main {
     padding: 0 32px;
+
+    @media screen and (min-width: 1024px) {
+      padding: 0 64px;
+    }
   }
 
   h1 {
