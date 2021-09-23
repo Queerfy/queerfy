@@ -2,12 +2,12 @@ import React from 'react';
 
 import { Send } from 'react-feather';
 
-import { IconBox, InputBox } from './styles';
+import { IconBox, Input, InputBox } from './styles';
 
 export const NewsletterInput = () => {
   return (
     <InputBox>
-      <NewsletterInput />
+      <Input placeholder="email@email.com.br" />
       <IconBox>
         <Send />
       </IconBox>

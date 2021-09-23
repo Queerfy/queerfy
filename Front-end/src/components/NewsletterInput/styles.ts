@@ -8,7 +8,7 @@ export const InputBox = styled.div`
   border-radius: 10px;
 `;
 
-export const NewsletterInput = styled.input`
+export const Input = styled.input`
   width: 80%;
   height: 100%;
   border-radius: 10px 0 0 10px;

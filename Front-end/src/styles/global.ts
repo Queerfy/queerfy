@@ -18,4 +18,8 @@ export default createGlobalStyle<{ theme: Theme }>`
       padding: 0 64px;
     }
   }
+
+  input {
+    font-family: 'Poppins';
+  }
 `;

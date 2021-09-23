@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Send } from "react-feather";
-
 import { GeneralButton } from "../../GeneralButton";
 import { NewsletterInput } from "../../NewsletterInput";
 
@@ -9,6 +7,8 @@ import {
   BackgroundImage,
   BannerContent,
   BannerFade,
+  InputBox,
+  MobileInputBox,
 } from "./style";
 
 interface BannerProps {
@@ -19,6 +19,7 @@ interface BannerProps {
   buttonLabel?: string;
   buttonColor?: string;
   backgroundImg: string;
+  newsletter?: boolean;
 }
 
 export const Banner = (props: BannerProps) => {
@@ -28,12 +29,23 @@ export const Banner = (props: BannerProps) => {
         <BannerContent>
           <h1 style={{ color: props.titleColor }}>{props.title}</h1>
           <p style={{ color: props.descriptionColor }}>{props.description}</p>
-          <GeneralButton
-            text={props.buttonLabel}
-            bgColor={props.buttonColor}
-          />
-          <NewsletterInput />
+          {props.newsletter ? (
+            <MobileInputBox>
+              <NewsletterInput />
+            </MobileInputBox>
+          ) : (
+            <GeneralButton
+              text={props.buttonLabel}
+              bgColor={props.buttonColor}
+            />
+          )}
         </BannerContent>
+        {props.newsletter && (
+          <InputBox>
+            <h1>Informe seu e-mail</h1>
+            <NewsletterInput />
+          </InputBox>
+        )}
       </BannerFade>
     </BackgroundImage>
   );

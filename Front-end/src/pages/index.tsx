@@ -110,6 +110,7 @@ const IndexPage: NextPage = () => {
             title="Inscreva-se na nossa newsletter"
             titleColor={theme.assets.background}
             description="Aqui você fica por dentro de nossas campanhas para ajudar os membros da comunidade."
+            newsletter={true}
           />
         </NewslletterContainer>
         <NavbarMobile />
