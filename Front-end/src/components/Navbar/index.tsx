@@ -58,7 +58,7 @@ export const Navbar = ({ accountNavbar }: NavbarProps) => {
         />
         <Globe size={25} />
         <Inbox size={25} />
-        <Link href="/Register">
+        <Link href="/Login">
           <User size={25} />
         </Link>
       </Functions>
