@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { NextPage } from 'next';
 
 import Head from 'next/head';
@@ -13,9 +13,6 @@ import {
   NearbyContainer,
   Nearby,
   NewslletterContainer,
-  Slide,
-  SlideContainer,
-  SlideItem
 } from '../styles/home';
 
 import { Navbar } from '../components/Navbar';
@@ -23,23 +20,13 @@ import { HeaderMobile } from '../components/HeaderMobile';
 import { NavbarMobile } from '../components/NavbarMobile';
 import { Footer } from '../components/Footer';
 
+import { Slide } from '../components/Slide';
 import { HandleCategorie } from '../components/Home/HandleCategorie';
 import { Banner } from '../components/Home/Banner';
 import { NearbyPlaces } from '../components/Home/NearbyPlaces';
 
 const IndexPage: NextPage = () => {
-  const refItems = useRef(null);
 
-  useEffect(() => {
-    if (refItems.current) {
-      setInterval(() => {
-        refItems?.current?.scrollBy(300, 0);
-        if (refItems?.current?.scrollLeft == 7700) {
-          refItems?.current?.scrollTo(0, 0);
-        }
-      }, 3000);
-    }
-  });
 
   return (
     <>
@@ -50,22 +37,7 @@ const IndexPage: NextPage = () => {
       <Navbar />
       <MainContainer>
         <HeaderMobile />
-        <SlideContainer>
-          <Slide ref={refItems}>
-            <SlideItem>
-              <img src="slide-1.svg" alt="" />
-            </SlideItem>
-            <SlideItem>
-              <img src="slide-1.svg" alt="" />
-            </SlideItem>
-            <SlideItem>
-              <img src="slide-1.svg" alt="" />
-            </SlideItem>
-            <SlideItem>
-              <img src="slide-1.svg" alt="" />
-            </SlideItem>
-          </Slide>
-        </SlideContainer>
+        <Slide />
         <Categories>
           <h1>Qual tipo de acomodação você precisa?</h1>
           <CategorieTypes>
