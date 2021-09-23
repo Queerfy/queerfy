@@ -49,6 +49,7 @@ export const InformationsBox = styled.div`
 
         border-radius: 5px;
         border: none;
+        cursor: pointer;
 
         @media screen and (max-width: 1024px) {
             width: 150px;
@@ -102,7 +103,7 @@ export const InputsBox = styled.div<InputProps>`
         }
     }
     
-    input[type='text']{
+    input[type='text'], input[type='password']{
         padding: 15px;
 
         border-radius: 5px;

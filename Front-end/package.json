@@ -16,7 +16,8 @@
     "react-feather": "^2.0.9",
     "react-switch": "^6.0.0",
     "react-toastify": "^8.0.2",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "vanilla-masker": "^1.2.0"
   },
   "devDependencies": {
     "@types/node": "^16.4.1",

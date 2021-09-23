@@ -1,6 +1,6 @@
-import { NextPage } from "next";
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect, useState, useRef } from 'react';
+import { useRef } from 'react';
 import Head from 'next/head';
 
 import Link from 'next/link';
@@ -11,12 +11,12 @@ import { UserPlus, LogIn, ArrowLeft } from 'react-feather';
 import { ToastContainer, toast } from 'react-toastify';
 
 import {
-    Container,
-    BannerContainer,
-    LoginContainer,
-    ContainerBox,
-    ItemContainer,
-    InputsBox
+  Container,
+  BannerContainer,
+  LoginContainer,
+  ContainerBox,
+  ItemContainer,
+  InputsBox,
 } from './style';
 
 import 'react-toastify/dist/ReactToastify.css';
