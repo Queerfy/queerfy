@@ -21,5 +21,7 @@ export default createGlobalStyle<{ theme: Theme }>`
 
   input {
     font-family: 'Poppins';
+    border: none;
+    outline: none;
   }
 `;

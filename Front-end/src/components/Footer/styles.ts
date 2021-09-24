@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { theme } from '../../styles/theme';
+
 export const Container = styled.footer`
   margin-top: 64px;
   margin-bottom: 32px;
@@ -12,7 +14,7 @@ export const UpContent = styled.div`
   height: auto;
   padding: 16px;
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1023px) {
     display: flex;
     justify-content: space-between;
 
@@ -44,8 +46,8 @@ export const Address = styled.div`
   height: 100%;
   text-align: center;
   padding: 8px;
-  border-top: 1px solid ${(props) => props.theme.assets.borderDark};
-  border-bottom: 1px solid ${(props) => props.theme.assets.borderDark};
+  border-top: 1px solid ${theme.assets.borderDark};
+  border-bottom: 1px solid ${theme.assets.borderDark};
 
   p {
     margin-top: 5px;

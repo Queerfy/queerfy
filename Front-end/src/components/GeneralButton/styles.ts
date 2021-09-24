@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { theme } from '../../styles/theme';
+
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -10,7 +12,7 @@ export const Container = styled.div`
   border-radius: 10px;
 
   background-color: ${(props) => props.color};
-  color: ${(props) => props.theme.assets.background};
+  color: ${theme.assets.background};
 
   &:hover {
     cursor: pointer;

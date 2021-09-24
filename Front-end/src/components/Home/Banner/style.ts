@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { theme } from '../../../styles/theme';
+
 export const BackgroundImage = styled.div`
   width: 100%;
   height: 100%;
@@ -33,11 +35,11 @@ export const BannerContent = styled.div`
 
   > h1 {
     font-size: 26px;
-    color: ${(props) => props.theme.assets.background};
+    color: ${theme.assets.background};
   }
 
   > p {
-    color: ${(props) => props.theme.assets.background};
+    color: ${theme.assets.background};
   }
 
   @media screen and (min-width: 1024px) {
@@ -72,7 +74,7 @@ export const InputBox = styled.div`
   padding: 16px;
 
   > h1 {
-    color: ${(props) => props.theme.assets.background};
+    color: ${theme.assets.background};
     font-size: 28px;
     margin-bottom: 16px;
   }

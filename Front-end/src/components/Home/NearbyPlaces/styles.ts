@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { theme } from '../../../styles/theme';
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -31,11 +33,11 @@ export const CityInfo = styled.div`
 
   > h3 {
     font-size: 16px;
-    color: ${(props) => props.theme.assets.font};
+    color: ${theme.assets.font};
   }
 
   > p {
     font-size: 12px;
-    color: ${(props) => props.theme.assets.borderDark};
+    color: ${theme.assets.borderDark};
   }
 `;

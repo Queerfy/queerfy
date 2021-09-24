@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { theme } from './theme';
+
 export const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
@@ -19,7 +21,7 @@ export const MainContainer = styled.main`
 // CATEGORIES
 export const Categories = styled.section`
   height: auto;
-  color: ${(props) => props.theme.colors.green};
+  color: ${theme.colors.green};
 `;
 
 export const CategorieTypes = styled.div`
@@ -45,7 +47,7 @@ export const CategorieTypes = styled.div`
 // BANNERS
 export const HostBanner = styled.section`
   height: 350px;
-  color: ${(props) => props.theme.assets.background};
+  color: ${theme.assets.background};
   border-radius: 10px;
 `;
 
@@ -76,7 +78,7 @@ export const Nearby = styled.section`
   height: auto;
 
   > h1 {
-    color: ${(props) => props.theme.colors.purple};
+    color: ${theme.colors.purple};
     margin-bottom: 16px;
   }
 
@@ -108,7 +110,7 @@ export const NewslletterContainer = styled.section`
   height: 350px;
 
   > h1 {
-    color: ${(props) => props.theme.colors.orange};
+    color: ${theme.colors.orange};
   }
 
   @media screen and (min-width: 1024px) {

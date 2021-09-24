@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { theme } from '../../styles/theme';
+
 const Center = styled.div`
   display: flex;
   justify-content: center;
@@ -21,7 +23,7 @@ export const Container = styled.nav`
   }
 
   > span {
-    color: ${(props) => props.theme.assets.font};
+    color: ${theme.assets.font};
     transition: 0.3s;
 
     &:hover {
@@ -53,7 +55,7 @@ export const InputBox = styled(Center)`
 
   svg {
     width: 35px;
-    color: ${(props) => props.theme.assets.font};
+    color: ${theme.assets.font};
   }
 `;
 
@@ -66,18 +68,18 @@ export const SearchInput = styled.input`
   outline: none;
   padding-left: 32px;
   font-size: 16px;
-  color: ${(props) => props.theme.assets.font};
-  background-color: ${(props) => props.theme.assets.background};
+  color: ${theme.assets.font};
+  background-color: ${theme.assets.background};
 
   ::placeholder {
-    color: ${(props) => props.theme.assets.borderDark};
+    color: ${theme.assets.borderDark};
   }
 `;
 
 export const IconBox = styled(Center)`
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
-  background-color: ${(props) => props.theme.assets.background};
+  background-color: ${theme.assets.background};
   height: 38px;
   width: 40px;
 
@@ -97,11 +99,11 @@ export const IconBox = styled(Center)`
 export const Separator = styled.div`
   height: 70%;
   width: 1px;
-  background-color: ${(props) => props.theme.assets.borderDark};
+  background-color: ${theme.assets.borderDark};
 `;
 
 export const Functions = styled.div`
-  color: ${(props) => props.theme.assets.font};
+  color: ${theme.assets.font};
   height: 35px;
 
   > svg {

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { theme } from '../../styles/theme';
+
 export const Container = styled.nav`
   display: flex;
   justify-content: center;
@@ -31,13 +33,13 @@ export const Item = styled.div`
 
   height: 100%;
   width: 70px;
-  color: ${(props) => props.theme.assets.background};
+  color: ${theme.assets.background};
   font-size: 12px;
   transition: 0.3s;
 
   svg {
     margin-left: -1px;
-    color: ${(props) => props.theme.assets.borderLight};
+    color: ${theme.assets.borderLight};
     margin-bottom: 5px;
   }
 
@@ -47,7 +49,7 @@ export const Item = styled.div`
 
   &:hover {
     svg {
-      color: ${(props) => props.theme.assets.background};
+      color: ${theme.assets.background};
     }
     cursor: pointer;
   }
