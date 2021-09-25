@@ -1,56 +1,62 @@
-package br.com.queerfy.backend.dto;
+package br.com.queerfy.backend.entities;
 
-import br.com.queerfy.backend.entities.Addresses;
-import br.com.queerfy.backend.entities.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
 import java.util.*;
-import java.util.stream.Collectors;
+import javax.persistence.*;
 
-public class UserDTO {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "typeuser")
+@Entity
+@Table(name = "Users")
+public abstract class User {
 
-    private Integer id;
+    @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-    @NotNull
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "birth_date")
     private Date birthDate;
+
+    @Column(name = "rg")
     private String rg;
+
+    @Column(name = "cpf")
     private String cpf;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "perfil_img")
     private String perfilImg;
+
+    @Column(name = "desc_user")
     private String descUser;
+
+    @Column(name = "genre")
     private String genre;
+
+    @Column(name = "likes")
     private String likes;
+
+    @Column(name = "admin")
     private Boolean admin;
-    private Set<AddressesDTO> addresses = new HashSet<>();
 
-    public UserDTO() {
+    @OneToMany(mappedBy = "user")
+    private Set<Adresses> adresses;
 
-    }
-
-    public UserDTO(User user) {
-        this.id = user.getId();
-        this.name = user.getName();
-        this.birthDate = user.getBirthDate();
-        this.rg = user.getRg();
-        this.cpf = user.getCpf();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.perfilImg = user.getPerfilImg();
-        this.descUser = user.getGenre();
-        this.genre = user.getDescUser();
-        this.likes = user.getLikes();
-        this.admin = user.getAdmin();
-        this.addresses = mapAddresses(user);
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -142,17 +148,11 @@ public class UserDTO {
         this.admin = admin;
     }
 
-    public Set<AddressesDTO> getAdresses() {
-        return addresses;
+    public Set<Adresses> getAdresses() {
+        return adresses;
     }
 
-    public void setAdresses(Set<AddressesDTO> adresses) {
-        this.addresses = adresses;
+    public void setAdresses(Set<Adresses> adresses) {
+        this.adresses = adresses;
     }
-
-    public Set<AddressesDTO> mapAddresses(User user) {
-        return user.getAdresses().stream().map(address -> new AddressesDTO(address)).collect(Collectors.toSet());
-    }
-
-
 }
