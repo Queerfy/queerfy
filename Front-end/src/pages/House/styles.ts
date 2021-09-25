@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { theme } from '../../styles/theme';
 
 export const Header = styled.header`
   width: 100%;
 
   h1 {
-    color: ${(props) => props.theme.colors.blue};
+    color: ${theme.colors.blue};
     margin-top: 25px;
   }
 `;
@@ -26,7 +27,7 @@ export const Local = styled.div`
 `;
 
 export const Favorite = styled.div`
-  color: ${(props) => props.theme.colors.red};
+  color: ${theme.colors.red};
 
   display: flex;
 
@@ -64,6 +65,43 @@ export const Description = styled.div`
   flex-direction: column;
 
   text-align: justify;
+
+  border-bottom: 2px ${theme.assets.borderDark} solid;
+`;
+
+export const Comments = styled.div`
+  width: 100%;
+  height: 100%;
+
+  padding: 50px 0px;
+`;
+
+export const AdditionalComments = styled.div`
+  width: 100%;
+  margin-top: 30px;
+`;
+
+export const Profile = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+`;
+
+export const Picture = styled.img`
+  width: 15%;
+  border-radius: 50px;
+`;
+
+export const NameDate = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+`;
+
+export const Comment = styled.p`
+  padding: 15px 0px;
+  text-align: justify;
 `;
 
 export const BackgroundReservation = styled.div`
@@ -100,13 +138,13 @@ export const Reservation = styled.div`
 
   border-radius: 10px;
 
-  color: ${(props) => props.theme.assets.font};
-  background-color: ${(props) => props.theme.assets.background};
+  color: ${theme.assets.font};
+  background-color: ${theme.assets.background};
 `;
 
 export const HeaderReservation = styled.div`
   width: 100%;
-  padding: 20px 20px;
+  padding: 20px 10px;
 
   display: flex;
   align-items: center;
@@ -139,7 +177,7 @@ export const CheckDate = styled.div`
   flex-direction: column;
 
   p {
-    color: ${(props) => props.theme.colors.red};
+    color: ${theme.colors.red};
   }
 `;
 
@@ -147,7 +185,7 @@ export const InputDate = styled.input`
   padding: 6px 6px;
 
   border-radius: 10px;
-  border: 2px solid ${(props) => props.theme.assets.borderLight};
+  border: 2px solid ${theme.assets.borderLight};
 `;
 
 export const Email = styled.div`
@@ -177,12 +215,12 @@ export const ButtonProposal = styled.button`
   width: 30%;
   height: 50%;
 
-  background: ${(props) => props.theme.colors.blue};
+  background: ${theme.colors.blue};
 
   border-radius: 10px;
   border: none;
 
-  color: ${(props) => props.theme.assets.background};
+  color: ${theme.assets.background};
 
   font-size: 14px;
 `;
