@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { NextPage } from 'next';
 import Head from 'next/head';
 
 import Link from 'next/link';
@@ -6,72 +6,70 @@ import Link from 'next/link';
 import { UserPlus, LogIn, ArrowLeft } from 'react-feather';
 
 import {
-    Container,
-    BannerContainer,
-    LoginContainer,
-    ContainerBox,
-    ItemContainer,
-    InputsBox
+  Container,
+  BannerContainer,
+  LoginContainer,
+  ContainerBox,
+  ItemContainer,
+  InputsBox,
 } from './style';
 
 const Login: NextPage = () => {
-    return (
-        <>
-            <Head>
-                <title>Login</title>
-            </Head>
+  return (
+    <>
+      <Head>
+        <title>Login</title>
+      </Head>
 
-            <Container>
-                <BannerContainer imageSrc={"./loginImage.jpeg"}>
+      <Container>
+        <BannerContainer imageSrc={'login-image.jpeg'}></BannerContainer>
 
-                </BannerContainer>
+        <LoginContainer>
+          <Link href="/">
+            <div id="login_back">
+              <ArrowLeft size={30} />
+            </div>
+          </Link>
 
-                <LoginContainer>
+          <img id="login_logo" src="logo.svg" alt="Logo" />
 
-                    <Link href="/">
-                        <div id="login_back">
-                            <ArrowLeft size={30} />
-                        </div>
-                    </Link>
+          <ContainerBox>
+            <ItemContainer>
+              <h1>Bem-vinde</h1>
 
-                    <img id="login_logo" src='./logo.svg' alt="Logo" />
+              <Link href="/Register">
+                <div id="firstElement">
+                  <UserPlus size={25} />
+                  <p>
+                    Crie sua conta na <span>Queerfy</span>
+                  </p>
+                </div>
+              </Link>
 
-                    <ContainerBox>
-                        <ItemContainer>
-                            <h1>Bem-vinde</h1>
+              <p id="container_textLogin">ou entre em sua conta</p>
 
-                            <Link href="/Register">
-                                <div id="firstElement">
-                                    <UserPlus size={25} />
-                                    <p>Crie sua conta na <span>Queerfy</span></p>
-                                </div>
-                            </Link>
+              <InputsBox>
+                <span>E-mail</span>
+                <input type="text" placeholder="contato@purple.com.br" />
+              </InputsBox>
 
-                            <p id="container_textLogin">ou entre em sua conta</p>
+              <InputsBox>
+                <span>Senha</span>
+                <input type="text" placeholder="Senha" />
+              </InputsBox>
 
-                            <InputsBox>
-                                <span>E-mail</span>
-                                <input type="text" placeholder="contato@purple.com.br" />
-                            </InputsBox>
+              <div id="container_button">
+                <LogIn size={25} />
+                <p>Entrar na conta</p>
+              </div>
 
-                            <InputsBox>
-                                <span>Senha</span>
-                                <input type="text" placeholder="Senha" />
-                            </InputsBox>
-
-                            <div id="container_button">
-                                <LogIn size={25} />
-                                <p>Entrar na conta</p>
-                            </div>
-
-                            <p id="container_forgoutPassword">Esqueci a senha</p>
-
-                        </ItemContainer>
-                    </ContainerBox>
-                </LoginContainer>
-            </Container>
-        </>
-    )
-}
+              <p id="container_forgoutPassword">Esqueci a senha</p>
+            </ItemContainer>
+          </ContainerBox>
+        </LoginContainer>
+      </Container>
+    </>
+  );
+};
 
 export default Login;
