@@ -74,7 +74,7 @@ public class LesseController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody LesseDTO lesseDTO) {
 
         try {

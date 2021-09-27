@@ -193,10 +193,11 @@ export const InputsBox = styled.div`
     }
 
     input {
-        color: #bdc3c7;
+        color: #7f8c8d;
         padding: 10px;
         border-radius: 5px;
         border: 1px solid #bdc3c7;
+        outline: none;
     }
 
 `;

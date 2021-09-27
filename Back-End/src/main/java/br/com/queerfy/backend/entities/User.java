@@ -1,20 +1,38 @@
 package br.com.queerfy.backend.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import br.com.queerfy.backend.dto.UserDTO;
 
-import java.util.*;
 import javax.persistence.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "typeuser")
-@Entity
+@Entity()
 @Table(name = "Users")
-public abstract class User {
+public class User {
+
+    public User() {
+
+    }
+
+    public User(UserDTO user) {
+        this.name = user.getName();
+        this.birthDate = user.getBirthDate();
+        this.rg = user.getRg();
+        this.cpf = user.getCpf();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.perfilImg = user.getPerfilImg();
+        this.descUser = user.getGenre();
+        this.genre = user.getDescUser();
+        this.likes = user.getLikes();
+        this.admin = user.getAdmin();
+    }
 
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -50,13 +68,13 @@ public abstract class User {
     private Boolean admin;
 
     @OneToMany(mappedBy = "user")
-    private Set<Adresses> adresses;
+    private Set<Addresses> adresses = new HashSet<>();
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -148,11 +166,12 @@ public abstract class User {
         this.admin = admin;
     }
 
-    public Set<Adresses> getAdresses() {
+    public Set<Addresses> getAdresses() {
         return adresses;
     }
 
-    public void setAdresses(Set<Adresses> adresses) {
+    public void setAdresses(Set<Addresses> adresses) {
         this.adresses = adresses;
     }
+
 }
