@@ -2,6 +2,7 @@ package br.com.queerfy.backend.controllers;
 
 import br.com.queerfy.backend.dto.UserDTO;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
+import br.com.queerfy.backend.exceptions.UserNotFoundException;
 import br.com.queerfy.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,11 @@ public class UserController {
     @GetMapping
     public List<UserDTO> getUsers() {
         return userService.getUsers();
+    }
+
+    @PutMapping("/update/{id}")
+    public UserDTO updateUsers (@RequestBody @Valid UserDTO userDTO, @PathVariable Integer id) throws UserNotFoundException {
+        return userService.update(userDTO, id);
     }
 
 

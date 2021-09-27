@@ -3,7 +3,9 @@ package br.com.queerfy.backend.services;
 import br.com.queerfy.backend.dto.LesseDTO;
 import br.com.queerfy.backend.dto.UserDTO;
 import br.com.queerfy.backend.entities.Lesse;
+import br.com.queerfy.backend.entities.User;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
+import br.com.queerfy.backend.exceptions.UserNotFoundException;
 import br.com.queerfy.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,12 +33,40 @@ public class UserService {
         boolean userExists = repository.findAll().stream().anyMatch(user -> user.getCpf().equals(userDTO.getCpf()));
 
         if(!userExists) {
-            Lesse user = new Lesse(userDTO);
+            User user = new User(userDTO);
             user = repository.save(user);
-            return new LesseDTO(user);
+            return new UserDTO(user);
         }
 
         throw new UserAlreadyExistsException();
+    }
+
+    @Transactional
+    public UserDTO update(UserDTO userDTO, Integer id) throws UserNotFoundException {
+        Optional<User> userSaved = repository.findById(id);
+        boolean userExists = userSaved.isPresent();
+
+        if(userExists) {
+           User user = userSaved.get();
+           user.setName(userDTO.getName());
+           user.setName(userDTO.getName());
+           user.setBirthDate(userDTO.getBirthDate());
+           user.setRg(userDTO.getRg());
+           user.setCpf(userDTO.getCpf());
+           user.setEmail(userDTO.getEmail());
+           user.setPassword(userDTO.getPassword());
+           user.setPerfilImg(userDTO.getPerfilImg());
+           user.setGenre(userDTO.getGenre());
+           user.setDescUser(userDTO.getDescUser());
+           user.setLikes(userDTO.getLikes());
+           user.setAdmin(userDTO.getAdmin());
+
+           repository.save(user);
+
+           return new UserDTO(user);
+        }
+
+        throw new UserNotFoundException();
     }
 
 
