@@ -3,9 +3,10 @@ import React from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { theme } from '../../../styles/theme';
-import { Container, ContainerAccount, ImageArrow } from '../MainAccount/styles';
+import { Container, ContainerAccount } from '../MainAccount/styles';
 import { StyledH2 } from './styles';
 import { Navbar } from '../../../components/Navbar';
+import { ArrowLeft } from 'react-feather';
 
 const InfoAccount: NextPage = () => {
   return (
@@ -17,7 +18,7 @@ const InfoAccount: NextPage = () => {
       <main>
         <ContainerAccount>
           <Container title={theme.colors.red}>
-            <ImageArrow src="../returnRed.svg" alt="return" />
+            <ArrowLeft />
             <h1>Informações da conta</h1>
           </Container>
           <StyledH2 title={theme.colors.red}>Pessoais</StyledH2>

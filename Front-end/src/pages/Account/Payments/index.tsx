@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { Container, ContainerAccount, ImageArrow } from '../MainAccount/styles';
+import { Container, ContainerAccount } from '../MainAccount/styles';
 import { theme } from '../../../styles/theme';
 import {
   ContainerInputBox,
@@ -14,6 +14,7 @@ import {
   ContainerButton,
 } from './styles';
 import { Navbar } from '../../../components/Navbar';
+import { ArrowLeft } from 'react-feather';
 
 const PaymentsPage: NextPage = () => {
   return (
@@ -25,7 +26,7 @@ const PaymentsPage: NextPage = () => {
       <main>
         <ContainerAccount>
           <Container title={theme.colors.orange} subtitle={theme.colors.orange}>
-            <ImageArrow src="../returnOrange.svg" alt="return" />
+            <ArrowLeft />
             <h1>Pagamentos</h1>
             <h2>Olá, Nicolas</h2>
           </Container>
