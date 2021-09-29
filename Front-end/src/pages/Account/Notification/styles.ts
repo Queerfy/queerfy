@@ -1,12 +1,5 @@
 import styled from 'styled-components';
 
-<<<<<<< HEAD
-export const ContainerRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-=======
 export const ContainerNotification = styled.div`
   display: flex;
   flex-direction: column;
@@ -39,9 +32,8 @@ export const ContainerRow = styled.div`
     }
   }
 
-  @media screen and (min-width:1023px) {
+  @media screen and (min-width: 1023px) {
     width: 90%;
     margin: 0 0 32px 0;
   }
->>>>>>> 65453a3e73a451ff263fb34c01c08b25becf2102
 `;

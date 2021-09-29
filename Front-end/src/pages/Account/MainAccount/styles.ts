@@ -6,39 +6,6 @@ interface Colors {
   text?: string;
 }
 
-<<<<<<< HEAD
-export const ContainerAccount = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  height: 100%;
-`;
-
-export const Container = styled.div<Colors>`
-  margin: 0 0 32px 0;
-
-  h1 {
-    width: 100%;
-    font-size: 28px;
-    color: ${(props) => props.title};
-  }
-  h2 {
-    width: 100%;
-    font-size: 20px;
-    color: ${(props) => props.subtitle};
-  }
-  h3 {
-    width: 100%;
-    font-size: 14px;
-    color: ${(props) => props.text};
-  }
-`;
-
-export const ImageArrow = styled.img`
-  width: 20px;
-  margin: 32px 0 16px 0;
-=======
 export const ContainerMain = styled.main`
   display: flex;
   flex-direction: column;
@@ -107,5 +74,4 @@ export const ContainerAccount = styled.div`
     height: auto;
     width: 85%;
   }
->>>>>>> 65453a3e73a451ff263fb34c01c08b25becf2102
 `;
