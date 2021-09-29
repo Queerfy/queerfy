@@ -2,6 +2,10 @@ import { useRef } from 'react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { Form } from "@unform/web";
+import { Scope } from "@unform/core";
+
+import Input from "../../components/Form/input";
 
 import { api } from '../../services/api';
 
@@ -20,37 +24,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const Register: NextPage = () => {
   const router = useRouter();
 
-  const nameRef = useRef<HTMLInputElement>(null);
   const generRef = useRef<HTMLSelectElement>(null);
-  const birthDateRef = useRef<HTMLInputElement>(null);
-  const rgRef = useRef<HTMLInputElement>(null);
-  const cpfRef = useRef<HTMLInputElement>(null);
-  const telephoneRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
 
-  const cepRef = useRef<HTMLInputElement>(null);
-  const districtRef = useRef<HTMLInputElement>(null);
-  const cityRef = useRef<HTMLInputElement>(null);
-  const numberRef = useRef<HTMLInputElement>(null);
-  const placeRef = useRef<HTMLInputElement>(null);
-  const complementRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = () => {
-    const name = nameRef.current?.value;
-    const birth_date = birthDateRef.current?.value;
-    const rg = rgRef.current?.value;
-    const cpf = cpfRef.current?.value;
-    const gener = generRef.current?.value;
-    const email = emailRef.current?.value;
-    const password = passwordRef.current?.value;
-
-    const cep = cepRef.current?.value;
-    const district = districtRef.current?.value;
-    const city = cityRef.current?.value;
-    const number = numberRef.current?.value;
-    const place = placeRef.current?.value;
-    const complement = complementRef.current?.value;
+  /* const handleSubmit = () => {
 
     let idUser;
 
@@ -69,7 +46,7 @@ const Register: NextPage = () => {
     };
 
     api
-      .post('/lesse', dataRegisterUser)
+      .post('/users', dataRegisterUser)
       .then((res) => {
         idUser = res.data.data.id;
         const dataRegisterAdresses = {
@@ -105,7 +82,18 @@ const Register: NextPage = () => {
           return toast.error('Usuario já existente!');
         }
       });
-  };
+  }; */
+
+  const handleSubmit = (data) => {
+    const gener = generRef.current?.value;
+
+    const dataUser = {
+      ...data,
+      gener
+    }
+
+    console.log(dataUser);
+  }
 
   return (
     <>
@@ -116,11 +104,11 @@ const Register: NextPage = () => {
       <Container>
         <InformationsBox>
           <h2>Registre-se</h2>
-
+          <Form onSubmit={handleSubmit}>
           <RowInputs>
             <InputsBox fixedSize={'50%'} sizeResponsive={'100%'}>
               <span>Nome</span>
-              <input ref={nameRef} type="text" placeholder="Nome Completo" />
+              <Input name="name" type="text" placeholder="Nome Completo" />
             </InputsBox>
             <InputsBox fixedSize={'25%'} sizeResponsive={'40%'}>
               <span>Gênero</span>
@@ -131,8 +119,8 @@ const Register: NextPage = () => {
             </InputsBox>
             <InputsBox fixedSize={'25%'} sizeResponsive={'55%'}>
               <span>Data de Nascimento</span>
-              <input
-                ref={birthDateRef}
+              <Input
+                name="birth_date"
                 type="date"
                 placeholder="Data de Nascimento"
               />
@@ -142,12 +130,12 @@ const Register: NextPage = () => {
           <RowInputs>
             <InputsBox fixedSize={'50%'} sizeResponsive={'40%'}>
               <span>RG</span>
-              <input ref={rgRef} type="text" placeholder="_ _-_ _ _-_ _ _-_" />
+              <Input name="rg" type="text" placeholder="_ _-_ _ _-_ _ _-_" />
             </InputsBox>
             <InputsBox fixedSize={'50%'} sizeResponsive={'55%'}>
               <span>CPF</span>
-              <input
-                ref={cpfRef}
+              <Input
+                name="cpf"
                 type="text"
                 placeholder="_ _ _-_ _ _-_ _ _-_ _"
               />
@@ -157,61 +145,63 @@ const Register: NextPage = () => {
           <RowInputs>
             <InputsBox fixedSize={'30%'} sizeResponsive={'100%'}>
               <span>Telefone</span>
-              <input
-                ref={telephoneRef}
+              <Input
+                name="telephone"
                 type="text"
                 placeholder="(_ _)_ _ _ _-_ _ _ _"
               />
             </InputsBox>
             <InputsBox fixedSize={'50%'} sizeResponsive={'55%'}>
               <span>E-mail</span>
-              <input
-                ref={emailRef}
+              <Input
+                name="email"
                 type="text"
                 placeholder="contato@purple.com.br"
               />
             </InputsBox>
             <InputsBox fixedSize={'30%'} sizeResponsive={'40%'}>
               <span>Senha</span>
-              <input ref={passwordRef} type="password" placeholder="Senha" />
+              <Input name="password" type="password" placeholder="Senha" />
             </InputsBox>
           </RowInputs>
+          <Scope path="address">
+            <RowInputs>
+              <InputsBox fixedSize={'50%'} sizeResponsive={'100%'}>
+                <span>CEP</span>
+                <Input name="cep" type="text" placeholder="_ _ _ _ _-_ _ _" />
+              </InputsBox>
+              <InputsBox fixedSize={'10%'} sizeResponsive={'45%'}>
+                <span>UF</span>
+                <Input name="uf" type="text" placeholder="SP" />
+              </InputsBox>
+              <InputsBox fixedSize={'40%'} sizeResponsive={'50%'}>
+                <span>Cidade</span>
+                <Input name="city" type="text" placeholder="São Paulo" />
+              </InputsBox>
+            </RowInputs>
 
-          <RowInputs>
-            <InputsBox fixedSize={'50%'} sizeResponsive={'100%'}>
-              <span>CEP</span>
-              <input ref={cepRef} type="text" placeholder="_ _ _ _ _-_ _ _" />
-            </InputsBox>
-            <InputsBox fixedSize={'10%'} sizeResponsive={'45%'}>
-              <span>UF</span>
-              <input ref={districtRef} type="text" placeholder="SP" />
-            </InputsBox>
-            <InputsBox fixedSize={'40%'} sizeResponsive={'50%'}>
-              <span>Cidade</span>
-              <input ref={cityRef} type="text" placeholder="São Paulo" />
-            </InputsBox>
-          </RowInputs>
+            <RowInputs>
+              <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
+                <span>Rua/Logradouro</span>
+                <Input
+                  name="street"
+                  type="text"
+                  placeholder="Rua das Laranjeiras"
+                />
+              </InputsBox>
+              <InputsBox fixedSize={'10%'} sizeResponsive={'15%'}>
+                <span>Número</span>
+                <Input name="number" type="text" placeholder="290" />
+              </InputsBox>
+              <InputsBox fixedSize={'40%'} sizeResponsive={'30%'}>
+                <span>Complemento</span>
+                <Input name="complement" type="text" placeholder="Casa" />
+              </InputsBox>
+            </RowInputs>
+          </Scope>
 
-          <RowInputs>
-            <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
-              <span>Rua/Logradouro</span>
-              <input
-                ref={placeRef}
-                type="text"
-                placeholder="Rua das Laranjeiras"
-              />
-            </InputsBox>
-            <InputsBox fixedSize={'10%'} sizeResponsive={'15%'}>
-              <span>Número</span>
-              <input ref={numberRef} type="text" placeholder="290" />
-            </InputsBox>
-            <InputsBox fixedSize={'40%'} sizeResponsive={'30%'}>
-              <span>Complemento</span>
-              <input ref={complementRef} type="text" placeholder="Casa" />
-            </InputsBox>
-          </RowInputs>
-
-          <button onClick={handleSubmit}>Continuar</button>
+          <button>Continuar</button>
+          </Form>
         </InformationsBox>
         <ImageRegister src="./registerImage.jpeg" alt="Register Image" />
       </Container>
