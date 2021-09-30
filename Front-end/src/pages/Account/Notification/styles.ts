@@ -32,7 +32,7 @@ export const ContainerRow = styled.div`
     }
   }
 
-  @media screen and (min-width:1023px) {
+  @media screen and (min-width: 1023px) {
     width: 90%;
     margin: 0 0 32px 0;
   }
