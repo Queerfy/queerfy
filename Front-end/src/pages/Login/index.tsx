@@ -17,6 +17,7 @@ import {
   ContainerBox,
   ItemContainer,
   InputsBox,
+  LogoBox,
 } from './style';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -82,7 +83,12 @@ const Login: NextPage = () => {
       </Head>
 
       <Container>
-        <BannerContainer imageSrc={'./loginImage.jpeg'}></BannerContainer>
+        <BannerContainer imageSrc={'login-image.svg'}>
+          <LogoBox>
+            <img src="logo.svg" alt="queerfy" />
+            <span>Queerfy</span>
+          </LogoBox>
+        </BannerContainer>
 
         <LoginContainer>
           <Link href="/">
