@@ -33,4 +33,8 @@ export default createGlobalStyle<{ theme: Theme }>`
   h3 {
     font-size: 14px;
   }
+
+  button {
+    cursor: pointer;
+  }
 `;
