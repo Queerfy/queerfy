@@ -26,6 +26,9 @@ const Register: NextPage = () => {
 
   const genreRef = useRef<HTMLSelectElement>(null);
 
+  //Função de registro mandando informações do usuario para a api com o unform pegando as informações
+  //Trocar isso parar ser por estapas de registro e trocar a logica
+  //Mandar os dados para api por ultimo
   const handleSubmit = (data) => {
     const genre = genreRef.current?.value;
 
