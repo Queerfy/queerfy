@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 public class UserDTO {
 
     private Integer id;
-
-    @NotNull
     private String name;
     private Date birthDate;
     private String rg;

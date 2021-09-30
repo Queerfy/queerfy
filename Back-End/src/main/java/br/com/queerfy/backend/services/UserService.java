@@ -30,7 +30,7 @@ public class UserService {
 
     @Transactional
     public UserDTO create(UserDTO userDTO) throws UserAlreadyExistsException {
-        boolean userExists = repository.findAll().stream().anyMatch(user -> user.getCpf().equals(userDTO.getCpf()));
+        boolean userExists = repository.findAll().stream().anyMatch(user -> user.getCpf().equals(userDTO.getCpf()) || user.getEmail().equals(userDTO.getEmail()));
 
         if(!userExists) {
             User user = new User(userDTO);

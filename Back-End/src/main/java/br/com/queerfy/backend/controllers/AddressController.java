@@ -19,7 +19,7 @@ public class AddressController {
     private AddressService addressService;
 
     @PostMapping()
-    public AddressesDTO create(@RequestBody @Valid AddressesDTO addressesDTO) throws UserNotFoundException {
+    public AddressesDTO create(@RequestBody AddressesDTO addressesDTO) throws UserNotFoundException {
         return addressService.create(addressesDTO);
     }
 

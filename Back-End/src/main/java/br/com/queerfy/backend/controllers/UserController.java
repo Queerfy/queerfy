@@ -17,8 +17,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
-    public UserDTO create(@RequestBody @Valid UserDTO userDTO) throws UserAlreadyExistsException {
+    @PostMapping()
+    public UserDTO create(@RequestBody UserDTO userDTO) throws UserAlreadyExistsException {
         return userService.create(userDTO);
     }
 
@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
-    public UserDTO updateUsers (@RequestBody @Valid UserDTO userDTO, @PathVariable Integer id) throws UserNotFoundException {
+    public UserDTO updateUsers (@RequestBody UserDTO userDTO, @PathVariable Integer id) throws UserNotFoundException {
         return userService.update(userDTO, id);
     }
 
