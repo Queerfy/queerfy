@@ -8,7 +8,7 @@ import { ContainerMain, HeaderContainer } from '../MainAccount/styles';
 import { theme } from '../../../styles/theme';
 import { ContainerNotification, ContainerRow } from './styles';
 import { Navbar } from '../../../components/Navbar';
-import { ArrowLeft } from 'react-feather';
+import { ArrowLeft, Mail } from 'react-feather';
 
 const NotificationPage: NextPage = () => {
   return (

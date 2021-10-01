@@ -30,19 +30,33 @@ export const HeaderContainer = styled.div<Colors>`
   }
 
   h1 {
-    font-size: 36px;
+    font-size: 26px;
     color: ${(props) => props.title};
+
+    @media screen and (min-width: 1023px) {
+      font-size: 36px;
+    }
   }
   h2 {
-    font-size: 24px;
+    font-size: 18px;
     color: ${(props) => props.subtitle};
+
+    @media screen and (min-width: 1023px) {
+      font-size: 24px;
+    }
   }
 `;
 
 export const Container = styled.div<Colors>`
+  margin-bottom: 32px;
   svg {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
+
+    @media screen and (min-width: 1023px) {
+      width: 80px;
+      height: 80px;
+    }
   }
 
   h2 {
@@ -55,7 +69,7 @@ export const Container = styled.div<Colors>`
   }
 
   @media screen and (min-width: 1023px) {
-    width: 350px;
+    width: 400px;
     height: 200px;
   }
 `;
@@ -65,7 +79,7 @@ export const ContainerAccount = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  margin-top: 64px;
+  margin-top: 32px;
   height: 450px;
 
   @media screen and (min-width: 1023px) {
@@ -73,5 +87,7 @@ export const ContainerAccount = styled.div`
     flex-wrap: wrap;
     height: auto;
     width: 85%;
+
+    margin-top: 64px;
   }
 `;
