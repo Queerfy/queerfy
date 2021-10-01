@@ -13,6 +13,8 @@ export const ContainerMain = styled.main`
   width: 100%;
 
   @media screen and (min-width: 1023px) {
+    display: flex;
+
     justify-content: center;
     align-items: center;
   }
