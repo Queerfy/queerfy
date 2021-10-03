@@ -35,6 +35,7 @@ export const ContainerColumn = styled.div`
 
 export const Container = styled.div<Colors>`
   margin-bottom: 32px;
+
   svg {
     width: 50px;
     height: 50px;

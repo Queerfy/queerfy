@@ -1,7 +1,9 @@
 import React from 'react';
+
+import Link from 'next/link';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { ContainerMain, HeaderContainer } from '../MainAccount/styles';
+import { ContainerMain, HeaderContainer } from '../Main/styles';
 import { theme } from '../../../styles/theme';
 import {
   ContainerInputBox,
@@ -30,8 +32,11 @@ const PaymentsPage: NextPage = () => {
           <HeaderContainer
             title={theme.colors.orange}
             subtitle={theme.colors.orange}
+            text={theme.colors.orange}
           >
-            <ArrowLeft />
+            <Link href="/Account/Main">
+              <ArrowLeft />
+            </Link>
             <h1>Pagamentos</h1>
             <h2>Olá, Nicolas</h2>
           </HeaderContainer>

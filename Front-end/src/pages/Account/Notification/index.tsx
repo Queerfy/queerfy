@@ -1,14 +1,15 @@
 import React from 'react';
 
 import Switch from 'react-switch';
-
+import Link from 'next/link';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { ContainerMain, HeaderContainer } from '../MainAccount/styles';
+
+import { ContainerMain, HeaderContainer } from '../Main/styles';
 import { theme } from '../../../styles/theme';
-import { ContainerNotification, ContainerRow } from './styles';
+import { ContainerLeft, ContainerNotification, ContainerRow } from './styles';
 import { Navbar } from '../../../components/Navbar';
-import { ArrowLeft, Mail } from 'react-feather';
+import { ArrowLeft, Mail, Bell, MessageSquare } from 'react-feather';
 
 const NotificationPage: NextPage = () => {
   return (
@@ -19,13 +20,18 @@ const NotificationPage: NextPage = () => {
       <Navbar accountNavbar />
       <ContainerMain>
         <HeaderContainer title={theme.colors.blue} text={theme.colors.blue}>
-          <ArrowLeft />
+          <Link href="/Account/Main">
+            <ArrowLeft />
+          </Link>
           <h1>Notificações</h1>
         </HeaderContainer>
         <ContainerNotification>
           <ContainerRow>
-            <h2 id="textOne">E-mail</h2>
-            <h2 id="textTwo">Deseja receber atualizações no e-mail?</h2>
+            <ContainerLeft>
+              <Mail />
+              <h2 id="textOne">E-mail</h2>
+              <h2 id="textTwo">Deseja receber atualizações no e-mail?</h2>
+            </ContainerLeft>
             <Switch
               checked={true}
               onChange={() => {}}
@@ -36,8 +42,11 @@ const NotificationPage: NextPage = () => {
             />
           </ContainerRow>
           <ContainerRow>
-            <h2 id="textOne">Pop-up</h2>
-            <h2 id="textTwo">Concorda em receber pop-up no app?</h2>
+            <ContainerLeft>
+              <Bell />
+              <h2 id="textOne">Pop-up</h2>
+              <h2 id="textTwo">Concorda em receber pop-up no app?</h2>
+            </ContainerLeft>
             <Switch
               checked={true}
               onChange={() => {}}
@@ -48,8 +57,11 @@ const NotificationPage: NextPage = () => {
             />
           </ContainerRow>
           <ContainerRow>
-            <h2 id="textOne">Mensagens privadas</h2>
-            <h2 id="textTwo">Mensagens de texto de outros usuários</h2>
+            <ContainerLeft>
+              <MessageSquare />
+              <h2 id="textOne">Mensagens privadas</h2>
+              <h2 id="textTwo">Mensagens de texto de outros usuários</h2>
+            </ContainerLeft>
             <Switch
               checked={false}
               onChange={() => {}}

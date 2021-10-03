@@ -1,9 +1,10 @@
 import React from 'react';
 
+import Link from 'next/link';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { theme } from '../../../styles/theme';
-import { ContainerMain, HeaderContainer } from '../MainAccount/styles';
+import { ContainerMain, HeaderContainer } from '../Main/styles';
 import { ContainerInfo, ContainerColumn, Container } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import {
@@ -27,7 +28,9 @@ const InfoAccount: NextPage = () => {
       <Navbar accountNavbar />
       <ContainerMain>
         <HeaderContainer title={theme.colors.red} text={theme.colors.red}>
-          <ArrowLeft />
+          <Link href="/Account/Main">
+            <ArrowLeft />
+          </Link>
           <h1>Informações da conta</h1>
         </HeaderContainer>
         <ContainerInfo>
