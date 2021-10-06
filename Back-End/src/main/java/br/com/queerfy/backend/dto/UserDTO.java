@@ -1,12 +1,18 @@
 package br.com.queerfy.backend.dto;
 
-import br.com.queerfy.backend.entities.Adresses;
+import br.com.queerfy.backend.entities.Addresses;
+import br.com.queerfy.backend.entities.User;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.stream.Collectors;
 
-public abstract class UserDTO {
+public class UserDTO {
 
-    private Long id;
+    private Integer id;
+
+    @NotNull
     private String name;
     private Date birthDate;
     private String rg;
@@ -18,13 +24,33 @@ public abstract class UserDTO {
     private String genre;
     private String likes;
     private Boolean admin;
-    private Set<Adresses> adresses;
+    private Set<AddressesDTO> addresses = new HashSet<>();
 
-    public Long getId() {
+    public UserDTO() {
+
+    }
+
+    public UserDTO(User user) {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.birthDate = user.getBirthDate();
+        this.rg = user.getRg();
+        this.cpf = user.getCpf();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.perfilImg = user.getPerfilImg();
+        this.descUser = user.getGenre();
+        this.genre = user.getDescUser();
+        this.likes = user.getLikes();
+        this.admin = user.getAdmin();
+        this.addresses = mapAddresses(user);
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -116,11 +142,17 @@ public abstract class UserDTO {
         this.admin = admin;
     }
 
-    public Set<Adresses> getAdresses() {
-        return adresses;
+    public Set<AddressesDTO> getAdresses() {
+        return addresses;
     }
 
-    public void setAdresses(Set<Adresses> adresses) {
-        this.adresses = adresses;
+    public void setAdresses(Set<AddressesDTO> adresses) {
+        this.addresses = adresses;
     }
+
+    public Set<AddressesDTO> mapAddresses(User user) {
+        return user.getAdresses().stream().map(address -> new AddressesDTO(address)).collect(Collectors.toSet());
+    }
+
+
 }
