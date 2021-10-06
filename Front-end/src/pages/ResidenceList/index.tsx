@@ -10,6 +10,7 @@ import { Navbar } from "../../components/Navbar";
 import { HeaderMobile } from "../../components/HeaderMobile";
 import { NavbarMobile } from "../../components/NavbarMobile";
 import { Residence } from "../../components/Residence";
+import { Footer } from "../../components/Footer";
 
 const ResidenceList: NextPage = () => {
   return (
@@ -71,6 +72,7 @@ const ResidenceList: NextPage = () => {
           <Residence />
         </RoomRow>
       </Container>
+      <Footer />
       <NavbarMobile />
     </>
   );
