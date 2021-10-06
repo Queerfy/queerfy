@@ -18,6 +18,7 @@ import {
   CreditCard,
   Users,
 } from 'react-feather';
+import { InputsBox } from '../../Login/style';
 
 const InfoAccount: NextPage = () => {
   return (
@@ -37,45 +38,61 @@ const InfoAccount: NextPage = () => {
           <ContainerColumn>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <User />
-              <h2>Nome</h2>
-              <h3>Nicolas Sousa Conde</h3>
+              <InputsBox>
+                <h2>Nome</h2>
+                <input type="text" placeholder="Nicolas Sousa Conde" />
+              </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Users />
-              <h2>Orientação sexual</h2>
-              <h3>Masculino</h3>
+              <InputsBox>
+                <h2>Orientação sexual</h2>
+                <input type="text" placeholder="Masculino" />
+              </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Calendar />
-              <h2>Data de nascimento</h2>
-              <h3>01 de janeiro de 2021</h3>
+              <InputsBox>
+                <h2>Data de nascimento</h2>
+                <input type="text" placeholder="** de janeiro de ***" />
+              </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Mail />
-              <h2>E-mail</h2>
-              <h3>nicolasconde196@gmail.com</h3>
+              <InputsBox>
+                <h2>E-mail</h2>
+                <input type="text" placeholder="***************@gmail.com" />
+              </InputsBox>
             </Container>
           </ContainerColumn>
           <ContainerColumn>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Lock />
-              <h2>Senha</h2>
-              <h3>***************</h3>
+              <InputsBox>
+                <h2>Senha</h2>
+                <input type="text" placeholder="***************" />
+              </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Phone />
-              <h2>Número de telefone</h2>
-              <h3>+55 11 91234-5678</h3>
+              <InputsBox>
+                <h2>Número de telefone</h2>
+                <input type="text" placeholder="+** ** *****-****" />
+              </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <CreditCard />
-              <h2>Documentos</h2>
-              <h3>CPF: 123.456.789-01/RG: 12.345.678-9</h3>
+              <InputsBox>
+                <h2>Documentos</h2>
+                <input type="text" placeholder="CPF/RG" />
+              </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <MapPin />
-              <h2>Endereço</h2>
-              <h3>Rua Haddock Lobo, 595</h3>
+              <InputsBox>
+                <h2>Endereço</h2>
+                <input type="text" placeholder="Rua Haddock Lobo, 595" />
+              </InputsBox>
             </Container>
           </ContainerColumn>
         </ContainerInfo>

@@ -10,6 +10,7 @@ export const ContainerMain = styled.main`
   display: flex;
   flex-direction: column;
 
+  height: auto;
   width: 100%;
 
   @media screen and (min-width: 1023px) {
@@ -23,7 +24,7 @@ export const ContainerMain = styled.main`
 export const HeaderContainer = styled.div<Colors>`
   margin-top: 32px;
 
-  width: 85%;
+  width: 100%;
 
   svg {
     color: ${(props) => props.text};

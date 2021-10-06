@@ -6,8 +6,13 @@ export const ContainerNotification = styled.div`
   margin-top: 64px;
 
   svg {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
+
+    @media screen and (min-width: 1023px) {
+      width: 50px;
+      height: 50px;
+    }
   }
 
   @media screen and (min-width: 1023px) {

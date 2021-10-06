@@ -17,23 +17,41 @@ interface FontSize {
 
 export const ContainerPayment = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
-  width: 85%;
+  height: auto;
+  width: 100%;
+
+  @media screen and (min-width: 1023px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    height: auto;
+    width: 85%;
+  }
 `;
 
 export const SubContainerPayment = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   width: 100%;
+
+  @media screen and (min-width: 1023px) {
+    width: 50%;
+  }
 `;
 
 export const ContainerInputBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  width: 90%;
+  width: 100%;
   height: 90%;
 `;
 
@@ -42,8 +60,9 @@ export const InputBox = styled.div<InputProps>`
   justify-content: center;
   align-items: center;
   margin-top: 32px;
+  flex-direction: column;
 
-  width: 100%;
+  width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: 15px;
   background: linear-gradient(
@@ -53,7 +72,7 @@ export const InputBox = styled.div<InputProps>`
   );
 
   @media screen and (min-width: 1023px) {
-    width: 80%;
+    width: 75%;
     height: ${(props) => props.responsive};
   }
 `;
@@ -64,7 +83,7 @@ export const SubContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 
-  width: 100%;
+  width: 90%;
   height: 30%;
 
   h3 {
@@ -72,15 +91,15 @@ export const SubContainer = styled.div`
     color: #1a1a1a;
 
     @media screen and (min-width: 1023px) {
-      font-size: 22px;
+      font-size: 26px;
     }
   }
 
   img {
-    width: 60px;
+    width: 50px;
 
-    @media screen and (max-width: 1023px) {
-      width: 50px;
+    @media screen and (min-width: 1023px) {
+      width: 80px;
     }
   }
 `;
@@ -94,11 +113,11 @@ export const RowCard = styled.div`
   height: 40%;
 
   h1 {
-    font-size: 28px;
+    font-size: 20px;
     color: #1a1a1a;
 
-    @media screen and (max-width: 1023px) {
-      font-size: 20px;
+    @media screen and (min-width: 1023px) {
+      font-size: 36px;
     }
   }
 `;
@@ -117,18 +136,18 @@ export const ContentRowCard = styled.div<FontSize>`
   justify-content: center;
 
   h2 {
-    font-size: 14px;
+    font-size: 12px;
 
-    @media screen and (max-width: 1023px) {
-      font-size: 12px;
+    @media screen and (min-width: 1023px) {
+      font-size: 20px;
     }
   }
 
   h3 {
     font-size: 12px;
 
-    @media screen and (max-width: 1023px) {
-      font-size: 10px;
+    @media screen and (min-width: 1023px) {
+      font-size: 18px;
     }
   }
 `;
@@ -143,20 +162,29 @@ export const ColapsedCard = styled.div`
 
   img {
     width: 70px;
+
+    @media screen and (min-width: 1023px) {
+      width: 80px;
+    }
   }
 
   h3 {
     color: #1a1a1a;
-    font-size: 22px;
+    font-size: 16px;
+
+    @media screen and (min-width: 1023px) {
+      font-size: 28px;
+    }
   }
 `;
 
 export const ContainerButton = styled.div<Background>`
   display: flex;
+  align-items: center;
   justify-content: center;
 
-  width: 85%;
-  
+  width: 100%;
+
   margin-top: 32px;
 
   button {

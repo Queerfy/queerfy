@@ -59,7 +59,7 @@ const NotificationPage: NextPage = () => {
           <ContainerRow>
             <ContainerLeft>
               <MessageSquare />
-              <h2 id="textOne">Mensagens privadas</h2>
+              <h2 id="textOne">Direta</h2>
               <h2 id="textTwo">Mensagens de texto de outros usuários</h2>
             </ContainerLeft>
             <Switch
