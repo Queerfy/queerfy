@@ -11,6 +11,7 @@ interface ResidenceProps {
   }
   trend?: boolean;
   description?: string;
+  children?: string;
 }
 
 export const Residence = (props: ResidenceProps) => {
@@ -26,7 +27,7 @@ export const Residence = (props: ResidenceProps) => {
       <span><MapPin /> SP - Alphaville</span>
 
       {props.trend && (
-        <p>{props.description}</p>
+        <p>{props.children}</p>
       )}
     </Container>
   );

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
-export const TrendContainer = styled.section`
+export const Container = styled.section`
   width: 100%;
   height: auto;
 
@@ -14,6 +14,17 @@ export const TrendContainer = styled.section`
     margin: 16px 0px;
     font-size: 14px;
   }
+
+  @media screen and (min-width: 1024px) {
+    > h1 {
+      font-size: 36px;
+      margin: 16px 0px;
+    }
+
+    > p {
+      font-size: 20px;
+    }
+  }
 `;
 
 export const RoomRow = styled.div`
@@ -24,13 +35,13 @@ export const RoomRow = styled.div`
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin-left: -16px;
+    justify-content: space-between;
   }
 `;
 
-export const Categories = styled.section`
+export const Categories = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
 
   width: 100%;
@@ -49,8 +60,14 @@ export const CategorieItem = styled.div`
   margin-bottom: 16px;
   border-radius: 10px;
   background-color: ${theme.assets.background};
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   padding: 16px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+  }
 
   > img {
     height: 35px;

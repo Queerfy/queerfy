@@ -26,19 +26,22 @@ export const Container = styled.div`
 
   @media screen and (min-width: 1024px) {
     width: 380px;
-    margin: 0px 16px 16px 16px;
   }
 `;
 
 export const ImageBox = styled.div`
-  width: 100%;
-  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: auto;
+  height: auto;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
 
   > img {
-    height: 100%;
+    width: 100%;
   }
 `;
 
@@ -59,6 +62,11 @@ export const HoveredImage = styled.div`
     color: ${theme.assets.background};
     width: 60px;
     height: 60px;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   &:hover {
