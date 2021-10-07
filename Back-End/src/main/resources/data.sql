@@ -1,0 +1,1 @@
+INSERT INTO users (name, birth_date, rg, cpf, email, password) values ('Rafa', '1999-10-15', '99999', '32321321321312', 'rafael@email.com', 'senha')
