@@ -1,5 +1,10 @@
 package br.com.queerfy.backend.dto;
 
-public class LesseDTO extends UserDTO {
+import br.com.queerfy.backend.entities.User;
 
+public class LesseDTO extends UserDTO{
+
+    public LesseDTO(User user) {
+        super(user);
+    }
 }
