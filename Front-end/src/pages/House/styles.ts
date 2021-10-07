@@ -40,25 +40,47 @@ export const Favorite = styled.div`
   }
 `;
 
+export const BoxContents = styled.div`
+  width: 100%;
+
+  @media screen and (min-width: 1024px) {
+    display: flex;
+  }
+`;
+
+export const BoxInformations = styled.div`
+  width: 100%;
+`;
+
 export const Informations = styled.div`
   width: 100%;
-  height: 100%;
   padding: 12px 0px 12px 0px;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  h2 {
+    padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 80%;
+  }
 `;
 
 export const AlignInformations = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+
+  @media screen and (min-width: 1024px) {
+    width: 80%;
+  }
 `;
 
 export const Description = styled.div`
   width: 100%;
-  height: 100%;
   padding: 0px 0px 12px 0px;
 
   display: flex;
@@ -66,48 +88,24 @@ export const Description = styled.div`
 
   text-align: justify;
 
-  border-bottom: 2px ${theme.assets.borderDark} solid;
-`;
+  h2 {
+    padding-bottom: 20px;
+  }
 
-export const Comments = styled.div`
-  width: 100%;
-  height: 100%;
-
-  padding: 50px 0px;
-`;
-
-export const AdditionalComments = styled.div`
-  width: 100%;
-  margin-top: 30px;
-`;
-
-export const Profile = styled.div`
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-`;
-
-export const Picture = styled.img`
-  width: 15%;
-  border-radius: 50px;
-`;
-
-export const NameDate = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 15px;
-`;
-
-export const Comment = styled.p`
-  padding: 15px 0px;
-  text-align: justify;
+  @media screen and (min-width: 1024px) {
+    width: 80%;
+  }
 `;
 
 export const BackgroundReservation = styled.div`
   width: 100%;
   height: 100%;
   padding: 8px 0px 8px 0px;
+
+  @media screen and (min-width: 1024px) {
+    width: 50%;
+    padding: 50px 0px;
+  }
 `;
 
 export const BorderRainbow = styled.div`
@@ -223,4 +221,27 @@ export const ButtonProposal = styled.button`
   color: ${theme.assets.background};
 
   font-size: 14px;
+`;
+
+export const Comments = styled.div`
+  width: 100%;
+
+  padding: 30px 0px;
+
+  border: none;
+
+  @media screen and (min-width: 1240px) {
+    border-top: 2px ${theme.assets.borderDark} solid;
+  }
+`;
+
+export const BoxAdditionalComments = styled.div`
+  width: 100%;
+
+  @media screen and (min-width: 1240px) {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+  }
 `;

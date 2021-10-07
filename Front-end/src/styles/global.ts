@@ -36,4 +36,8 @@ export default createGlobalStyle<{ theme: Theme }>`
     border: none;
     outline: none;
   }
+  
+  button {
+    cursor: pointer;
+  }
 `;

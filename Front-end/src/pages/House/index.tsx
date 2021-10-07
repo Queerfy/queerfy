@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heart, MapPin, Mail } from 'react-feather';
 import { AdditionalInformation } from '../../components/AdditionalInformation';
+import { CommentsHouse } from '../../components/CommentsHouse';
 import {
   Header,
   Local,
@@ -22,11 +23,9 @@ import {
   Proposal,
   ButtonProposal,
   Comments,
-  AdditionalComments,
-  Profile,
-  Picture,
-  NameDate,
-  Comment,
+  BoxInformations,
+  BoxContents,
+  BoxAdditionalComments,
 } from './styles';
 
 export const House = () => {
@@ -48,112 +47,101 @@ export const House = () => {
 
       <img src="img-casa.svg" width="100%" height="100%" />
 
-      <Informations>
-        <h2>Nome do proprietário</h2>
+      <BoxContents>
+        <BoxInformations>
+          <Informations>
+            <h2>Nome do proprietário</h2>
 
-        <AlignInformations>
-          <AdditionalInformation />
-          <AdditionalInformation />
-        </AlignInformations>
+            <AlignInformations>
+              <AdditionalInformation />
+              <AdditionalInformation />
+            </AlignInformations>
 
-        <AlignInformations>
-          <AdditionalInformation />
-          <AdditionalInformation />
-        </AlignInformations>
+            <AlignInformations>
+              <AdditionalInformation />
+              <AdditionalInformation />
+            </AlignInformations>
+          </Informations>
 
-        <AlignInformations>
-          <AdditionalInformation />
-          <AdditionalInformation />
-        </AlignInformations>
-      </Informations>
+          <Informations>
+            <h2>Regras</h2>
 
-      <Informations>
-        <h2>Regras</h2>
+            <AlignInformations>
+              <AdditionalInformation />
+              <AdditionalInformation />
+            </AlignInformations>
 
-        <AlignInformations>
-          <AdditionalInformation />
-          <AdditionalInformation />
-        </AlignInformations>
+            <AlignInformations>
+              <AdditionalInformation />
+              <AdditionalInformation />
+            </AlignInformations>
+          </Informations>
 
-        <AlignInformations>
-          <AdditionalInformation />
-          <AdditionalInformation />
-        </AlignInformations>
-      </Informations>
+          <Description>
+            <h2>Descrição</h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged.
+            </p>
+          </Description>
+        </BoxInformations>
 
-      <Description>
-        <h2>Descrição</h2>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged.
-        </p>
-      </Description>
+        <BackgroundReservation>
+          <BorderRainbow>
+            <Reservation>
+              <HeaderReservation>
+                <Value>
+                  <h1>R$60 / </h1>
+                  <h2>diária</h2>
+                </Value>
+                <AmountComments>
+                  <h3>0 comentários</h3>
+                </AmountComments>
+              </HeaderReservation>
+
+              <ChooseDate>
+                <CheckDate>
+                  <p>Check-in</p>
+                  <InputDate type="date" placeholder="dd/mm/aa" />
+                </CheckDate>
+
+                <CheckDate>
+                  <p>Check-out</p>
+                  <InputDate type="date" placeholder="dd/mm/aa" />
+                </CheckDate>
+              </ChooseDate>
+
+              <Email>
+                <Mail />
+                <p>Tem interesse? Envie uma mensagem para (nome)</p>
+              </Email>
+
+              <Proposal>
+                <ButtonProposal>Realizar proposta</ButtonProposal>
+              </Proposal>
+            </Reservation>
+          </BorderRainbow>
+        </BackgroundReservation>
+      </BoxContents>
 
       <Comments>
         <AmountComments>
           <h2>0 comentários</h2>
         </AmountComments>
-        <AdditionalComments>
-          <Profile>
-            <Picture
-              src="https://github.com/CarolinaScudeler.png"
-              alt="Imagem do perfil"
-            ></Picture>
+        <BoxAdditionalComments>
+          <CommentsHouse />
+          <CommentsHouse />
+        </BoxAdditionalComments>
 
-            <NameDate>
-              <h2>Nome do hóspede</h2>
-              <p>setembro de 2021</p>
-            </NameDate>
-          </Profile>
-
-          <Comment>
-            Ótima localização, conforto extraordinário, ambiente tranquilo e
-            organizado, proprietário muito amigável e receptivo, não tive nenhum
-            problema
-          </Comment>
-        </AdditionalComments>
+        <BoxAdditionalComments>
+          <CommentsHouse />
+          <CommentsHouse />
+        </BoxAdditionalComments>
       </Comments>
-
-      <BackgroundReservation>
-        <BorderRainbow>
-          <Reservation>
-            <HeaderReservation>
-              <Value>
-                <h1>R$60 / </h1>
-                <h2>diária</h2>
-              </Value>
-              <AmountComments>
-                <h3>0 comentários</h3>
-              </AmountComments>
-            </HeaderReservation>
-
-            <ChooseDate>
-              <CheckDate>
-                <p>Check-in</p>
-                <InputDate type="date" placeholder="dd/mm/aa" />
-              </CheckDate>
-
-              <CheckDate>
-                <p>Check-out</p>
-                <InputDate type="date" placeholder="dd/mm/aa" />
-              </CheckDate>
-            </ChooseDate>
-
-            <Email>
-              <Mail />
-              <p>Tem interesse? Envie uma mensagem para (nome)</p>
-            </Email>
-
-            <Proposal>
-              <ButtonProposal>Realizar proposta</ButtonProposal>
-            </Proposal>
-          </Reservation>
-        </BorderRainbow>
-      </BackgroundReservation>
     </>
   );
 };
