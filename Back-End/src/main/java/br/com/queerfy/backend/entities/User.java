@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity()
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Users")
 public class User {
 
@@ -69,6 +70,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Addresses> adresses = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<Property> properties = new HashSet<>();
 
     public Integer getId() {
         return id;
