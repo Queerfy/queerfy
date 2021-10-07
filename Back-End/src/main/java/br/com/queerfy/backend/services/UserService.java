@@ -1,6 +1,5 @@
 package br.com.queerfy.backend.services;
 
-import br.com.queerfy.backend.dto.LesseDTO;
 import br.com.queerfy.backend.dto.UserDTO;
 import br.com.queerfy.backend.entities.User;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
@@ -23,7 +22,7 @@ public class UserService {
     @Transactional
     public List<UserDTO> getUsers() {
         return repository.findAll().stream()
-                .map(user -> new LesseDTO(user))
+                .map(user -> new UserDTO(user))
                 .collect(Collectors.toList());
     }
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,19 +28,14 @@ public class PropertyService {
         Optional<User> userOptional = Optional.of(userRepository.getById(propertyDTO.getIdUser()));
 
         if(userOptional.isPresent()) {
-
             User user = userOptional.get();
-
             Property property = new Property(propertyDTO);
-
             property.setUser(user);
-
             propertyRepository.save(property);
-
             return new PropertyDTO(property);
         }
-
         throw new UserNotFoundException();
     }
+
 
 }
