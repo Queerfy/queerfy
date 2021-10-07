@@ -57,11 +57,10 @@ public class PropertyService {
         }
     }
     @Transactional
-    public PropertyDTO updateProperty(Integer id, Property property) throws UserNotFoundException {
+    public PropertyDTO updateProperty(Integer id, PropertyDTO property) throws UserNotFoundException {
         Optional<Property> entity = propertyRepository.findById(id);
         if (entity.isPresent()){
             Property prop = entity.get();
-            prop.setUser(property.getUser());
             prop.setActive(property.getActive());
             prop.setCheckIn(property.getCheckIn());
             prop.setCheckOut(property.getCheckOut());

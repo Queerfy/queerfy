@@ -5,6 +5,7 @@ import br.com.queerfy.backend.dto.UserDTO;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
 import br.com.queerfy.backend.exceptions.UserNotFoundException;
 import br.com.queerfy.backend.services.PropertyService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +25,18 @@ public class PropertyController {
     public PropertyDTO create(@RequestBody @Valid PropertyDTO propertyDTO) throws UserAlreadyExistsException, UserNotFoundException {
         return service.create(propertyDTO);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<PropertyDTO> update(@PathVariable Integer id, @RequestBody PropertyDTO dto) throws UserNotFoundException {
+        dto = service.updateProperty(id, dto);
+        return ResponseEntity.status(200).body(dto);
+    }
 
     @GetMapping
     public ResponseEntity<List<PropertyDTO>> getAllProperties(){
         return ResponseEntity.status(200).body(service.getAllProperties());
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<PropertyDTO> getPropertyById(@PathVariable Integer id) throws UserNotFoundException {
+        return ResponseEntity.status(200).body(service.getPropertyById(id));
     }
 }
