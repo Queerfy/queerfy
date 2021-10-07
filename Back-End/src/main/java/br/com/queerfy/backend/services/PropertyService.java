@@ -24,7 +24,6 @@ public class PropertyService {
 
     @Transactional
     public PropertyDTO create(PropertyDTO propertyDTO) throws UserNotFoundException {
-
         Optional<User> userOptional = Optional.of(userRepository.getById(propertyDTO.getIdUser()));
 
         if(userOptional.isPresent()) {
