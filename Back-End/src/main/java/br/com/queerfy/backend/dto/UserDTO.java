@@ -23,6 +23,7 @@ public class UserDTO {
     private String likes;
     private Boolean admin;
     private Set<AddressesDTO> addresses = new HashSet<>();
+    private Set<PropertyDTO> property = new HashSet<>();
 
     public UserDTO() {
 
@@ -42,6 +43,7 @@ public class UserDTO {
         this.likes = user.getLikes();
         this.admin = user.getAdmin();
         this.addresses = mapAddresses(user);
+        this.property = mapProperties(user);
     }
 
     public Integer getId() {
@@ -148,6 +150,17 @@ public class UserDTO {
         this.addresses = adresses;
     }
 
+    public Set<PropertyDTO> getProperty() {
+        return property;
+    }
+
+    public void setProperty(Set<PropertyDTO> property) {
+        this.property = property;
+    }
+
+    public Set<PropertyDTO> mapProperties(User user){
+        return  user.getProperties().stream().map(property -> new PropertyDTO(property)).collect(Collectors.toSet());
+    }
     public Set<AddressesDTO> mapAddresses(User user) {
         return user.getAdresses().stream().map(address -> new AddressesDTO(address)).collect(Collectors.toSet());
     }
