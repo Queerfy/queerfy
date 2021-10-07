@@ -1856,6 +1856,11 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
+input-mask@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/input-mask/-/input-mask-2.0.0.tgz#ddc8350ab9ea332f0abf05d5254719151e93dd54"
+  integrity sha1-3cg1CrnqMy8KvwXVJUcZFR6T3VQ=
+
 internal-slot@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/internal-slot/-/internal-slot-1.0.3.tgz#7347e307deeea2faac2ac6205d4bc7d34967f59c"
