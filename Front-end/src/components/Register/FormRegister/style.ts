@@ -84,3 +84,22 @@ export const InputsBox = styled.div<InputProps>`
     border: 1px solid #bdc3c7;
   }
 `;
+
+export const ButtonSubmit = styled.button`
+  width: 20%;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 30px;
+
+  font-weight: 400;
+  color: white;
+  background: #e74c3c;
+
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+
+  @media screen and (max-width: 1024px) {
+    width: 150px;
+  }
+`;
