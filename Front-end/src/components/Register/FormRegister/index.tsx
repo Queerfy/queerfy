@@ -1,4 +1,6 @@
-import { NextPage } from "next";
+import { NextPage } from 'next';
+import { useRef } from 'react';
+
 import { Form } from '@unform/web';
 import { Scope } from '@unform/core';
 
@@ -6,20 +8,19 @@ import Input from '../../Form/input';
 
 import { toast } from 'react-toastify';
 
-import {
-  HeaderTitle,
-  RowInputs,
-  InputsBox,
-} from './style';
+import { HeaderTitle, RowInputs, InputsBox, ButtonSubmit } from './style';
 
-import { useRef } from "react";
+import { ISetDataUser } from '../../../interfaces/Register/interfaces';
 
-
-const FormRegister: NextPage = () => {
-
+const FormRegister: NextPage<ISetDataUser> = ({
+  setDataUser,
+  setStepRegister,
+}) => {
   const genreRef = useRef<HTMLSelectElement>(null);
 
   const handleSubmit = (data) => {
+    setDataUser(data);
+    setStepRegister(3);
     /* const genre = genreRef.current?.value;
 
     let idUser;
@@ -44,9 +45,6 @@ const FormRegister: NextPage = () => {
           .then((res) => {
             toast.success('Usuario cadastrado com Sucesso!');
 
-            setTimeout(() => {
-              router.push('/');
-            }, 2000);
           })
           .catch((err) => {
             console.log(err.message);
@@ -57,7 +55,7 @@ const FormRegister: NextPage = () => {
         console.log(err.message);
         return toast.error('Usuario já existente!');
       }); */
-  }
+  };
 
   return (
     <>
@@ -89,11 +87,7 @@ const FormRegister: NextPage = () => {
           <RowInputs>
             <InputsBox fixedSize={'50%'} sizeResponsive={'40%'}>
               <span>RG</span>
-              <Input
-                name="rg"
-                type="text"
-                placeholder="_ _-_ _ _-_ _ _-_"
-              />
+              <Input name="rg" type="text" placeholder="_ _-_ _ _-_ _ _-_" />
             </InputsBox>
             <InputsBox fixedSize={'50%'} sizeResponsive={'55%'}>
               <span>CPF</span>
@@ -164,10 +158,10 @@ const FormRegister: NextPage = () => {
           </RowInputs>
         </Scope>
 
-        <button>Continuar</button>
+        <ButtonSubmit>Continuar</ButtonSubmit>
       </Form>
     </>
-  )
-}
+  );
+};
 
 export default FormRegister;
