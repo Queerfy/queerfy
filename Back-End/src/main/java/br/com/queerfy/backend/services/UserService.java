@@ -2,7 +2,6 @@ package br.com.queerfy.backend.services;
 
 import br.com.queerfy.backend.dto.LesseDTO;
 import br.com.queerfy.backend.dto.UserDTO;
-import br.com.queerfy.backend.entities.Lesse;
 import br.com.queerfy.backend.entities.User;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
 import br.com.queerfy.backend.exceptions.UserNotFoundException;

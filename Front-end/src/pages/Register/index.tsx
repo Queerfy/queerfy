@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import { api, apiCorreios } from '../../services/api';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast} from 'react-toastify'
 
 import {
   Container,
