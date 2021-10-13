@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { HeaderTitle, RowInputs, InputsBox, ButtonSubmit } from './style';
 
 import { ISetDataUser } from '../../../interfaces/Register/interfaces';
+import { IconBack } from '../../../pages/Register/style';
 
 const FormRegister: NextPage<ISetDataUser> = ({
   setDataUser,
@@ -59,6 +60,7 @@ const FormRegister: NextPage<ISetDataUser> = ({
 
   return (
     <>
+      <IconBack size={30} onClick={() => setStepRegister(0)} />
       <HeaderTitle>Registre-se</HeaderTitle>
       <Form onSubmit={handleSubmit}>
         <Scope path="user">

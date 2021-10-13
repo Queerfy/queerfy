@@ -2,11 +2,15 @@ import styled from 'styled-components';
 import { ButtonSubmit } from '../FormRegister/style';
 
 export const TextHeader = styled.p`
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 500;
 
   span {
     color: #e74c3c;
+  }
+
+  @media screen and (max-width: 1024px) {
+    font-size: 13px;
   }
 `;
 

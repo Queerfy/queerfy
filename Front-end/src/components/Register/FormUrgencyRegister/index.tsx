@@ -12,7 +12,11 @@ import {
   ButtonContinue,
 } from './style';
 
-import { HeaderBox, TitleHeader } from '../../../pages/Register/style';
+import {
+  HeaderBox,
+  IconBack,
+  TitleHeader,
+} from '../../../pages/Register/style';
 import { InputsBox, RowInputs } from '../FormRegister/style';
 
 import { ISetDataUser } from '../../../interfaces/Register/interfaces';
@@ -29,6 +33,7 @@ const FormUrgencyRegister: NextPage<ISetDataUser> = ({
 
   return (
     <>
+      <IconBack size={30} onClick={() => setStepRegister(0)} />
       <Container>
         <HeaderBox>
           <TitleHeader>Registre-se</TitleHeader>

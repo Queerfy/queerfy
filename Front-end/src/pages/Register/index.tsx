@@ -45,9 +45,9 @@ const Register: NextPage = () => {
 
       <Container>
         <InformationsBox>
-          <IconBack size={30} onClick={() => setStepRegister(0)} />
           {stepRegister === 0 && (
             <>
+              <IconBack size={30} />
               <ContainerInitial>
                 <HeaderBox>
                   <TitleHeader>Precisa alugar com urgencia?</TitleHeader>
@@ -94,7 +94,10 @@ const Register: NextPage = () => {
 
           {stepRegister === 3 && (
             <>
-              <FormFinish />
+              <FormFinish
+                setStepRegister={setStepRegister}
+                stepRegister={stepRegister}
+              />
             </>
           )}
         </InformationsBox>
