@@ -21,7 +21,7 @@ const FormRegister: NextPage<ISetDataUser> = ({
 
   const handleSubmit = (data) => {
     setDataUser(data);
-    setStepRegister(3);
+    setStepRegister({ type: 'normalFinish', step: 3 });
     /* const genre = genreRef.current?.value;
 
     let idUser;
@@ -60,7 +60,6 @@ const FormRegister: NextPage<ISetDataUser> = ({
 
   return (
     <>
-      <IconBack size={30} onClick={() => setStepRegister(0)} />
       <HeaderTitle>Registre-se</HeaderTitle>
       <Form onSubmit={handleSubmit}>
         <Scope path="user">

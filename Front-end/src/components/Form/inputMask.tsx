@@ -1,7 +1,6 @@
+//import {} from 'react';
+//import ReactInputMask from '';
 
-
-const InputMask = () => {
-
-}
+const InputMask = () => {};
 
 export default InputMask;

@@ -19,26 +19,16 @@ import {
 } from '../../../pages/Register/style';
 
 import { InputsBox, RowInputs } from '../FormRegister/style';
-interface IFormFinishProps {
-  setStepRegister: any;
-  stepRegister: any;
-}
 
-const FormFinish: NextPage<IFormFinishProps> = ({
-  setStepRegister,
-  stepRegister,
-}) => {
+const FormFinish: NextPage = () => {
   const handleSubmit = (data) => {
     console.log(data);
 
     //Aqui vai fazer a requisição com os dados dos outros componentes
   };
 
-  const handleBackStep = () => {};
-
   return (
     <>
-      <IconBack size={30} />
       <Container>
         <HeaderBox>
           <TitleHeader style={{ textDecoration: 'underline' }}>

@@ -24,14 +24,29 @@ import 'react-toastify/dist/ReactToastify.css';
 import FormRegister from '../../components/Register/FormRegister';
 import FormUrgencyRegister from '../../components/Register/FormUrgencyRegister';
 import FormFinish from '../../components/Register/FormFinish';
+import { log } from 'console';
 
 const Register: NextPage = () => {
   //Função de registro mandando informações do usuario para a api com o unform pegando as informações
   //Trocar isso parar ser por estapas de registro e trocar a logica
   //Mandar os dados para api por ultimo
 
-  const [stepRegister, setStepRegister] = useState(0);
+  const [stepRegister, setStepRegister] = useState({
+    type: 'initial',
+    step: 0,
+  });
+
   const [dataUser, setDataUser] = useState(null);
+
+  const handleBackStep = () => {
+    if (stepRegister.step === 1 || stepRegister.step === 2) {
+      setStepRegister({ type: 'initial', step: 0 });
+    } else if (stepRegister.type === 'urgencyFinish') {
+      setStepRegister({ type: 'urgency', step: 1 });
+    } else {
+      setStepRegister({ type: 'normal', step: 2 });
+    }
+  };
 
   useEffect(() => {
     console.log(dataUser);
@@ -45,9 +60,9 @@ const Register: NextPage = () => {
 
       <Container>
         <InformationsBox>
-          {stepRegister === 0 && (
+          <IconBack size={30} onClick={() => handleBackStep()} />
+          {stepRegister.type === 'initial' && (
             <>
-              <IconBack size={30} />
               <ContainerInitial>
                 <HeaderBox>
                   <TitleHeader>Precisa alugar com urgencia?</TitleHeader>
@@ -60,11 +75,15 @@ const Register: NextPage = () => {
                 </HeaderBox>
 
                 <BoxButtons>
-                  <ActionButton onClick={() => setStepRegister(1)}>
+                  <ActionButton
+                    onClick={() =>
+                      setStepRegister({ type: 'urgency', step: 1 })
+                    }
+                  >
                     Para Agora
                   </ActionButton>
                   <ActionButton
-                    onClick={() => setStepRegister(2)}
+                    onClick={() => setStepRegister({ type: 'normal', step: 2 })}
                     style={{ background: '#F0BF5A' }}
                   >
                     Planejar
@@ -74,7 +93,7 @@ const Register: NextPage = () => {
             </>
           )}
 
-          {stepRegister === 1 && (
+          {stepRegister.type === 'urgency' && (
             <>
               <FormUrgencyRegister
                 setDataUser={setDataUser}
@@ -83,7 +102,7 @@ const Register: NextPage = () => {
             </>
           )}
 
-          {stepRegister === 2 && (
+          {stepRegister.type === 'normal' && (
             <>
               <FormRegister
                 setDataUser={setDataUser}
@@ -92,12 +111,9 @@ const Register: NextPage = () => {
             </>
           )}
 
-          {stepRegister === 3 && (
+          {stepRegister.step === 3 && (
             <>
-              <FormFinish
-                setStepRegister={setStepRegister}
-                stepRegister={stepRegister}
-              />
+              <FormFinish />
             </>
           )}
         </InformationsBox>

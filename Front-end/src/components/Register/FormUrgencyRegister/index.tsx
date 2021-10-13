@@ -27,13 +27,12 @@ const FormUrgencyRegister: NextPage<ISetDataUser> = ({
 }) => {
   const handleSubmit = (data) => {
     setDataUser(data);
-    setStepRegister(3);
     console.log(data);
+    setStepRegister({ type: 'urgencyFinish', step: 3 });
   };
 
   return (
     <>
-      <IconBack size={30} onClick={() => setStepRegister(0)} />
       <Container>
         <HeaderBox>
           <TitleHeader>Registre-se</TitleHeader>
