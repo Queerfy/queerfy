@@ -7,6 +7,8 @@ import br.com.queerfy.backend.entities.User;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
 import br.com.queerfy.backend.exceptions.UserNotFoundException;
 import br.com.queerfy.backend.repositories.UserRepository;
+import br.com.queerfy.backend.utils.CsvConverter;
+import br.com.queerfy.backend.utils.ListaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
+
+    CsvConverter csvConverter = new CsvConverter();
 
     @Autowired
     private UserRepository repository;
@@ -44,7 +48,11 @@ public class UserService {
         if(!userExists) {
             User user = new User(userDTO);
             user = repository.save(user);
+            ListaObj<UserDTO> userList = new ListaObj(90);
+            userList.adiciona(new UserDTO(userDTO.getId(), userDTO.getName(), userDTO.getCpf(), userDTO.getEmail(), userDTO.getGenre(), userDTO.getRg(), userDTO.getAdmin()));
+            csvConverter.gravaArquivoCsv(userList, "userList");
             return new UserDTO(user);
+
         }
 
         throw new UserAlreadyExistsException();

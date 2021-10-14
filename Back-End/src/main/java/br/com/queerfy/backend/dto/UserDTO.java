@@ -46,6 +46,16 @@ public class UserDTO {
         this.property = mapProperties(user);
     }
 
+    public UserDTO(Integer id, String name, String cpf, String email, String genre, String rg, Boolean admin) {
+        this.id = id;
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+        this.genre = genre;
+        this.rg = rg;
+        this.admin = admin;
+    }
+
     public Integer getId() {
         return id;
     }

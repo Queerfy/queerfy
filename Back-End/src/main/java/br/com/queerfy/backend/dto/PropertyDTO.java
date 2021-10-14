@@ -9,6 +9,7 @@ import java.util.Date;
 public class PropertyDTO {
 
     private Integer id;
+    private String name;
     private String houseImg;
     private Boolean active;
     private Double dailyPrice;
@@ -18,12 +19,17 @@ public class PropertyDTO {
     private String latitude;
     private String longitude;
     private Integer idUser;
+    private String description;
+    private Integer likes;
 
 
     public PropertyDTO(){}
 
     public PropertyDTO(Property entity){
         this.id = entity.getid();
+        this.name = entity.getName();
+        this.description = entity.getDescription();
+        this.likes = entity.getLikes();
         this.houseImg = entity.getHouseImg();
         this.active = entity.getActive();
         this.dailyPrice = entity.getDailyPrice();
@@ -34,6 +40,30 @@ public class PropertyDTO {
         this.longitude = entity.getLongitude();
         this.idUser = entity.getUser().getId();
 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
     }
 
     public Integer getId() {
