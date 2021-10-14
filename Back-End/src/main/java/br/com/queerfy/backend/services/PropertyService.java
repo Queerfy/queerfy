@@ -61,6 +61,9 @@ public class PropertyService {
         Optional<Property> entity = propertyRepository.findById(id);
         if (entity.isPresent()){
             Property prop = entity.get();
+            prop.setName(property.getName());
+            prop.setDescription(property.getDescription());
+            prop.setLikes(property.getLikes());
             prop.setActive(property.getActive());
             prop.setCheckIn(property.getCheckIn());
             prop.setCheckOut(property.getCheckOut());
