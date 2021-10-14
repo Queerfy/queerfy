@@ -1,6 +1,8 @@
 package br.com.queerfy.backend.services;
 
+import br.com.queerfy.backend.dto.PropertyDTO;
 import br.com.queerfy.backend.dto.UserDTO;
+import br.com.queerfy.backend.entities.Property;
 import br.com.queerfy.backend.entities.User;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
 import br.com.queerfy.backend.exceptions.UserNotFoundException;
@@ -8,6 +10,7 @@ import br.com.queerfy.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import java.util.*;
@@ -25,7 +28,15 @@ public class UserService {
                 .map(user -> new UserDTO(user))
                 .collect(Collectors.toList());
     }
-
+    @Transactional
+    public UserDTO getUserById(Integer id) throws UserNotFoundException {
+        try{
+            User user = repository.findById(id).get();
+            return new UserDTO(user);
+        }catch(EntityNotFoundException e){
+            throw new UserNotFoundException();
+        }
+    }
     @Transactional
     public UserDTO create(UserDTO userDTO) throws UserAlreadyExistsException {
         boolean userExists = repository.findAll().stream().anyMatch(user -> user.getCpf().equals(userDTO.getCpf()) || user.getEmail().equals(userDTO.getEmail()));
