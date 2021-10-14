@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import { api, apiCorreios } from '../../services/api';
-
-import { ToastContainer, toast} from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify';
 
 import {
   Container,
@@ -30,12 +29,26 @@ const Register: NextPage = () => {
   //Trocar isso parar ser por estapas de registro e trocar a logica
   //Mandar os dados para api por ultimo
 
-  const [stepRegister, setStepRegister] = useState(0);
+  const [stepRegister, setStepRegister] = useState({
+    type: 'initial',
+    step: 0,
+  });
+
   const [dataUser, setDataUser] = useState(null);
 
-  useEffect(() => {
-    console.log(dataUser);
-  }, [dataUser]);
+  const router = useRouter();
+
+  const handleBackStep = () => {
+    if (stepRegister.step === 0) {
+      router.push('/Login');
+    } else if (stepRegister.step === 1 || stepRegister.step === 2) {
+      setStepRegister({ type: 'initial', step: 0 });
+    } else if (stepRegister.type === 'urgencyFinish') {
+      setStepRegister({ type: 'urgency', step: 1 });
+    } else {
+      setStepRegister({ type: 'normal', step: 2 });
+    }
+  };
 
   return (
     <>
@@ -45,8 +58,8 @@ const Register: NextPage = () => {
 
       <Container>
         <InformationsBox>
-          <IconBack size={30} onClick={() => setStepRegister(0)} />
-          {stepRegister === 0 && (
+          <IconBack size={30} onClick={() => handleBackStep()} />
+          {stepRegister.type === 'initial' && (
             <>
               <ContainerInitial>
                 <HeaderBox>
@@ -60,11 +73,15 @@ const Register: NextPage = () => {
                 </HeaderBox>
 
                 <BoxButtons>
-                  <ActionButton onClick={() => setStepRegister(1)}>
+                  <ActionButton
+                    onClick={() =>
+                      setStepRegister({ type: 'urgency', step: 1 })
+                    }
+                  >
                     Para Agora
                   </ActionButton>
                   <ActionButton
-                    onClick={() => setStepRegister(2)}
+                    onClick={() => setStepRegister({ type: 'normal', step: 2 })}
                     style={{ background: '#F0BF5A' }}
                   >
                     Planejar
@@ -74,7 +91,7 @@ const Register: NextPage = () => {
             </>
           )}
 
-          {stepRegister === 1 && (
+          {stepRegister.type === 'urgency' && (
             <>
               <FormUrgencyRegister
                 setDataUser={setDataUser}
@@ -83,7 +100,7 @@ const Register: NextPage = () => {
             </>
           )}
 
-          {stepRegister === 2 && (
+          {stepRegister.type === 'normal' && (
             <>
               <FormRegister
                 setDataUser={setDataUser}
@@ -92,9 +109,9 @@ const Register: NextPage = () => {
             </>
           )}
 
-          {stepRegister === 3 && (
+          {stepRegister.step === 3 && (
             <>
-              <FormFinish />
+              <FormFinish dataUser={dataUser} />
             </>
           )}
         </InformationsBox>

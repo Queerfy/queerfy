@@ -10,6 +10,8 @@ import { theme } from '../../../styles/theme';
 import { ContainerLeft, ContainerNotification, ContainerRow } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import { ArrowLeft, Mail, Bell, MessageSquare } from 'react-feather';
+import { NavbarMobile } from '../../../components/NavbarMobile';
+import { HeaderMobile } from '../../../components/HeaderMobile';
 
 const NotificationPage: NextPage = () => {
   return (
@@ -19,6 +21,7 @@ const NotificationPage: NextPage = () => {
       </Head>
       <Navbar accountNavbar />
       <ContainerMain>
+        <HeaderMobile />
         <HeaderContainer title={theme.colors.blue} text={theme.colors.blue}>
           <Link href="/Account/Main">
             <ArrowLeft />
@@ -34,7 +37,7 @@ const NotificationPage: NextPage = () => {
             </ContainerLeft>
             <Switch
               checked={true}
-              onChange={() => {}}
+              onChange={() => { }}
               onColor="#439EFA"
               offColor="#C4C4C4"
               checkedIcon={false}
@@ -49,7 +52,7 @@ const NotificationPage: NextPage = () => {
             </ContainerLeft>
             <Switch
               checked={true}
-              onChange={() => {}}
+              onChange={() => { }}
               onColor="#439EFA"
               offColor="#C4C4C4"
               checkedIcon={false}
@@ -64,7 +67,7 @@ const NotificationPage: NextPage = () => {
             </ContainerLeft>
             <Switch
               checked={false}
-              onChange={() => {}}
+              onChange={() => { }}
               onColor="#439EFA"
               offColor="#C4C4C4"
               checkedIcon={false}
@@ -73,6 +76,7 @@ const NotificationPage: NextPage = () => {
           </ContainerRow>
         </ContainerNotification>
       </ContainerMain>
+      <NavbarMobile />
     </>
   );
 };

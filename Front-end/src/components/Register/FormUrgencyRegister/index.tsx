@@ -1,8 +1,10 @@
 import { NextPage } from 'next';
+import { useState } from 'react';
 import { Form } from '@unform/web';
 import { Scope } from '@unform/core';
 
 import Input from '../../Form/input';
+import InputMask from '../../Form/inputMask';
 
 import {
   TextHeader,
@@ -12,7 +14,11 @@ import {
   ButtonContinue,
 } from './style';
 
-import { HeaderBox, TitleHeader } from '../../../pages/Register/style';
+import {
+  HeaderBox,
+  IconBack,
+  TitleHeader,
+} from '../../../pages/Register/style';
 import { InputsBox, RowInputs } from '../FormRegister/style';
 
 import { ISetDataUser } from '../../../interfaces/Register/interfaces';
@@ -21,10 +27,11 @@ const FormUrgencyRegister: NextPage<ISetDataUser> = ({
   setDataUser,
   setStepRegister,
 }) => {
+  const [maskPhone, setMaskPhone] = useState('(99) 99999-9999');
+
   const handleSubmit = (data) => {
     setDataUser(data);
-    setStepRegister(3);
-    console.log(data);
+    setStepRegister({ type: 'urgencyFinish', step: 3 });
   };
 
   return (
@@ -49,11 +56,7 @@ const FormUrgencyRegister: NextPage<ISetDataUser> = ({
               <RowInputs>
                 <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
                   <span>CPF</span>
-                  <Input
-                    type="text"
-                    name="cpf"
-                    placeholder="_ _ _ . _ _ _ . _ _ _ . _ _"
-                  />
+                  <InputMask type="text" name="cpf" mask="999.999.999-99" />
                 </InputsBox>
               </RowInputs>
               <RowInputs>
@@ -69,10 +72,20 @@ const FormUrgencyRegister: NextPage<ISetDataUser> = ({
               <RowInputs>
                 <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
                   <span>Telefone</span>
-                  <Input
+                  <InputMask
                     name="telephone"
                     type="text"
-                    placeholder="(_ _) _ _ _ _ _ - _ _ _ _"
+                    mask={maskPhone}
+                    onBlur={(e) => {
+                      if (e.target.value.replace('_', '').length === 14) {
+                        setMaskPhone('(99) 9999-9999');
+                      }
+                    }}
+                    onFocus={(e) => {
+                      if (e.target.value.replace('_', '').length === 14) {
+                        setMaskPhone('(99) 99999-9999');
+                      }
+                    }}
                   />
                 </InputsBox>
               </RowInputs>
