@@ -19,7 +19,7 @@ public class Property {
     private Date checkIn;
     private Date checkOut;
     private String latitude;
-    private String longigute;
+    private String longitude;
 
     @ManyToOne()
     @JoinColumn(name = "fkUser")
@@ -36,7 +36,7 @@ public class Property {
         this.checkIn = entity.getCheckIn();
         this.checkOut = entity.getCheckOut();
         this.latitude = entity.getLatitude();
-        this.longigute = entity.getLongigute();
+        this.longitude = entity.getLongitude();
     }
 
     public Integer getid() {
@@ -103,12 +103,12 @@ public class Property {
         this.latitude = latitude;
     }
 
-    public String getLongigute() {
-        return longigute;
+    public String getLongitude() {
+        return longitude;
     }
 
-    public void setLongigute(String longigute) {
-        this.longigute = longigute;
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public User getUser() {

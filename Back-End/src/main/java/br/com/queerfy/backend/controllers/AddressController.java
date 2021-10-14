@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/addresses")
+    @RequestMapping("/addresses")
 public class AddressController {
 
     @Autowired
     private AddressService addressService;
 
     @PostMapping()
-    public AddressesDTO create(@RequestBody @Valid AddressesDTO addressesDTO) throws UserNotFoundException {
+    public AddressesDTO create(@RequestBody AddressesDTO addressesDTO) throws UserNotFoundException {
         return addressService.create(addressesDTO);
     }
 
