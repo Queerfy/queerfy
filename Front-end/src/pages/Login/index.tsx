@@ -33,15 +33,15 @@ const Login: NextPage = () => {
     const password = passwordRef.current?.value;
 
     if (email === '') {
-      return toast.error('Preencha o Email para prosseguir!');
+      return toast.error('Preencha o e-mail para prosseguir!');
     }
 
     if (password === '') {
-      return toast.error('Preeencha a Senha para prosseguir!');
+      return toast.error('Preeencha a senha para prosseguir!');
     }
 
     if (password.length < 3) {
-      return toast.error('Senha Invalida!');
+      return toast.error('Senha inválida!');
     }
 
     const credentials = {
@@ -61,7 +61,7 @@ const Login: NextPage = () => {
 
         localStorage.setItem('user', JSON.stringify(user));
 
-        toast.success('Logado com Sucesso!');
+        toast.success('Logado com sucesso!');
 
         setTimeout(() => {
           router.push('/');
@@ -71,7 +71,7 @@ const Login: NextPage = () => {
         if (err.response.status === 400) {
           console.log('Message Error:', err.response.data.message);
           console.log('Status Error:', err.response.data.status);
-          return toast.error('Email/Senha Incorreta!');
+          return toast.error('Email/Senha incorreto!');
         }
       });
   };
