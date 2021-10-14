@@ -12,14 +12,20 @@ public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String name;
+    @Column(columnDefinition = "TEXT")
+    private String description;
     private String houseImg;
     private Boolean active;
     private Double dailyPrice;
     private String filterDate;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Date checkIn;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Date checkOut;
     private String latitude;
-    private String longigute;
+    private String longitude;
+    private Integer likes;
 
     @ManyToOne()
     @JoinColumn(name = "fkUser")
@@ -29,6 +35,9 @@ public class Property {
 
     public Property(PropertyDTO entity){
         this.id = entity.getId();
+        this.name = entity.getName();
+        this.description = entity.getDescription();
+        this.likes = entity.getLikes();
         this.houseImg = entity.getHouseImg();
         this.active = entity.getActive();
         this.dailyPrice = entity.getDailyPrice();
@@ -36,7 +45,7 @@ public class Property {
         this.checkIn = entity.getCheckIn();
         this.checkOut = entity.getCheckOut();
         this.latitude = entity.getLatitude();
-        this.longigute = entity.getLongigute();
+        this.longitude = entity.getLongitude();
     }
 
     public Integer getid() {
@@ -103,12 +112,36 @@ public class Property {
         this.latitude = latitude;
     }
 
-    public String getLongigute() {
-        return longigute;
+    public String getLongitude() {
+        return longitude;
     }
 
-    public void setLongigute(String longigute) {
-        this.longigute = longigute;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public User getUser() {

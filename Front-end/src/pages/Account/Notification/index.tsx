@@ -17,7 +17,7 @@ const NotificationPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Notificações</title>
+        <title>Queerfy | Notificações</title>
       </Head>
       <Navbar accountNavbar />
       <ContainerMain>

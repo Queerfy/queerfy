@@ -61,7 +61,7 @@ const Login: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>Queerfy | Login</title>
       </Head>
 
       <Container>
