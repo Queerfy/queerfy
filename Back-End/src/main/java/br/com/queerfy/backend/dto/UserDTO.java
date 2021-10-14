@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 public class UserDTO {
 
     private Integer id;
-
-    @NotNull
     private String name;
     private Date birthDate;
     private String rg;
@@ -25,6 +23,7 @@ public class UserDTO {
     private String likes;
     private Boolean admin;
     private Set<AddressesDTO> addresses = new HashSet<>();
+    private Set<PropertyDTO> property = new HashSet<>();
 
     public UserDTO() {
 
@@ -44,6 +43,17 @@ public class UserDTO {
         this.likes = user.getLikes();
         this.admin = user.getAdmin();
         this.addresses = mapAddresses(user);
+        this.property = mapProperties(user);
+    }
+
+    public UserDTO(Integer id, String name, String cpf, String email, String genre, String rg, Boolean admin) {
+        this.id = id;
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+        this.genre = genre;
+        this.rg = rg;
+        this.admin = admin;
     }
 
     public Integer getId() {
@@ -150,6 +160,17 @@ public class UserDTO {
         this.addresses = adresses;
     }
 
+    public Set<PropertyDTO> getProperty() {
+        return property;
+    }
+
+    public void setProperty(Set<PropertyDTO> property) {
+        this.property = property;
+    }
+
+    public Set<PropertyDTO> mapProperties(User user){
+        return  user.getProperties().stream().map(property -> new PropertyDTO(property)).collect(Collectors.toSet());
+    }
     public Set<AddressesDTO> mapAddresses(User user) {
         return user.getAdresses().stream().map(address -> new AddressesDTO(address)).collect(Collectors.toSet());
     }

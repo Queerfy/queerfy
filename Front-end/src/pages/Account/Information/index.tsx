@@ -19,15 +19,18 @@ import {
   Users,
 } from 'react-feather';
 import { InputsBox } from '../../Login/style';
+import { NavbarMobile } from '../../../components/NavbarMobile';
+import { HeaderMobile } from '../../../components/HeaderMobile';
 
 const InfoAccount: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Informações da conta</title>
+        <title>Queerfy | Informações</title>
       </Head>
       <Navbar accountNavbar />
       <ContainerMain>
+        <HeaderMobile />
         <HeaderContainer title={theme.colors.red} text={theme.colors.red}>
           <Link href="/Account/Main">
             <ArrowLeft />
@@ -97,6 +100,7 @@ const InfoAccount: NextPage = () => {
           </ContainerColumn>
         </ContainerInfo>
       </ContainerMain>
+      <NavbarMobile />
     </>
   );
 };

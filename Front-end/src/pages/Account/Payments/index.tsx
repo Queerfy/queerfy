@@ -19,15 +19,18 @@ import {
 } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import { ArrowLeft } from 'react-feather';
+import { NavbarMobile } from '../../../components/NavbarMobile';
+import { HeaderMobile } from '../../../components/HeaderMobile';
 
 const PaymentsPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Formas de pagamentos</title>
+        <title>Queerfy | Pagamentos</title>
       </Head>
       <Navbar accountNavbar />
       <main>
+        <HeaderMobile />
         <HeaderContainer
           title={theme.colors.orange}
           subtitle={theme.colors.orange}
@@ -92,6 +95,7 @@ const PaymentsPage: NextPage = () => {
           </ContainerButton>
         </ContainerPayment>
       </main>
+      <NavbarMobile />
     </>
   );
 };

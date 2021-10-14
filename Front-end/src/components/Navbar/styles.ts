@@ -14,7 +14,6 @@ export const Container = styled.nav`
   align-items: center;
 
   width: 100%;
-  /* max-width: 1920px; definir largura máxima */
   height: 70px;
   padding: 0 64px;
 
@@ -32,7 +31,6 @@ export const Container = styled.nav`
     }
   }
 
-  // Ajustar responsividade da navbar (1024px bugado)
   @media screen and (max-width: 1024px) {
     display: none;
   }
@@ -100,21 +98,4 @@ export const Separator = styled.div`
   height: 70%;
   width: 1px;
   background-color: ${theme.assets.borderDark};
-`;
-
-export const Functions = styled.div`
-  color: ${theme.assets.font};
-  height: 35px;
-
-  > svg {
-    transform: scale(0.9);
-    margin-left: 64px;
-    transition: 0.3s;
-
-    &:hover {
-      transform: scale(1);
-      opacity: 0.9;
-      cursor: pointer;
-    }
-  }
 `;

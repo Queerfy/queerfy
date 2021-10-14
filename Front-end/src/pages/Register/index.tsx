@@ -1,9 +1,7 @@
-import { useRef } from 'react';
 import { NextPage } from 'next';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import { api } from '../../services/api';
+import { api, apiCorreios } from '../../services/api';
 
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -11,8 +9,6 @@ import {
   Container,
   InformationsBox,
   ImageRegister,
-  RowInputs,
-  InputsBox,
 } from './style';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -110,7 +106,7 @@ const Register: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Registre-se</title>
+        <title>Queerfy | Registro</title>
       </Head>
 
       <Container>
@@ -177,41 +173,8 @@ const Register: NextPage = () => {
             </InputsBox>
           </RowInputs>
 
-          <RowInputs>
-            <InputsBox fixedSize={'50%'} sizeResponsive={'100%'}>
-              <span>CEP</span>
-              <input ref={cepRef} type="text" placeholder="_ _ _ _ _-_ _ _" />
-            </InputsBox>
-            <InputsBox fixedSize={'10%'} sizeResponsive={'45%'}>
-              <span>UF</span>
-              <input ref={districtRef} type="text" placeholder="SP" />
-            </InputsBox>
-            <InputsBox fixedSize={'40%'} sizeResponsive={'50%'}>
-              <span>Cidade</span>
-              <input ref={cityRef} type="text" placeholder="São Paulo" />
-            </InputsBox>
-          </RowInputs>
-
-          <RowInputs>
-            <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
-              <span>Rua/Logradouro</span>
-              <input
-                ref={placeRef}
-                type="text"
-                placeholder="Rua das Laranjeiras"
-              />
-            </InputsBox>
-            <InputsBox fixedSize={'10%'} sizeResponsive={'15%'}>
-              <span>Número</span>
-              <input ref={numberRef} type="text" placeholder="290" />
-            </InputsBox>
-            <InputsBox fixedSize={'40%'} sizeResponsive={'30%'}>
-              <span>Complemento</span>
-              <input ref={complementRef} type="text" placeholder="Casa" />
-            </InputsBox>
-          </RowInputs>
-
-          <button onClick={handleSubmit}>Continuar</button>
+        <InformationsBox>
+          <InitalRegister />
         </InformationsBox>
         <ImageRegister src="register-image.jpeg" alt="Register Image" />
       </Container>
