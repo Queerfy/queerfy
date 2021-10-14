@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import { api, apiCorreios } from '../../services/api';
-
-import { ToastContainer, toast} from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify';
 
 import {
   Container,
@@ -24,7 +23,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import FormRegister from '../../components/Register/FormRegister';
 import FormUrgencyRegister from '../../components/Register/FormUrgencyRegister';
 import FormFinish from '../../components/Register/FormFinish';
-import { log } from 'console';
 
 const Register: NextPage = () => {
   //Função de registro mandando informações do usuario para a api com o unform pegando as informações
@@ -38,8 +36,12 @@ const Register: NextPage = () => {
 
   const [dataUser, setDataUser] = useState(null);
 
+  const router = useRouter();
+
   const handleBackStep = () => {
-    if (stepRegister.step === 1 || stepRegister.step === 2) {
+    if (stepRegister.step === 0) {
+      router.push('/Login');
+    } else if (stepRegister.step === 1 || stepRegister.step === 2) {
       setStepRegister({ type: 'initial', step: 0 });
     } else if (stepRegister.type === 'urgencyFinish') {
       setStepRegister({ type: 'urgency', step: 1 });
@@ -47,10 +49,6 @@ const Register: NextPage = () => {
       setStepRegister({ type: 'normal', step: 2 });
     }
   };
-
-  useEffect(() => {
-    console.log(dataUser);
-  }, [dataUser]);
 
   return (
     <>
@@ -113,7 +111,7 @@ const Register: NextPage = () => {
 
           {stepRegister.step === 3 && (
             <>
-              <FormFinish />
+              <FormFinish dataUser={dataUser} />
             </>
           )}
         </InformationsBox>

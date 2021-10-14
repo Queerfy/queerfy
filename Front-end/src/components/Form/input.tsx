@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { useField } from "@unform/core"
+import { useEffect, useRef } from 'react';
+import { useField } from '@unform/core';
 
 interface Props {
   name: string;
@@ -9,7 +9,6 @@ interface Props {
 type InputProps = JSX.IntrinsicElements['input'] & Props;
 
 const Input = ({ name, ...rest }: InputProps) => {
-
   const inputRef = useRef(null);
 
   const { fieldName, registerField, defaultValue, error } = useField(name);
@@ -18,14 +17,11 @@ const Input = ({ name, ...rest }: InputProps) => {
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: 'value'
-    })
+      path: 'value',
+    });
   }, [fieldName, registerField]);
 
-  return (
-    <input ref={inputRef} {...rest} />
-  )
-
-}
+  return <input ref={inputRef} defaultValue={defaultValue} {...rest} />;
+};
 
 export default Input;

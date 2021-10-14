@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import { Form } from '@unform/web';
 import { Scope } from '@unform/core';
@@ -12,50 +12,19 @@ import { HeaderTitle, RowInputs, InputsBox, ButtonSubmit } from './style';
 
 import { ISetDataUser } from '../../../interfaces/Register/interfaces';
 import { IconBack } from '../../../pages/Register/style';
+import InputMask from '../../Form/inputMask';
 
 const FormRegister: NextPage<ISetDataUser> = ({
   setDataUser,
   setStepRegister,
 }) => {
+  const [maskPhone, setMaskPhone] = useState('(99) 99999-9999');
+
   const genreRef = useRef<HTMLSelectElement>(null);
 
   const handleSubmit = (data) => {
     setDataUser(data);
     setStepRegister({ type: 'normalFinish', step: 3 });
-    /* const genre = genreRef.current?.value;
-
-    let idUser;
-
-    const dataUser = {
-      ...data.user,
-      genre,
-    };
-
-    api
-      .post('/users', dataUser)
-      .then((res) => {
-        idUser = res.data.id;
-
-        const dataAdresses = {
-          idUser,
-          ...data.address,
-        };
-
-        api
-          .post('/addresses', dataAdresses)
-          .then((res) => {
-            toast.success('Usuario cadastrado com Sucesso!');
-
-          })
-          .catch((err) => {
-            console.log(err.message);
-            return toast.error('Erro ao cadastrar o Usuario');
-          });
-      })
-      .catch((err) => {
-        console.log(err.message);
-        return toast.error('Usuario já existente!');
-      }); */
   };
 
   return (
@@ -88,25 +57,31 @@ const FormRegister: NextPage<ISetDataUser> = ({
           <RowInputs>
             <InputsBox fixedSize={'50%'} sizeResponsive={'40%'}>
               <span>RG</span>
-              <Input name="rg" type="text" placeholder="_ _-_ _ _-_ _ _-_" />
+              <InputMask name="rg" type="text" mask="99-999-999-*" />
             </InputsBox>
             <InputsBox fixedSize={'50%'} sizeResponsive={'55%'}>
               <span>CPF</span>
-              <Input
-                name="cpf"
-                type="text"
-                placeholder="_ _ _-_ _ _-_ _ _-_ _"
-              />
+              <InputMask name="cpf" type="text" mask="999.999.999-99" />
             </InputsBox>
           </RowInputs>
 
           <RowInputs>
             <InputsBox fixedSize={'50%'} sizeResponsive={'40%'}>
               <span>Telefone</span>
-              <input
+              <InputMask
                 name="telephone"
                 type="text"
-                placeholder="(_ _)_ _ _ _-_ _ _ _"
+                mask={maskPhone}
+                onBlur={(e) => {
+                  if (e.target.value.replace('_', '').length === 14) {
+                    setMaskPhone('(99) 9999-9999');
+                  }
+                }}
+                onFocus={(e) => {
+                  if (e.target.value.replace('_', '').length === 14) {
+                    setMaskPhone('(99) 99999-9999');
+                  }
+                }}
               />
             </InputsBox>
             <InputsBox fixedSize={'50%'} sizeResponsive={'55%'}>
@@ -117,17 +92,13 @@ const FormRegister: NextPage<ISetDataUser> = ({
                 placeholder="contato@purple.com.br"
               />
             </InputsBox>
-            {/* <InputsBox fixedSize={'30%'} sizeResponsive={'40%'}>
-                  <span>Senha</span>
-                  <Input name="password" type="password" placeholder="Senha" />
-                </InputsBox> */}
           </RowInputs>
         </Scope>
         <Scope path="address">
           <RowInputs>
             <InputsBox fixedSize={'50%'} sizeResponsive={'100%'}>
               <span>CEP</span>
-              <Input name="cep" type="text" placeholder="_ _ _ _ _-_ _ _" />
+              <InputMask name="cep" type="text" mask="99999-999" />
             </InputsBox>
             <InputsBox fixedSize={'10%'} sizeResponsive={'45%'}>
               <span>UF</span>

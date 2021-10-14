@@ -12,19 +12,54 @@ import {
   ButtonContinue,
 } from '../FormUrgencyRegister/style';
 
-import {
-  HeaderBox,
-  IconBack,
-  TitleHeader,
-} from '../../../pages/Register/style';
+import { HeaderBox, TitleHeader } from '../../../pages/Register/style';
 
 import { InputsBox, RowInputs } from '../FormRegister/style';
 
-const FormFinish: NextPage = () => {
+interface IPropsDataFormFinish {
+  dataUser: object;
+}
+
+const FormFinish: NextPage<IPropsDataFormFinish> = ({ dataUser }) => {
   const handleSubmit = (data) => {
+    console.log(dataUser);
     console.log(data);
 
     //Aqui vai fazer a requisição com os dados dos outros componentes
+    /* const genre = genreRef.current?.value;
+
+    let idUser;
+
+    const dataUser = {
+      ...data.user,
+      genre,
+    };
+
+    api
+      .post('/users', dataUser)
+      .then((res) => {
+        idUser = res.data.id;
+
+        const dataAdresses = {
+          idUser,
+          ...data.address,
+        };
+
+        api
+          .post('/addresses', dataAdresses)
+          .then((res) => {
+            toast.success('Usuario cadastrado com Sucesso!');
+
+          })
+          .catch((err) => {
+            console.log(err.message);
+            return toast.error('Erro ao cadastrar o Usuario');
+          });
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return toast.error('Usuario já existente!');
+      }); */
   };
 
   return (
