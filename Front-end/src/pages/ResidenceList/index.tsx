@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { NextPage } from "next";
 import Head from 'next/head';
+
+import { api } from "../../services/api";
 
 import { Container, Categories, RoomRow, CategorieItem } from "./styles";
 
@@ -14,6 +16,16 @@ import { Residence } from "../../components/Residence";
 import { Footer } from "../../components/Footer";
 
 const ResidenceList: NextPage = () => {
+  const [residences, setResidences] = useState([]);
+
+  useEffect(() => {
+    api.get('/properties')
+      .then((response) => {
+        setResidences(response.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <Head>
@@ -28,15 +40,16 @@ const ResidenceList: NextPage = () => {
           Os hóspedes concordam: estas acomodações foram muito bem avaliadas quanto a localização, limpeza e outros aspectos.
         </p>
         <RoomRow>
-          <Residence trend={true}>
-            descrição teste
-          </Residence>
-          <Residence trend={true}>
-            descrição teste
-          </Residence>
-          <Residence trend={true}>
-            descrição teste
-          </Residence>
+          {residences.map(item => {
+            return item.likes > 1000 && (
+              <Residence
+                key={item.id}
+                name={item.name}
+                description={item.description}
+                trend={true}
+              />
+            )
+          })}
         </RoomRow>
       </Container>
       <Container>
@@ -69,12 +82,13 @@ const ResidenceList: NextPage = () => {
       <Container>
         <h1>Outros aluguéis excelentes na área selecionada</h1>
         <RoomRow>
-          <Residence />
-          <Residence />
-          <Residence />
-          <Residence />
-          <Residence />
-          <Residence />
+          {residences.map(item => (
+            <Residence
+              key={item.id}
+              name={item.name}
+              description={item.description}
+            />
+          ))}
         </RoomRow>
       </Container>
       <Footer />
