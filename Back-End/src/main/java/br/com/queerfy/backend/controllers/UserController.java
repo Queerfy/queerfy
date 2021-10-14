@@ -18,8 +18,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("{/id}")
-    public ResponseEntity getUserById(@PathVariable Integer id) throws UserNotFoundException {
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Integer id) throws UserNotFoundException {
         return ResponseEntity.status(200).body(userService.getUserById(id));
     }
 
