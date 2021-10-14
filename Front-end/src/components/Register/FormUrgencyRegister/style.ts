@@ -26,7 +26,7 @@ export const BoxContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin: 10px 0;
+  margin: 25px 0;
   width: 100%;
 
   @media screen and (max-width: 1024px) {
@@ -50,6 +50,9 @@ export const Box = styled.div`
 export const ButtonContinue = styled(ButtonSubmit)`
   padding: 15px;
   width: 200px;
+
+  font-size: 14px;
+  font-weight: 600;
 
   @media screen and (max-width: 1024px) {
     padding: 12px;

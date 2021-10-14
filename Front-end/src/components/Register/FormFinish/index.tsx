@@ -3,19 +3,15 @@ import { Form } from '@unform/web';
 
 import Input from '../../Form/input';
 
-import { TitleConfirm, BoxContainerConfirm } from './style';
+import { TitleConfirm, BoxContainerConfirm, InputBoxConfirm, RowInputsConfirm, ButtonFinishConfirm } from './style';
 
 import {
   Container,
   TextHeader,
-  Box,
-  ButtonContinue,
+  Box
 } from '../FormUrgencyRegister/style';
 
-import { HeaderBox, TitleHeader } from '../../../pages/Register/style';
-
-import { InputsBox, RowInputs } from '../FormRegister/style';
-
+import { HeaderBox, TitleHeader } from '../../../pages/Register/style';;
 interface IPropsDataFormFinish {
   dataUser: object;
 }
@@ -81,23 +77,23 @@ const FormFinish: NextPage<IPropsDataFormFinish> = ({ dataUser }) => {
           <BoxContainerConfirm>
             <Box>
               <TitleConfirm>Conclua seu cadastro</TitleConfirm>
-              <RowInputs>
-                <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
+              <RowInputsConfirm>
+                <InputBoxConfirm fixedSize={'100%'} sizeResponsive={'100%'}>
                   <span>Senha</span>
                   <Input name="password" type="password" placeholder="Senha" />
-                </InputsBox>
-              </RowInputs>
-              <RowInputs>
-                <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
+                </InputBoxConfirm>
+              </RowInputsConfirm>
+              <RowInputsConfirm>
+                <InputBoxConfirm fixedSize={'100%'} sizeResponsive={'100%'}>
                   <span>Confirmação de Senha</span>
                   <Input
                     name="confirmPassword"
                     type="password"
                     placeholder="Senha"
                   />
-                </InputsBox>
-              </RowInputs>
-              <ButtonContinue>Continuar</ButtonContinue>
+                </InputBoxConfirm>
+              </RowInputsConfirm>
+              <ButtonFinishConfirm>Continuar</ButtonFinishConfirm>
             </Box>
           </BoxContainerConfirm>
         </Form>

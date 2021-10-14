@@ -30,7 +30,7 @@ const FormRegister: NextPage<ISetDataUser> = ({
   return (
     <>
       <HeaderTitle>Registre-se</HeaderTitle>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         <Scope path="user">
           <RowInputs>
             <InputsBox fixedSize={'50%'} sizeResponsive={'100%'}>
@@ -111,7 +111,7 @@ const FormRegister: NextPage<ISetDataUser> = ({
           </RowInputs>
 
           <RowInputs>
-            <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
+            <InputsBox fixedSize={'50%'} sizeResponsive={'100%'}>
               <span>Rua/Logradouro</span>
               <Input
                 name="place"
@@ -119,11 +119,11 @@ const FormRegister: NextPage<ISetDataUser> = ({
                 placeholder="Rua das Laranjeiras"
               />
             </InputsBox>
-            <InputsBox fixedSize={'10%'} sizeResponsive={'15%'}>
+            <InputsBox fixedSize={'10%'} sizeResponsive={'45%'}>
               <span>Número</span>
               <Input name="number" type="text" placeholder="290" />
             </InputsBox>
-            <InputsBox fixedSize={'40%'} sizeResponsive={'30%'}>
+            <InputsBox fixedSize={'40%'} sizeResponsive={'50%'}>
               <span>Complemento</span>
               <Input name="complement" type="text" placeholder="Casa" />
             </InputsBox>

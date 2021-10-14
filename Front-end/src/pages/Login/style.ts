@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
+import { Form } from '@unform/web';
+
 interface IContainerBanner {
   imageSrc: string;
 }
@@ -166,36 +168,21 @@ export const ItemContainer = styled.div`
     font-weight: 500;
   }
 
-  div#container_button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 8px;
-    width: 95%;
-    border-radius: 5px;
-    background: ${theme.colors.red};
-    margin-bottom: 15px;
-    cursor: pointer;
-
-    > p {
-      color: white;
-      font-weight: 300;
-      font-size: 12px;
-    }
-
-    > svg {
-      color: white;
-      margin-right: 10px;
-    }
-  }
-
   p#container_forgoutPassword {
     font-size: 13px;
     color: ${theme.colors.red};
     text-decoration: underline ${theme.colors.red};
     cursor: pointer;
   }
+`;
+
+export const FormLogin = styled(Form)`
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   width: 95%;
 `;
 
 export const InputsBox = styled.div`
@@ -219,4 +206,21 @@ export const InputsBox = styled.div`
     border: 1px solid ${theme.assets.borderDark};
     outline: none;
   }
+`;
+
+export const ButtonRegister = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+
+  background: #F15356;
+  color: white;
+  font-weight: 600;
+
+  border: none;
+  width: 150px;
+
+  border-radius: 5px;
+  cursor: pointer
 `;

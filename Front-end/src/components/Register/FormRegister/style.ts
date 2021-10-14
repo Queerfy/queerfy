@@ -87,11 +87,11 @@ export const InputsBox = styled.div<InputProps>`
 
 export const ButtonSubmit = styled.button`
   width: 20%;
-  padding: 10px;
+  padding: 15px;
   margin: 0 auto;
   margin-top: 30px;
 
-  font-weight: 400;
+  font-weight: 600;
   color: white;
   background: #e74c3c;
 
@@ -101,5 +101,7 @@ export const ButtonSubmit = styled.button`
 
   @media screen and (max-width: 1024px) {
     width: 150px;
+    padding: 12px;
+    margin-bottom: 20px;
   }
 `;

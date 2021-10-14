@@ -19,8 +19,10 @@ import {
   LoginContainer,
   ContainerBox,
   ItemContainer,
+  FormLogin,
   InputsBox,
   LogoBox,
+  ButtonRegister
 } from './style';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -93,7 +95,7 @@ const Login: NextPage = () => {
               </Link>
 
               <p id="container_textLogin">ou entre em sua conta</p>
-              <Form onSubmit={handleLogin}>
+              <FormLogin onSubmit={handleLogin} >
                 <InputsBox>
                   <span>E-mail</span>
                   <Input
@@ -108,11 +110,8 @@ const Login: NextPage = () => {
                   <Input name="password" type="password" placeholder="Senha" />
                 </InputsBox>
 
-                <div id="container_button">
-                  <LogIn size={25} />
-                  <p>Entrar na conta</p>
-                </div>
-              </Form>
+                <ButtonRegister> <LogIn size={25} />Entrar na conta</ButtonRegister>
+              </FormLogin>
 
               <p id="container_forgoutPassword">Esqueci a senha</p>
               <ToastContainer />
