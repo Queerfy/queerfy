@@ -105,16 +105,5 @@ export const Separator = styled.div`
 export const Functions = styled.div`
   color: ${theme.assets.font};
   height: 35px;
-
-  > svg {
-    transform: scale(0.9);
-    margin-left: 64px;
-    transition: 0.3s;
-
-    &:hover {
-      transform: scale(1);
-      opacity: 0.9;
-      cursor: pointer;
-    }
-  }
+  background: red;
 `;

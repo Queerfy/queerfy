@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 
-import Switch from 'react-switch';
-
-import { Globe, Inbox, Moon, Search, Sun, User } from 'react-feather';
+import { Search } from 'react-feather';
 
 import {
   Container,
@@ -14,21 +11,13 @@ import {
   Separator,
 } from './styles';
 
+import { MenuDropdown } from './MenuDropdown';
+
 type NavbarProps = {
   accountNavbar?: boolean;
 };
 
 export const Navbar = ({ accountNavbar }: NavbarProps) => {
-  const [theme, setTheme] = useState(true);
-
-  function handleTheme() {
-    if (theme) {
-      setTheme(false);
-    } else {
-      setTheme(true);
-    }
-  }
-
   return (
     <Container>
       <img src="../logo.svg" alt="logo" />
@@ -45,23 +34,7 @@ export const Navbar = ({ accountNavbar }: NavbarProps) => {
           <Separator />
         </>
       )}
-      <Functions>
-        <Switch
-          checked={theme}
-          onChange={() => {
-            handleTheme();
-          }}
-          onColor="#F0BF5A"
-          offColor="#A993F5"
-          checkedIcon={false}
-          uncheckedIcon={false}
-        />
-        <Globe size={25} />
-        <Inbox size={25} />
-        <Link href="/Login">
-          <User size={25} />
-        </Link>
-      </Functions>
+      <MenuDropdown />
     </Container>
   );
 };
