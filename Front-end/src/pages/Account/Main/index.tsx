@@ -20,7 +20,7 @@ const MainPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Conta</title>
+        <title>Queerfy | Conta</title>
       </Head>
       <Navbar accountNavbar />
       <HeaderMobile />

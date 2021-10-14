@@ -26,7 +26,7 @@ const InfoAccount: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Informações da conta</title>
+        <title>Queerfy | Informações</title>
       </Head>
       <Navbar accountNavbar />
       <ContainerMain>

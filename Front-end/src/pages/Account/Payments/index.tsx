@@ -26,7 +26,7 @@ const PaymentsPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Formas de pagamentos</title>
+        <title>Queerfy | Pagamentos</title>
       </Head>
       <Navbar accountNavbar />
       <main>

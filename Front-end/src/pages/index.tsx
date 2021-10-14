@@ -29,7 +29,7 @@ const IndexPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Conta</title>
+        <title>Queerfy | Home</title>
       </Head>
 
       <Navbar />
