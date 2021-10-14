@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { api, apiCorreios } from '../../services/api';
 
-import { ToastContainer, toast} from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 
 import {
   Container,
@@ -25,7 +25,7 @@ const Register: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Registre-se</title>
+        <title>Queerfy | Registro</title>
       </Head>
 
       <Container>

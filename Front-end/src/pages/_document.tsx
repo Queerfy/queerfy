@@ -49,8 +49,7 @@ export default class MyDocument extends Document {
           />
           <link
             rel="icon"
-            // Ícone da página (como se fosse o title)
-            href=""
+            href="static/logo.svg"
           />
         </Head>
         <body>

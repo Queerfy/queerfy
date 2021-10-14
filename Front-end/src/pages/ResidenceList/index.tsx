@@ -1,6 +1,7 @@
 import React from "react";
 
 import { NextPage } from "next";
+import Head from 'next/head';
 
 import { Container, Categories, RoomRow, CategorieItem } from "./styles";
 
@@ -15,6 +16,10 @@ import { Footer } from "../../components/Footer";
 const ResidenceList: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>Queerfy | Residências</title>
+      </Head>
+
       <Navbar />
       <HeaderMobile />
       <Container>
