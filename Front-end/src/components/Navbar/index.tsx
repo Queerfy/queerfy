@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Search } from 'react-feather';
 
 import {
   Container,
-  Functions,
   IconBox,
   InputBox,
   SearchInput,
