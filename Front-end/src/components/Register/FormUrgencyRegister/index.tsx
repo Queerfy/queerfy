@@ -63,7 +63,7 @@ const FormUrgencyRegister: NextPage<ISetDataUser> = ({
                 <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
                   <span>Sexualidade</span>
                   <Input
-                    name="gener"
+                    name="genre"
                     type="text"
                     placeholder="Orientação sexual"
                   />

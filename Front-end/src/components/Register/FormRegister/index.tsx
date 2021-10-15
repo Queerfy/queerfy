@@ -23,7 +23,7 @@ const FormRegister: NextPage<ISetDataUser> = ({
   const genreRef = useRef<HTMLSelectElement>(null);
 
   const handleSubmit = (data) => {
-    setDataUser(data);
+    setDataUser({ ...data, genre: genreRef.current.value });
     setStepRegister({ type: 'normalFinish', step: 3 });
   };
 

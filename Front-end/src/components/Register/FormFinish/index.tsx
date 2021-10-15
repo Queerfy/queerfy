@@ -1,5 +1,8 @@
 import { NextPage } from 'next';
+
 import { Form } from '@unform/web';
+
+import { api } from '../../../services/api';
 
 import Input from '../../Form/input';
 
@@ -11,40 +14,44 @@ import {
   Box
 } from '../FormUrgencyRegister/style';
 
-import { HeaderBox, TitleHeader } from '../../../pages/Register/style';;
+import { HeaderBox, TitleHeader } from '../../../pages/Register/style';
+
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 interface IPropsDataFormFinish {
   dataUser: object;
 }
 
 const FormFinish: NextPage<IPropsDataFormFinish> = ({ dataUser }) => {
-  const handleSubmit = (data) => {
-    console.log(dataUser);
-    console.log(data);
 
-    //Aqui vai fazer a requisição com os dados dos outros componentes
-    /* const genre = genreRef.current?.value;
-
-    let idUser;
-
-    const dataUser = {
-      ...data.user,
-      genre,
-    };
-
+  const handleSubmitUrgency = (userData) => {
     api
-      .post('/users', dataUser)
+      .post('/users', userData)
       .then((res) => {
-        idUser = res.data.id;
+        return toast.success('Usuario cadastrado com Sucesso!');
+      })
+      .catch((err) => {
+        console.log(err.message);
+        return toast.error('Usuario já existente!');
+      });
+  }
+
+  const handleSubmitNormal = (userData) => {
+    api
+      .post('/users', userData.user)
+      .then((res) => {
+        let idUser = res.data.id;
 
         const dataAdresses = {
           idUser,
-          ...data.address,
+          ...userData.address,
         };
 
         api
           .post('/addresses', dataAdresses)
           .then((res) => {
-            toast.success('Usuario cadastrado com Sucesso!');
+            return toast.success('Usuario cadastrado com Sucesso!');
 
           })
           .catch((err) => {
@@ -55,7 +62,30 @@ const FormFinish: NextPage<IPropsDataFormFinish> = ({ dataUser }) => {
       .catch((err) => {
         console.log(err.message);
         return toast.error('Usuario já existente!');
-      }); */
+      });
+  }
+
+  const handleSubmit = (data) => {
+
+    if(!dataUser.address) {
+      console.log("Não Contem Endereço");
+      const userData = {
+        ...dataUser,
+        ...data
+      }
+      handleSubmitUrgency(userData);
+    }else {
+      console.log("Contem Endereço");
+      const userData = {
+        ...dataUser,
+        user: {
+          ...dataUser.user,
+          ...data,
+        },
+      }
+      handleSubmitNormal(userData);
+    }
+
   };
 
   return (
@@ -97,6 +127,7 @@ const FormFinish: NextPage<IPropsDataFormFinish> = ({ dataUser }) => {
             </Box>
           </BoxContainerConfirm>
         </Form>
+        <ToastContainer />
       </Container>
     </>
   );
