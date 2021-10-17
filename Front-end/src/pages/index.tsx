@@ -39,18 +39,9 @@ const IndexPage: NextPage = () => {
         <Categories>
           <h1>Qual tipo de acomodação você precisa?</h1>
           <CategorieTypes>
-            <HandleCategorie
-              image="suit.svg"
-              title="Suíte"
-            />
-            <HandleCategorie
-              image="room.svg"
-              title="Quarto"
-            />
-            <HandleCategorie
-              image="allowPets.svg"
-              title="Permitido animais"
-            />
+            <HandleCategorie image="suit.svg" title="Suíte" />
+            <HandleCategorie image="room.svg" title="Quarto" />
+            <HandleCategorie image="allowPets.svg" title="Permitido animais" />
           </CategorieTypes>
         </Categories>
         <HostBanner>

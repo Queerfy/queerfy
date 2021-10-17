@@ -42,7 +42,7 @@ const Login: NextPage = () => {
 
         localStorage.setItem('user', JSON.stringify(user));
 
-        toast.success('Logado com Sucesso!');
+        toast.success('Logado com sucesso!');
 
         setTimeout(() => {
           router.push('/');
@@ -52,7 +52,7 @@ const Login: NextPage = () => {
         if (err.response.status === 400) {
           console.log('Message Error:', err.response.data.message);
           console.log('Status Error:', err.response.data.status);
-          return toast.error('Email/Senha Incorreta!');
+          return toast.error('Email/Senha incorreto!');
         }
       }); */
   };

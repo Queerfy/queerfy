@@ -19,9 +19,25 @@ export default createGlobalStyle<{ theme: Theme }>`
     }
   }
 
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+  
   input {
     font-family: 'Poppins';
     border: none;
     outline: none;
+  }
+  
+  button {
+    cursor: pointer;
   }
 `;

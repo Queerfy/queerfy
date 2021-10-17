@@ -115,8 +115,7 @@ const Register: NextPage = () => {
             </>
           )}
         </InformationsBox>
-
-        <ImageRegister src="./registerImage.jpeg" alt="Register Image" />
+        <ImageRegister src="register-image.jpeg" alt="Register Image" />
       </Container>
       <ToastContainer />
     </>
