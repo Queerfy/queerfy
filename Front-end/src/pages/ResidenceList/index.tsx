@@ -1,25 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import { NextPage } from "next";
+import { NextPage } from 'next';
 import Head from 'next/head';
 
-import { api } from "../../services/api";
+import { api } from '../../services/api';
 
-import { Container, Categories, RoomRow, CategorieItem } from "./styles";
+import { Container, Categories, RoomRow, CategorieItem } from './styles';
 
-import { Coffee, Droplet, Wifi } from "react-feather";
+import { useRouter } from 'next/router';
 
-import { Navbar } from "../../components/Navbar";
-import { HeaderMobile } from "../../components/HeaderMobile";
-import { NavbarMobile } from "../../components/NavbarMobile";
-import { Residence } from "../../components/Residence";
-import { Footer } from "../../components/Footer";
+import { Container, Categories, RoomRow, CategorieItem } from './styles';
+
+import { Coffee, Droplet, Wifi } from 'react-feather';
+
+import { Navbar } from '../../components/Navbar';
+import { HeaderMobile } from '../../components/HeaderMobile';
+import { NavbarMobile } from '../../components/NavbarMobile';
+import { Residence } from '../../components/Residence';
+import { Footer } from '../../components/Footer';
 
 const ResidenceList: NextPage = () => {
   const [residences, setResidences] = useState([]);
 
   useEffect(() => {
-    api.get('/properties')
+    api
+      .get('/properties')
       .then((response) => {
         setResidences(response.data);
       })
@@ -37,25 +42,26 @@ const ResidenceList: NextPage = () => {
       <Container>
         <h1>Locações com as melhores avaliações em cidade</h1>
         <p>
-          Os hóspedes concordam: estas acomodações foram muito bem avaliadas quanto a localização, limpeza e outros aspectos.
+          Os hóspedes concordam: estas acomodações foram muito bem avaliadas
+          quanto a localização, limpeza e outros aspectos.
         </p>
         <RoomRow>
-          {residences.map(item => {
-            return item.likes > 1000 && (
-              <Residence
-                key={item.id}
-                name={item.name}
-                description={item.description}
-                trend={true}
-              />
-            )
+          {residences.map((item) => {
+            return (
+              item.likes > 1000 && (
+                <Residence
+                  key={item.id}
+                  name={item.name}
+                  description={item.description}
+                  trend={true}
+                />
+              )
+            );
           })}
         </RoomRow>
       </Container>
       <Container>
-        <h1>
-          O que você gostaria de ter no local onde está procurando?
-        </h1>
+        <h1>O que você gostaria de ter no local onde está procurando?</h1>
         <Categories>
           <CategorieItem>
             <Wifi />
@@ -82,7 +88,7 @@ const ResidenceList: NextPage = () => {
       <Container>
         <h1>Outros aluguéis excelentes na área selecionada</h1>
         <RoomRow>
-          {residences.map(item => (
+          {residences.map((item) => (
             <Residence
               key={item.id}
               name={item.name}
@@ -95,6 +101,6 @@ const ResidenceList: NextPage = () => {
       <NavbarMobile />
     </>
   );
-}
+};
 
 export default ResidenceList;
