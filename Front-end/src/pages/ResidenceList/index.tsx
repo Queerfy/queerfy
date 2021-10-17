@@ -1,19 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import { NextPage } from "next";
+import { NextPage } from 'next';
 import Head from 'next/head';
 
-import { Container, Categories, RoomRow, CategorieItem } from "./styles";
+import { useAuth } from '../../hooks/useAuth';
 
-import { Coffee, Droplet, Wifi } from "react-feather";
+import { useRouter } from 'next/router';
 
-import { Navbar } from "../../components/Navbar";
-import { HeaderMobile } from "../../components/HeaderMobile";
-import { NavbarMobile } from "../../components/NavbarMobile";
-import { Residence } from "../../components/Residence";
-import { Footer } from "../../components/Footer";
+import { Container, Categories, RoomRow, CategorieItem } from './styles';
+
+import { Coffee, Droplet, Wifi } from 'react-feather';
+
+import { Navbar } from '../../components/Navbar';
+import { HeaderMobile } from '../../components/HeaderMobile';
+import { NavbarMobile } from '../../components/NavbarMobile';
+import { Residence } from '../../components/Residence';
+import { Footer } from '../../components/Footer';
 
 const ResidenceList: NextPage = () => {
+  const { userApp, signed } = useAuth();
   return (
     <>
       <Head>
@@ -25,24 +30,17 @@ const ResidenceList: NextPage = () => {
       <Container>
         <h1>Locações com as melhores avaliações em cidade</h1>
         <p>
-          Os hóspedes concordam: estas acomodações foram muito bem avaliadas quanto a localização, limpeza e outros aspectos.
+          Os hóspedes concordam: estas acomodações foram muito bem avaliadas
+          quanto a localização, limpeza e outros aspectos.
         </p>
         <RoomRow>
-          <Residence trend={true}>
-            descrição teste
-          </Residence>
-          <Residence trend={true}>
-            descrição teste
-          </Residence>
-          <Residence trend={true}>
-            descrição teste
-          </Residence>
+          <Residence trend={true}>descrição teste</Residence>
+          <Residence trend={true}>descrição teste</Residence>
+          <Residence trend={true}>descrição teste</Residence>
         </RoomRow>
       </Container>
       <Container>
-        <h1>
-          O que você gostaria de ter no local onde está procurando?
-        </h1>
+        <h1>O que você gostaria de ter no local onde está procurando?</h1>
         <Categories>
           <CategorieItem>
             <Wifi />
@@ -81,6 +79,6 @@ const ResidenceList: NextPage = () => {
       <NavbarMobile />
     </>
   );
-}
+};
 
 export default ResidenceList;

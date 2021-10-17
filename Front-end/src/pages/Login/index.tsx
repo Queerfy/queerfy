@@ -4,14 +4,13 @@ import Head from 'next/head';
 
 import Link from 'next/link';
 
-import { Form } from '@unform/web';
-
 import Input from '../../components/Form/input';
+
+import { useAuth } from '../../hooks/useAuth';
 
 import { api } from '../../services/api';
 
 import { UserPlus, LogIn, ArrowLeft } from 'react-feather';
-import { ToastContainer, toast } from 'react-toastify';
 
 import {
   Container,
@@ -22,15 +21,15 @@ import {
   FormLogin,
   InputsBox,
   LogoBox,
-  ButtonRegister
+  ButtonRegister,
 } from './style';
 
-import 'react-toastify/dist/ReactToastify.css';
-
 const Login: NextPage = () => {
-  const router = useRouter();
+  const { handleLogin } = useAuth();
 
-  const handleLogin = () => {
+  const handleSumbit = (data) => {
+    handleLogin(data);
+
     /* api
       .post('/users/authenticate', credentials)
       .then((res) => {
@@ -95,7 +94,7 @@ const Login: NextPage = () => {
               </Link>
 
               <p id="container_textLogin">ou entre em sua conta</p>
-              <FormLogin onSubmit={handleLogin} >
+              <FormLogin onSubmit={handleSumbit}>
                 <InputsBox>
                   <span>E-mail</span>
                   <Input
@@ -110,11 +109,14 @@ const Login: NextPage = () => {
                   <Input name="password" type="password" placeholder="Senha" />
                 </InputsBox>
 
-                <ButtonRegister> <LogIn size={25} />Entrar na conta</ButtonRegister>
+                <ButtonRegister>
+                  {' '}
+                  <LogIn size={25} />
+                  Entrar na conta
+                </ButtonRegister>
               </FormLogin>
 
               <p id="container_forgoutPassword">Esqueci a senha</p>
-              <ToastContainer />
             </ItemContainer>
           </ContainerBox>
         </LoginContainer>

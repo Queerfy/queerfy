@@ -177,12 +177,12 @@ export const ItemContainer = styled.div`
 `;
 
 export const FormLogin = styled(Form)`
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-   width: 95%;
+  width: 95%;
 `;
 
 export const InputsBox = styled.div`
@@ -200,7 +200,6 @@ export const InputsBox = styled.div`
   }
 
   input {
-    color: ${theme.assets.borderLight};
     padding: 10px;
     border-radius: 5px;
     border: 1px solid ${theme.assets.borderDark};
@@ -214,7 +213,7 @@ export const ButtonRegister = styled.button`
   justify-content: space-evenly;
   padding: 10px;
 
-  background: #F15356;
+  background: #f15356;
   color: white;
   font-weight: 600;
 
@@ -222,5 +221,5 @@ export const ButtonRegister = styled.button`
   width: 150px;
 
   border-radius: 5px;
-  cursor: pointer
+  cursor: pointer;
 `;

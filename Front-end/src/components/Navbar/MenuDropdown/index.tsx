@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import Link from 'next/link';
 
-import ReactSwitch from "react-switch";
+import { useAuth } from '../../../hooks/useAuth';
 
-import { Container, Divider } from "./styles";
+import ReactSwitch from 'react-switch';
 
-import { Globe, Inbox, User } from "react-feather";
+import { Container, Divider } from './styles';
+
+import { Globe, Inbox, User } from 'react-feather';
 
 export const MenuDropdown = () => {
   const [theme, setTheme] = useState(true);
-  const [authenticate, setAuthenticate] = useState(false);
+
+  const { signed, handleLogout } = useAuth();
 
   function handleTheme() {
     if (theme) {
@@ -33,30 +36,48 @@ export const MenuDropdown = () => {
           uncheckedIcon={false}
         />
       </li>
-      <li><a href="#"><Globe size={25} /></a></li>
-      <li><a href="#"><Inbox size={25} /></a></li>
       <li>
-        <Link href="/Login">
-          <User size={25} />
-        </Link>
+        <a href="#">
+          <Globe size={25} />
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <Inbox size={25} />
+        </a>
+      </li>
+      <li>
+        <User size={25} />
         <ul className="submenu">
-          {!authenticate && (
+          {!signed && (
             <>
-              <li><a href="#">Entrar</a></li>
+              <Link href="/Login">
+                <li>
+                  <a>Entrar</a>
+                </li>
+              </Link>
               <Divider />
             </>
           )}
-          <li><a href="#">Notificações</a></li>
-          <li><a href="#">Pagamentos</a></li>
-          <li><a href="#">Ajuda</a></li>
-          {authenticate && (
+          <li>
+            <a href="#">Notificações</a>
+          </li>
+          <li>
+            <a href="#">Pagamentos</a>
+          </li>
+          <li>
+            <a href="#">Ajuda</a>
+          </li>
+          {signed && (
             <>
               <Divider />
-              <li><a href="#">Sair</a></li>
+              <li>
+                <a onClick={handleLogout}>Sair</a>
+              </li>
             </>
           )}
         </ul>
       </li>
     </Container>
   );
-}
+};
