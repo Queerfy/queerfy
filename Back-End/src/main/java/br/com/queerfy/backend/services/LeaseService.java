@@ -34,7 +34,12 @@ public class LeaseService {
         dtoList.forEach(leaseDTO -> associativeDTO.add(convertToLeaseAssossiative(leaseDTO)));
         return associativeDTO;
     }
-
+    public LeaseAssociativeDTO getLeaseById(Integer id){
+        Lease lease = leaseRepository.findById(id).get();
+        LeaseDTO leaseDTO = new LeaseDTO(lease);
+        LeaseAssociativeDTO leaseAssociativeDTO = convertToLeaseAssossiative(leaseDTO);
+        return leaseAssociativeDTO;
+    }
     public LeaseDTO createLease(LeaseDTO leaseDTO) throws UserNotFoundException {
         Optional<User> userOptional = Optional.of(userRepository.getById(leaseDTO.getIdUser()));
         Optional<Property> propertyOptional = Optional.of(propertyRepository.getById(leaseDTO.getIdProperty()));

@@ -4,6 +4,7 @@ import br.com.queerfy.backend.entities.Property;
 import br.com.queerfy.backend.entities.User;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class PropertyDTO {
@@ -14,8 +15,8 @@ public class PropertyDTO {
     private Boolean active;
     private Double dailyPrice;
     private String filterDate;
-    private Date checkIn;
-    private Date checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private String latitude;
     private String longitude;
     private Integer idUser;
@@ -106,19 +107,19 @@ public class PropertyDTO {
         this.filterDate = filterDate;
     }
 
-    public Date getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
     }
 

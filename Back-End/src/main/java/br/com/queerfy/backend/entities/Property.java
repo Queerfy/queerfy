@@ -2,8 +2,10 @@ package br.com.queerfy.backend.entities;
 
 import br.com.queerfy.backend.dto.PropertyDTO;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,9 +22,9 @@ public class Property {
     private Double dailyPrice;
     private String filterDate;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Date checkIn;
+    private LocalDate checkIn;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Date checkOut;
+    private LocalDate checkOut;
     private String latitude;
     private String longitude;
     private Integer likes;
@@ -88,19 +90,19 @@ public class Property {
         this.filterDate = filterDate;
     }
 
-    public Date getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
     }
 
