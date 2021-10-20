@@ -31,55 +31,35 @@ export const AuthProvider = ({ children }) => {
       if (storagedUser) {
         setUserApp(JSON.parse(storagedUser));
       } else {
-        router.push('/');
+        router.push('/Login');
       }
     }
   };
 
   const handleLogin = (data: IUserData) => {
-    const { email, password } = data;
 
-    const user = {
-      id: 1,
-      name: 'Igor Silva',
-      birthDate: null,
-      rg: '123.123.334-X',
-      cpf: '334.887.998-09',
-      email: 'igor@gmail.com',
-      password: '123',
-      perfilImg: null,
-      descUser: null,
-      genre: 'Masculino',
-      likes: 'Musica, Programação, Livros, Esportes',
-      admin: false,
-      adresses: [
-        {
-          id: 1,
-          place: 'Rua Haddock Lobo',
-          number: '595',
-          cep: '08042-150',
-          district: 'São Paulo',
-          city: 'São Paulo',
-        },
-      ],
-    };
+    api
+      .post('/users/autenticate', data)
+      .then((res) => {
 
-    if (email === user.email && password === user.password) {
-      setUserApp(user);
-      localStorage.setItem('user', JSON.stringify(user));
-      toast.success('Logado com sucesso!');
-      setTimeout(() => {
-        router.push('/ResidenceList');
-      }, 2000);
-    } else {
-      return toast.error('Email ou Senha invalidos!');
-    }
+        setUserApp(res.data);
+        localStorage.setItem('user', JSON.stringify(res.data));
+
+        toast.success('Logado com sucesso!');
+
+        setTimeout(() => {
+          router.push('/ResidenceList');
+        }, 2000);
+      })
+      .catch((err) => {
+        return toast.error('Email/Senha incorreto!');
+      })
   };
 
   const handleLogout = () => {
     setUserApp(null);
     localStorage.clear();
-    router.push('/');
+    router.push('/Login');
   };
 
   useEffect(() => {

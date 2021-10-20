@@ -5,11 +5,11 @@ import Head from 'next/head';
 
 import { api } from '../../services/api';
 
+import { useAuth } from '../../hooks/useAuth';
+
 import { Container, Categories, RoomRow, CategorieItem } from './styles';
 
 import { useRouter } from 'next/router';
-
-import { Container, Categories, RoomRow, CategorieItem } from './styles';
 
 import { Coffee, Droplet, Wifi } from 'react-feather';
 
@@ -20,9 +20,13 @@ import { Residence } from '../../components/Residence';
 import { Footer } from '../../components/Footer';
 
 const ResidenceList: NextPage = () => {
+
+  const { userApp } = useAuth();
+
   const [residences, setResidences] = useState([]);
 
   useEffect(() => {
+    console.log(userApp);
     api
       .get('/properties')
       .then((response) => {

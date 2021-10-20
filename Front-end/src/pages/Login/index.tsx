@@ -8,8 +8,6 @@ import Input from '../../components/Form/input';
 
 import { useAuth } from '../../hooks/useAuth';
 
-import { api } from '../../services/api';
-
 import { UserPlus, LogIn, ArrowLeft } from 'react-feather';
 
 import {
@@ -29,32 +27,6 @@ const Login: NextPage = () => {
 
   const handleSumbit = (data) => {
     handleLogin(data);
-
-    /* api
-      .post('/users/authenticate', credentials)
-      .then((res) => {
-        const user = {
-          id: res.data.data.id,
-          name: res.data.data.name,
-          email: res.data.data.email,
-          perfilImg: res.data.data.perfilImg,
-        };
-
-        localStorage.setItem('user', JSON.stringify(user));
-
-        toast.success('Logado com sucesso!');
-
-        setTimeout(() => {
-          router.push('/');
-        }, 2000);
-      })
-      .catch((err) => {
-        if (err.response.status === 400) {
-          console.log('Message Error:', err.response.data.message);
-          console.log('Status Error:', err.response.data.status);
-          return toast.error('Email/Senha incorreto!');
-        }
-      }); */
   };
 
   return (
