@@ -27,14 +27,16 @@ public class UserService {
     private UserRepository repository;
 
     @Transactional
-    public String autenticateUser(UserDTO dto) throws UserNotFoundException {
+    public UserDTO autenticateUser(UserDTO dto) throws UserNotFoundException {
 
         List<User> users = repository.findAll();
         for (User user : users){
             if(user.getEmail().equals(dto.getEmail()) && user.getPassword().equals(dto.getPassword())){
                 user.setAutenticated(true);
                 repository.save(user);
-                return String.format("%s autenticated successfully", user.getName());
+                UserDTO userDTO = new UserDTO(user);
+                userDTO.setAutenticated(true);
+                return userDTO;
             }
         }
         throw new UserNotFoundException();

@@ -32,7 +32,7 @@ public class UserController {
 
 
     @PostMapping("/autenticate")
-    public ResponseEntity<String> autenticateUser(@RequestBody UserDTO userDTO) throws UserNotFoundException{
+    public ResponseEntity<UserDTO> autenticateUser(@RequestBody UserDTO userDTO) throws UserNotFoundException{
         return ResponseEntity.status(200).body(userService.autenticateUser(userDTO));
     }
 
