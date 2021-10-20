@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
+import javax.validation.constraints.PastOrPresent;
 import java.util.*;
 
 @RestController
@@ -21,6 +23,17 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Integer id) throws UserNotFoundException {
         return ResponseEntity.status(200).body(userService.getUserById(id));
+    }
+
+    @PostMapping("/logoff/{id}")
+    public ResponseEntity<String> logoffUser(@PathVariable Integer id) throws UserNotFoundException {
+        return ResponseEntity.status(200).body(userService.logoffUser(id));
+    }
+
+
+    @PostMapping("/autenticate")
+    public ResponseEntity<String> autenticateUser(@RequestBody UserDTO userDTO) throws UserNotFoundException{
+        return ResponseEntity.status(200).body(userService.autenticateUser(userDTO));
     }
 
     @PostMapping()

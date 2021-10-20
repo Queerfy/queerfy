@@ -22,6 +22,7 @@ public class UserDTO {
     private String genre;
     private String likes;
     private Boolean admin;
+    private Boolean autenticated;
     private Set<AddressesDTO> addresses = new HashSet<>();
     private Set<PropertyDTO> property = new HashSet<>();
 
@@ -46,7 +47,7 @@ public class UserDTO {
         this.property = mapProperties(user);
     }
 
-    public UserDTO(Integer id, String name, String cpf, String email, String genre, String rg, Boolean admin) {
+    public UserDTO(Integer id, String name, String cpf, String email, String genre, String rg, Boolean admin, Boolean autenticated) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -54,6 +55,7 @@ public class UserDTO {
         this.genre = genre;
         this.rg = rg;
         this.admin = admin;
+        this.autenticated = autenticated;
     }
 
     public Integer getId() {
@@ -150,6 +152,22 @@ public class UserDTO {
 
     public void setAdmin(Boolean admin) {
         this.admin = admin;
+    }
+
+    public Boolean getAutenticated() {
+        return autenticated;
+    }
+
+    public void setAutenticated(Boolean autenticated) {
+        this.autenticated = autenticated;
+    }
+
+    public Set<AddressesDTO> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<AddressesDTO> addresses) {
+        this.addresses = addresses;
     }
 
     public Set<AddressesDTO> getAdresses() {

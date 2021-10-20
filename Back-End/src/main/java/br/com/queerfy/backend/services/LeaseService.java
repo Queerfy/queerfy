@@ -34,6 +34,9 @@ public class LeaseService {
         dtoList.forEach(leaseDTO -> associativeDTO.add(convertToLeaseAssossiative(leaseDTO)));
         return associativeDTO;
     }
+
+
+
     public LeaseAssociativeDTO getLeaseById(Integer id){
         Lease lease = leaseRepository.findById(id).get();
         LeaseDTO leaseDTO = new LeaseDTO(lease);
@@ -55,6 +58,13 @@ public class LeaseService {
             return new LeaseDTO(lease);
         }
         throw new UserNotFoundException();
+    }
+
+    public LeaseAssociativeDTO convertToLeaseAssossiativeAndUserDTO(LeaseDTO dto){
+        UserDTO user = new UserDTO(userRepository.findById(dto.getIdUser()).get());
+        PropertyDTO property = new PropertyDTO(propertyRepository.findById(dto.getIdProperty()).get());
+        LeaseAssociativeDTO leaseAssociativeDTO = new LeaseAssociativeDTO(dto, property, user);
+        return leaseAssociativeDTO;
     }
 
     public LeaseAssociativeDTO convertToLeaseAssossiative(LeaseDTO dto){

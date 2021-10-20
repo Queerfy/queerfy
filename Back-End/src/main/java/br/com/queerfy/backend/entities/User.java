@@ -28,6 +28,7 @@ public class User {
         this.genre = user.getDescUser();
         this.likes = user.getLikes();
         this.admin = user.getAdmin();
+        this.autenticated = user.getAutenticated();
     }
 
     @Id()
@@ -68,6 +69,8 @@ public class User {
     @Column(name = "admin")
     private Boolean admin;
 
+    private Boolean autenticated;
+
     @OneToMany(mappedBy = "user")
     private Set<Addresses> adresses = new HashSet<>();
     @OneToMany(mappedBy = "user")
@@ -79,6 +82,14 @@ public class User {
 
     public void setProperties(Set<Property> properties) {
         this.properties = properties;
+    }
+
+    public Boolean getAutenticated() {
+        return autenticated;
+    }
+
+    public void setAutenticated(Boolean autenticated) {
+        this.autenticated = autenticated;
     }
 
     public Integer getId() {

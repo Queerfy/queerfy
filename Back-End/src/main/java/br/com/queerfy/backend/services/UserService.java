@@ -27,6 +27,31 @@ public class UserService {
     private UserRepository repository;
 
     @Transactional
+    public String autenticateUser(UserDTO dto) throws UserNotFoundException {
+
+        List<User> users = repository.findAll();
+        for (User user : users){
+            if(user.getEmail().equals(dto.getEmail()) && user.getPassword().equals(dto.getPassword())){
+                user.setAutenticated(true);
+                repository.save(user);
+                return String.format("%s autenticated successfully", user.getName());
+            }
+        }
+        throw new UserNotFoundException();
+    }
+
+    @Transactional
+    public String logoffUser(Integer id) throws UserNotFoundException {
+        Optional<User> user = repository.findById(id);
+        if(user.isPresent()){
+            user.get().setAutenticated(false);
+            repository.save(user.get());
+            return String.format("%s disconected successfully", user.get().getName());
+        }
+        throw new UserNotFoundException();
+    }
+
+    @Transactional
     public List<UserDTO> getUsers() {
         return repository.findAll().stream()
                 .map(user -> new UserDTO(user))
@@ -49,7 +74,7 @@ public class UserService {
             User user = new User(userDTO);
             user = repository.save(user);
             ListaObj<UserDTO> userList = new ListaObj(90);
-            userList.adiciona(new UserDTO(userDTO.getId(), userDTO.getName(), userDTO.getCpf(), userDTO.getEmail(), userDTO.getGenre(), userDTO.getRg(), userDTO.getAdmin()));
+            userList.adiciona(new UserDTO(userDTO.getId(), userDTO.getName(), userDTO.getCpf(), userDTO.getEmail(), userDTO.getGenre(), userDTO.getRg(), userDTO.getAdmin(), userDTO.getAutenticated()));
             csvConverter.gravaArquivoCsv(userList, "userList");
             return new UserDTO(user);
 
