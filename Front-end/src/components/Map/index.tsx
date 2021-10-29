@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NextPage } from 'next';
 
 import { MapContainer as LeafletMap, TileLayer, MapContainerProps as LeafletMapProps, Marker, Popup } from 'react-leaflet';
@@ -13,11 +13,15 @@ interface MapProps extends LeafletMapProps {
   children: React.ReactNode
 }
 
+const markerIconMap = L.icon({
+  iconUrl: "../../../public/markerMap.png",
+  iconSize: [58, 68],
+  iconAnchor: [29, 68],
+})
+
 const Map: NextPage = ({ children, interactive = true, ...props }: MapProps) => {
 
   const [ initialPosition, setInitialPosition ] = useState<[number, number]>([0, 0]);
-
-  const mapRef = useRef(null);
 
   useEffect(() => {
     if(navigator.geolocation) {
@@ -27,11 +31,6 @@ const Map: NextPage = ({ children, interactive = true, ...props }: MapProps) => 
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         setInitialPosition([latitude, longitude]);
-        L.icon({
-          iconUrl: "../../../public/markerMap.png",
-          iconSize: [58, 68],
-          iconAnchor: [29, 68],
-        }).addTo(mapRef);
       })
     }
   }, []);
@@ -39,7 +38,6 @@ const Map: NextPage = ({ children, interactive = true, ...props }: MapProps) => 
   return(
     <div style={{ border: '2px solid blue', height: '500px', marginBottom: '20px' }}>
       <LeafletMap
-        ref={mapRef}
         style={{ width: '100%', height: '100%' }}
         center={[-23.5582664, -46.66144]}
         zoom={15}
