@@ -11,7 +11,7 @@ export const Container = styled.div`
   height: 50px;
   border-radius: 10px;
 
-  background-color: ${(props) => props.color};
+  background: ${(props) => props.color};
   color: ${theme.assets.background};
 
   &:hover {
