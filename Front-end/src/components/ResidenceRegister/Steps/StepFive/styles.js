@@ -10,12 +10,16 @@ export const Container = styled.div`
 
   > h1 {
     text-align: center;
-    font-size: 22px;
-    margin: 32px 0px;
+    font-size: 28px;
+    margin: 32px 0;
   }
 
-  > div {
-    margin: 32px 0px;
+  > button {
+    margin: 32px 0;
+
+    @media screen and (min-width: 1024px) {
+      margin: 32px 0 16px 0;
+    }
   }
 
   > span {
@@ -30,5 +34,18 @@ export const Container = styled.div`
     > h1 {
       display: none;
     }
+  }
+`;
+
+export const FiltersBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: auto;
+
+  > div {
+    margin: 16px 0;
   }
 `;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container } from "./styles";
+import { BaseButton } from "./styles";
 
 interface GeneralButtonProps {
   text: string;
@@ -9,10 +9,10 @@ interface GeneralButtonProps {
 
 export const GeneralButton = (props: GeneralButtonProps) => {
   return (
-    <Container
+    <BaseButton
       color={props.bgColor}
     >
       {props.text}
-    </Container>
+    </BaseButton>
   );
 }

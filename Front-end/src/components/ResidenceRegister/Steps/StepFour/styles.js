@@ -9,13 +9,9 @@ export const Container = styled.div`
   height: 100vh;
 
   > h1 {
+    margin: 32px 0px;
+    font-size: 24px;
     text-align: center;
-    font-size: 22px;
-    margin: 32px 0px;
-  }
-
-  > div {
-    margin: 32px 0px;
   }
 
   > span {
@@ -24,11 +20,28 @@ export const Container = styled.div`
     cursor: pointer;
   }
 
+  > button {
+    margin: 32px 0;
+  }
+
   @media screen and (min-width: 1024px) {
     justify-content: center;
+    padding: 64px;
 
     > h1 {
       display: none;
     }
+
+    > button {
+      margin: 32px 0px;
+    }
+  }
+`;
+
+export const CounterBox = styled.div`
+  width: 100%;
+
+  > div {
+    margin: 32px 0px;
   }
 `;
