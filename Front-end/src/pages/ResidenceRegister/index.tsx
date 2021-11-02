@@ -7,6 +7,8 @@ import { StepOne } from '../../components/ResidenceRegister/Steps';
 import { StepTwo } from '../../components/ResidenceRegister/Steps/StepTwo';
 import { StepFour } from '../../components/ResidenceRegister/Steps/StepFour';
 import { StepFive } from '../../components/ResidenceRegister/Steps/StepFive';
+import { StepSix } from '../../components/ResidenceRegister/Steps/StepSix';
+import { StepSeven } from '../../components/ResidenceRegister/Steps/StepSeven';
 
 const ResidenceRegister: NextPage = () => {
   const [step, setStep] = useState(1);
@@ -22,6 +24,7 @@ const ResidenceRegister: NextPage = () => {
           {step === 1 && 'Qual tipo de espaço você deseja hospedar?'}
           {step === 4 && 'Quais são as especificações do espaço que você deseja alugar?'}
           {step === 5 && 'Agora vamos ser mais específicos'}
+          {step === 6 && 'Vamos dar um nome e uma descrição ao seu espaço'}
         </h1>
 
         <span>Queerfy © 2021 Todos os direitos reservados</span>
@@ -30,7 +33,9 @@ const ResidenceRegister: NextPage = () => {
         {/* <StepOne /> */}
         {/* <StepTwo /> */}
         {/* <StepFour /> */}
-        {<StepFive />}
+        {/* <StepFive /> */}
+        {/* <StepSix /> */}
+        <StepSeven />
       </FormContainer>
     </Container>
   );
