@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NextPage } from 'next';
 
 import Head from 'next/head';
 import { theme } from '../styles/theme';
+
+import dynamic from 'next/dynamic'
 
 import {
   MainContainer,
@@ -24,6 +26,13 @@ import { Slide } from '../components/Slide';
 import { HandleCategorie } from '../components/Home/HandleCategorie';
 import { Banner } from '../components/Home/Banner';
 import { NearbyPlaces } from '../components/Home/NearbyPlaces';
+
+
+const Map = dynamic(() => {
+  return import("../components/Map");
+},{
+  ssr: false
+})
 
 const IndexPage: NextPage = () => {
   return (
@@ -53,6 +62,9 @@ const IndexPage: NextPage = () => {
             buttonColor={theme.colors.red}
           />
         </HostBanner>
+        <Map>
+
+        </Map>
         <PinkBunners>
           <Banner
             backgroundImg="post-banner.svg"
