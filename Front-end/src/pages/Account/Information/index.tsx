@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { theme } from '../../../styles/theme';
-import { ContainerMain, HeaderContainer } from '../Main/styles';
-import { ContainerInfo, ContainerColumn, Container } from './styles';
+import { ContainerInfo, ContainerColumn, Container, ContainerMain, HeaderContainer } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import {
   ArrowLeft,
@@ -32,7 +31,7 @@ const InfoAccount: NextPage = () => {
       <ContainerMain>
         <HeaderMobile />
         <HeaderContainer title={theme.colors.red} text={theme.colors.red}>
-          <Link href="/Account/Main">
+          <Link href="/">
             <ArrowLeft />
           </Link>
           <h1>Informações da conta</h1>

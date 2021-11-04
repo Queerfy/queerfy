@@ -3,7 +3,6 @@ import React from 'react';
 import Link from 'next/link';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { HeaderContainer } from '../Main/styles';
 import { theme } from '../../../styles/theme';
 import {
   ContainerInputBox,
@@ -21,6 +20,7 @@ import { Navbar } from '../../../components/Navbar';
 import { ArrowLeft } from 'react-feather';
 import { NavbarMobile } from '../../../components/NavbarMobile';
 import { HeaderMobile } from '../../../components/HeaderMobile';
+import { HeaderContainer } from '../Information/styles';
 
 const PaymentsPage: NextPage = () => {
   return (
@@ -36,7 +36,7 @@ const PaymentsPage: NextPage = () => {
           subtitle={theme.colors.orange}
           text={theme.colors.orange}
         >
-          <Link href="/Account/Main">
+          <Link href="/">
             <ArrowLeft />
           </Link>
           <h1>Pagamentos</h1>
