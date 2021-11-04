@@ -81,23 +81,29 @@ export const TextHeader = styled.p`
 
 export const BoxButtons = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 
   height: 70vh;
 
   @media screen and (max-width: 1024px) {
+    flex-direction: column;
     justify-content: space-evenly;
     height: 60vh;
   }
 `;
 
-export const ActionButton = styled.button`
+export const ActionButton = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+
   width: 250px;
+  height: 150px;
   padding: 20px;
 
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 600;
   color: white;
   background: #e74c3c;
@@ -112,6 +118,7 @@ export const ActionButton = styled.button`
 
   @media screen and (max-width: 1024px) {
     width: 200px;
+    height: 100px;
     font-size: 17px;
   }
 `;
