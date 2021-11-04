@@ -18,7 +18,14 @@ export const registerUser = async (userData: IRequestUser) => {
   try {
     //Validações dos campos digitados no formulario
     const schema = Yup.object().shape({
-      name: Yup.string().required('Digite o nome para prosseguir!'),
+      name: Yup.string().required('O nome é obrigatorio'),
+      gener: Yup.string().required('Genero é obrigatorio, para prosseguir!'),
+      cpf: Yup.string().min(14, 'Dgite um CPF valido!').required('Digite um cpf!'),
+      email: Yup.string().email('Digite um email valido').required('O email é obrigatorio!'),
+      password: Yup.string().required('A senha é obrigatoria'),
+      confirmPassword: Yup.string().required('A confirmação de senha é obrigatoria'),
+      rg: Yup.string().min(12, 'Digite um RG valido!'),
+      birthDate: Yup.date()
     });
 
     //Evitando abordagem de validações no schema no Yup
@@ -47,6 +54,10 @@ export const registerUser = async (userData: IRequestUser) => {
     //Erros de validação nos campos
     //Verificando se o erro que foi disparado é do tipo de Yup.ValidationError
     if (error instanceof Yup.ValidationError) {
+
+      error.inner.forEach(erro => {
+        toast.error(erro.message);
+      })
     }
   }
 };

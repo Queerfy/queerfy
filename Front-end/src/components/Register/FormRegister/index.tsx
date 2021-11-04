@@ -107,7 +107,7 @@ const FormRegister: NextPage = () => {
           <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
             <LabelInputs minSize>Confirmação de Senha</LabelInputs>
             <Input
-              name="passwordConfirm"
+              name="confirmPassword"
               type="password"
               placeholder="**************"
             />

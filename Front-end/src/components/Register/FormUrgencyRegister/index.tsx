@@ -52,16 +52,24 @@ const FormUrgencyRegister: NextPage = () => {
               </RowInputs>
               <RowInputs>
                 <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
-                  <LabelInputs>Sexualidade</LabelInputs>
+                  <LabelInputs>E-mail</LabelInputs>
                   <Input
-                    name="genre"
+                    name="email"
                     type="text"
-                    placeholder="Orientação sexual"
+                    placeholder="contato@purple.com.br"
                   />
                 </InputsBox>
               </RowInputs>
               <RowInputs>
-                <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
+                <InputsBox fixedSize={'50%'} sizeResponsive={'50%'}>
+                  <LabelInputs>Sexualidade</LabelInputs>
+                  <Input
+                    name="gener"
+                    type="text"
+                    placeholder="Orientação sexual"
+                  />
+                </InputsBox>
+                <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
                   <LabelInputs>Telefone</LabelInputs>
                   <InputMask
                     name="telephone"
@@ -77,6 +85,24 @@ const FormUrgencyRegister: NextPage = () => {
                         setMaskPhone('(99) 99999-9999');
                       }
                     }}
+                  />
+                </InputsBox>
+              </RowInputs>
+              <RowInputs>
+                <InputsBox fixedSize={'50%'} sizeResponsive={'50%'}>
+                  <LabelInputs>Senha</LabelInputs>
+                  <Input
+                    name="password"
+                    type="password"
+                    placeholder="**************"
+                  />
+                </InputsBox>
+                <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
+                  <LabelInputs>Confirmação</LabelInputs>
+                  <Input
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="**************"
                   />
                 </InputsBox>
               </RowInputs>
