@@ -28,7 +28,8 @@
     "react-switch": "^6.0.0",
     "react-toastify": "^8.0.2",
     "styled-components": "^5.3.0",
-    "vanilla-masker": "^1.2.0"
+    "vanilla-masker": "^1.2.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/mapbox-gl": "^2.4.2",
