@@ -16,7 +16,7 @@ import {
 import { HeaderBox, TitleHeader } from '../../../pages/Register/style';
 import { LabelInputs, InputsBox, RowInputs } from '../FormRegister/style';
 
-import { registerUser } from '../../../utils/registerUser';
+import { registerUser } from '../../../utils/requestsUser';
 
 const FormUrgencyRegister: NextPage = () => {
   const [maskPhone, setMaskPhone] = useState('(99) 99999-9999');

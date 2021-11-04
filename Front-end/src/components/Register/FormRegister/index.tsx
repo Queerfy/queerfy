@@ -14,7 +14,7 @@ import {
 
 import InputMask from '../../Form/inputMask';
 
-import { registerUser } from '../../../utils/registerUser';
+import { registerUser } from '../../../utils/requestsUser';
 
 const FormRegister: NextPage = () => {
   const [maskPhone, setMaskPhone] = useState('(99) 99999-9999');
@@ -27,7 +27,7 @@ const FormRegister: NextPage = () => {
       ...data,
       gener,
     };
-    registerUser(dataUser);
+    registerUser(dataUser)
   };
 
   return (

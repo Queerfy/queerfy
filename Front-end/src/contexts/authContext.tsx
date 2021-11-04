@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
+import * as Yup from 'yup';
 
 import { useRouter } from 'next/router';
 
@@ -37,23 +38,39 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleLogin = (data: IUserData) => {
+    const schema = Yup.object().shape({
+      email: Yup.string()
+        .email('Digite um email valido')
+        .required('Coloque o email para prosseguir!'),
+      password: Yup.string().required('Digite a senha para prosseguir!'),
+    });
 
-    api
-      .post('/users/autenticate', data)
+    schema
+      .validate(data, { abortEarly: false })
       .then((res) => {
+        api
+          .post('/users/autenticate', data)
+          .then((res) => {
+            setUserApp(res.data);
+            localStorage.setItem('user', JSON.stringify(res.data));
 
-        setUserApp(res.data);
-        localStorage.setItem('user', JSON.stringify(res.data));
+            toast.success('Logado com sucesso!');
 
-        toast.success('Logado com sucesso!');
-
-        setTimeout(() => {
-          router.push('/ResidenceList');
-        }, 2000);
+            setTimeout(() => {
+              router.push('/ResidenceList');
+            }, 2000);
+          })
+          .catch((err) => {
+            return toast.error('Email/Senha incorreto!');
+          });
       })
-      .catch((err) => {
-        return toast.error('Email/Senha incorreto!');
-      })
+      .catch((error) => {
+        if (error instanceof Yup.ValidationError) {
+          error.inner.forEach((erro) => {
+            toast.error(erro.message);
+          });
+        }
+      });
   };
 
   const handleLogout = () => {
