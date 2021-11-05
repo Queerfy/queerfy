@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Link from 'next/link';
 import { NextPage } from 'next';
@@ -20,9 +20,13 @@ import { Navbar } from '../../../components/Navbar';
 import { ArrowLeft } from 'react-feather';
 import { NavbarMobile } from '../../../components/NavbarMobile';
 import { HeaderMobile } from '../../../components/HeaderMobile';
+import ModalPayment from '../../../components/Modal';
 import { HeaderContainer } from '../Information/styles';
 
 const PaymentsPage: NextPage = () => {
+
+  const [ openModal, setOpenModal ] = useState(false);
+
   return (
     <>
       <Head>
@@ -91,9 +95,10 @@ const PaymentsPage: NextPage = () => {
             </ContainerInputBox>
           </SubContainerPayment>
           <ContainerButton background={theme.colors.orange}>
-            <button>+ ADICIONAR NOVO CARTÃO</button>
+            <button onClick={() => setOpenModal(true)}>+ ADICIONAR NOVO CARTÃO</button>
           </ContainerButton>
         </ContainerPayment>
+        <ModalPayment isOpen={openModal} onClickClose={() => setOpenModal(false)} />
       </main>
       <NavbarMobile />
     </>

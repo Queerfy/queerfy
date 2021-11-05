@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ModalOverlay, ModalStyled } from './style';
 
-const Modal = ({ isOpen, isClose }) => {
+const ModalPayment = ({ isOpen, onClickClose }) => {
+  const [openModal, setOpenModal] = useState(false);
+
   if (!isOpen) {
     return null;
   }
 
   return ReactDOM.createPortal(
-    <>
-      <ModalOverlay>
-        <ModalStyled size={'800px'}></ModalStyled>
-      </ModalOverlay>
-    </>
+    <ModalOverlay>
+      <ModalStyled>
+          <button onClick={onClickClose}>Fechar</button>
+      </ModalStyled>
+    </ModalOverlay>,
+    document.body
   );
 };
-
-export default Modal;
+export default ModalPayment;
