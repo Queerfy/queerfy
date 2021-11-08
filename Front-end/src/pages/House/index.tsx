@@ -1,4 +1,6 @@
 import React from 'react';
+import { NextPage } from 'next';
+import Head from 'next/head';
 import { Heart, MapPin, Mail } from 'react-feather';
 import { AdditionalInformation } from '../../components/AdditionalInformation';
 import { CommentsHouse } from '../../components/CommentsHouse';
@@ -28,9 +30,13 @@ import {
   BoxAdditionalComments,
 } from './styles';
 
-export const House = () => {
+const House: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>Queerfy | (Título do anúncio)</title>
+      </Head>
+
       <Header>
         <h1>Casa - 1 quarto disponível</h1>
         <Subtitle>
@@ -50,7 +56,7 @@ export const House = () => {
       <BoxContents>
         <BoxInformations>
           <Informations>
-            <h2>Nome do proprietário</h2>
+            <h2>Características do local</h2>
 
             <AlignInformations>
               <AdditionalInformation />
@@ -145,3 +151,5 @@ export const House = () => {
     </>
   );
 };
+
+export default House;
