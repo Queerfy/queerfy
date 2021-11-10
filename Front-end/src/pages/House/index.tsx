@@ -3,7 +3,6 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { Heart, MapPin, Mail } from 'react-feather';
 import { AdditionalInformation } from '../../components/AdditionalInformation';
-import { CommentsHouse } from '../../components/CommentsHouse';
 import {
   Header,
   Local,
@@ -24,10 +23,8 @@ import {
   Email,
   Proposal,
   ButtonProposal,
-  Comments,
   BoxInformations,
   BoxContents,
-  BoxAdditionalComments,
 } from './styles';
 
 const House: NextPage = () => {
@@ -133,21 +130,6 @@ const House: NextPage = () => {
           </BorderRainbow>
         </BackgroundReservation>
       </BoxContents>
-
-      <Comments>
-        <AmountComments>
-          <h2>0 comentários</h2>
-        </AmountComments>
-        <BoxAdditionalComments>
-          <CommentsHouse />
-          <CommentsHouse />
-        </BoxAdditionalComments>
-
-        <BoxAdditionalComments>
-          <CommentsHouse />
-          <CommentsHouse />
-        </BoxAdditionalComments>
-      </Comments>
     </>
   );
 };

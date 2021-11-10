@@ -222,26 +222,3 @@ export const ButtonProposal = styled.button`
 
   font-size: 14px;
 `;
-
-export const Comments = styled.div`
-  width: 100%;
-
-  padding: 30px 0px;
-
-  border: none;
-
-  @media screen and (min-width: 1240px) {
-    border-top: 2px ${theme.assets.borderDark} solid;
-  }
-`;
-
-export const BoxAdditionalComments = styled.div`
-  width: 100%;
-
-  @media screen and (min-width: 1240px) {
-    width: 100%;
-
-    display: flex;
-    justify-content: space-between;
-  }
-`;
