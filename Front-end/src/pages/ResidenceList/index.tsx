@@ -20,13 +20,13 @@ import { Residence } from '../../components/Residence';
 import { Footer } from '../../components/Footer';
 
 const ResidenceList: NextPage = () => {
-
   const { userApp } = useAuth();
+
+  const router = useRouter();
 
   const [residences, setResidences] = useState([]);
 
   useEffect(() => {
-    console.log(userApp);
     api
       .get('/properties')
       .then((response) => {
@@ -53,12 +53,14 @@ const ResidenceList: NextPage = () => {
           {residences.map((item) => {
             return (
               item.likes > 1000 && (
-                <Residence
-                  key={item.id}
-                  name={item.name}
-                  description={item.description}
-                  trend={true}
-                />
+                <a onClick={() => router.push(`/House/${item.id}`)}>
+                  <Residence
+                    key={item.id}
+                    name={item.name}
+                    description={item.description}
+                    trend={true}
+                  />
+                </a>
               )
             );
           })}
