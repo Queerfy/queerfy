@@ -199,7 +199,7 @@ export const ContainerButton = styled.div<Background>`
     width: 75%;
     height: 40px;
 
-    background-color: #f0bf5a;
+    background-color: ${(props) => props.background};
 
     @media screen and (min-width: 1023px) {
       width: 250px;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 interface InputProps {
-  fixedSize: string;
-  sizeResponsive: string;
+  fixedSize?: string;
+  sizeResponsive?: string;
 }
 
 export const HeaderTitle = styled.h2`

@@ -60,6 +60,7 @@ export const HeaderContainer = styled.div<Colors>`
 
 export const Container = styled.div<Colors>`
   margin-bottom: 32px;
+  
   svg {
     width: 50px;
     height: 50px;
@@ -79,12 +80,6 @@ export const Container = styled.div<Colors>`
     color: ${(props) => props.subtitle};
     transform: scale(1);
     transition: 0.3s;
-
-    &:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
-      cursor: pointer;
-    }
   }
   h3 {
     font-size: 18px;
