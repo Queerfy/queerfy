@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { theme } from '../../../styles/theme';
+
 interface Colors {
   title?: string;
   subtitle?: string;
@@ -146,5 +148,27 @@ export const ContainerAccount = styled.div`
     width: 85%;
 
     margin-top: 64px;
+  }
+`;
+
+export const InputsBox = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 95%;
+  height: 70px;
+  margin-bottom: 5px;
+
+  span {
+    font-size: 14px;
+    font-weight: bold;
+    color: ${theme.colors.red};
+  }
+
+  input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid ${theme.assets.borderDark};
+    outline: none;
   }
 `;

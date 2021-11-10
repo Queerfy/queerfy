@@ -21,11 +21,10 @@ import { ArrowLeft } from 'react-feather';
 import { NavbarMobile } from '../../../components/NavbarMobile';
 import { HeaderMobile } from '../../../components/HeaderMobile';
 import ModalPayment from '../../../components/Modal';
-import { HeaderContainer } from '../Information/styles';
+import { ContainerMain, HeaderContainer } from '../Information/styles';
 
 const PaymentsPage: NextPage = () => {
-
-  const [ openModal, setOpenModal ] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <>
@@ -33,7 +32,7 @@ const PaymentsPage: NextPage = () => {
         <title>Queerfy | Pagamentos</title>
       </Head>
       <Navbar accountNavbar />
-      <main>
+      <ContainerMain>
         <HeaderMobile />
         <HeaderContainer
           title={theme.colors.orange}
@@ -95,11 +94,16 @@ const PaymentsPage: NextPage = () => {
             </ContainerInputBox>
           </SubContainerPayment>
           <ContainerButton background={theme.colors.orange}>
-            <button onClick={() => setOpenModal(true)}>+ ADICIONAR NOVO CARTÃO</button>
+            <button onClick={() => setOpenModal(true)}>
+              + ADICIONAR NOVO CARTÃO
+            </button>
           </ContainerButton>
         </ContainerPayment>
-        <ModalPayment isOpen={openModal} onClickClose={() => setOpenModal(false)} />
-      </main>
+        <ModalPayment
+          isOpen={openModal}
+          onClickClose={() => setOpenModal(false)}
+        />
+      </ContainerMain>
       <NavbarMobile />
     </>
   );

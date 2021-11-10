@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { theme } from '../../../styles/theme';
-import { ContainerInfo, ContainerColumn, Container, ContainerMain, HeaderContainer } from './styles';
+import { ContainerInfo, ContainerColumn, Container, ContainerMain, HeaderContainer, InputsBox } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import {
   ArrowLeft,
@@ -17,7 +17,6 @@ import {
   CreditCard,
   Users,
 } from 'react-feather';
-import { InputsBox } from '../../Login/style';
 import { NavbarMobile } from '../../../components/NavbarMobile';
 import { HeaderMobile } from '../../../components/HeaderMobile';
 
