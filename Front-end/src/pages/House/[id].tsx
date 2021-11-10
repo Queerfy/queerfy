@@ -37,7 +37,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 import { api } from '../../services/api';
 
-const socket = io('http://localhost:3333');
+/* const socket = io('http://localhost:3333'); */
 
 interface IHouseData {
   id: number;
@@ -100,7 +100,7 @@ const House: NextPage = () => {
       house,
     };
 
-    socket.emit('acess_to_chat', params);
+    /* socket.emit('acess_to_chat', params); */
   };
 
   useEffect(() => {
@@ -211,7 +211,7 @@ const House: NextPage = () => {
                   </Email>
 
                   <Proposal>
-                    <ButtonProposal onClick={handleChat}>
+                    <ButtonProposal /* onClick={handleChat} */>
                       Realizar proposta
                     </ButtonProposal>
                   </Proposal>
