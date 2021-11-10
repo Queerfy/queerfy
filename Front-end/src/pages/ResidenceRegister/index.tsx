@@ -46,9 +46,9 @@ const ResidenceRegister: NextPage = () => {
         {/* <StepFour /> */}
         {/* <StepFive /> */}
         {/* <StepSix /> */}
-        {/* <StepSeven /> */}
+        <StepSeven />
         {/* <StepEight /> */}
-        <StepNine />
+        {/* <StepNine /> */}
       </FormContainer>
     </Container>
   );
