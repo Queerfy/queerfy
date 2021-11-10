@@ -27,7 +27,7 @@ const ModalPayment = ({ isOpen, onClickClose }) => {
           <Container subtitle={theme.colors.orange} text={theme.assets.font}>
             <InputsBox>
               <h2>Nome</h2>
-              <input type="text" placeholder="Nicolas Sousa Conde" />
+              <input type="text" />
             </InputsBox>
           </Container>
           <ContainerButton background={'#f0bf5a'}>
