@@ -50,6 +50,10 @@ export const LogoContainer = styled.div`
     margin: 0 16px;
     color: ${theme.assets.font};
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const FormContainer = styled.div`

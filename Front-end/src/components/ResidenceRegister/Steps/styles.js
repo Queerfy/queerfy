@@ -18,6 +18,10 @@ export const Container = styled.div`
     margin: 32px 0px;
   }
 
+  > button {
+    margin-bottom: 32px;
+  }
+
   > span {
     text-decoration: underline;
     font-weight: 500;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NextPage } from 'next';
+import Link from 'next/link';
 
 import { Container, BannerContainer, LogoContainer, FormContainer } from './styles';
 
@@ -18,10 +19,12 @@ const ResidenceRegister: NextPage = () => {
   return (
     <Container>
       <BannerContainer>
-        <LogoContainer>
-          <img src="logo.svg" alt="queerfy" />
-          <h1>Queerfy</h1>
-        </LogoContainer>
+        <Link href="/">
+          <LogoContainer>
+            <img src="logo.svg" alt="queerfy" />
+            <h1>Queerfy</h1>
+          </LogoContainer>
+        </Link>
         <h1>
           {step === 1 && 'Qual tipo de espaço você deseja hospedar?'}
           {step === 4 && 'Quais são as especificações do espaço que você deseja alugar?'}
@@ -29,26 +32,23 @@ const ResidenceRegister: NextPage = () => {
           {step === 6 && 'Vamos dar um nome e uma descrição ao seu espaço'}
           {step === 8 && 'Agora vem a parte divertida: definir seu preço'}
         </h1>
-
         {step === 9 && (
           <p>
             <h1>Confira seu anúncio!</h1>
             <span>Este anúncio ficará visível aos hóspedes imediatamente.</span>
           </p>
         )}
-
-
         <span>Queerfy © 2021 Todos os direitos reservados</span>
       </BannerContainer>
       <FormContainer>
-        {/* <StepOne /> */}
-        {/* <StepTwo /> */}
-        {/* <StepFour /> */}
-        {/* <StepFive /> */}
-        {/* <StepSix /> */}
-        <StepSeven />
-        {/* <StepEight /> */}
-        {/* <StepNine /> */}
+        {step === 1 && <StepOne />}
+        {step === 2 && <StepTwo />}
+        {step === 4 && <StepFour />}
+        {step === 5 && <StepFive />}
+        {step === 6 && <StepSix />}
+        {step === 7 && <StepSeven />}
+        {step === 8 && <StepEight />}
+        {step === 9 && <StepNine />}
       </FormContainer>
     </Container>
   );
