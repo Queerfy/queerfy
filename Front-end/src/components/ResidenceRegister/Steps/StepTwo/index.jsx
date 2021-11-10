@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { useResidence } from '../../../../hooks/residence';
 
 import { theme } from '../../../../styles/theme';
 
@@ -10,6 +10,8 @@ import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 export const StepTwo = () => {
+  const { advanceStep, backStep } = useResidence();
+
   return (
     <Container>
       <HeaderMobile />
@@ -17,10 +19,12 @@ export const StepTwo = () => {
       <Option label="Lugar inteiro" />
       <Option label="Quarto inteiro" />
       <Option label="Quarto compartilhado" />
-      <GeneralButton text="Continuar" bgColor={theme.gradients.red} />
-      <Link href="/">
-        <span>Voltar</span>
-      </Link>
+      <GeneralButton
+        text="Continuar"
+        bgColor={theme.gradients.red}
+        onClick={advanceStep}
+      />
+      <span onClick={backStep}>Voltar</span>
     </Container>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
+
+import { useResidence } from '../../../../hooks/residence';
 
 import { Container, InputBox } from './styles';
 
@@ -8,6 +9,8 @@ import { theme } from '../../../../styles/theme';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 export const StepEight = () => {
+  const { advanceStep, backStep } = useResidence();
+
   return (
     <Container>
       <HeaderMobile />
@@ -19,10 +22,12 @@ export const StepEight = () => {
         <br />
         <strong>R$117</strong> a <strong>R$196</strong>.
       </p>
-      <GeneralButton text="Continuar" bgColor={theme.gradients.red} />
-      <Link href="/">
-        <span>Voltar</span>
-      </Link>
+      <GeneralButton
+        text="Continuar"
+        bgColor={theme.gradients.red}
+        onClick={advanceStep}
+      />
+      <span onClick={backStep}>Voltar</span>
     </Container>
   );
 };

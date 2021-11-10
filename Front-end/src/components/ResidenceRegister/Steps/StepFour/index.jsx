@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { useResidence } from '../../../../hooks/residence';
 
 import { theme } from '../../../../styles/theme';
 import { Container, CounterBox } from './styles';
@@ -9,6 +9,8 @@ import { Counter } from '../../Counter';
 import { GeneralButton } from '../../../GeneralButton';
 
 export const StepFour = () => {
+  const { advanceStep, backStep } = useResidence();
+
   return (
     <Container>
       <HeaderMobile />
@@ -19,10 +21,12 @@ export const StepFour = () => {
         <Counter label="Camas" />
         <Counter label="Banheiros" />
       </CounterBox>
-      <GeneralButton text="Continuar" bgColor={theme.gradients.red} />
-      <Link href="/">
-        <span>Voltar</span>
-      </Link>
+      <GeneralButton
+        text="Continuar"
+        bgColor={theme.gradients.red}
+        onClick={advanceStep}
+      />
+      <span onClick={backStep}>Voltar</span>
     </Container>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { useResidence } from '../../../../hooks/residence';
 
 import { theme } from '../../../../styles/theme';
 
@@ -10,6 +10,8 @@ import { Image } from 'react-feather';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 export const StepSeven = () => {
+  const { advanceStep, backStep } = useResidence();
+
   return (
     <Container>
       <HeaderMobile />
@@ -22,10 +24,12 @@ export const StepSeven = () => {
         </label>
         <input type="file" name="arquivo" id="arquivo" />
       </InputBox>
-      <GeneralButton text="Continuar" bgColor={theme.gradients.red} />
-      <Link href="/">
-        <span>Voltar</span>
-      </Link>
+      <GeneralButton
+        text="Continuar"
+        bgColor={theme.gradients.red}
+        onClick={advanceStep}
+      />
+      <span onClick={backStep}>Voltar</span>
     </Container>
   );
 };

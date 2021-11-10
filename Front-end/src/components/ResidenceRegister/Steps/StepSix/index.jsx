@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { useResidence } from '../../../../hooks/residence';
 
 import { theme } from '../../../../styles/theme';
 
@@ -9,6 +9,8 @@ import { HeaderMobile } from '../../../HeaderMobile';
 import { Container } from './styles';
 
 export const StepSix = () => {
+  const { advanceStep, backStep } = useResidence();
+
   return (
     <Container>
       <HeaderMobile />
@@ -17,10 +19,12 @@ export const StepSix = () => {
       <input type="text" placeholder="Casa em frente ao mar de Penha" />
       <h2>Crie sua descrição</h2>
       <textarea placeholder="Casa bélissima em frente a lagoa do porto." />
-      <GeneralButton text="Continuar" bgColor={theme.gradients.red} />
-      <Link href="/">
-        <span>Voltar</span>
-      </Link>
+      <GeneralButton
+        text="Continuar"
+        bgColor={theme.gradients.red}
+        onClick={advanceStep}
+      />
+      <span onClick={backStep}>Voltar</span>
     </Container>
   );
 };

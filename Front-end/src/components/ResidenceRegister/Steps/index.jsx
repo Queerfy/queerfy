@@ -1,5 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
+
+import { useResidence } from '../../../hooks/residence';
 
 import { theme } from '../../../styles/theme';
 
@@ -10,16 +11,20 @@ import { GeneralButton } from '../../GeneralButton';
 import { HeaderMobile } from '../../HeaderMobile';
 
 export const StepOne = () => {
+  const { advanceStep, backStep } = useResidence();
+
   return (
     <Container>
       <HeaderMobile />
       <h1>Qual tipo de espaço você deseja hospedar?</h1>
       <Option label="Apartamento" image="apartment.png" alt="apartamento" />
       <Option label="Casa" image="house.png" alt="casa" />
-      <GeneralButton text="Continuar" bgColor={theme.gradients.red} />
-      <Link href="/">
-        <span>Voltar</span>
-      </Link>
+      <GeneralButton
+        text="Continuar"
+        bgColor={theme.gradients.red}
+        onClick={advanceStep}
+      />
+      <span onClick={backStep}>Voltar</span>
     </Container>
   );
 };

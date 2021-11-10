@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { useResidence } from '../../../../hooks/residence';
 
 import { HeaderMobile } from '../../../HeaderMobile';
 import { Filter } from '../../Filter';
@@ -11,6 +11,8 @@ import { GeneralButton } from '../../../GeneralButton';
 import { theme } from '../../../../styles/theme';
 
 export const StepFive = () => {
+  const { advanceStep, backStep } = useResidence();
+
   return (
     <Container>
       <HeaderMobile />
@@ -22,10 +24,12 @@ export const StepFive = () => {
         <Filter image="parking.svg" label="Garagem" />
         <Filter image="cat-paw.svg" label="Animais" />
       </FiltersBox>
-      <GeneralButton text="Continuar" bgColor={theme.gradients.red} />
-      <Link href="/">
-        <span>Voltar</span>
-      </Link>
+      <GeneralButton
+        text="Continuar"
+        bgColor={theme.gradients.red}
+        onClick={advanceStep}
+      />
+      <span onClick={backStep}>Voltar</span>
     </Container>
   );
 };
