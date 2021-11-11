@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { NextPage } from 'next';
 import Head from 'next/head';
+
 import { Heart, MapPin, Mail } from 'react-feather';
+
 import { AdditionalInformation } from '../../components/AdditionalInformation';
+
 import {
   Header,
   Local,
@@ -27,15 +31,96 @@ import {
   BoxContents,
 } from './styles';
 
+import { useAuth } from '../../hooks/useAuth';
+
+import { api } from '../../services/api';
+import { useRouter } from 'next/router';
+
+/* const socket = io('http://localhost:3333'); */
+
+interface IHouseData {
+  id: number;
+  name: string;
+  houseImg: string;
+  active: boolean;
+  dailyPrice: number;
+  filterDate: string;
+  checkIn: string;
+  checkOut: string;
+  latitude: number;
+  longitude: number;
+  idUser: number;
+  description: string;
+  likes: number;
+}
+
 const House: NextPage = () => {
+  const { userApp } = useAuth();
+  const router = useRouter();
+
+  const { id } = router.query;
+
+  const [house, setHouse] = useState<IHouseData>();
+
+  const handleChat = async () => {
+    const { data } = await api.get(`/users/${house.idUser}`);
+
+    const userReceiver = {
+      name: data.name,
+      email: data.email,
+      rg: data.rg,
+      cpf: data.cpf,
+      password: data.password,
+      perfilImg: data.perfilImg,
+      descUser: data.descUser,
+      genre: data.genre,
+      likes: data.likes,
+      birthDate: data.birthDate,
+      admin: data.admin,
+    };
+
+    const userSender = {
+      name: userApp.name,
+      email: userApp.email,
+      rg: userApp.rg,
+      cpf: userApp.cpf,
+      password: userApp.password,
+      perfilImg: userApp.perfilImg,
+      descUser: userApp.descUser,
+      genre: userApp.genre,
+      likes: userApp.likes,
+      birthDate: userApp.birthDate,
+      admin: userApp.admin,
+    };
+
+    const params = {
+      userSender,
+      userReceiver,
+      house,
+    };
+
+    /* socket.emit('acess_to_chat', params); */
+  };
+
+  useEffect(() => {
+    api
+      .get(`/properties/${id}`)
+      .then((res) => {
+        setHouse(res.data);
+      })
+      .catch((err) => {
+        router.push('/ResidenceList');
+      });
+  }, []);
+
   return (
     <>
       <Head>
-        <title>Queerfy | (Título do anúncio)</title>
+        <title>Queerfy | {house?.name}</title>
       </Head>
 
       <Header>
-        <h1>Casa - 1 quarto disponível</h1>
+        <h1>{house?.name}</h1>
         <Subtitle>
           <Local>
             <MapPin />
@@ -117,15 +202,20 @@ const House: NextPage = () => {
                   <InputDate type="date" placeholder="dd/mm/aa" />
                 </CheckDate>
               </ChooseDate>
+              {house?.idUser != userApp?.id && (
+                <>
+                  <Email>
+                    <Mail />
+                    <p>Tem interesse? Envie uma mensagem para (nome)</p>
+                  </Email>
 
-              <Email>
-                <Mail />
-                <p>Tem interesse? Envie uma mensagem para (nome)</p>
-              </Email>
-
-              <Proposal>
-                <ButtonProposal>Realizar proposta</ButtonProposal>
-              </Proposal>
+                  <Proposal>
+                    <ButtonProposal /* onClick={handleChat} */>
+                      Realizar proposta
+                    </ButtonProposal>
+                  </Proposal>
+                </>
+              )}
             </Reservation>
           </BorderRainbow>
         </BackgroundReservation>
