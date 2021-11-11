@@ -62,6 +62,7 @@ const House: NextPage = () => {
   const { id } = router.query;
 
   const [house, setHouse] = useState<IHouseData>();
+  const [owner, setOwner] = useState();
 
   const handleChat = async () => {
     const { data } = await api.get(`/users/${house.idUser}`);
@@ -108,12 +109,19 @@ const House: NextPage = () => {
       .get(`/properties/${id}`)
       .then((res) => {
         setHouse(res.data);
+        api
+          .get(`/users/${res.data.idUser}`)
+          .then((resOwner) => {
+            setOwner(resOwner.data);
+          })
+          .catch((err) => {
+            router.push('/ResidenceList');
+          });
       })
       .catch((err) => {
         router.push('/ResidenceList');
       });
   }, []);
-
   return (
     <>
       <Head>
