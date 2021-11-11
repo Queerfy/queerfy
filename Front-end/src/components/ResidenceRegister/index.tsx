@@ -5,12 +5,12 @@ import { Container, BannerContainer, LogoContainer, FormContainer } from '../../
 
 import { StepOne } from '../../components/ResidenceRegister/Steps';
 import { StepTwo } from '../../components/ResidenceRegister/Steps/StepTwo';
-import { StepFour } from '../../components/ResidenceRegister/Steps/StepFour';
-import { StepFive } from '../../components/ResidenceRegister/Steps/StepFive';
-import { StepSix } from '../../components/ResidenceRegister/Steps/StepSix';
-import { StepSeven } from '../../components/ResidenceRegister/Steps/StepSeven';
-import { StepEight } from '../../components/ResidenceRegister/Steps/StepEight';
-import { StepNine } from '../../components/ResidenceRegister/Steps/StepNine';
+import { StepThree } from './Steps/StepThree';
+import { StepFour } from './Steps/StepFour';
+import { StepFive } from './Steps/StepFive';
+import { StepSix } from './Steps/StepSix';
+import { StepSeven } from './Steps/StepSeven';
+import { StepEight } from './Steps/StepEight';
 import { useResidence } from '../../hooks/residence';
 
 export const ResidenceForm = () => {
@@ -31,6 +31,7 @@ export const ResidenceForm = () => {
           {step === 4 && 'Agora vamos ser mais específicos'}
           {step === 5 && 'Vamos dar um nome e uma descrição ao seu espaço'}
           {step === 6 && `Agora vem a parte divertida. Vamos definir seu preço`}
+          {step === 7 && 'A seguir, vamos adicionar algumas fotos'}
         </h1>
         {step === 8 && (
           <p>
@@ -43,12 +44,12 @@ export const ResidenceForm = () => {
       <FormContainer>
         {step === 1 && <StepOne />}
         {step === 2 && <StepTwo />}
-        {step === 3 && <StepFour />}
-        {step === 4 && <StepFive />}
-        {step === 5 && <StepSix />}
+        {step === 3 && <StepThree />}
+        {step === 4 && <StepFour />}
+        {step === 5 && <StepFive />}
+        {step === 6 && <StepSix />}
         {step === 7 && <StepSeven />}
-        {step === 6 && <StepEight />}
-        {step === 8 && <StepNine />}
+        {step === 8 && <StepEight />}
       </FormContainer>
     </Container>
   );

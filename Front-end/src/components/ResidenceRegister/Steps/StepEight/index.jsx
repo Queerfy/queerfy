@@ -1,12 +1,11 @@
 import React from 'react';
-
 import { useResidence } from '../../../../hooks/residence';
 
-import { Container, InputBox } from './styles';
-
 import { GeneralButton } from '../../../GeneralButton';
-import { theme } from '../../../../styles/theme';
 import { HeaderMobile } from '../../../HeaderMobile';
+
+import { Container, Content } from './styles';
+import { theme } from '../../../../styles/theme';
 
 export const StepEight = () => {
   const { advanceStep, backStep } = useResidence();
@@ -14,14 +13,12 @@ export const StepEight = () => {
   return (
     <Container>
       <HeaderMobile />
-      <InputBox>
-        <input type="number" placeholder="00,00" />
-      </InputBox>
-      <p>
-        Lembre-se de que os preços de lugares como o seu geralmente variam de:
-        <br />
-        <strong>R$117</strong> a <strong>R$196</strong>.
-      </p>
+      <h1>Este anúncio ficará visível aos hóspedes imediatamente.</h1>
+      <Content>
+        <img src="city-example.jpg" alt="casa" />
+        <h1>Casa de campo</h1>
+        <p>Quarto inteiro em casa residencial</p>
+      </Content>
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}

@@ -9,7 +9,7 @@ export const Container = styled.div`
   height: 50px;
 
   > h1 {
-    font-size: 24px;
+    font-size: 22px;
   }
 `;
 
@@ -31,7 +31,7 @@ export const CounterBox = styled.div`
   }
 
   > span {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
   }
 `;

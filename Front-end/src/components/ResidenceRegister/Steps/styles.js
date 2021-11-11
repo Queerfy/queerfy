@@ -11,15 +11,15 @@ export const Container = styled.div`
   > h1 {
     text-align: center;
     font-size: 22px;
-    margin: 32px 0px;
+    margin: 16px 0px;
   }
 
   > div {
-    margin: 32px 0px;
+    margin: 16px 0px;
   }
 
   > button {
-    margin-bottom: 32px;
+    margin: 32px 0px 16px 0px;
   }
 
   > span {

@@ -4,9 +4,10 @@ import { useResidence } from '../../../../hooks/residence';
 import { theme } from '../../../../styles/theme';
 
 import { GeneralButton } from '../../../GeneralButton';
-import { HeaderMobile } from '../../../HeaderMobile';
 
-import { Container } from './styles';
+import { Container, InputBox } from './styles';
+import { Image } from 'react-feather';
+import { HeaderMobile } from '../../../HeaderMobile';
 
 export const StepSix = () => {
   const { advanceStep, backStep } = useResidence();
@@ -14,11 +15,14 @@ export const StepSix = () => {
   return (
     <Container>
       <HeaderMobile />
-      <h1>Vamos dar um nome e uma descrição ao seu espaço</h1>
-      <h2>Crie seu título</h2>
-      <input type="text" placeholder="Casa em frente ao mar de Penha" />
-      <h2>Crie sua descrição</h2>
-      <textarea placeholder="Casa bélissima em frente a lagoa do porto." />
+      <InputBox>
+        <label htmlFor="arquivo">
+          <Image size={100} />
+          <h1>Vamos adicionar algumas fotos!</h1>
+          <p>Adicione pelo menos 5 fotos</p>
+        </label>
+        <input type="file" name="arquivo" id="arquivo" />
+      </InputBox>
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}

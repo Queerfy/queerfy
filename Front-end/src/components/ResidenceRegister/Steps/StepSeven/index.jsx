@@ -1,12 +1,11 @@
 import React from 'react';
+
 import { useResidence } from '../../../../hooks/residence';
 
-import { theme } from '../../../../styles/theme';
+import { Container, InputBox } from './styles';
 
 import { GeneralButton } from '../../../GeneralButton';
-
-import { Container, InputBox } from './styles';
-import { Image } from 'react-feather';
+import { theme } from '../../../../styles/theme';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 export const StepSeven = () => {
@@ -15,15 +14,14 @@ export const StepSeven = () => {
   return (
     <Container>
       <HeaderMobile />
-      <h1>A seguir, vamos adicionar algumas fotos</h1>
       <InputBox>
-        <label htmlFor="arquivo">
-          <Image size={100} />
-          <h1>Vamos adicionar algumas fotos!</h1>
-          <p>Adicione pelo menos 5 fotos</p>
-        </label>
-        <input type="file" name="arquivo" id="arquivo" />
+        <input type="number" placeholder="00,00" />
       </InputBox>
+      <p>
+        Lembre-se de que os preços de lugares como o seu geralmente variam de:
+        <br />
+        <strong>R$117</strong> a <strong>R$196</strong>.
+      </p>
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}

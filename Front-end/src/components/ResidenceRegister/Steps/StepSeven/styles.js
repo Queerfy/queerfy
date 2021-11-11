@@ -9,12 +9,18 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
 
-  > h1 {
-    display: none;
+  > p {
+    text-align: center;
+    margin: 32px 0;
+
+    strong {
+      color: ${theme.colors.pink};
+      text-decoration: underline;
+    }
   }
 
   > button {
-    margin-bottom: 32px;
+    margin: 32px;
   }
 
   > span {
@@ -25,37 +31,43 @@ export const Container = styled.div`
 
   @media screen and (min-width: 1024px) {
     justify-content: center;
-
-    > h1 {
-      display: block;
-    }
+    padding: 0 64px;
   }
 `;
 
 export const InputBox = styled.div`
-  margin: 64px 0px;
-  height: 300px;
-  border-radius: 10px;
-  border: 1px solid ${theme.assets.font};
-  text-align: center;
-  padding: 16px;
+  display: flex;
+  justify-content: center;
 
-  > label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+  width: 100%;
+  height: auto;
 
-    width: 100%;
-    height: 100%;
+  > input {
+    height: 150px;
+    background-color: transparent;
+    border: 2px solid ${theme.assets.borderDark};
+    border-radius: 10px;
+    text-align: center;
+    font-size: 36px;
+    max-width: 80%;
+    padding: 0 16px;
+    font-weight: bold;
+    color: ${theme.assets.font};
+    margin-top: 32px;
 
-    &:hover {
-      cursor: pointer;
+    &::placeholder {
+      color: ${theme.assets.borderLight};
+      font-weight: bold;
+    }
+
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
     }
   }
 
-  > input {
-    display: none;
-    display: none;
+  @media screen and (min-width: 1024px) {
+    > input {
+      margin-top: 0;
+    }
   }
 `;
