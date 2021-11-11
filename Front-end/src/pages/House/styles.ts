@@ -45,16 +45,24 @@ export const BoxContents = styled.div`
 
   @media screen and (min-width: 1024px) {
     display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
 export const BoxInformations = styled.div`
   width: 100%;
+
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 `;
 
 export const Informations = styled.div`
   width: 100%;
-  padding: 12px 0px 12px 0px;
+  padding: 12px 0px;
 
   display: flex;
   flex-direction: column;
@@ -97,24 +105,30 @@ export const Description = styled.div`
   }
 `;
 
-export const BackgroundReservation = styled.div`
+export const ChangeBox = styled.div`
   width: 100%;
-  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const BoxReservation = styled.div`
+  width: 100%;
   padding: 8px 0px 8px 0px;
 
   @media screen and (min-width: 1024px) {
     width: 50%;
-    padding: 50px 0px;
   }
 `;
 
 export const BorderRainbow = styled.div`
   width: 100%;
-  height: 260px;
+  height: 240px;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   border-radius: 12px;
 
@@ -131,7 +145,7 @@ export const BorderRainbow = styled.div`
 `;
 
 export const Reservation = styled.div`
-  width: 98%;
+  width: 99%;
   height: 98%;
 
   border-radius: 10px;
@@ -150,11 +164,6 @@ export const HeaderReservation = styled.div`
 `;
 
 export const Value = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const AmountComments = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -186,21 +195,7 @@ export const InputDate = styled.input`
   border: 2px solid ${theme.assets.borderLight};
 `;
 
-export const Email = styled.div`
-  width: 100%;
-  padding-top: 35px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  p {
-    font-size: 14px;
-    padding-left: 6px;
-  }
-`;
-
-export const Proposal = styled.div`
+export const BoxInteraction = styled.div`
   width: 100%;
   height: 25%;
 
@@ -209,9 +204,9 @@ export const Proposal = styled.div`
   align-items: center;
 `;
 
-export const ButtonProposal = styled.button`
-  width: 30%;
-  height: 50%;
+export const ButtonInteraction = styled.button`
+  width: 40%;
+  height: 65%;
 
   background: ${theme.colors.blue};
 
@@ -220,28 +215,105 @@ export const ButtonProposal = styled.button`
 
   color: ${theme.assets.background};
 
-  font-size: 14px;
+  font-size: 18px;
 `;
 
-export const Comments = styled.div`
+export const BoxTotalValue = styled.div`
+  width: 100%;
+  padding: 0px 20px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const Line = styled.div`
   width: 100%;
 
-  padding: 30px 0px;
+  border-top: 2px ${theme.assets.borderDark} solid;
+`;
 
-  border: none;
+export const TotalValue = styled.div`
+  width: 100%;
 
-  @media screen and (min-width: 1240px) {
-    border-top: 2px ${theme.assets.borderDark} solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 18px;
   }
 `;
 
-export const BoxAdditionalComments = styled.div`
+export const BoxHost = styled.div`
+  width: 100%;
+  padding: 8px 0px 8px 0px;
+
+  @media screen and (min-width: 1024px) {
+    width: 40%;
+  }
+`;
+
+export const BorderHost = styled.div`
+  width: 100%;
+  height: 180px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+
+  background: ${theme.assets.font};
+`;
+
+export const Host = styled.div`
+  width: 99%;
+  height: 98%;
+
+  border-radius: 10px;
+
+  background-color: ${theme.assets.background};
+`;
+
+export const ProfileHost = styled.div`
+  width: 100%;
+  padding: 15px 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+
+    @media screen and (min-width: 1240px) {
+      width: 65px;
+      height: 65px;
+    }
+  }
+
+  h1 {
+    margin-left: 20px;
+  }
+`;
+
+export const Email = styled.div`
   width: 100%;
 
-  @media screen and (min-width: 1240px) {
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    display: flex;
-    justify-content: space-between;
+  p {
+    font-size: 14px;
+    margin-left: 6px;
+    text-align: center;
   }
 `;
