@@ -3,15 +3,13 @@ package br.com.queerfy.backend.services;
 import br.com.queerfy.backend.dto.PropertyDTO;
 import br.com.queerfy.backend.entities.Property;
 import br.com.queerfy.backend.entities.User;
+import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
 import br.com.queerfy.backend.exceptions.UserNotFoundException;
-import br.com.queerfy.backend.repositories.AddressesRepository;
 import br.com.queerfy.backend.repositories.PropertyRepository;
 import br.com.queerfy.backend.repositories.UserRepository;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -28,7 +26,7 @@ public class PropertyService {
     UserRepository userRepository;
 
     @Transactional
-    public PropertyDTO create(PropertyDTO propertyDTO) throws UserNotFoundException {
+    public PropertyDTO create(PropertyDTO propertyDTO) throws UserAlreadyExistsException {
         Optional<User> userOptional = Optional.of(userRepository.getById(propertyDTO.getIdUser()));
 
         if(userOptional.isPresent()) {
@@ -38,7 +36,7 @@ public class PropertyService {
             propertyRepository.save(property);
             return new PropertyDTO(property);
         }
-        throw new UserNotFoundException();
+        throw new UserAlreadyExistsException();
     }
 
     @Transactional
@@ -60,7 +58,15 @@ public class PropertyService {
     public PropertyDTO updateProperty(Integer id, PropertyDTO property) throws UserNotFoundException {
         Optional<Property> entity = propertyRepository.findById(id);
         if (entity.isPresent()){
+
+
             Property prop = entity.get();
+            prop.setState(property.getState());
+            prop.setUf(property.getUf());
+            prop.setCep(property.getCep());
+            prop.setStreet(property.getStreet());
+            prop.setHouseNumber(property.getHouseNumber());
+            prop.setAddressComplement(property.getAddressComplement());
             prop.setName(property.getName());
             prop.setDescription(property.getDescription());
             prop.setLikes(property.getLikes());
