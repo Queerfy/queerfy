@@ -70,11 +70,6 @@ export const MenuDropdown = () => {
             </Link>
           </li>
           <li>
-            <Link href="/Account/Payments">
-              <a href="#">Pagamentos</a>
-            </Link>
-          </li>
-          <li>
             <a href="#">Ajuda</a>
           </li>
           {signed && (
