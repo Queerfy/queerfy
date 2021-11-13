@@ -1,6 +1,8 @@
 import { NextPage } from 'next';
 import io from 'socket.io-client';
 
+import { useAuth } from '../../hooks/useAuth';
+
 import {
   Main,
   MainContainer,
@@ -17,12 +19,14 @@ import {
 } from './style';
 
 const Chat: NextPage = () => {
+  const { userApp } = useAuth();
+
   return (
     <Main>
       <MainContainer>
         <TitleChat>Mensagens</TitleChat>
         <ContainerChat>
-          <MessageUser userLoged>
+          {/* <MessageUser userLoged>
             <ContainerMessage userLoged>
               <UsernameLoged userLoged>Igor</UsernameLoged>
               <MessageBox>Oi, tudo bem?</MessageBox>
@@ -35,7 +39,7 @@ const Chat: NextPage = () => {
               <MessageBox>Oi, tudo sim e com você?</MessageBox>
               <DateMessage>10/11/2021</DateMessage>
             </ContainerMessage>
-          </MessageUser>
+          </MessageUser> */}
         </ContainerChat>
         <FooterChat>
           <FooterInput></FooterInput>

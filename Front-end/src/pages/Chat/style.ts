@@ -13,6 +13,8 @@ export const Main = styled.main`
   width: 100vw;
   overflow-y: hidden;
 
+  margin: 0 -64px;
+
   background: #353b48;
 `;
 

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
+import io from 'socket.io-client';
+
 import { Heart, MapPin, Mail } from 'react-feather';
 
 import { Navbar } from '../../components/Navbar';
@@ -47,7 +49,7 @@ import { api } from '../../services/api';
 import { useRouter } from 'next/router';
 import { HeaderMobile } from '../../components/HeaderMobile';
 
-/* const socket = io('http://localhost:3333'); */
+const socket = io('http://localhost:3333');
 
 interface IHouseData {
   id: number;
@@ -64,6 +66,19 @@ interface IHouseData {
   description: string;
   likes: number;
 }
+interface IUserData {
+  name: string;
+  email: string;
+  rg: string;
+  cpf: string;
+  password: string;
+  perfilImg: string;
+  descUser: string;
+  genre: string;
+  likes: string;
+  birthDate: string;
+  admin: boolean;
+}
 
 const House: NextPage = () => {
   const { userApp } = useAuth();
@@ -72,23 +87,22 @@ const House: NextPage = () => {
   const { id } = router.query;
 
   const [house, setHouse] = useState<IHouseData>();
-  const [owner, setOwner] = useState();
+  const [owner, setOwner] = useState<IUserData>();
 
   const handleChat = async () => {
-    const { data } = await api.get(`/users/${house.idUser}`);
-
+    console.log('Chamou');
     const userReceiver = {
-      name: data.name,
-      email: data.email,
-      rg: data.rg,
-      cpf: data.cpf,
-      password: data.password,
-      perfilImg: data.perfilImg,
-      descUser: data.descUser,
-      genre: data.genre,
-      likes: data.likes,
-      birthDate: data.birthDate,
-      admin: data.admin,
+      name: owner.name,
+      email: owner.email,
+      rg: owner.rg,
+      cpf: owner.cpf,
+      password: owner.password,
+      perfilImg: owner.perfilImg,
+      descUser: owner.descUser,
+      genre: owner.genre,
+      likes: owner.likes,
+      birthDate: owner.birthDate,
+      admin: owner.admin,
     };
 
     const userSender = {
@@ -111,7 +125,7 @@ const House: NextPage = () => {
       house,
     };
 
-    /* socket.emit('acess_to_chat', params); */
+    socket.emit('acess_to_chat', params);
   };
 
   useEffect(() => {
@@ -132,6 +146,7 @@ const House: NextPage = () => {
         router.push('/ResidenceList');
       });
   }, []);
+
   return (
     <>
       <Head>
@@ -189,14 +204,7 @@ const House: NextPage = () => {
 
           <Description>
             <h2>Descrição</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged.
-            </p>
+            <p>{house?.description}</p>
           </Description>
         </BoxInformations>
 
@@ -206,7 +214,7 @@ const House: NextPage = () => {
               <Reservation>
                 <HeaderReservation>
                   <Value>
-                    <h1>R$60 / </h1>
+                    <h1>R${house?.dailyPrice.toFixed(0)} / </h1>
                     <h2>diária</h2>
                   </Value>
                 </HeaderReservation>
@@ -214,12 +222,20 @@ const House: NextPage = () => {
                 <ChooseDate>
                   <CheckDate>
                     <p>Check-in</p>
-                    <InputDate type="date" placeholder="dd/mm/aa" />
+                    <InputDate
+                      type="date"
+                      placeholder="dd/mm/aa"
+                      value={house?.checkIn}
+                    />
                   </CheckDate>
 
                   <CheckDate>
                     <p>Check-out</p>
-                    <InputDate type="date" placeholder="dd/mm/aa" />
+                    <InputDate
+                      type="date"
+                      placeholder="dd/mm/aa"
+                      value={house?.checkOut}
+                    />
                   </CheckDate>
                 </ChooseDate>
 
@@ -245,26 +261,30 @@ const House: NextPage = () => {
               <Host>
                 <ProfileHost>
                   <img
-                    src="https://github.com/CarolinaScudeler.png"
+                    src={
+                      owner?.perfilImg == null
+                        ? 'https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-user-interface-kiranshastry-lineal-kiranshastry.png'
+                        : owner?.perfilImg
+                    }
                     alt="Foto do perfil do host"
                   />
-                  <h1>Hospedado por Carolina</h1>
+                  <h1>Hospedado por {owner?.name}</h1>
                 </ProfileHost>
 
-                {house?.idUser != userApp?.id && (
-                  <>
-                    <Email>
-                      <Mail />
-                      <p>Tem interesse? Envie uma mensagem para o host!</p>
-                    </Email>
+                <Email>
+                  <Mail />
+                  <p>Tem interesse? Envie uma mensagem para o host!</p>
+                </Email>
 
-                    <BoxInteraction>
-                      <ButtonInteraction /* onClick={handleChat} */>
-                        Fazer proposta
-                      </ButtonInteraction>
-                    </BoxInteraction>
-                  </>
-                )}
+                <BoxInteraction>
+                  <ButtonInteraction
+                    style={{ width: '60%' }}
+                    /* disabled={house?.idUser != userApp?.id} */
+                    onClick={handleChat}
+                  >
+                    Fazer proposta
+                  </ButtonInteraction>
+                </BoxInteraction>
               </Host>
             </BorderHost>
           </BoxHost>
