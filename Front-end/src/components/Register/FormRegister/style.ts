@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 
+import { Form } from '@unform/web';
+
 interface InputProps {
   fixedSize?: string;
   sizeResponsive?: string;
+}
+
+interface LabelProps {
+  minSize?: boolean;
 }
 
 export const HeaderTitle = styled.h2`
@@ -10,6 +16,13 @@ export const HeaderTitle = styled.h2`
   color: #e74c3c;
   padding: 10px 0px 4px 0px;
   border-bottom: 1px solid #bdc3c7;
+`;
+
+export const FormStyled = styled(Form)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const RowInputs = styled.div`
@@ -21,6 +34,16 @@ export const RowInputs = styled.div`
 
   @media screen and (max-width: 1024px) {
     flex-wrap: wrap;
+  }
+`;
+
+export const LabelInputs = styled.span<LabelProps>`
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 16px;
+
+  @media screen and (max-width: 1024px) {
+    font-size: ${(props) => (props.minSize ? '10px' : '12px')};
   }
 `;
 
@@ -38,16 +61,6 @@ export const InputsBox = styled.div<InputProps>`
 
   &:not(:last-child) {
     margin-right: 8px;
-  }
-
-  span {
-    color: #e74c3c;
-    font-weight: bold;
-    font-size: 16px;
-
-    @media screen and (max-width: 1024px) {
-      font-size: 12px;
-    }
   }
 
   input[type='text'],

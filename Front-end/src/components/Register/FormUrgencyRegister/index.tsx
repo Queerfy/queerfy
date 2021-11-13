@@ -1,7 +1,6 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
 import { Form } from '@unform/web';
-import { Scope } from '@unform/core';
 
 import Input from '../../Form/input';
 import InputMask from '../../Form/inputMask';
@@ -14,24 +13,16 @@ import {
   ButtonContinue,
 } from './style';
 
-import {
-  HeaderBox,
-  IconBack,
-  TitleHeader,
-} from '../../../pages/Register/style';
-import { InputsBox, RowInputs } from '../FormRegister/style';
+import { HeaderBox, TitleHeader } from '../../../pages/Register/style';
+import { LabelInputs, InputsBox, RowInputs } from '../FormRegister/style';
 
-import { ISetDataUser } from '../../../interfaces/Register/interfaces';
+import { registerUser } from '../../../utils/requestsUser';
 
-const FormUrgencyRegister: NextPage<ISetDataUser> = ({
-  setDataUser,
-  setStepRegister,
-}) => {
+const FormUrgencyRegister: NextPage = () => {
   const [maskPhone, setMaskPhone] = useState('(99) 99999-9999');
 
   const handleSubmit = (data) => {
-    setDataUser(data);
-    setStepRegister({ type: 'urgencyFinish', step: 3 });
+    registerUser(data);
   };
 
   return (
@@ -49,29 +40,37 @@ const FormUrgencyRegister: NextPage<ISetDataUser> = ({
             <Box>
               <RowInputs>
                 <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
-                  <span>Nome</span>
+                  <LabelInputs>Nome</LabelInputs>
                   <Input name="name" type="text" placeholder="Nome Completo" />
                 </InputsBox>
               </RowInputs>
               <RowInputs>
                 <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
-                  <span>CPF</span>
+                  <LabelInputs>CPF</LabelInputs>
                   <InputMask type="text" name="cpf" mask="999.999.999-99" />
                 </InputsBox>
               </RowInputs>
               <RowInputs>
                 <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
-                  <span>Sexualidade</span>
+                  <LabelInputs>E-mail</LabelInputs>
                   <Input
-                    name="genre"
+                    name="email"
                     type="text"
-                    placeholder="Orientação sexual"
+                    placeholder="contato@purple.com.br"
                   />
                 </InputsBox>
               </RowInputs>
               <RowInputs>
-                <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
-                  <span>Telefone</span>
+                <InputsBox fixedSize={'50%'} sizeResponsive={'50%'}>
+                  <LabelInputs>Sexualidade</LabelInputs>
+                  <Input
+                    name="gener"
+                    type="text"
+                    placeholder="Orientação sexual"
+                  />
+                </InputsBox>
+                <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
+                  <LabelInputs>Telefone</LabelInputs>
                   <InputMask
                     name="telephone"
                     type="text"
@@ -89,7 +88,25 @@ const FormUrgencyRegister: NextPage<ISetDataUser> = ({
                   />
                 </InputsBox>
               </RowInputs>
-              <ButtonContinue>Continuar</ButtonContinue>
+              <RowInputs>
+                <InputsBox fixedSize={'50%'} sizeResponsive={'50%'}>
+                  <LabelInputs>Senha</LabelInputs>
+                  <Input
+                    name="password"
+                    type="password"
+                    placeholder="**************"
+                  />
+                </InputsBox>
+                <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
+                  <LabelInputs>Confirmação</LabelInputs>
+                  <Input
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="**************"
+                  />
+                </InputsBox>
+              </RowInputs>
+              <ButtonContinue>Finalizar</ButtonContinue>
             </Box>
           </BoxContainer>
         </Form>
