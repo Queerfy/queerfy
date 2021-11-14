@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NextPage } from 'next';
 
 import Head from 'next/head';
@@ -30,7 +30,7 @@ import { NearbyPlaces } from '../components/Home/NearbyPlaces';
 
 const Map = dynamic(() => {
   return import("../components/Map");
-},{
+}, {
   ssr: false
 })
 
