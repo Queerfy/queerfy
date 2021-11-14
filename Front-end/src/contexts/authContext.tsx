@@ -18,6 +18,7 @@ interface IUserData {
 
 export const AuthProvider = ({ children }) => {
   const [userApp, setUserApp] = useState(null);
+  const [userJoinChat, setJoinChat] = useState(null);
 
   const router = useRouter();
 
@@ -79,6 +80,19 @@ export const AuthProvider = ({ children }) => {
     router.push('/Login');
   };
 
+  const loadUsersJoin = () => {
+    const storagedUsersJoin = localStorage.getItem('usersJoin');
+
+    if (storagedUsersJoin) {
+      setJoinChat(JSON.parse(storagedUsersJoin));
+    }
+  };
+
+  const handleUsersChatJoin = (usersJoins) => {
+    localStorage.setItem('usersJoin', JSON.stringify(usersJoins));
+    setJoinChat(usersJoins);
+  };
+
   useEffect(() => {
     loadStorageData();
   }, []);
@@ -90,6 +104,9 @@ export const AuthProvider = ({ children }) => {
         handleLogin,
         handleLogout,
         userApp,
+        userJoinChat,
+        handleUsersChatJoin,
+        loadUsersJoin,
       }}
     >
       {children}

@@ -81,7 +81,7 @@ interface IUserData {
 }
 
 const House: NextPage = () => {
-  const { userApp } = useAuth();
+  const { userApp, handleUsersChatJoin } = useAuth();
   const router = useRouter();
 
   const { id } = router.query;
@@ -90,7 +90,6 @@ const House: NextPage = () => {
   const [owner, setOwner] = useState<IUserData>();
 
   const handleChat = async () => {
-    console.log('Chamou');
     const userReceiver = {
       name: owner.name,
       email: owner.email,
@@ -119,6 +118,13 @@ const House: NextPage = () => {
       admin: userApp.admin,
     };
 
+    const usersJoined = {
+      userSender,
+      userReceiver,
+    };
+
+    handleUsersChatJoin(usersJoined);
+
     const params = {
       userSender,
       userReceiver,
@@ -126,6 +132,9 @@ const House: NextPage = () => {
     };
 
     socket.emit('acess_to_chat', params);
+    setTimeout(() => {
+      router.push('/Chat');
+    }, 1000);
   };
 
   useEffect(() => {
@@ -146,6 +155,10 @@ const House: NextPage = () => {
         router.push('/ResidenceList');
       });
   }, []);
+
+  useEffect(() => {
+    //Escutar e pegar as mesagens do callback do socket e notificar(dentro da pagina mesmo)
+  }, [owner]);
 
   return (
     <>
