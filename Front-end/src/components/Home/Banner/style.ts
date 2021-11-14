@@ -2,12 +2,16 @@ import styled from 'styled-components';
 
 import { theme } from '../../../styles/theme';
 
+interface IBackground {
+  background: string;
+}
+
 export const BackgroundImage = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 10px;
 
-  background-image: ${(props) => `url(${props.background})`};
+  background-image: ${(props: IBackground) => `url(${props.background})`};
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
