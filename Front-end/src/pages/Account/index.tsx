@@ -10,11 +10,11 @@ import {
   ContainerMain,
   HeaderContainer,
 } from './styles';
-import { theme } from '../../../styles/theme';
-import { Navbar } from '../../../components/Navbar';
+import { theme } from '../../styles/theme';
+import { Navbar } from '../../components/Navbar';
 import { ArrowLeft, DollarSign, Bell, Settings, ChevronRight } from 'react-feather';
-import { NavbarMobile } from '../../../components/NavbarMobile';
-import { HeaderMobile } from '../../../components/HeaderMobile';
+import { NavbarMobile } from '../../components/NavbarMobile';
+import { HeaderMobile } from '../../components/HeaderMobile';
 
 const MainPage: NextPage = () => {
   return (
