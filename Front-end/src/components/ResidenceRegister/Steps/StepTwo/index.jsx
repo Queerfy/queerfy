@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useResidence } from '../../../../hooks/residence';
 
 import { theme } from '../../../../styles/theme';
@@ -10,19 +10,30 @@ import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 export const StepTwo = () => {
-  const { advanceStep, backStep } = useResidence();
+  const [spaceType, setSpaceType] = useState(null);
+
+  const {
+    advanceStep,
+    backStep,
+    handleStep
+  } = useResidence();
+
+  function sendParams() {
+    handleStep({ spaceType });
+    advanceStep();
+  }
 
   return (
     <Container>
       <HeaderMobile />
       <h1>Qual tipo de espaço você deseja hospedar?</h1>
-      <Option label="Lugar inteiro" />
-      <Option label="Quarto inteiro" />
-      <Option label="Quarto compartilhado" />
+      <Option onClick={() => setSpaceType('lugar inteiro')} label="Lugar inteiro" />
+      <Option onClick={() => setSpaceType('quarto inteiro')} label="Quarto inteiro" />
+      <Option onClick={() => setSpaceType('quarto compartilhado')} label="Quarto compartilhado" />
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}
-        onClick={advanceStep}
+        onClick={sendParams}
       />
       <span onClick={backStep}>Voltar</span>
     </Container>

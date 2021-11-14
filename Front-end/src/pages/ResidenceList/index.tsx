@@ -41,70 +41,70 @@ const ResidenceList: NextPage = () => {
         <title>Queerfy | Residências</title>
       </Head>
 
-      <Navbar />
-      <HeaderMobile />
-      <Container>
-        <h1>Locações com as melhores avaliações em cidade</h1>
-        <p>
-          Os hóspedes concordam: estas acomodações foram muito bem avaliadas
-          quanto a localização, limpeza e outros aspectos.
-        </p>
-        <RoomRow>
-          {residences.map((item) => {
-            return (
-              item.likes > 1000 && (
-                <a onClick={() => router.push(`/House/${item.id}`)}>
+      <Body>
+        <Navbar />
+        <HeaderMobile />
+        <Container>
+          <h1>Locações com as melhores avaliações em cidade</h1>
+          <p>
+            Os hóspedes concordam: estas acomodações foram muito bem avaliadas
+            quanto a localização, limpeza e outros aspectos.
+          </p>
+          <RoomRow>
+            {residences.map((item) => {
+              return (
+                item.likes > 1000 && (
                   <Residence
                     key={item.id}
                     name={item.name}
                     description={item.description}
                     trend={true}
                   />
-                </a>
-              )
-            );
-          })}
-        </RoomRow>
-      </Container>
-      <Container>
-        <h1>O que você gostaria de ter no local onde está procurando?</h1>
-        <Categories>
-          <CategorieItem>
-            <Wifi />
-            <span>Wi-Fi</span>
-          </CategorieItem>
-          <CategorieItem>
-            <Coffee />
-            <span>Cozinha</span>
-          </CategorieItem>
-          <CategorieItem>
-            <Droplet />
-            <span>Piscina</span>
-          </CategorieItem>
-          <CategorieItem>
-            <img src="parking-icon.svg" alt="estacionamento" />
-            <span>Garagem</span>
-          </CategorieItem>
-          <CategorieItem>
-            <img src="paw.svg" alt="pata" />
-            <span>Animais</span>
-          </CategorieItem>
-        </Categories>
-      </Container>
-      <Container>
-        <h1>Outros aluguéis excelentes na área selecionada</h1>
-        <RoomRow>
-          {residences.map((item) => (
-            <Residence
-              key={item.id}
-              name={item.name}
-              description={item.description}
-            />
-          ))}
-        </RoomRow>
-      </Container>
-      <Footer />
-      <NavbarMobile />
+                )
+              );
+            })}
+          </RoomRow>
+        </Container>
+        <Container>
+          <h1>O que você gostaria de ter no local onde está procurando?</h1>
+          <Categories>
+            <CategorieItem>
+              <Wifi />
+              <span>Wi-Fi</span>
+            </CategorieItem>
+            <CategorieItem>
+              <Coffee />
+              <span>Cozinha</span>
+            </CategorieItem>
+            <CategorieItem>
+              <Droplet />
+              <span>Piscina</span>
+            </CategorieItem>
+            <CategorieItem>
+              <img src="parking-icon.svg" alt="estacionamento" />
+              <span>Garagem</span>
+            </CategorieItem>
+            <CategorieItem>
+              <img src="cat-paw.svg" alt="pata" />
+              <span>Animais</span>
+            </CategorieItem>
+          </Categories>
+        </Container>
+        <Container>
+          <h1>Outros aluguéis excelentes na área selecionada</h1>
+          <RoomRow>
+            {residences.map((item) => (
+              <Residence
+                key={item.id}
+                name={item.name}
+                description={item.description}
+              />
+            ))}
+          </RoomRow>
+        </Container>
+        <Footer />
+        <NavbarMobile />
+      </Body>
     </>
   );
 };

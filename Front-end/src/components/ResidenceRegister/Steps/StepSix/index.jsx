@@ -10,7 +10,9 @@ import { Image } from 'react-feather';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 export const StepSix = () => {
-  const { advanceStep, backStep } = useResidence();
+  const { advanceStep, backStep, residenceData } = useResidence();
+
+  console.log(residenceData);
 
   return (
     <Container>

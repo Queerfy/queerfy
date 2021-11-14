@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { MinusCircle, PlusCircle } from 'react-feather';
 
 import { Container, CounterBox } from './styles';
 
-export const Counter = ({ label }) => {
-  const [counter, setCounter] = useState(0);
+export const Counter = ({ label, counter, setCounter }) => {
 
   function minusCounter() {
     if (counter > 0) {

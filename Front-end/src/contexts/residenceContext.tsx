@@ -32,7 +32,7 @@ export const ResidenceProvider = ({ children }) => {
   }
 
   const handleStep = (stepData) => {
-    const newStepData = { ...residenceData, stepData };
+    const newStepData = { ...residenceData, ...stepData };
     setResidenceData(newStepData);
   }
 
