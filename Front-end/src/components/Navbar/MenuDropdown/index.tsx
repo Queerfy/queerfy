@@ -60,10 +60,19 @@ export const MenuDropdown = () => {
             </>
           )}
           <li>
-            <a href="#">Notificações</a>
+            <Link href="/Notification">
+              <a href="#">Reservas</a>
+            </Link>
           </li>
           <li>
-            <a href="#">Pagamentos</a>
+            <Link href="/Account/Information">
+              <a href="#">Informações</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/Account/Notification">
+              <a href="#">Notificações</a>
+            </Link>
           </li>
           <li>
             <a href="#">Ajuda</a>
