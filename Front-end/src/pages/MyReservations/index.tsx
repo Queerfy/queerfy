@@ -4,7 +4,7 @@ import React from 'react';
 import { ArrowLeft, Link } from 'react-feather';
 import { Navbar } from '../../components/Navbar';
 import { NavbarMobile } from '../../components/NavbarMobile';
-import { ContainerMain, HeaderContainer } from '../Account/Main/styles';
+import { ContainerMain, HeaderContainer } from '../Account/Information/styles';
 
 const MyReservationPage: NextPage = () => {
   return (
