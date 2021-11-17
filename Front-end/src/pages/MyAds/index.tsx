@@ -1,10 +1,9 @@
 import { NextPage } from 'next';
-import { Head } from 'next/document';
-import React from 'react';
+import Head from 'next/head';
 import { ArrowLeft, Link } from 'react-feather';
 import { Navbar } from '../../components/Navbar';
 import { NavbarMobile } from '../../components/NavbarMobile';
-import { ContainerMain, HeaderContainer } from '../Account/Main/styles';
+import { ContainerMain, HeaderContainer } from '../Account/styles';
 
 const MyAdsPage: NextPage = () => {
   return (
