@@ -10,7 +10,16 @@ import { NavbarMobile } from '../../components/NavbarMobile';
 
 import { ArrowLeft } from 'react-feather';
 
-import { Header, IconArrow, Informations } from './styles';
+import {
+  Header,
+  Informations,
+  IconArrow,
+  Date,
+  BoxPrice,
+  DailyValue,
+  AdditionalValues,
+  TotalValue,
+} from './styles';
 
 const Reservation: NextPage = () => {
   return (
@@ -33,6 +42,25 @@ const Reservation: NextPage = () => {
 
       <Informations>
         <h1>Informações</h1>
+        <Date>
+          <h2>Datas</h2>
+          <p>05 de nov. - 07 de nov.</p>
+        </Date>
+        <BoxPrice>
+          <h2>Preços</h2>
+          <DailyValue>
+            <p>R$60,00 x 2 diárias</p>
+            <p>R$120,00 </p>
+          </DailyValue>
+          <AdditionalValues>
+            <p>Taxa de serviço</p>
+            <p>R$0,00</p>
+          </AdditionalValues>
+          <TotalValue>
+            <h2>Total</h2>
+            <b>R$120,00</b>
+          </TotalValue>
+        </BoxPrice>
       </Informations>
 
       <Footer />

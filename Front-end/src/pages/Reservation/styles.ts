@@ -36,3 +36,41 @@ export const Informations = styled.div`
     font-size: 24px;
   }
 `;
+
+export const Date = styled.div`
+  width: 100%;
+
+  margin-top: 30px;
+`;
+
+export const BoxPrice = styled.div`
+  width: 100%;
+
+  margin-top: 10px;
+
+  border-bottom: 2px solid ${theme.assets.borderDark};
+`;
+
+export const DailyValue = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const AdditionalValues = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const TotalValue = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+`;
