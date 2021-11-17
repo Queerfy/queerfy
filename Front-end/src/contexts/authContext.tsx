@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import * as Yup from 'yup';
+import io from 'socket.io-client';
 
 import { useRouter } from 'next/router';
 
@@ -16,9 +17,13 @@ interface IUserData {
   password: string;
 }
 
+const socket = io('http://localhost:3333');
+
 export const AuthProvider = ({ children }) => {
   const [userApp, setUserApp] = useState(null);
   const [userJoinChat, setJoinChat] = useState(null);
+  const [messagesNotification, setMessagesNotification] = useState([]);
+  const [messagesReceiver, setMessageReceiver] = useState();
 
   const router = useRouter();
 
@@ -75,7 +80,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleLogout = () => {
+    socket.emit('logout_sistem', { email: userApp.email });
     setUserApp(null);
+    setJoinChat(null);
+    setMessagesNotification(null);
+    setMessageReceiver(null);
     localStorage.clear();
     router.push('/Login');
   };
@@ -97,14 +106,55 @@ export const AuthProvider = ({ children }) => {
     loadStorageData();
   }, []);
 
+  useEffect(() => {
+    if (userApp) {
+      socket.emit('entry_sistem', userApp);
+      setTimeout(() => {
+        socket.emit('check_messages', userApp, (messagesList) => {
+          if (messagesList.length > 0) {
+            return toast.success(
+              `Você tem ${messagesList.length} mensagem não lidas`
+            );
+          }
+        });
+      }, 2000);
+    }
+  }, [userApp]);
+
+  useEffect(() => {
+    socket.on('user_receiver_message', (message) => {
+      const { text, name, userSender, userReceiver } = message;
+      setMessageReceiver(message);
+      const pathName = router.pathname;
+      if (pathName !== '/Chat') {
+        return toast.success(`${name} te mandou uma mensagem`, {
+          onClick: () => {
+            const newUserSender = userReceiver.user; //Trocando pra quem recebeu para quem vai mandar a mensagem agora
+            const newUserReceiver = userSender.user; //Trocando para quem mandou para quem vai recebcer a mensagem agora
+            const params = {
+              userSender: newUserSender,
+              userReceiver: newUserReceiver,
+            };
+            localStorage.setItem('usersJoin', JSON.stringify(params));
+            setJoinChat(params);
+            setTimeout(() => {
+              router.push('/Chat');
+            }, 1000);
+          },
+        });
+      }
+    });
+  }, [messagesNotification]);
+
   return (
     <AuthContext.Provider
       value={{
         signed: !!userApp,
-        handleLogin,
-        handleLogout,
         userApp,
         userJoinChat,
+        messagesReceiver,
+        handleLogin,
+        handleLogout,
         handleUsersChatJoin,
         loadUsersJoin,
       }}

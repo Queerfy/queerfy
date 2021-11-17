@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 
 import { NextPage } from 'next';
 import Head from 'next/head';
@@ -48,8 +49,6 @@ import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 import { useRouter } from 'next/router';
 import { HeaderMobile } from '../../components/HeaderMobile';
-
-const socket = io('http://localhost:3333');
 
 interface IHouseData {
   id: number;
@@ -125,13 +124,6 @@ const House: NextPage = () => {
 
     handleUsersChatJoin(usersJoined);
 
-    const params = {
-      userSender,
-      userReceiver,
-      house,
-    };
-
-    socket.emit('acess_to_chat', params);
     setTimeout(() => {
       router.push('/Chat');
     }, 1000);

@@ -23,7 +23,7 @@ import {
 const socket = io('http://localhost:3333');
 
 const Chat: NextPage = () => {
-  const { userJoinChat, loadUsersJoin } = useAuth();
+  const { userApp, userJoinChat, loadUsersJoin, messagesReceiver } = useAuth();
   const [messages, setMessages] = useState([]);
   const messageRef = useRef<HTMLInputElement>();
 
@@ -31,6 +31,9 @@ const Chat: NextPage = () => {
     loadUsersJoin();
   }, []);
 
+  //[] Quando for o dono que clicar na icone de mensagem passar o objeto de mensagem não lida, para a função userJoinChat
+  // Exemplo: user_receiver => userReceiver
+  //Exemplo: user_sender => userSender
   useEffect(() => {
     if (userJoinChat) {
       const { userSender, userReceiver } = userJoinChat;
@@ -46,13 +49,32 @@ const Chat: NextPage = () => {
     }
   }, [userJoinChat]);
 
+  //[X] Quando for clicar na notificação de nova mensagem, pegar o objeto que foi enviado e fazer o get com as informações que foram recebidas
+  //Exemplo emailSender e emailReceiver
+  useEffect(() => {
+    if (userJoinChat) {
+      const { userSender, userReceiver } = userJoinChat;
+
+      const params = {
+        emailSender: userSender.email,
+        emailReceiver: userReceiver.email,
+      };
+
+      socket.emit('update_messages', params.emailSender);
+
+      socket.emit('list_messages', params, (messagesList) => {
+        setMessages(messagesList);
+      });
+    }
+  }, [messagesReceiver]);
+
   const handleMessage = () => {
     const message = messageRef.current.value;
 
     const params = {
-      name: userJoinChat.userSender.name,
+      name: userApp.name,
       text: message,
-      emailSender: userJoinChat.userSender.email,
+      emailSender: userApp.email,
       emailReceiver: userJoinChat.userReceiver.email,
     };
 
@@ -63,8 +85,8 @@ const Chat: NextPage = () => {
       emailSender: userJoinChat.userSender.email,
       message,
       createdAt: dayjs().format('DD/MM/YY HH:mm:ss'),
-      statusMessage: true,
     };
+
     setMessages([...messages, newMessageSend]);
 
     messageRef.current.value = '';
