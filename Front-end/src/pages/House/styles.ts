@@ -115,7 +115,7 @@ export const ChangeBox = styled.div`
 
 export const BoxReservation = styled.div`
   width: 100%;
-  padding: 8px 0px 8px 0px;
+  padding: 8px 0px 45px 0px;
 
   @media screen and (min-width: 1024px) {
     width: 50%;
@@ -205,8 +205,8 @@ export const BoxInteraction = styled.div`
 `;
 
 export const ButtonInteraction = styled.button`
-  width: 40%;
-  height: 65%;
+  width: 50%;
+  height: 50%;
 
   background: ${theme.colors.blue};
 
@@ -215,7 +215,7 @@ export const ButtonInteraction = styled.button`
 
   color: ${theme.assets.background};
 
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 export const BoxTotalValue = styled.div`
@@ -254,7 +254,7 @@ export const BoxHost = styled.div`
   padding: 8px 0px 8px 0px;
 
   @media screen and (min-width: 1024px) {
-    width: 40%;
+    width: 60%;
   }
 `;
 
@@ -263,12 +263,21 @@ export const BorderHost = styled.div`
   height: 180px;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   border-radius: 12px;
 
-  background: ${theme.assets.font};
+  background: linear-gradient(
+    to right,
+    rgba(241, 83, 86, 1) 0%,
+    rgba(240, 191, 90, 1) 17%,
+    rgba(253, 233, 128, 1) 34%,
+    rgba(133, 219, 107, 1) 50%,
+    rgba(67, 158, 250, 1) 68%,
+    rgba(169, 147, 245, 1) 84%,
+    rgba(242, 107, 156, 1) 100%
+  );
 `;
 
 export const Host = styled.div`

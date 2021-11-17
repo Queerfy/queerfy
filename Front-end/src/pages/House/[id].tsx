@@ -246,7 +246,7 @@ const House: NextPage = () => {
 
                 <BoxInteraction>
                   <ButtonInteraction /* onClick={page finalizar reserva} */>
-                    Reservar
+                    Finalizar reserva
                   </ButtonInteraction>
                 </BoxInteraction>
 

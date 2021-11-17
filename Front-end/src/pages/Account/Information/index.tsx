@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { theme } from '../../../styles/theme';
-import { ContainerMain, HeaderContainer } from '../Main/styles';
+import { ContainerMain, HeaderContainer } from '../styles';
 import { ContainerInfo, ContainerColumn, Container } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import {
