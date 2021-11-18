@@ -53,9 +53,9 @@ const Register: NextPage = () => {
             <>
               <ContainerInitial>
                 <HeaderBox>
-                  <TitleHeader>Precisa alugar com urgencia?</TitleHeader>
+                  <TitleHeader>Precisa alugar com urgência?</TitleHeader>
                   <TextHeader>
-                    Qual nivel de urgencia em relação ao aluguel?
+                    Qual nível de urgência em relação ao aluguel?
                   </TextHeader>
                   <TextHeader>
                     Foi expulso de casa? Violência doméstica, etc...

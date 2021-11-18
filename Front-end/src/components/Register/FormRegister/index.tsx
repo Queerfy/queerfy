@@ -27,7 +27,7 @@ const FormRegister: NextPage = () => {
       ...data,
       gener,
     };
-    registerUser(dataUser)
+    registerUser(dataUser);
   };
 
   return (
@@ -40,7 +40,7 @@ const FormRegister: NextPage = () => {
             <Input name="name" type="text" placeholder="Nome Completo" />
           </InputsBox>
           <InputsBox fixedSize={'25%'} sizeResponsive={'55%'}>
-            <LabelInputs>Data de Nascimento</LabelInputs>
+            <LabelInputs>Data de nascimento</LabelInputs>
             <Input
               name="birthDate"
               type="date"
@@ -52,6 +52,7 @@ const FormRegister: NextPage = () => {
             <select ref={genreRef}>
               <option value="Masculino">Masculino</option>
               <option value="Feminino">Feminino</option>
+              <option value="Feminino">Não informar</option>
             </select>
           </InputsBox>
         </RowInputs>
@@ -84,7 +85,7 @@ const FormRegister: NextPage = () => {
               mask={maskPhone}
               onBlur={(e) => {
                 if (e.target.value.replace('_', '').length === 14) {
-                  setMaskPhone('(99) 9999-9999');
+                  setMaskPhone('(99) 99999-9999');
                 }
               }}
               onFocus={(e) => {
@@ -105,7 +106,7 @@ const FormRegister: NextPage = () => {
             />
           </InputsBox>
           <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
-            <LabelInputs minSize>Confirmação de Senha</LabelInputs>
+            <LabelInputs minSize>Confirmação de senha</LabelInputs>
             <Input
               name="confirmPassword"
               type="password"
