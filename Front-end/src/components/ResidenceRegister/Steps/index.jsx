@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useResidence } from '../../../hooks/residence';
 
@@ -10,12 +10,18 @@ import { Option } from '../Option';
 import { GeneralButton } from '../../GeneralButton';
 import { HeaderMobile } from '../../HeaderMobile';
 
+import { toast } from 'react-toastify';
+
 export const StepOne = () => {
-  const { advanceStep, backStep, handleStep } = useResidence();
-  const [residenceType, setTesidenceType] = useState(null);
+  const { advanceStep, backStep, handleStep, residenceData } = useResidence();
+  const [propertyType, setPropertyType] = useState(null);
 
   function sendParams() {
-    handleStep({ residenceType });
+    if (propertyType === null) {
+      return toast.error('Selecione o tipo da sua propriedade!');
+    }
+
+    handleStep({ propertyType });
     advanceStep();
   }
 
@@ -23,8 +29,8 @@ export const StepOne = () => {
     <Container>
       <HeaderMobile />
       <h1>Qual tipo de espaço você deseja hospedar?</h1>
-      <Option onClick={() => setTesidenceType('apartamento')} label="Apartamento" image="apartment.png" alt="apartamento" />
-      <Option onClick={() => setTesidenceType('casa')} label="Casa" image="house.png" alt="casa" />
+      <Option onClick={() => setPropertyType('apartamento')} label="Apartamento" image="apartment.png" alt="apartamento" />
+      <Option onClick={() => setPropertyType('casa')} label="Casa" image="house.png" alt="casa" />
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}

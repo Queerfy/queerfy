@@ -7,6 +7,7 @@ import { Container, CounterBox } from './styles';
 import { HeaderMobile } from '../../../HeaderMobile';
 import { Counter } from '../../Counter';
 import { GeneralButton } from '../../../GeneralButton';
+import { toast } from 'react-toastify';
 
 export const StepThree = () => {
   const { advanceStep, backStep, handleStep } = useResidence();
@@ -16,15 +17,32 @@ export const StepThree = () => {
   const [bedCounter, setBedCounter] = useState(0);
   const [bathroomCounter, setBathroomCounter] = useState(0);
 
+  function hasEmptyProperties() {
+    if (
+      guestCounter == 0 ||
+      roomCounter == 0 ||
+      bedCounter == 0 ||
+      bathroomCounter == 0
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   function sendParams() {
     const specifications = {
-      guest: guestCounter,
-      room: roomCounter,
-      bed: bedCounter,
-      bathroom: bathroomCounter,
+      guestsQuantity: guestCounter,
+      roomQuantity: roomCounter,
+      bedsQuantity: bedCounter,
+      bathroomQuantity: bathroomCounter,
     }
 
-    handleStep({ specifications });
+    if (hasEmptyProperties()) {
+      return toast.error("Sua propriedade deve ter pelo menos 1 de cada item!");
+    }
+
+    handleStep(specifications);
     advanceStep();
   }
 

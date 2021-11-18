@@ -30,8 +30,8 @@ export const ResidenceForm = () => {
           {step === 3 && 'Quais são as especificações do espaço que você deseja alugar?'}
           {step === 4 && 'Agora vamos ser mais específicos'}
           {step === 5 && 'Vamos dar um nome e uma descrição ao seu espaço'}
-          {step === 6 && `Agora vem a parte divertida. Vamos definir seu preço`}
-          {step === 7 && 'A seguir, vamos adicionar algumas fotos'}
+          {step === 6 && 'A seguir, vamos adicionar algumas fotos'}
+          {step === 7 && `Agora vem a parte divertida. Vamos definir seu preço`}
         </h1>
         {step === 8 && (
           <p>

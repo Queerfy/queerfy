@@ -12,10 +12,10 @@ export const Container = styled.div`
   > p {
     text-align: center;
     margin: 32px 0;
+    line-height: 32px;
 
     strong {
       color: ${theme.colors.pink};
-      text-decoration: underline;
     }
   }
 

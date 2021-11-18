@@ -8,6 +8,7 @@ import { Container } from './styles';
 import { Option } from '../../Option';
 import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
+import { toast } from 'react-toastify';
 
 export const StepTwo = () => {
   const [spaceType, setSpaceType] = useState(null);
@@ -19,6 +20,10 @@ export const StepTwo = () => {
   } = useResidence();
 
   function sendParams() {
+    if (spaceType === null) {
+      return toast.error("Selecione uma tipo de espaço!");
+    }
+
     handleStep({ spaceType });
     advanceStep();
   }

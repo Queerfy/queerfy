@@ -52,4 +52,8 @@ export const Content = styled.div`
   p {
     margin: 8px;
   }
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 8px;
+  }
 `;

@@ -8,7 +8,7 @@ import { Container, Content } from './styles';
 import { theme } from '../../../../styles/theme';
 
 export const StepEight = () => {
-  const { advanceStep, backStep } = useResidence();
+  const { advanceStep, backStep, residenceData } = useResidence();
 
   return (
     <Container>
@@ -16,8 +16,11 @@ export const StepEight = () => {
       <h1>Este anúncio ficará visível aos hóspedes imediatamente.</h1>
       <Content>
         <img src="city-example.jpg" alt="casa" />
-        <h1>Casa de campo</h1>
-        <p>Quarto inteiro em casa residencial</p>
+        <h1>{residenceData.name}</h1>
+        <p>{residenceData.description}</p>
+        <p><strong>Valor diária: </strong>
+          {residenceData.dailyPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+        </p>
       </Content>
       <GeneralButton
         text="Continuar"
