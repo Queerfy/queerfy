@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { toast, ToastContainer } from 'react-toastify';
+
+import moment from 'moment';
 
 import { Heart, MapPin, Mail } from 'react-feather';
 
@@ -19,6 +22,7 @@ import {
   BoxInformations,
   Informations,
   AlignInformations,
+  Rules,
   Description,
   ChangeBox,
   BoxReservation,
@@ -26,6 +30,7 @@ import {
   Reservation,
   HeaderReservation,
   Value,
+  Likes,
   ChooseDate,
   CheckDate,
   InputDate,
@@ -41,53 +46,64 @@ import {
   Email,
 } from './styles';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 import { useAuth } from '../../hooks/useAuth';
 
 import { api } from '../../services/api';
 import { useRouter } from 'next/router';
 import { HeaderMobile } from '../../components/HeaderMobile';
 
-/* const socket = io('http://localhost:3333'); */
-
-interface IHouseData {
-  id: number;
-  name: string;
-  houseImg: string;
-  active: boolean;
-  dailyPrice: number;
-  filterDate: string;
-  checkIn: string;
-  checkOut: string;
-  latitude: number;
-  longitude: number;
-  idUser: number;
-  description: string;
-  likes: number;
-}
+import { IHouseData, IUserData, IConfirmReservation } from '../../interfaces';
 
 const House: NextPage = () => {
-  const { userApp } = useAuth();
+  const { userApp, handleUsersChatJoin, handleConfirmReservation } = useAuth();
   const router = useRouter();
 
   const { id } = router.query;
 
   const [house, setHouse] = useState<IHouseData>();
+  const [owner, setOwner] = useState<IUserData>();
+  const [checkInHouse, setCheckInHouse] = useState<string>('');
+  const [checkOutHouse, setCheckOutHouse] = useState<string>('');
+  const [total, setTotal] = useState<number>();
+  const [disableButton, setDisableButton] = useState(false);
+  const [differenceDays, setDifferenceDays] = useState<number>();
+
+  const handleReservationConfirm = async () => {
+    const confirmReservation: IConfirmReservation = {
+      idHouse: house?.id,
+      idOwer: house?.idUser,
+      total,
+      totalDays: differenceDays,
+      checkIn: checkInHouse,
+      checkOut: checkOutHouse,
+    };
+
+    if (checkInHouse === '' || checkOutHouse === '') {
+      toast.error('Selecione uma data válida!');
+      return;
+    }
+
+    handleConfirmReservation(confirmReservation);
+    setTimeout(() => {
+      router.push('/Reservation');
+    }, 1000);
+  };
 
   const handleChat = async () => {
-    const { data } = await api.get(`/users/${house.idUser}`);
-
     const userReceiver = {
-      name: data.name,
-      email: data.email,
-      rg: data.rg,
-      cpf: data.cpf,
-      password: data.password,
-      perfilImg: data.perfilImg,
-      descUser: data.descUser,
-      genre: data.genre,
-      likes: data.likes,
-      birthDate: data.birthDate,
-      admin: data.admin,
+      name: owner.name,
+      email: owner.email,
+      rg: owner.rg,
+      cpf: owner.cpf,
+      password: owner.password,
+      perfilImg: owner.perfilImg,
+      descUser: owner.descUser,
+      genre: owner.genre,
+      likes: owner.likes,
+      birthDate: owner.birthDate,
+      admin: owner.admin,
     };
 
     const userSender = {
@@ -104,13 +120,16 @@ const House: NextPage = () => {
       admin: userApp.admin,
     };
 
-    const params = {
+    const usersJoined = {
       userSender,
       userReceiver,
-      house,
     };
 
-    /* socket.emit('acess_to_chat', params); */
+    handleUsersChatJoin(usersJoined);
+
+    setTimeout(() => {
+      router.push('/Chat');
+    }, 1000);
   };
 
   useEffect(() => {
@@ -118,11 +137,37 @@ const House: NextPage = () => {
       .get(`/properties/${id}`)
       .then((res) => {
         setHouse(res.data);
+        api
+          .get(`/users/${res.data.idUser}`)
+          .then((resOwner) => {
+            setOwner(resOwner.data);
+          })
+          .catch((err) => {
+            router.push('/ResidenceList');
+          });
       })
       .catch((err) => {
         router.push('/ResidenceList');
       });
   }, []);
+
+  useEffect(() => {
+    if (
+      moment(checkOutHouse).isBefore(checkInHouse) ||
+      moment(checkInHouse).isAfter(checkOutHouse)
+    ) {
+      toast.error('Selecione uma data válida!');
+      setDisableButton(true);
+      setTotal(0);
+    } else {
+      setDisableButton(false);
+      const checkIn = moment(checkInHouse);
+      const checkOut = moment(checkOutHouse);
+      const differenceDays = checkOut.diff(checkIn, 'days');
+      setDifferenceDays(differenceDays);
+      setTotal(house?.dailyPrice * differenceDays);
+    }
+  }, [checkInHouse, checkOutHouse]);
 
   return (
     <>
@@ -138,16 +183,21 @@ const House: NextPage = () => {
         <Subtitle>
           <Local>
             <MapPin />
-            <p>SP - Alphaville</p>
+            <span>SP - Alphaville</span>
           </Local>
           <Favorite>
-            <p>Amei</p>
+            <span>Amei</span>
             <Heart />
           </Favorite>
         </Subtitle>
       </Header>
 
-      <img src="../img-casa.svg" width="100%" height="100%" />
+      <img
+        src="../img-casa.svg"
+        width="100%"
+        height="100%"
+        alt="Imagens da propriedade"
+      />
 
       <BoxContents>
         <BoxInformations>
@@ -165,7 +215,7 @@ const House: NextPage = () => {
             </AlignInformations>
           </Informations>
 
-          <Informations>
+          <Rules>
             <h2>Regras</h2>
 
             <AlignInformations>
@@ -177,18 +227,11 @@ const House: NextPage = () => {
               <AdditionalInformation />
               <AdditionalInformation />
             </AlignInformations>
-          </Informations>
+          </Rules>
 
           <Description>
             <h2>Descrição</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged.
-            </p>
+            <p>{house?.description}</p>
           </Description>
         </BoxInformations>
 
@@ -198,26 +241,43 @@ const House: NextPage = () => {
               <Reservation>
                 <HeaderReservation>
                   <Value>
-                    <h1>R$60 / </h1>
+                    <h1>R${house?.dailyPrice.toFixed(0)} / </h1>
                     <h2>diária</h2>
                   </Value>
+                  <Likes>
+                    <img src="../colorful-heart.svg" alt="Coração preenchido" />
+                    <span>246</span>
+                  </Likes>
                 </HeaderReservation>
 
                 <ChooseDate>
                   <CheckDate>
-                    <p>Check-in</p>
-                    <InputDate type="date" placeholder="dd/mm/aa" />
+                    <span>Check-in</span>
+                    <InputDate
+                      type="date"
+                      placeholder="dd/mm/aa"
+                      value={checkInHouse}
+                      onChange={(e) => setCheckInHouse(e.target.value)}
+                    />
                   </CheckDate>
 
                   <CheckDate>
-                    <p>Check-out</p>
-                    <InputDate type="date" placeholder="dd/mm/aa" />
+                    <span>Check-out</span>
+                    <InputDate
+                      type="date"
+                      placeholder="dd/mm/aa"
+                      value={checkOutHouse}
+                      onChange={(e) => setCheckOutHouse(e.target.value)}
+                    />
                   </CheckDate>
                 </ChooseDate>
 
                 <BoxInteraction>
-                  <ButtonInteraction /* onClick={page finalizar reserva} */>
-                    Reservar
+                  <ButtonInteraction
+                    disabled={disableButton}
+                    onClick={handleReservationConfirm}
+                  >
+                    Finalizar reserva
                   </ButtonInteraction>
                 </BoxInteraction>
 
@@ -225,7 +285,7 @@ const House: NextPage = () => {
                   <Line />
                   <TotalValue>
                     <h2>Total</h2>
-                    <p>R${}</p>
+                    <span>R${!isNaN(total) ? total.toFixed(2) : 0}</span>
                   </TotalValue>
                 </BoxTotalValue>
               </Reservation>
@@ -237,26 +297,30 @@ const House: NextPage = () => {
               <Host>
                 <ProfileHost>
                   <img
-                    src="https://github.com/CarolinaScudeler.png"
+                    src={
+                      owner?.perfilImg == null
+                        ? 'https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-user-interface-kiranshastry-lineal-kiranshastry.png'
+                        : owner?.perfilImg
+                    }
                     alt="Foto do perfil do host"
                   />
-                  <h1>Hospedado por Carolina</h1>
+                  <h1>Hospedado por {owner?.name}</h1>
                 </ProfileHost>
 
-                {house?.idUser != userApp?.id && (
-                  <>
-                    <Email>
-                      <Mail />
-                      <p>Tem interesse? Envie uma mensagem para o host!</p>
-                    </Email>
+                <Email>
+                  <Mail />
+                  <span>Tem interesse? Envie uma mensagem para o host!</span>
+                </Email>
 
-                    <BoxInteraction>
-                      <ButtonInteraction /* onClick={handleChat} */>
-                        Fazer proposta
-                      </ButtonInteraction>
-                    </BoxInteraction>
-                  </>
-                )}
+                <BoxInteraction>
+                  <ButtonInteraction
+                    style={{ width: '60%' }}
+                    onClick={handleChat}
+                    /* disabled={house?.idUser != userApp?.id} */
+                  >
+                    Conversar
+                  </ButtonInteraction>
+                </BoxInteraction>
               </Host>
             </BorderHost>
           </BoxHost>
@@ -264,6 +328,7 @@ const House: NextPage = () => {
       </BoxContents>
       <Footer />
       <NavbarMobile />
+      <ToastContainer />
     </>
   );
 };

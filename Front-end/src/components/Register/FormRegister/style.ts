@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../../styles/theme';
 
 import { Form } from '@unform/web';
 
@@ -15,7 +16,7 @@ export const HeaderTitle = styled.h2`
   font-weight: 700;
   color: #e74c3c;
   padding: 10px 0px 4px 0px;
-  border-bottom: 1px solid #bdc3c7;
+  border-bottom: 1px solid ${theme.assets.borderDark};
 `;
 
 export const FormStyled = styled(Form)`
@@ -69,7 +70,7 @@ export const InputsBox = styled.div<InputProps>`
 
     border-radius: 5px;
     outline: none;
-    border: 1px solid #bdc3c7;
+    border: 1px solid ${theme.assets.borderDark};
 
     @media screen and (max-width: 1024px) {
       padding: 7px;
@@ -81,7 +82,7 @@ export const InputsBox = styled.div<InputProps>`
 
     border-radius: 5px;
     outline: none;
-    border: 1px solid #bdc3c7;
+    border: 1px solid ${theme.assets.borderDark};
 
     @media screen and (max-width: 1024px) {
       padding: 5px;
@@ -94,7 +95,7 @@ export const InputsBox = styled.div<InputProps>`
 
     border-radius: 5px;
     outline: none;
-    border: 1px solid #bdc3c7;
+    border: 1px solid ${theme.assets.borderDark};
   }
 `;
 

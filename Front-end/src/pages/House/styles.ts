@@ -20,7 +20,7 @@ export const Subtitle = styled.div`
 export const Local = styled.div`
   display: flex;
 
-  p {
+  span {
     font-size: 16px;
     margin-left: 10px;
   }
@@ -31,7 +31,7 @@ export const Favorite = styled.div`
 
   display: flex;
 
-  p {
+  span {
     margin-right: 10px;
   }
 
@@ -69,6 +69,7 @@ export const Informations = styled.div`
   align-items: flex-start;
 
   h2 {
+    color: ${theme.colors.red};
     padding-bottom: 20px;
   }
 
@@ -87,6 +88,24 @@ export const AlignInformations = styled.div`
   }
 `;
 
+export const Rules = styled.div`
+  width: 100%;
+  padding: 12px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  h2 {
+    color: ${theme.colors.green};
+    padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 80%;
+  }
+`;
+
 export const Description = styled.div`
   width: 100%;
   padding: 0px 0px 12px 0px;
@@ -97,6 +116,7 @@ export const Description = styled.div`
   text-align: justify;
 
   h2 {
+    color: ${theme.colors.orange};
     padding-bottom: 20px;
   }
 
@@ -115,7 +135,7 @@ export const ChangeBox = styled.div`
 
 export const BoxReservation = styled.div`
   width: 100%;
-  padding: 8px 0px 8px 0px;
+  padding: 8px 0px 45px 0px;
 
   @media screen and (min-width: 1024px) {
     width: 50%;
@@ -151,7 +171,7 @@ export const Reservation = styled.div`
   border-radius: 10px;
 
   color: ${theme.assets.font};
-  background-color: ${theme.assets.background};
+  background: ${theme.assets.background};
 `;
 
 export const HeaderReservation = styled.div`
@@ -166,6 +186,21 @@ export const HeaderReservation = styled.div`
 export const Value = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const Likes = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    height: 10px;
+  }
+
+  span {
+    color: ${theme.colors.red};
+    margin-left: 10px;
+    font-weight: bold;
+  }
 `;
 
 export const ChooseDate = styled.div`
@@ -183,7 +218,7 @@ export const CheckDate = styled.div`
   display: flex;
   flex-direction: column;
 
-  p {
+  span {
     color: ${theme.colors.red};
   }
 `;
@@ -205,8 +240,7 @@ export const BoxInteraction = styled.div`
 `;
 
 export const ButtonInteraction = styled.button`
-  width: 40%;
-  height: 65%;
+  padding: 6px 40px;
 
   background: ${theme.colors.blue};
 
@@ -215,7 +249,7 @@ export const ButtonInteraction = styled.button`
 
   color: ${theme.assets.background};
 
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 export const BoxTotalValue = styled.div`
@@ -244,7 +278,7 @@ export const TotalValue = styled.div`
     font-size: 22px;
   }
 
-  p {
+  span {
     font-size: 18px;
   }
 `;
@@ -254,7 +288,7 @@ export const BoxHost = styled.div`
   padding: 8px 0px 8px 0px;
 
   @media screen and (min-width: 1024px) {
-    width: 40%;
+    width: 60%;
   }
 `;
 
@@ -263,12 +297,21 @@ export const BorderHost = styled.div`
   height: 180px;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   border-radius: 12px;
 
-  background: ${theme.assets.font};
+  background: linear-gradient(
+    to right,
+    rgba(241, 83, 86, 1) 0%,
+    rgba(240, 191, 90, 1) 17%,
+    rgba(253, 233, 128, 1) 34%,
+    rgba(133, 219, 107, 1) 50%,
+    rgba(67, 158, 250, 1) 68%,
+    rgba(169, 147, 245, 1) 84%,
+    rgba(242, 107, 156, 1) 100%
+  );
 `;
 
 export const Host = styled.div`
@@ -277,7 +320,7 @@ export const Host = styled.div`
 
   border-radius: 10px;
 
-  background-color: ${theme.assets.background};
+  background: ${theme.assets.background};
 `;
 
 export const ProfileHost = styled.div`
@@ -311,7 +354,7 @@ export const Email = styled.div`
   align-items: center;
   justify-content: center;
 
-  p {
+  span {
     font-size: 14px;
     margin-left: 6px;
     text-align: center;

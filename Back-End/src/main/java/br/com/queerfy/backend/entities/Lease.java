@@ -23,15 +23,25 @@ public class Lease
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Date checkOut;
     private Double totalValue;
+    private String leaseStatus;
 
     public Lease(LeaseDTO entity){
         this.id = entity.getId();
         this.checkIn = entity.getCheckIn();
         this.checkOut = entity.getCheckOut();
         this.totalValue = entity.getTotalValue();
+        this.leaseStatus = entity.getLeaseStatus();
     }
 
     public Lease() {
+    }
+
+    public String getLeaseStatus() {
+        return leaseStatus;
+    }
+
+    public void setLeaseStatus(String leaseStatus) {
+        this.leaseStatus = leaseStatus;
     }
 
     public Property getProperty() {
