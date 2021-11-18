@@ -42,10 +42,6 @@ export const Container = styled.div<Colors>`
     width: 50px;
     height: 50px;
 
-    &:hover {
-      cursor: pointer;
-    }
-
     @media screen and (min-width: 1023px) {
       width: 80px;
       height: 80px;
@@ -57,13 +53,8 @@ export const Container = styled.div<Colors>`
     color: ${(props) => props.subtitle};
     transform: scale(1);
     transition: 0.3s;
-
-    &:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
-      cursor: pointer;
-    }
   }
+
   h3 {
     font-size: 18px;
     color: ${(props) => props.text};
