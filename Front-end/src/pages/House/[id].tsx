@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { toast, ToastContainer } from 'react-toastify';
 
 import io from 'socket.io-client';
+
+import moment from 'moment';
 
 import { Heart, MapPin, Mail } from 'react-feather';
 
@@ -43,6 +46,8 @@ import {
   ProfileHost,
   Email,
 } from './styles';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -87,6 +92,10 @@ const House: NextPage = () => {
 
   const [house, setHouse] = useState<IHouseData>();
   const [owner, setOwner] = useState<IUserData>();
+  const [checkInHouse, setCheckInHouse] = useState<string>();
+  const [checkOutHouse, setCheckOutHouse] = useState<string>();
+  const [total, setTotal] = useState<number>();
+  const [disableButton, setDisableButton] = useState(false);
 
   const handleChat = async () => {
     const userReceiver = {
@@ -134,6 +143,8 @@ const House: NextPage = () => {
       .get(`/properties/${id}`)
       .then((res) => {
         setHouse(res.data);
+        setCheckInHouse(res.data.checkIn);
+        setCheckOutHouse(res.data.checkOut);
         api
           .get(`/users/${res.data.idUser}`)
           .then((resOwner) => {
@@ -149,8 +160,21 @@ const House: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    //Escutar e pegar as mesagens do callback do socket e notificar(dentro da pagina mesmo)
-  }, [owner]);
+    if (
+      moment(checkOutHouse).isBefore(checkInHouse) ||
+      moment(checkInHouse).isAfter(checkOutHouse)
+    ) {
+      toast.error('Selecione data de CheckIn/CheckOut valido!');
+      setDisableButton(true);
+      setTotal(0);
+    } else {
+      setDisableButton(false);
+      const checkIn = moment(checkInHouse);
+      const checkOut = moment(checkOutHouse);
+      const differenceDays = checkOut.diff(checkIn, 'days');
+      setTotal(house?.dailyPrice * differenceDays);
+    }
+  }, [checkInHouse, checkOutHouse]);
 
   return (
     <>
@@ -230,7 +254,8 @@ const House: NextPage = () => {
                     <InputDate
                       type="date"
                       placeholder="dd/mm/aa"
-                      value={house?.checkIn}
+                      value={checkInHouse}
+                      onChange={(e) => setCheckInHouse(e.target.value)}
                     />
                   </CheckDate>
 
@@ -239,13 +264,18 @@ const House: NextPage = () => {
                     <InputDate
                       type="date"
                       placeholder="dd/mm/aa"
-                      value={house?.checkOut}
+                      value={checkOutHouse}
+                      onChange={(e) => setCheckOutHouse(e.target.value)}
                     />
                   </CheckDate>
                 </ChooseDate>
 
                 <BoxInteraction>
-                  <ButtonInteraction /* onClick={page finalizar reserva} */>
+                  <ButtonInteraction
+                    disabled={
+                      disableButton
+                    } /* onClick={page finalizar reserva} */
+                  >
                     Finalizar reserva
                   </ButtonInteraction>
                 </BoxInteraction>
@@ -254,7 +284,7 @@ const House: NextPage = () => {
                   <Line />
                   <TotalValue>
                     <h2>Total</h2>
-                    <p>R${}</p>
+                    <p>R${total != undefined ? total.toFixed(2) : 0}</p>
                   </TotalValue>
                 </BoxTotalValue>
               </Reservation>
@@ -287,7 +317,7 @@ const House: NextPage = () => {
                     /* disabled={house?.idUser != userApp?.id} */
                     onClick={handleChat}
                   >
-                    Fazer proposta
+                    Conversar
                   </ButtonInteraction>
                 </BoxInteraction>
               </Host>
@@ -297,6 +327,7 @@ const House: NextPage = () => {
       </BoxContents>
       <Footer />
       <NavbarMobile />
+      <ToastContainer />
     </>
   );
 };
