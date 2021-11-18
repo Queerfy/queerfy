@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { toast, ToastContainer } from 'react-toastify';
-
-import io from 'socket.io-client';
 
 import moment from 'moment';
 
@@ -55,47 +52,42 @@ import { api } from '../../services/api';
 import { useRouter } from 'next/router';
 import { HeaderMobile } from '../../components/HeaderMobile';
 
-interface IHouseData {
-  id: number;
-  name: string;
-  houseImg: string;
-  active: boolean;
-  dailyPrice: number;
-  filterDate: string;
-  checkIn: string;
-  checkOut: string;
-  latitude: number;
-  longitude: number;
-  idUser: number;
-  description: string;
-  likes: number;
-}
-interface IUserData {
-  name: string;
-  email: string;
-  rg: string;
-  cpf: string;
-  password: string;
-  perfilImg: string;
-  descUser: string;
-  genre: string;
-  likes: string;
-  birthDate: string;
-  admin: boolean;
-}
+import { IHouseData, IUserData, IConfirmReservation } from '../../interfaces';
 
 const House: NextPage = () => {
-  const { userApp, handleUsersChatJoin } = useAuth();
+  const { userApp, handleUsersChatJoin, handleConfirmReservation } = useAuth();
   const router = useRouter();
 
   const { id } = router.query;
 
   const [house, setHouse] = useState<IHouseData>();
   const [owner, setOwner] = useState<IUserData>();
-  const [checkInHouse, setCheckInHouse] = useState<string>();
-  const [checkOutHouse, setCheckOutHouse] = useState<string>();
+  const [checkInHouse, setCheckInHouse] = useState<string>('');
+  const [checkOutHouse, setCheckOutHouse] = useState<string>('');
   const [total, setTotal] = useState<number>();
   const [disableButton, setDisableButton] = useState(false);
+  const [differenceDays, setDifferenceDays] = useState<number>();
+
+  const handleReservationConfirm = async () => {
+    const confirmReservation: IConfirmReservation = {
+      idHouse: house?.id,
+      idOwer: house?.idUser,
+      total,
+      totalDays: differenceDays,
+      checkIn: checkInHouse,
+      checkOut: checkOutHouse,
+    };
+
+    if (checkInHouse === '' || checkOutHouse === '') {
+      toast.error('Selecione data de CheckIn/CheckOut valido!');
+      return;
+    }
+
+    handleConfirmReservation(confirmReservation);
+    setTimeout(() => {
+      router.push('/Reservation');
+    }, 1000);
+  };
 
   const handleChat = async () => {
     const userReceiver = {
@@ -143,8 +135,6 @@ const House: NextPage = () => {
       .get(`/properties/${id}`)
       .then((res) => {
         setHouse(res.data);
-        setCheckInHouse(res.data.checkIn);
-        setCheckOutHouse(res.data.checkOut);
         api
           .get(`/users/${res.data.idUser}`)
           .then((resOwner) => {
@@ -172,6 +162,7 @@ const House: NextPage = () => {
       const checkIn = moment(checkInHouse);
       const checkOut = moment(checkOutHouse);
       const differenceDays = checkOut.diff(checkIn, 'days');
+      setDifferenceDays(differenceDays);
       setTotal(house?.dailyPrice * differenceDays);
     }
   }, [checkInHouse, checkOutHouse]);
@@ -199,7 +190,12 @@ const House: NextPage = () => {
         </Subtitle>
       </Header>
 
-      <img src="../img-casa.svg" width="100%" height="100%" alt="Imagens da propriedade" />
+      <img
+        src="../img-casa.svg"
+        width="100%"
+        height="100%"
+        alt="Imagens da propriedade"
+      />
 
       <BoxContents>
         <BoxInformations>
@@ -272,9 +268,8 @@ const House: NextPage = () => {
 
                 <BoxInteraction>
                   <ButtonInteraction
-                    disabled={
-                      disableButton
-                    } /* onClick={page finalizar reserva} */
+                    disabled={disableButton}
+                    onClick={handleReservationConfirm}
                   >
                     Finalizar reserva
                   </ButtonInteraction>
@@ -284,7 +279,10 @@ const House: NextPage = () => {
                   <Line />
                   <TotalValue>
                     <h2>Total</h2>
-                    <p>R${total != undefined ? total.toFixed(2) : 0}</p>
+                    <p>
+                      R$
+                      {!isNaN(total) ? total.toFixed(2) : 0}
+                    </p>
                   </TotalValue>
                 </BoxTotalValue>
               </Reservation>
@@ -314,8 +312,8 @@ const House: NextPage = () => {
                 <BoxInteraction>
                   <ButtonInteraction
                     style={{ width: '60%' }}
-                    /* disabled={house?.idUser != userApp?.id} */
                     onClick={handleChat}
+                    /* disabled={house?.idUser != userApp?.id} */
                   >
                     Conversar
                   </ButtonInteraction>

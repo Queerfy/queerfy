@@ -12,7 +12,8 @@ export const AuthContext = createContext(null);
 
 import 'react-toastify/dist/ReactToastify.css';
 
-interface IUserData {
+import { IConfirmReservation } from '../interfaces';
+interface IUserAuthData {
   email: string;
   password: string;
 }
@@ -24,6 +25,8 @@ export const AuthProvider = ({ children }) => {
   const [userJoinChat, setJoinChat] = useState(null);
   const [messagesNotification, setMessagesNotification] = useState([]);
   const [messagesReceiver, setMessageReceiver] = useState();
+  const [confirmReservation, setConfirmReservation] =
+    useState<IConfirmReservation>();
 
   const router = useRouter();
 
@@ -43,7 +46,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const handleLogin = (data: IUserData) => {
+  const handleLogin = (data: IUserAuthData) => {
     const schema = Yup.object().shape({
       email: Yup.string()
         .email('Digite um email valido')
@@ -81,6 +84,7 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogout = () => {
     socket.emit('logout_sistem', { email: userApp.email });
+    setConfirmReservation(null);
     setUserApp(null);
     setJoinChat(null);
     setMessagesNotification(null);
@@ -100,6 +104,10 @@ export const AuthProvider = ({ children }) => {
   const handleUsersChatJoin = (usersJoins) => {
     localStorage.setItem('usersJoin', JSON.stringify(usersJoins));
     setJoinChat(usersJoins);
+  };
+
+  const handleConfirmReservation = (reservationDate: IConfirmReservation) => {
+    setConfirmReservation(reservationDate);
   };
 
   useEffect(() => {
@@ -153,10 +161,12 @@ export const AuthProvider = ({ children }) => {
         userApp,
         userJoinChat,
         messagesReceiver,
+        confirmReservation,
         handleLogin,
         handleLogout,
         handleUsersChatJoin,
         loadUsersJoin,
+        handleConfirmReservation,
       }}
     >
       {children}
