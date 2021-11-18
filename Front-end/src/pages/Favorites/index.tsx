@@ -5,7 +5,6 @@ import { Navbar } from '../../components/Navbar';
 import { Footer } from '../../components/Footer';
 import { NavbarMobile } from '../../components/NavbarMobile';
 import { HeaderMobile } from '../../components/HeaderMobile';
-import { AdditionalInformation } from '../../components/AdditionalInformation';
 
 import {
   MainContainer,
@@ -16,11 +15,11 @@ import {
   ImageCard,
 } from './style';
 
-const MyLikedResidences: NextPage = () => {
+const Favorites: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Queerfy | Paginas de Favoritos</title>
+        <title>Queerfy | Favoritos</title>
       </Head>
 
       <Navbar />
@@ -53,4 +52,4 @@ const MyLikedResidences: NextPage = () => {
   );
 };
 
-export default MyLikedResidences;
+export default Favorites;
