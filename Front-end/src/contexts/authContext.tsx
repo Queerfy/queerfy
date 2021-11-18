@@ -49,8 +49,8 @@ export const AuthProvider = ({ children }) => {
   const handleLogin = (data: IUserAuthData) => {
     const schema = Yup.object().shape({
       email: Yup.string()
-        .email('Digite um email valido')
-        .required('Coloque o email para prosseguir!'),
+        .email('Digite um e-mail válido')
+        .required('Coloque o e-mail para prosseguir!'),
       password: Yup.string().required('Digite a senha para prosseguir!'),
     });
 
@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
             }, 2000);
           })
           .catch((err) => {
-            return toast.error('Email/Senha incorreto!');
+            return toast.error('E-mail/Senha incorreto!');
           });
       })
       .catch((error) => {

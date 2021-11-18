@@ -10,11 +10,11 @@ import { theme } from '../../styles/theme';
 import Link from 'next/link';
 import { ArrowLeft } from 'react-feather';
 
-const MyLikedResidences: NextPage = () => {
+const Favorites: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Queerfy | Paginas de Favoritos</title>
+        <title>Queerfy | Favoritos</title>
       </Head>
       <Navbar accountNavbar />
       <ContainerMain>
@@ -31,4 +31,4 @@ const MyLikedResidences: NextPage = () => {
   );
 };
 
-export default MyLikedResidences;
+export default Favorites;

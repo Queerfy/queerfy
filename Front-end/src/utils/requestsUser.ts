@@ -18,17 +18,17 @@ interface IRequestUser {
 export const registerUser = async (userData: IRequestUser) => {
   //Validações dos campos digitados no formulario
   const schema = Yup.object().shape({
-    name: Yup.string().required('O nome é obrigatorio'),
-    gener: Yup.string().required('Genero é obrigatorio, para prosseguir!'),
+    name: Yup.string().required('O nome é obrigatório para prosseguir!'),
+    gener: Yup.string().required('Gênero é obrigatório para prosseguir!'),
     cpf: Yup.string()
-      .min(14, 'Dgite um CPF valido!')
-      .required('Digite um cpf!'),
-    email: Yup.string().required('O email é obrigatorio!'),
-    password: Yup.string().required('A senha é obrigatoria'),
+      .min(14, 'Dgite um CPF válido!')
+      .required('Digite um CPF!'),
+    email: Yup.string().required('O email é obrigatório para prosseguir!'),
+    password: Yup.string().required('A senha é obrigatória para prosseguir!'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'As senhas não conferem')
-      .required('A confirmação de senha é obrigatoria'),
-    rg: Yup.string().min(12, 'Digite um RG valido!'),
+      .required('A confirmação de senha é obrigatória para prosseguir!'),
+    rg: Yup.string().min(12, 'Digite um RG válido!'),
   });
 
   schema
@@ -38,7 +38,7 @@ export const registerUser = async (userData: IRequestUser) => {
       api
         .post('/users', userData)
         .then((res) => {
-          toast.success('Usuario cadastrado com Sucesso!');
+          toast.success('Usuário cadastrado com sucesso!');
           setTimeout(() => {
             router.push('/Login');
           }, 2000);
@@ -47,12 +47,12 @@ export const registerUser = async (userData: IRequestUser) => {
           console.log(err.message);
           if (err.response) {
             if (err.response.status === 500) {
-              return toast.error('Erro ao cadastrar usuario!');
+              return toast.error('Erro ao cadastrar usuário!');
             } else {
-              return toast.error('Usuario já existente!');
+              return toast.error('Usuário já existente!');
             }
           }
-          return toast.error('Erro ao cadastrar usuario!');
+          return toast.error('Erro ao cadastrar usuário!');
         });
     })
     .catch((error) => {

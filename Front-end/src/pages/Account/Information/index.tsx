@@ -49,14 +49,14 @@ const InfoAccount: NextPage = () => {
               <Users />
               <InputsBox>
                 <h2>Orientação sexual</h2>
-                <input type="text" placeholder="Masculino" />
+                <input type="text" placeholder="Hétero" />
               </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Calendar />
               <InputsBox>
                 <h2>Data de nascimento</h2>
-                <input type="text" placeholder="** de janeiro de ***" />
+                <input type="text" placeholder="** de janeiro de ****" />
               </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
