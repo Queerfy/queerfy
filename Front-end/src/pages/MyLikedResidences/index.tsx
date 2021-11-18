@@ -1,28 +1,34 @@
+import React from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import React from 'react';
-import { ArrowLeft, Link } from 'react-feather';
+
 import { Navbar } from '../../components/Navbar';
 import { NavbarMobile } from '../../components/NavbarMobile';
-import { ContainerMain, HeaderContainer } from '../Account/Information/styles';
+import { HeaderMobile } from '../../components/HeaderMobile';
+import { ContainerMain, HeaderContainer } from '../Account/styles';
+import { theme } from '../../styles/theme';
+import Link from 'next/link';
+import { ArrowLeft } from 'react-feather';
 
-const MyLikedResidencesPage: NextPage = () => {
+const MyLikedResidences: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Queerfy | Reservas curtidas</title>
+        <title>Queerfy | Paginas de Favoritos</title>
       </Head>
       <Navbar accountNavbar />
       <ContainerMain>
-        <HeaderContainer>
+        <HeaderMobile />
+        <HeaderContainer title={theme.colors.purple} text={theme.colors.purple}>
           <Link href="/">
             <ArrowLeft />
           </Link>
-          <h1>Reservas curtidas</h1>
+          <h1>Meus anúncios</h1>
         </HeaderContainer>
       </ContainerMain>
       <NavbarMobile />
     </>
   );
 };
-export default MyLikedResidencesPage;
+
+export default MyLikedResidences;
