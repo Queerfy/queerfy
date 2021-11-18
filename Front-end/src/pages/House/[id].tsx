@@ -22,6 +22,7 @@ import {
   BoxInformations,
   Informations,
   AlignInformations,
+  Rules,
   Description,
   ChangeBox,
   BoxReservation,
@@ -29,6 +30,7 @@ import {
   Reservation,
   HeaderReservation,
   Value,
+  Likes,
   ChooseDate,
   CheckDate,
   InputDate,
@@ -181,10 +183,10 @@ const House: NextPage = () => {
         <Subtitle>
           <Local>
             <MapPin />
-            <p>SP - Alphaville</p>
+            <span>SP - Alphaville</span>
           </Local>
           <Favorite>
-            <p>Amei</p>
+            <span>Amei</span>
             <Heart />
           </Favorite>
         </Subtitle>
@@ -213,7 +215,7 @@ const House: NextPage = () => {
             </AlignInformations>
           </Informations>
 
-          <Informations>
+          <Rules>
             <h2>Regras</h2>
 
             <AlignInformations>
@@ -225,7 +227,7 @@ const House: NextPage = () => {
               <AdditionalInformation />
               <AdditionalInformation />
             </AlignInformations>
-          </Informations>
+          </Rules>
 
           <Description>
             <h2>Descrição</h2>
@@ -242,11 +244,15 @@ const House: NextPage = () => {
                     <h1>R${house?.dailyPrice.toFixed(0)} / </h1>
                     <h2>diária</h2>
                   </Value>
+                  <Likes>
+                    <img src="../colorful-heart.svg" alt="Coração preenchido" />
+                    <span>246</span>
+                  </Likes>
                 </HeaderReservation>
 
                 <ChooseDate>
                   <CheckDate>
-                    <p>Check-in</p>
+                    <span>Check-in</span>
                     <InputDate
                       type="date"
                       placeholder="dd/mm/aa"
@@ -256,7 +262,7 @@ const House: NextPage = () => {
                   </CheckDate>
 
                   <CheckDate>
-                    <p>Check-out</p>
+                    <span>Check-out</span>
                     <InputDate
                       type="date"
                       placeholder="dd/mm/aa"
@@ -279,10 +285,7 @@ const House: NextPage = () => {
                   <Line />
                   <TotalValue>
                     <h2>Total</h2>
-                    <p>
-                      R$
-                      {!isNaN(total) ? total.toFixed(2) : 0}
-                    </p>
+                    <span>R${!isNaN(total) ? total.toFixed(2) : 0}</span>
                   </TotalValue>
                 </BoxTotalValue>
               </Reservation>
@@ -306,7 +309,7 @@ const House: NextPage = () => {
 
                 <Email>
                   <Mail />
-                  <p>Tem interesse? Envie uma mensagem para o host!</p>
+                  <span>Tem interesse? Envie uma mensagem para o host!</span>
                 </Email>
 
                 <BoxInteraction>
