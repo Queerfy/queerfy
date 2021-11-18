@@ -5,6 +5,7 @@ import br.com.queerfy.backend.entities.Property;
 import br.com.queerfy.backend.entities.User;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class LeaseDTO {
@@ -12,9 +13,10 @@ public class LeaseDTO {
     private Integer id;
     private Integer idProperty;
     private Integer idUser;
-    private Date checkIn;
-    private Date checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private Double totalValue;
+    private String leaseStatus;
 
     public LeaseDTO(Lease entity){
         this.id = entity.getId();
@@ -23,9 +25,18 @@ public class LeaseDTO {
         this.checkIn = entity.getCheckIn();
         this.checkOut = entity.getCheckOut();
         this.totalValue = entity.getTotalValue();
+        this.leaseStatus = entity.getLeaseStatus();
     }
 
     public LeaseDTO() {
+    }
+
+    public String getLeaseStatus() {
+        return leaseStatus;
+    }
+
+    public void setLeaseStatus(String leaseStatus) {
+        this.leaseStatus = leaseStatus;
     }
 
     public Integer getIdProperty() {
@@ -44,19 +55,19 @@ public class LeaseDTO {
         this.idUser = idUser;
     }
 
-    public Date getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
     }
 

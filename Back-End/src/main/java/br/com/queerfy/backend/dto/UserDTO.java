@@ -1,5 +1,6 @@
 package br.com.queerfy.backend.dto;
 
+import br.com.queerfy.backend.entities.Favorite;
 import br.com.queerfy.backend.entities.User;
 
 import java.util.*;
@@ -22,6 +23,7 @@ public class UserDTO {
     private Boolean admin;
     private Boolean autenticated;
     private Set<PropertyDTO> property = new HashSet<>();
+    private Set<FavoriteDTO> favorite = new HashSet<>();
 
     public UserDTO() {
 
@@ -42,6 +44,7 @@ public class UserDTO {
         this.notifications = user.getNotifications();
         this.admin = user.getAdmin();
         this.property = mapProperties(user);
+        this.favorite = mapFavorites(user);
     }
 
     public UserDTO(Integer id, String name, String cpf, String email, String genre, String rg, Boolean admin, Boolean autenticated, Boolean notifications) {
@@ -178,10 +181,19 @@ public class UserDTO {
         this.property = property;
     }
 
+    public Set<FavoriteDTO> getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Set<FavoriteDTO> favorite) {
+        this.favorite = favorite;
+    }
+
+    public Set<FavoriteDTO> mapFavorites(User user){
+        return user.getFavorites().stream().map(favorite -> new FavoriteDTO(favorite)).collect(Collectors.toSet());
+    }
+
     public Set<PropertyDTO> mapProperties(User user){
         return  user.getProperties().stream().map(property -> new PropertyDTO(property)).collect(Collectors.toSet());
     }
-
-
-
 }

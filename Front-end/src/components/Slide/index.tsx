@@ -19,16 +19,16 @@ export const Slide = () => {
     <SlideContainer>
       <SlidePanel ref={refItems}>
         <SlideItem>
-          <img src="slide-1.svg" alt="" />
+          <img src="house.jpg" alt="" />
         </SlideItem>
         <SlideItem>
-          <img src="slide-1.svg" alt="" />
+          <img src="house.jpg" alt="" />
         </SlideItem>
         <SlideItem>
-          <img src="slide-1.svg" alt="" />
+          <img src="house.jpg" alt="" />
         </SlideItem>
         <SlideItem>
-          <img src="slide-1.svg" alt="" />
+          <img src="house.jpg" alt="" />
         </SlideItem>
       </SlidePanel>
 

@@ -1,41 +1,51 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { NextPage } from 'next';
 import Head from 'next/head';
-import io from 'socket.io-client';
-import { useRouter } from 'next/router';
 
 import { Heart, MapPin, Mail } from 'react-feather';
+
+import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
+import { NavbarMobile } from '../../components/NavbarMobile';
 import { AdditionalInformation } from '../../components/AdditionalInformation';
-import { CommentsHouse } from '../../components/CommentsHouse';
+
 import {
   Header,
+  Subtitle,
   Local,
   Favorite,
-  Subtitle,
+  BoxContents,
+  BoxInformations,
   Informations,
   AlignInformations,
   Description,
-  BackgroundReservation,
+  ChangeBox,
+  BoxReservation,
   BorderRainbow,
   Reservation,
   HeaderReservation,
   Value,
-  AmountComments,
+  ChooseDate,
   CheckDate,
   InputDate,
-  ChooseDate,
+  BoxInteraction,
+  ButtonInteraction,
+  BoxTotalValue,
+  Line,
+  TotalValue,
+  BoxHost,
+  BorderHost,
+  Host,
+  ProfileHost,
   Email,
-  Proposal,
-  ButtonProposal,
-  Comments,
-  BoxInformations,
-  BoxContents,
-  BoxAdditionalComments,
 } from './styles';
 
 import { useAuth } from '../../hooks/useAuth';
 
 import { api } from '../../services/api';
+import { useRouter } from 'next/router';
+import { HeaderMobile } from '../../components/HeaderMobile';
 
 /* const socket = io('http://localhost:3333'); */
 
@@ -117,8 +127,11 @@ const House: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Casa para alugar</title>
+        <title>Queerfy | {house?.name}</title>
       </Head>
+
+      <Navbar />
+      <HeaderMobile />
 
       <Header>
         <h1>{house?.name}</h1>
@@ -134,12 +147,12 @@ const House: NextPage = () => {
         </Subtitle>
       </Header>
 
-      <img src="img-casa.svg" width="100%" height="100%" />
+      <img src="../img-casa.svg" width="100%" height="100%" />
 
       <BoxContents>
         <BoxInformations>
           <Informations>
-            <h2>Nome do proprietário</h2>
+            <h2>Características do local</h2>
 
             <AlignInformations>
               <AdditionalInformation />
@@ -179,63 +192,78 @@ const House: NextPage = () => {
           </Description>
         </BoxInformations>
 
-        <BackgroundReservation>
-          <BorderRainbow>
-            <Reservation>
-              <HeaderReservation>
-                <Value>
-                  <h1>R$60 / </h1>
-                  <h2>diária</h2>
-                </Value>
-                <AmountComments>
-                  <h3>0 comentários</h3>
-                </AmountComments>
-              </HeaderReservation>
+        <ChangeBox>
+          <BoxReservation>
+            <BorderRainbow>
+              <Reservation>
+                <HeaderReservation>
+                  <Value>
+                    <h1>R$60 / </h1>
+                    <h2>diária</h2>
+                  </Value>
+                </HeaderReservation>
 
-              <ChooseDate>
-                <CheckDate>
-                  <p>Check-in</p>
-                  <InputDate type="date" placeholder="dd/mm/aa" />
-                </CheckDate>
+                <ChooseDate>
+                  <CheckDate>
+                    <p>Check-in</p>
+                    <InputDate type="date" placeholder="dd/mm/aa" />
+                  </CheckDate>
 
-                <CheckDate>
-                  <p>Check-out</p>
-                  <InputDate type="date" placeholder="dd/mm/aa" />
-                </CheckDate>
-              </ChooseDate>
-              {house?.idUser != userApp?.id && (
-                <>
-                  <Email>
-                    <Mail />
-                    <p>Tem interesse? Envie uma mensagem para (nome)</p>
-                  </Email>
+                  <CheckDate>
+                    <p>Check-out</p>
+                    <InputDate type="date" placeholder="dd/mm/aa" />
+                  </CheckDate>
+                </ChooseDate>
 
-                  <Proposal>
-                    <ButtonProposal /* onClick={handleChat} */>
-                      Realizar proposta
-                    </ButtonProposal>
-                  </Proposal>
-                </>
-              )}
-            </Reservation>
-          </BorderRainbow>
-        </BackgroundReservation>
+                <BoxInteraction>
+                  <ButtonInteraction /* onClick={page finalizar reserva} */>
+                    Finalizar reserva
+                  </ButtonInteraction>
+                </BoxInteraction>
+
+                <BoxTotalValue>
+                  <Line />
+                  <TotalValue>
+                    <h2>Total</h2>
+                    <p>R${}</p>
+                  </TotalValue>
+                </BoxTotalValue>
+              </Reservation>
+            </BorderRainbow>
+          </BoxReservation>
+
+          <BoxHost>
+            <BorderHost>
+              <Host>
+                <ProfileHost>
+                  <img
+                    src="https://github.com/CarolinaScudeler.png"
+                    alt="Foto do perfil do host"
+                  />
+                  <h1>Hospedado por Carolina</h1>
+                </ProfileHost>
+
+                {house?.idUser != userApp?.id && (
+                  <>
+                    <Email>
+                      <Mail />
+                      <p>Tem interesse? Envie uma mensagem para o host!</p>
+                    </Email>
+
+                    <BoxInteraction>
+                      <ButtonInteraction /* onClick={handleChat} */>
+                        Conversar
+                      </ButtonInteraction>
+                    </BoxInteraction>
+                  </>
+                )}
+              </Host>
+            </BorderHost>
+          </BoxHost>
+        </ChangeBox>
       </BoxContents>
-
-      <Comments>
-        <AmountComments>
-          <h2>0 comentários</h2>
-        </AmountComments>
-        <BoxAdditionalComments>
-          <CommentsHouse />
-          <CommentsHouse />
-        </BoxAdditionalComments>
-
-        <BoxAdditionalComments>
-          <CommentsHouse />
-          <CommentsHouse />
-        </BoxAdditionalComments>
-      </Comments>
+      <Footer />
+      <NavbarMobile />
     </>
   );
 };

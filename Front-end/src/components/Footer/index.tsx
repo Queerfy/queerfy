@@ -21,7 +21,7 @@ export const Footer = () => {
         </Address>
       </UpContent>
       <DownContent>
-        <img src="logo.svg" alt="logo" />
+        <img src="../logo.svg" alt="logo" />
         <span>Queerfy © 2021 Todos os direitos reservados</span>
       </DownContent>
     </Container>

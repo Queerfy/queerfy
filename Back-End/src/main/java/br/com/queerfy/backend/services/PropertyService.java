@@ -71,17 +71,36 @@ public class PropertyService {
             prop.setDescription(property.getDescription());
             prop.setLikes(property.getLikes());
             prop.setActive(property.getActive());
-            prop.setCheckIn(property.getCheckIn());
-            prop.setCheckOut(property.getCheckOut());
             prop.setDailyPrice(property.getDailyPrice());
             prop.setFilterDate(property.getFilterDate());
             prop.setHouseImg(property.getHouseImg());
             prop.setLatitude(property.getLatitude());
             prop.setLongitude(property.getLongitude());
+            prop.setReferencePoint(property.getReferencePoint());
+            prop.setPropertyType(property.getPropertyType());
+            prop.setSpaceType(property.getSpaceType());
+            prop.setGuestsQuantity(property.getGuestsQuantity());
+            prop.setBedsQuantity(property.getBedsQuantity());
+            prop.setRoomQuantity(property.getRoomQuantity());
+            prop.setBathroomQuantity(property.getBathroomQuantity());
+            prop.setHaveWifi(property.getHaveWifi());
+            prop.setHaveKitchen(property.getHaveKitchen());
+            prop.setHaveSuite(property.getHaveSuite());
+            prop.setHaveGarage(property.getHaveGarage());
+            prop.setHaveAnimals(property.getHaveAnimals());
+
 
             propertyRepository.save(prop);
 
             return new PropertyDTO(prop);
+        }
+        throw new UserNotFoundException();
+    }
+    public Boolean deleteProperty(Integer id) throws UserNotFoundException {
+        Optional<Property> property = propertyRepository.findById(id);
+        if(property.isPresent()){
+            propertyRepository.deleteById(id);
+            return true;
         }
         throw new UserNotFoundException();
     }

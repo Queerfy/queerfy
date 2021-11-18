@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 import { theme } from '../../../styles/theme';
 
+interface IBackground {
+  background: string;
+}
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -15,7 +19,7 @@ export const Container = styled.div`
 `;
 
 export const ItemImage = styled.div`
-  background-image: ${(props) => `url(${props.background})`};
+  background-image: ${(props: IBackground) => `url(${props.background})`};
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;

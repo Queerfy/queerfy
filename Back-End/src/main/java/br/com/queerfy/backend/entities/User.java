@@ -75,9 +75,19 @@ public class User {
 
     private Boolean autenticated;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Favorite> favorites = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
     private Set<Property> properties = new HashSet<>();
+
+    public Set<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Set<Favorite> favorites) {
+        this.favorites = favorites;
+    }
 
     public Set<Property> getProperties() {
         return properties;

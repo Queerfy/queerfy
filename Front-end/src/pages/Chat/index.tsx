@@ -1,5 +1,4 @@
 import { NextPage } from 'next';
-import io from 'socket.io-client';
 
 import {
   Main,
