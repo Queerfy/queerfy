@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import { NextPage } from 'next';
 import dayjs from 'dayjs';
 import io from 'socket.io-client';
-import { Slide } from 'react-slideshow-image';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -38,7 +37,7 @@ const Chat: NextPage = () => {
 
       if (userJoinChat.proposal) {
         const { proposal, house, confirmReservation } = userJoinChat;
-        messageRef.current.value = `Olá ${userReceiver.name}, estou interessado em uma das suas residências (${house.name}). Encaminhei uma proposta com os dias ${confirmReservation.checkIn}/${confirmReservation.checkOut}, gostaria de me hospedar em sua propriedade, está disponível?`;
+        messageRef.current.value = `Olá ${userReceiver.name}, estou interessado na sua residência "${house.name}". Encaminhei uma proposta para os dias ${confirmReservation.checkIn} à ${confirmReservation.checkOut}, gostaria de me hospedar em sua propriedade. Está disponível?`;
 
         const params = {
           name: userApp.name,

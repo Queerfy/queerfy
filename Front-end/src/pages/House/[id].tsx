@@ -81,7 +81,7 @@ const House: NextPage = () => {
     };
 
     if (checkInHouse === '' || checkOutHouse === '') {
-      toast.error('Selecione data de CheckIn/CheckOut valido!');
+      toast.error('Selecione uma data válida!');
       return;
     }
 
@@ -156,7 +156,7 @@ const House: NextPage = () => {
       moment(checkOutHouse).isBefore(checkInHouse) ||
       moment(checkInHouse).isAfter(checkOutHouse)
     ) {
-      toast.error('Selecione data de CheckIn/CheckOut valido!');
+      toast.error('Selecione uma data válida!');
       setDisableButton(true);
       setTotal(0);
     } else {
