@@ -15,6 +15,7 @@ public class LeaseDTO {
     private Date checkIn;
     private Date checkOut;
     private Double totalValue;
+    private String leaseStatus;
 
     public LeaseDTO(Lease entity){
         this.id = entity.getId();
@@ -23,9 +24,18 @@ public class LeaseDTO {
         this.checkIn = entity.getCheckIn();
         this.checkOut = entity.getCheckOut();
         this.totalValue = entity.getTotalValue();
+        this.leaseStatus = entity.getLeaseStatus();
     }
 
     public LeaseDTO() {
+    }
+
+    public String getLeaseStatus() {
+        return leaseStatus;
+    }
+
+    public void setLeaseStatus(String leaseStatus) {
+        this.leaseStatus = leaseStatus;
     }
 
     public Integer getIdProperty() {

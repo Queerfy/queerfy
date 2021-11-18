@@ -199,7 +199,7 @@ const House: NextPage = () => {
         </Subtitle>
       </Header>
 
-      <img src="../img-casa.svg" width="100%" height="100%" />
+      <img src="../img-casa.svg" width="100%" height="100%" alt="Imagens da propriedade" />
 
       <BoxContents>
         <BoxInformations>

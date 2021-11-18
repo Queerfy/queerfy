@@ -39,4 +39,9 @@ public class PropertyController {
     public ResponseEntity<PropertyDTO> getPropertyById(@PathVariable Integer id) throws UserNotFoundException {
         return ResponseEntity.status(200).body(service.getPropertyById(id));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity deletePropertyById(@PathVariable Integer id) throws UserNotFoundException{
+        service.deleteProperty(id);
+        return ResponseEntity.status(201).build();
+    }
 }

@@ -151,7 +151,7 @@ export const Reservation = styled.div`
   border-radius: 10px;
 
   color: ${theme.assets.font};
-  background-color: ${theme.assets.background};
+  background: ${theme.assets.background};
 `;
 
 export const HeaderReservation = styled.div`
@@ -286,7 +286,7 @@ export const Host = styled.div`
 
   border-radius: 10px;
 
-  background-color: ${theme.assets.background};
+  background: ${theme.assets.background};
 `;
 
 export const ProfileHost = styled.div`
