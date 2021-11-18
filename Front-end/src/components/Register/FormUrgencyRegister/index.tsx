@@ -98,7 +98,7 @@ const FormUrgencyRegister: NextPage = () => {
                   />
                 </InputsBox>
                 <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
-                  <LabelInputs>Confirmação</LabelInputs>
+                  <LabelInputs>Confirmação de senha</LabelInputs>
                   <Input
                     name="confirmPassword"
                     type="password"

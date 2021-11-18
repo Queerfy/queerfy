@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { theme } from '../styles/theme';
 
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 import {
   MainContainer,
@@ -27,12 +27,14 @@ import { HandleCategorie } from '../components/Home/HandleCategorie';
 import { Banner } from '../components/Home/Banner';
 import { NearbyPlaces } from '../components/Home/NearbyPlaces';
 
-
-const Map = dynamic(() => {
-  return import("../components/Map");
-}, {
-  ssr: false
-})
+const Map = dynamic(
+  () => {
+    return import('../components/Map');
+  },
+  {
+    ssr: false,
+  }
+);
 
 const IndexPage: NextPage = () => {
   return (
@@ -48,9 +50,12 @@ const IndexPage: NextPage = () => {
         <Categories>
           <h1>Qual tipo de acomodação você precisa?</h1>
           <CategorieTypes>
-            <HandleCategorie image="suit.svg" title="Suíte" />
-            <HandleCategorie image="room.svg" title="Quarto" />
-            <HandleCategorie image="allowPets.svg" title="Permitido animais" />
+            <HandleCategorie image="suit.svg" title="Lugar inteiro" />
+            <HandleCategorie image="room.svg" title="Suíte" />
+            <HandleCategorie
+              image="allowPets.svg"
+              title="Quarto compartilhado"
+            />
           </CategorieTypes>
         </Categories>
         <HostBanner>
@@ -62,9 +67,7 @@ const IndexPage: NextPage = () => {
             buttonColor={theme.colors.red}
           />
         </HostBanner>
-        <Map>
-
-        </Map>
+        <Map></Map>
         <PinkBunners>
           <Banner
             backgroundImg="post-banner.svg"
