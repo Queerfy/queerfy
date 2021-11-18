@@ -5,6 +5,13 @@ interface Resize {
   size?: string;
 }
 
+interface Colors {
+  color?: string;
+  title?: string;
+  subtitle?: string;
+  text?: string;
+}
+
 export const InputContainer = styled.div<Colors>`
   margin-bottom: 32px;
   
@@ -122,4 +129,27 @@ export const ContainerModal = styled.div`
  height: 100%; 
  display: flex; 
  flex-direction: column;
+`;
+
+export const ContainerButton = styled.button<Colors>`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  background: ${(props) => props.color};
+  color: white;
+  font-weight: 900;
+
+  height: 60px;
+  width: 250px;
+
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+  }
 `;

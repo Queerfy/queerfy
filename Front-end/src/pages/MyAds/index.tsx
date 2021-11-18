@@ -11,7 +11,12 @@ import { theme } from '../../styles/theme';
 import { HoveredImage, ImageBox } from '../../components/Residence/styles';
 import { Container, ContainerMyReservations } from '../MyReservations/style';
 import Link from 'next/link';
-import { AdsInformation, ButtonAds, ContainerAds } from './style';
+import {
+  AdsInformation,
+  ButtonAds,
+  ContainerAds,
+  ContainerButtonAds,
+} from './style';
 
 const MyAdsPage: NextPage = () => {
   return (
@@ -39,12 +44,18 @@ const MyAdsPage: NextPage = () => {
                   <img src="support-banner.svg" width="100%" height="100%" />
                 </ImageBox>
                 <AdsInformation>
-                  <ButtonAds color={theme.colors.purple}>
-                    Visualizar anúncio
-                  </ButtonAds>
-                  <ButtonAds color={theme.colors.purple}>
-                    Editar anúncio
-                  </ButtonAds>
+                  <h1>Casa - 1 quarto disponível</h1>
+                  <p>
+                    Seu locador é <b>Cristina Finzch</b>
+                  </p>
+                  <ContainerButtonAds>
+                    <ButtonAds color={theme.colors.purple}>
+                      Visualizar anúncio
+                    </ButtonAds>
+                    <ButtonAds color={theme.colors.purple}>
+                      Editar anúncio
+                    </ButtonAds>
+                  </ContainerButtonAds>
                 </AdsInformation>
               </ContainerAds>
               <ContainerAds>
@@ -55,12 +66,18 @@ const MyAdsPage: NextPage = () => {
                   <img src="support-banner.svg" width="100%" height="100%" />
                 </ImageBox>
                 <AdsInformation>
-                  <ButtonAds color={theme.colors.purple}>
-                    Visualizar anúncio
-                  </ButtonAds>
-                  <ButtonAds color={theme.colors.purple}>
-                    Editar anúncio
-                  </ButtonAds>
+                  <h1>Casa - 2 quarto disponível</h1>
+                  <p>
+                    Seu locador é <b>Cristina Finzch</b>
+                  </p>
+                  <ContainerButtonAds>
+                    <ButtonAds color={theme.colors.purple}>
+                      Visualizar anúncio
+                    </ButtonAds>
+                    <ButtonAds color={theme.colors.purple}>
+                      Editar anúncio
+                    </ButtonAds>
+                  </ContainerButtonAds>
                 </AdsInformation>
               </ContainerAds>
               <ContainerAds>
@@ -71,12 +88,18 @@ const MyAdsPage: NextPage = () => {
                   <img src="support-banner.svg" width="100%" height="100%" />
                 </ImageBox>
                 <AdsInformation>
-                  <ButtonAds color={theme.colors.purple}>
-                    Visualizar anúncio
-                  </ButtonAds>
-                  <ButtonAds color={theme.colors.purple}>
-                    Editar anúncio
-                  </ButtonAds>
+                  <h1>Casa - 3 quarto disponível</h1>
+                  <p>
+                    Seu locador é <b>Cristina Finzch</b>
+                  </p>
+                  <ContainerButtonAds>
+                    <ButtonAds color={theme.colors.purple}>
+                      Visualizar anúncio
+                    </ButtonAds>
+                    <ButtonAds color={theme.colors.purple}>
+                      Editar anúncio
+                    </ButtonAds>
+                  </ContainerButtonAds>
                 </AdsInformation>
               </ContainerAds>
             </Container>

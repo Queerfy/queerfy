@@ -8,6 +8,18 @@ interface Colors {
   text?: string;
 }
 
+export const ContainerButtonAds = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  width: 100%;
+
+  @media screen and (min-width: 1023px) {
+    font-size: 18px;
+  }
+`;
+
 export const ButtonAds = styled.button<Colors>`
   display: flex;
   align-items: center;
@@ -33,7 +45,7 @@ export const ButtonAds = styled.button<Colors>`
 
 export const AdsInformation = styled.div<Colors>`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 

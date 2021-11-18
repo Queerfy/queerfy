@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ArrowLeft, Link } from 'react-feather';
-import { HeaderContainer } from '../../pages/Account/Main/styles';
-import { ContainerButton } from '../../pages/Account/Payments/styles';
+import { HeaderContainer } from '../../pages/Account/styles';
 import { theme } from '../../styles/theme';
-import { ContainerModal, ModalOverlay, ModalStyled, InputBox, InputContainer } from './style';
+import { ContainerModal, ModalOverlay, ModalStyled, InputBox, InputContainer, ContainerButton } from './style';
 
 const ModalPayment = ({ isOpen, onClickClose }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -28,7 +27,7 @@ const ModalPayment = ({ isOpen, onClickClose }) => {
               <input type="text" />
             </InputBox>
           </InputContainer>
-          <ContainerButton background={'#f0bf5a'}>
+          <ContainerButton color={'#f0bf5a'}>
             <button onClick={onClickClose}>SALVAR</button>
           </ContainerButton>
         </ContainerModal>
