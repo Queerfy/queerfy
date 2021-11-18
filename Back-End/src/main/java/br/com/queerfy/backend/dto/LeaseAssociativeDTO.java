@@ -3,15 +3,15 @@ package br.com.queerfy.backend.dto;
 import br.com.queerfy.backend.entities.Property;
 import br.com.queerfy.backend.entities.User;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class LeaseAssociativeDTO {
 
     private Integer id;
     private PropertyDTO property;
     private UserDTO user;
-    private Date checkIn;
-    private Date checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private Double totalValue;
     private String leaseStatus;
 
@@ -59,19 +59,19 @@ public class LeaseAssociativeDTO {
         this.user = user;
     }
 
-    public Date getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
     }
 

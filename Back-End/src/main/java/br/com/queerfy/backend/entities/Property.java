@@ -21,10 +21,6 @@ public class Property {
     private Boolean active;
     private Double dailyPrice;
     private String filterDate;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private LocalDate checkIn;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private LocalDate checkOut;
     private String latitude;
     private String longitude;
     private Integer likes;
@@ -284,22 +280,6 @@ public class Property {
 
     public void setFilterDate(String filterDate) {
         this.filterDate = filterDate;
-    }
-
-    public LocalDate getCheckIn() {
-        return checkIn;
-    }
-
-    public void setCheckIn(LocalDate checkIn) {
-        this.checkIn = checkIn;
-    }
-
-    public LocalDate getCheckOut() {
-        return checkOut;
-    }
-
-    public void setCheckOut(LocalDate checkOut) {
-        this.checkOut = checkOut;
     }
 
     public String getLatitude() {
