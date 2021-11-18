@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+
+import moment from 'moment';
 
 import { Navbar } from '../../components/Navbar';
 import { HeaderMobile } from '../../components/HeaderMobile';
@@ -36,7 +38,86 @@ import {
   ButtonConfirm,
 } from './styles';
 
+import { IHouseData, IUserData, IConfirmReservation } from '../../interfaces';
+
+import { api } from '../../services/api';
+import { useRouter } from 'next/router';
+import { useAuth } from '../../hooks/useAuth';
+
 const Reservation: NextPage = () => {
+  const router = useRouter();
+  const { userApp, handleUsersChatJoin, confirmReservation } = useAuth();
+
+  const [house, setHouse] = useState<IHouseData>();
+  const [owner, setOwner] = useState<IUserData>();
+
+  const handleChat = async () => {
+    const userReceiver = {
+      name: owner.name,
+      email: owner.email,
+      rg: owner.rg,
+      cpf: owner.cpf,
+      password: owner.password,
+      perfilImg: owner.perfilImg,
+      descUser: owner.descUser,
+      genre: owner.genre,
+      likes: owner.likes,
+      birthDate: owner.birthDate,
+      admin: owner.admin,
+    };
+
+    const userSender = {
+      name: userApp.name,
+      email: userApp.email,
+      rg: userApp.rg,
+      cpf: userApp.cpf,
+      password: userApp.password,
+      perfilImg: userApp.perfilImg,
+      descUser: userApp.descUser,
+      genre: userApp.genre,
+      likes: userApp.likes,
+      birthDate: userApp.birthDate,
+      admin: userApp.admin,
+    };
+
+    const usersJoined = {
+      userSender,
+      userReceiver,
+      house,
+      confirmReservation,
+      proposal: true,
+    };
+
+    handleUsersChatJoin(usersJoined);
+
+    setTimeout(() => {
+      router.push('/Chat');
+    }, 1000);
+  };
+
+  useEffect(() => {
+    if (!confirmReservation?.idHouse) {
+      router.push('/ResidenceList');
+    } else {
+      api
+        .get(`/properties/${confirmReservation?.idHouse}`)
+        .then((res) => {
+          setHouse(res.data);
+          api
+            .get(`/users/${res.data.idUser}`)
+            .then((resOwner) => {
+              setOwner(resOwner.data);
+            })
+            .catch((err) => {
+              router.push(`/House/${confirmReservation?.idHouse}`);
+            });
+        })
+        .catch((err) => {
+          router.push(`/House/${confirmReservation?.idHouse}`);
+        });
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -47,7 +128,7 @@ const Reservation: NextPage = () => {
       <HeaderMobile />
 
       <Header>
-        <Link href="/">
+        <Link href={`/House/${confirmReservation?.idHouse}`}>
           <IconArrow>
             <ArrowLeft size={30} />
           </IconArrow>
@@ -62,7 +143,7 @@ const Reservation: NextPage = () => {
               <img src="../img-casa.svg" alt="Imagem da propriedade" />
             </BoxImageHouse>
             <InformationsHouse>
-              <h3>Casa - 1 quarto disponível</h3>
+              <h3>{house?.name}</h3>
               <span>Alphaville - SP</span>
             </InformationsHouse>
           </House>
@@ -73,13 +154,20 @@ const Reservation: NextPage = () => {
         <h1>Informações</h1>
         <Date>
           <h2>Datas</h2>
-          <p>05 de nov. - 07 de nov.</p>
+          <p>
+            {moment(confirmReservation?.checkIn).locale('pt-br').format('ll')}.
+            -{' '}
+            {moment(confirmReservation?.checkOut).locale('pt-br').format('ll')}.
+          </p>
         </Date>
         <BoxPrice>
           <h2>Preços</h2>
           <DailyValue>
-            <p>R$60,00 x 2 diárias</p>
-            <p>R$120,00 </p>
+            <p>
+              R${house?.dailyPrice.toFixed(2)} x {confirmReservation?.totalDays}{' '}
+              diárias
+            </p>
+            <p>R${confirmReservation?.total.toFixed(2)} </p>
           </DailyValue>
           <AdditionalValues>
             <p>Taxa de serviço</p>
@@ -87,7 +175,7 @@ const Reservation: NextPage = () => {
           </AdditionalValues>
           <TotalValue>
             <h2>Total</h2>
-            <b>R$120,00</b>
+            <b>{confirmReservation?.total.toFixed(2)}</b>
           </TotalValue>
         </BoxPrice>
       </InformationsReservation>
@@ -138,7 +226,9 @@ const Reservation: NextPage = () => {
       </OwnerData>
 
       <BoxConfirm>
-        <ButtonConfirm>Confirmar e enviar proposta</ButtonConfirm>
+        <ButtonConfirm onClick={handleChat}>
+          Confirmar e enviar proposta
+        </ButtonConfirm>
       </BoxConfirm>
 
       <Footer />
