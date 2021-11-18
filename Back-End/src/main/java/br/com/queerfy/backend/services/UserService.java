@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
 
+
     CsvConverter csvConverter = new CsvConverter();
 
     @Autowired
@@ -76,7 +77,7 @@ public class UserService {
             User user = new User(userDTO);
             user = repository.save(user);
             ListaObj<UserDTO> userList = new ListaObj(90);
-            userList.adiciona(new UserDTO(userDTO.getId(), userDTO.getName(), userDTO.getCpf(), userDTO.getEmail(), userDTO.getGenre(), userDTO.getRg(), userDTO.getAdmin(), userDTO.getAutenticated()));
+            userList.adiciona(new UserDTO(userDTO.getId(), userDTO.getName(), userDTO.getCpf(), userDTO.getEmail(), userDTO.getGenre(), userDTO.getRg(), userDTO.getAdmin(), userDTO.getAutenticated(), userDTO.getNotifications()));
             csvConverter.gravaArquivoCsv(userList, "userList");
             return new UserDTO(user);
 
