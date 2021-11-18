@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { theme } from '../../styles/theme';
 
 import { Form } from '@unform/web';
@@ -142,7 +141,7 @@ export const ItemContainer = styled.div`
 
     margin-top: 10px;
     border-radius: 5px;
-    border: 1px solid #bdc3c7;
+    border: 1px solid ${theme.assets.borderDark};
     cursor: pointer;
 
     > svg {
@@ -163,7 +162,7 @@ export const ItemContainer = styled.div`
   p#container_textLogin {
     padding: 12px;
 
-    color: #bdc3c7;
+    color: ${theme.assets.borderDark};
     font-size: 12px;
     font-weight: 500;
   }
