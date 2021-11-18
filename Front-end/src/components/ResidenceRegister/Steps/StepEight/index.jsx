@@ -1,14 +1,30 @@
 import React from 'react';
 import { useResidence } from '../../../../hooks/residence';
+import { useAuth } from '../../../../hooks/useAuth'
 
 import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 import { Container, Content } from './styles';
 import { theme } from '../../../../styles/theme';
+import { api } from '../../../../services/api';
+
 
 export const StepEight = () => {
   const { advanceStep, backStep, residenceData } = useResidence();
+  const { userApp } = useAuth();
+
+  // console.log(residenceData);
+
+  const handleSubmit = async () => {
+    const data = {
+      ...residenceData,
+      idUser: userApp.id
+    }
+
+    console.log(data);
+    await api.post('/properties', data);
+  }
 
   return (
     <Container>
@@ -25,7 +41,7 @@ export const StepEight = () => {
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}
-        onClick={advanceStep}
+        onClick={handleSubmit}
       />
       <span onClick={backStep}>Voltar</span>
     </Container>
