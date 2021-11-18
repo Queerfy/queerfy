@@ -27,12 +27,12 @@ export const StepEight = () => {
 
     const data = { ...residenceData, defaultValues }
 
-   try {
-    await api.post('/properties', data);
-   } catch (error) {
-     console.log(error);
-     return toast.error('Ocorreu um erro. Verifique as informações e tente novamente.')
-   }
+    try {
+      await api.post('/properties', data);
+    } catch (error) {
+      console.log(error);
+      return toast.error('Ocorreu um erro. Verifique as informações e tente novamente.')
+    }
   }
 
   return (

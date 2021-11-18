@@ -42,7 +42,7 @@ export const StepFive = () => {
       <h2>Crie seu título</h2>
       <input ref={nameRef} type="text" placeholder="Casa em frente ao mar de Penha" />
       <h2>Crie sua descrição</h2>
-      <textarea ref={descriptionRef} maxlength="100" placeholder="Casa bélissima em frente a lagoa do porto." />
+      <textarea ref={descriptionRef} maxLength="100" placeholder="Casa bélissima em frente a lagoa do porto." />
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}

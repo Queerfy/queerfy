@@ -12,6 +12,7 @@ import { StepSix } from './Steps/StepSix';
 import { StepSeven } from './Steps/StepSeven';
 import { StepEight } from './Steps/StepEight';
 import { useResidence } from '../../hooks/residence';
+import { Adress } from './Steps/Adress';
 
 export const ResidenceForm = () => {
   const { step } = useResidence();
@@ -42,7 +43,7 @@ export const ResidenceForm = () => {
         <span>Queerfy © 2021 Todos os direitos reservados</span>
       </BannerContainer>
       <FormContainer>
-        {step === 1 && <StepOne />}
+        {step === 1 && <Adress />}
         {step === 2 && <StepTwo />}
         {step === 3 && <StepThree />}
         {step === 4 && <StepFour />}
