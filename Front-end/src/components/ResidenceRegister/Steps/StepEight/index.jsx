@@ -2,28 +2,37 @@ import React from 'react';
 import { useResidence } from '../../../../hooks/residence';
 import { useAuth } from '../../../../hooks/useAuth'
 
+import { api } from '../../../../services/api';
+
 import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 import { Container, Content } from './styles';
 import { theme } from '../../../../styles/theme';
-import { api } from '../../../../services/api';
-
+import { toast } from 'react-toastify';
 
 export const StepEight = () => {
-  const { advanceStep, backStep, residenceData } = useResidence();
+  const { backStep, residenceData } = useResidence();
   const { userApp } = useAuth();
 
-  // console.log(residenceData);
+  // filtro de data: string
+  // latitude, longitude
 
   const handleSubmit = async () => {
-    const data = {
-      ...residenceData,
-      idUser: userApp.id
+    const defaultValues = {
+      idUser: userApp.id,
+      active: true,
+      likes: 0
     }
 
-    console.log(data);
+    const data = { ...residenceData, defaultValues }
+
+   try {
     await api.post('/properties', data);
+   } catch (error) {
+     console.log(error);
+     return toast.error('Ocorreu um erro. Verifique as informações e tente novamente.')
+   }
   }
 
   return (
