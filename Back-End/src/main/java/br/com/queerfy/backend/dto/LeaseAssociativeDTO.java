@@ -13,6 +13,7 @@ public class LeaseAssociativeDTO {
     private Date checkIn;
     private Date checkOut;
     private Double totalValue;
+    private String leaseStatus;
 
     public LeaseAssociativeDTO() {
     }
@@ -23,6 +24,15 @@ public class LeaseAssociativeDTO {
         this.totalValue = entityDTO.getTotalValue();
         this.property = propertyDTO;
         this.user = userDTO;
+        this.leaseStatus = entityDTO.getLeaseStatus();
+    }
+
+    public String getLeaseStatus() {
+        return leaseStatus;
+    }
+
+    public void setLeaseStatus(String leaseStatus) {
+        this.leaseStatus = leaseStatus;
     }
 
     public Integer getId() {

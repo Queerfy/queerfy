@@ -1,10 +1,8 @@
 package br.com.queerfy.backend.dto;
 
-import br.com.queerfy.backend.entities.Addresses;
+import br.com.queerfy.backend.entities.Favorite;
 import br.com.queerfy.backend.entities.User;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,6 +11,7 @@ public class UserDTO {
     private Integer id;
     private String name;
     private Date birthDate;
+    private Boolean notifications;
     private String rg;
     private String cpf;
     private String email;
@@ -23,8 +22,8 @@ public class UserDTO {
     private String likes;
     private Boolean admin;
     private Boolean autenticated;
-    private Set<AddressesDTO> addresses = new HashSet<>();
     private Set<PropertyDTO> property = new HashSet<>();
+    private Set<FavoriteDTO> favorite = new HashSet<>();
 
     public UserDTO() {
 
@@ -42,12 +41,13 @@ public class UserDTO {
         this.descUser = user.getGenre();
         this.genre = user.getDescUser();
         this.likes = user.getLikes();
+        this.notifications = user.getNotifications();
         this.admin = user.getAdmin();
-        this.addresses = mapAddresses(user);
         this.property = mapProperties(user);
+        this.favorite = mapFavorites(user);
     }
 
-    public UserDTO(Integer id, String name, String cpf, String email, String genre, String rg, Boolean admin, Boolean autenticated) {
+    public UserDTO(Integer id, String name, String cpf, String email, String genre, String rg, Boolean admin, Boolean autenticated, Boolean notifications) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -55,7 +55,18 @@ public class UserDTO {
         this.genre = genre;
         this.rg = rg;
         this.admin = admin;
+        this.notifications = notifications;
         this.autenticated = autenticated;
+    }
+
+
+
+    public Boolean getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Boolean notifications) {
+        this.notifications = notifications;
     }
 
     public Integer getId() {
@@ -162,22 +173,6 @@ public class UserDTO {
         this.autenticated = autenticated;
     }
 
-    public Set<AddressesDTO> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(Set<AddressesDTO> addresses) {
-        this.addresses = addresses;
-    }
-
-    public Set<AddressesDTO> getAdresses() {
-        return addresses;
-    }
-
-    public void setAdresses(Set<AddressesDTO> adresses) {
-        this.addresses = adresses;
-    }
-
     public Set<PropertyDTO> getProperty() {
         return property;
     }
@@ -186,12 +181,22 @@ public class UserDTO {
         this.property = property;
     }
 
+    public Set<FavoriteDTO> getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Set<FavoriteDTO> favorite) {
+        this.favorite = favorite;
+    }
+
+    public Set<FavoriteDTO> mapFavorites(User user){
+        return user.getFavorites().stream().map(favorite -> new FavoriteDTO(favorite)).collect(Collectors.toSet());
+    }
+
     public Set<PropertyDTO> mapProperties(User user){
         return  user.getProperties().stream().map(property -> new PropertyDTO(property)).collect(Collectors.toSet());
     }
-    public Set<AddressesDTO> mapAddresses(User user) {
-        return user.getAdresses().stream().map(address -> new AddressesDTO(address)).collect(Collectors.toSet());
-    }
+
 
 
 }

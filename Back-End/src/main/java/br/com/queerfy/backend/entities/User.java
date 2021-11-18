@@ -25,6 +25,7 @@ public class User {
         this.password = user.getPassword();
         this.perfilImg = user.getPerfilImg();
         this.descUser = user.getGenre();
+        this.notifications = user.getNotifications();
         this.genre = user.getDescUser();
         this.likes = user.getLikes();
         this.admin = user.getAdmin();
@@ -41,6 +42,9 @@ public class User {
 
     @Column(name = "birth_date")
     private Date birthDate;
+
+    @Column(name = "notifications")
+    private Boolean notifications;
 
     @Column(name = "rg")
     private String rg;
@@ -72,9 +76,18 @@ public class User {
     private Boolean autenticated;
 
     @OneToMany(mappedBy = "user")
-    private Set<Addresses> adresses = new HashSet<>();
+    private Set<Favorite> favorites = new HashSet<>();
+
     @OneToMany(mappedBy = "user")
     private Set<Property> properties = new HashSet<>();
+
+    public Set<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Set<Favorite> favorites) {
+        this.favorites = favorites;
+    }
 
     public Set<Property> getProperties() {
         return properties;
@@ -82,6 +95,15 @@ public class User {
 
     public void setProperties(Set<Property> properties) {
         this.properties = properties;
+    }
+
+
+    public Boolean getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Boolean notifications) {
+        this.notifications = notifications;
     }
 
     public Boolean getAutenticated() {
@@ -188,12 +210,5 @@ public class User {
         this.admin = admin;
     }
 
-    public Set<Addresses> getAdresses() {
-        return adresses;
-    }
-
-    public void setAdresses(Set<Addresses> adresses) {
-        this.adresses = adresses;
-    }
 
 }
