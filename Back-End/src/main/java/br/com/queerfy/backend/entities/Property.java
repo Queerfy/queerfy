@@ -45,6 +45,14 @@ public class Property {
     private String guestsQuantity;
     private String bedsQuantity;
     private String roomQuantity;
+    private String bathroomQuantity;
+    //Filtros
+    private Boolean haveWifi;
+    private Boolean haveKitchen;
+    private Boolean haveSuite;
+    private Boolean haveGarage;
+    private Boolean haveAnimals;
+
 
 
     @ManyToOne()
@@ -78,6 +86,60 @@ public class Property {
         this.guestsQuantity = entity.getGuestsQuantity();
         this.bedsQuantity = entity.getBedsQuantity();
         this.roomQuantity = entity.getRoomQuantity();
+        this.bathroomQuantity = entity.getBathroomQuantity();
+        this.haveWifi = entity.getHaveWifi();
+        this.haveKitchen = entity.getHaveKitchen();
+        this.haveSuite = entity.getHaveSuite();
+        this.haveGarage = entity.getHaveGarage();
+        this.haveAnimals  = entity.getHaveAnimals();
+    }
+
+    public Boolean getHaveWifi() {
+        return haveWifi;
+    }
+
+    public void setHaveWifi(Boolean haveWifi) {
+        this.haveWifi = haveWifi;
+    }
+
+    public Boolean getHaveKitchen() {
+        return haveKitchen;
+    }
+
+    public void setHaveKitchen(Boolean haveKitchen) {
+        this.haveKitchen = haveKitchen;
+    }
+
+    public Boolean getHaveSuite() {
+        return haveSuite;
+    }
+
+    public void setHaveSuite(Boolean haveSuite) {
+        this.haveSuite = haveSuite;
+    }
+
+    public Boolean getHaveGarage() {
+        return haveGarage;
+    }
+
+    public void setHaveGarage(Boolean haveGarage) {
+        this.haveGarage = haveGarage;
+    }
+
+    public Boolean getHaveAnimals() {
+        return haveAnimals;
+    }
+
+    public void setHaveAnimals(Boolean haveAnimals) {
+        this.haveAnimals = haveAnimals;
+    }
+
+    public String getBathroomQuantity() {
+        return bathroomQuantity;
+    }
+
+    public void setBathroomQuantity(String bathroomQuantity) {
+        this.bathroomQuantity = bathroomQuantity;
     }
 
     public String getCity() {
