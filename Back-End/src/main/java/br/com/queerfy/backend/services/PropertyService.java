@@ -81,6 +81,13 @@ public class PropertyService {
             prop.setGuestsQuantity(property.getGuestsQuantity());
             prop.setBedsQuantity(property.getBedsQuantity());
             prop.setRoomQuantity(property.getRoomQuantity());
+            prop.setBathroomQuantity(property.getBathroomQuantity());
+            prop.setHaveWifi(property.getHaveWifi());
+            prop.setHaveKitchen(property.getHaveKitchen());
+            prop.setHaveSuite(property.getHaveSuite());
+            prop.setHaveGarage(property.getHaveGarage());
+            prop.setHaveAnimals(property.getHaveAnimals());
+
 
             propertyRepository.save(prop);
 
