@@ -20,7 +20,7 @@ export const Subtitle = styled.div`
 export const Local = styled.div`
   display: flex;
 
-  p {
+  span {
     font-size: 16px;
     margin-left: 10px;
   }
@@ -31,7 +31,7 @@ export const Favorite = styled.div`
 
   display: flex;
 
-  p {
+  span {
     margin-right: 10px;
   }
 
@@ -69,6 +69,7 @@ export const Informations = styled.div`
   align-items: flex-start;
 
   h2 {
+    color: ${theme.colors.red};
     padding-bottom: 20px;
   }
 
@@ -87,6 +88,24 @@ export const AlignInformations = styled.div`
   }
 `;
 
+export const Rules = styled.div`
+  width: 100%;
+  padding: 12px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  h2 {
+    color: ${theme.colors.green};
+    padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 80%;
+  }
+`;
+
 export const Description = styled.div`
   width: 100%;
   padding: 0px 0px 12px 0px;
@@ -97,6 +116,7 @@ export const Description = styled.div`
   text-align: justify;
 
   h2 {
+    color: ${theme.colors.orange};
     padding-bottom: 20px;
   }
 
@@ -168,6 +188,21 @@ export const Value = styled.div`
   align-items: center;
 `;
 
+export const Likes = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    height: 10px;
+  }
+
+  span {
+    color: ${theme.colors.red};
+    margin-left: 10px;
+    font-weight: bold;
+  }
+`;
+
 export const ChooseDate = styled.div`
   width: 100%;
 
@@ -183,7 +218,7 @@ export const CheckDate = styled.div`
   display: flex;
   flex-direction: column;
 
-  p {
+  span {
     color: ${theme.colors.red};
   }
 `;
@@ -205,8 +240,7 @@ export const BoxInteraction = styled.div`
 `;
 
 export const ButtonInteraction = styled.button`
-  width: 50%;
-  height: 50%;
+  padding: 6px 40px;
 
   background: ${theme.colors.blue};
 
@@ -244,7 +278,7 @@ export const TotalValue = styled.div`
     font-size: 22px;
   }
 
-  p {
+  span {
     font-size: 18px;
   }
 `;
@@ -320,7 +354,7 @@ export const Email = styled.div`
   align-items: center;
   justify-content: center;
 
-  p {
+  span {
     font-size: 14px;
     margin-left: 6px;
     text-align: center;
