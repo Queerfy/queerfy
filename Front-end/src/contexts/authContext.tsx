@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }) => {
   const [messagesReceiver, setMessageReceiver] = useState();
   const [confirmReservation, setConfirmReservation] =
     useState<IConfirmReservation>();
+  const [proposals, setProposals] = useState();
 
   const router = useRouter();
 
@@ -153,6 +154,16 @@ export const AuthProvider = ({ children }) => {
       }
     });
   }, [messagesNotification]);
+
+  /*  useEffect(() => {
+    if (userApp) {
+      socket.emit('list_proposals', userApp, (messagesProposals) => {
+        if (messagesProposals.length > 0) {
+          return toast.success('Você recebeu uma nova proposta!');
+        }
+      });
+    }
+  }, [proposals]); */
 
   return (
     <AuthContext.Provider
