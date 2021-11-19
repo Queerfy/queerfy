@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import { NextPage } from 'next';
 import dayjs from 'dayjs';
 import io from 'socket.io-client';
-import { Slide } from 'react-slideshow-image';
 
 import { useAuth } from '../../hooks/useAuth';
 

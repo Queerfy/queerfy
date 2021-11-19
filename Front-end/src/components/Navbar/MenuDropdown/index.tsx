@@ -63,9 +63,6 @@ export const MenuDropdown = () => {
             <a href="#">Notificações</a>
           </li>
           <li>
-            <a href="#">Pagamentos</a>
-          </li>
-          <li>
             <a href="#">Ajuda</a>
           </li>
           {signed && (

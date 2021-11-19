@@ -35,7 +35,7 @@ const Map: NextPage = ({
 
   const getLocation = () => {
     if (!navigator.geolocation) {
-      setStatus('Localização indisponivel!');
+      setStatus('Localização indisponível!');
     } else {
       setStatus('Carregando...');
       navigator.geolocation.getCurrentPosition((position) => {
