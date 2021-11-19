@@ -1,17 +1,18 @@
 import styled from 'styled-components';
+import { theme } from '../../../../styles/theme';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   width: 100%;
   height: auto;
 
   > h1 {
-    margin: 32px 0;
     text-align: center;
-    font-size: 24px;
+    color: ${theme.assets.font};
   }
 
   > button {
@@ -25,8 +26,6 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-    height: 100vh;
-    justify-content: center;
     padding: 0 64px;
 
     > h1 {
@@ -39,14 +38,22 @@ export const Container = styled.div`
   }
 `;
 
-export const InputsSection = styled.div`
-  display: flex;
-  justify-content: space-between;
+export const Content = styled.div`
+  border: 2px solid ${theme.assets.font};
+  border-radius: 10px;
+  margin-top: 32px;
 
-  width: 100%;
-  margin: 16px 0;
+  > img {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  h1,
+  p {
+    margin: 8px;
+  }
 
   @media screen and (min-width: 1024px) {
-    margin: 8px 0;
+    margin-top: 8px;
   }
 `;

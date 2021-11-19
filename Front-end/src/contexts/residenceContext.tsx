@@ -16,7 +16,7 @@ export const ResidenceProvider = ({ children }) => {
   const router = useRouter();
 
   function advanceStep() {
-    if (step !== 8) {
+    if (step !== 9) {
       setStep(step + 1);
       console.log(step);
     }

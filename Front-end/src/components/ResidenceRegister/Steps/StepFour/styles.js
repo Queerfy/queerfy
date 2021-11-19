@@ -6,53 +6,42 @@ export const Container = styled.div`
   align-items: center;
 
   width: 100%;
-  height: auto;
+  height: 100vh;
 
   > h1 {
+    font-size: 22px;
     text-align: center;
-    font-size: 24px;
-  }
-
-  > button {
-    margin: 32px 0;
+    margin: 16px 0px;
   }
 
   > span {
     text-decoration: underline;
     font-weight: 500;
     cursor: pointer;
-    margin-bottom: 16px;
+  }
+
+  > button {
+    margin: 16px 0;
   }
 
   @media screen and (min-width: 1024px) {
     justify-content: center;
-    height: 100vh;
+    padding: 64px;
 
     > h1 {
       display: none;
     }
 
     > button {
-      margin: 16px 0;
+      margin: 32px 0;
     }
   }
 `;
 
-export const FiltersBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+export const CounterBox = styled.div`
   width: 100%;
-  height: auto;
 
   > div {
-    margin: 16px 0;
-  }
-
-  @media screen and (min-width: 1024px) {
-    > div {
-      margin: 12px 0;
-    }
+    margin: 16px 0px;
   }
 `;

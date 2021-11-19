@@ -1,56 +1,45 @@
-import React from 'react';
-import { useResidence } from '../../../../hooks/residence';
-import { useAuth } from '../../../../hooks/useAuth'
+import React, { useRef } from 'react';
 
-import { api } from '../../../../services/api';
+import { useResidence } from '../../../../hooks/residence';
+
+import { Container, InputBox } from './styles';
 
 import { GeneralButton } from '../../../GeneralButton';
-import { HeaderMobile } from '../../../HeaderMobile';
-
-import { Container, Content } from './styles';
 import { theme } from '../../../../styles/theme';
+import { HeaderMobile } from '../../../HeaderMobile';
 import { toast } from 'react-toastify';
 
 export const StepEight = () => {
-  const { backStep, residenceData } = useResidence();
-  const { userApp } = useAuth();
+  const { advanceStep, backStep, handleStep } = useResidence();
 
-  // filtro de data: string
-  // latitude, longitude
+  const dailyPriceRef = useRef();
 
-  const handleSubmit = async () => {
-    const defaultValues = {
-      idUser: userApp.id,
-      active: true,
-      likes: 0
+  function sendParams() {
+    const dailyPrice = parseFloat(dailyPriceRef.current.value);
+
+    if (dailyPrice === 0 || isNaN(dailyPrice)) {
+      return toast.error('Informe um preço válido!');
     }
 
-    const data = { ...residenceData, defaultValues }
-
-    try {
-      await api.post('/properties', data);
-    } catch (error) {
-      console.log(error);
-      return toast.error('Ocorreu um erro. Verifique as informações e tente novamente.')
-    }
+    handleStep({ dailyPrice });
+    advanceStep();
   }
 
   return (
     <Container>
       <HeaderMobile />
-      <h1>Este anúncio ficará visível aos hóspedes imediatamente.</h1>
-      <Content>
-        <img src="city-example.jpg" alt="casa" />
-        <h1>{residenceData.name}</h1>
-        <p>{residenceData.description}</p>
-        <p><strong>Valor diária: </strong>
-          {residenceData.dailyPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-        </p>
-      </Content>
+      <InputBox>
+        <input ref={dailyPriceRef} type="number" placeholder="00,00" />
+      </InputBox>
+      <p>
+        Agora vem a parte divertida.
+        <br />
+        Vamos definir seu <strong>PREÇO</strong>.
+      </p>
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}
-        onClick={handleSubmit}
+        onClick={sendParams}
       />
       <span onClick={backStep}>Voltar</span>
     </Container>

@@ -1,45 +1,32 @@
-import React, { useRef } from 'react';
-
+import React from 'react';
 import { useResidence } from '../../../../hooks/residence';
 
-import { Container, InputBox } from './styles';
+import { theme } from '../../../../styles/theme';
 
 import { GeneralButton } from '../../../GeneralButton';
-import { theme } from '../../../../styles/theme';
+
+import { Container, InputBox } from './styles';
+import { Image } from 'react-feather';
 import { HeaderMobile } from '../../../HeaderMobile';
-import { toast } from 'react-toastify';
 
 export const StepSeven = () => {
-  const { advanceStep, backStep, handleStep } = useResidence();
-
-  const dailyPriceRef = useRef();
-
-  function sendParams() {
-    const dailyPrice = parseFloat(dailyPriceRef.current.value);
-
-    if (dailyPrice === 0 || isNaN(dailyPrice)) {
-      return toast.error("Informe um preço válido!")
-    }
-
-    handleStep({ dailyPrice });
-    advanceStep();
-  }
+  const { advanceStep, backStep } = useResidence();
 
   return (
     <Container>
       <HeaderMobile />
       <InputBox>
-        <input ref={dailyPriceRef} type="number" placeholder="00,00" />
+        <label htmlFor="arquivo">
+          <Image size={100} />
+          <h1>Vamos adicionar algumas fotos!</h1>
+          <p>Adicione pelo menos 5 fotos</p>
+        </label>
+        <input type="file" name="arquivo" id="arquivo" />
       </InputBox>
-      <p>
-        Agora vem a parte divertida.
-        <br />
-        Vamos definir seu <strong>PREÇO</strong>.
-      </p>
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}
-        onClick={sendParams}
+        onClick={advanceStep}
       />
       <span onClick={backStep}>Voltar</span>
     </Container>

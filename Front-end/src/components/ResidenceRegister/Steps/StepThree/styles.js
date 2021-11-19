@@ -6,12 +6,16 @@ export const Container = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 100vh;
+  height: auto;
 
   > h1 {
-    font-size: 22px;
+    margin: 32px 0;
     text-align: center;
-    margin: 16px 0px;
+    font-size: 24px;
+  }
+
+  > button {
+    margin: 32px 0px 16px 0px;
   }
 
   > span {
@@ -20,28 +24,29 @@ export const Container = styled.div`
     cursor: pointer;
   }
 
-  > button {
-    margin: 16px 0;
-  }
-
   @media screen and (min-width: 1024px) {
+    height: 100vh;
     justify-content: center;
-    padding: 64px;
+    padding: 0 64px;
 
     > h1 {
       display: none;
     }
 
     > button {
-      margin: 32px 0;
+      margin: 16px 0px;
     }
   }
 `;
 
-export const CounterBox = styled.div`
-  width: 100%;
+export const InputsSection = styled.div`
+  display: flex;
+  justify-content: space-between;
 
-  > div {
-    margin: 16px 0px;
+  width: 100%;
+  margin: 16px 0;
+
+  @media screen and (min-width: 1024px) {
+    margin: 8px 0;
   }
 `;

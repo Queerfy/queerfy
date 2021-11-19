@@ -5,18 +5,22 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   width: 100%;
-  height: auto;
+  height: 100vh;
 
-  > h1 {
+  > p {
     text-align: center;
-    color: ${theme.assets.font};
+    margin: 32px 0;
+    line-height: 32px;
+
+    strong {
+      color: ${theme.colors.pink};
+    }
   }
 
   > button {
-    margin: 32px 0px 16px 0px;
+    margin: 32px;
   }
 
   > span {
@@ -26,34 +30,44 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
+    justify-content: center;
     padding: 0 64px;
-
-    > h1 {
-      display: none;
-    }
-
-    > button {
-      margin: 16px 0px;
-    }
   }
 `;
 
-export const Content = styled.div`
-  border: 2px solid ${theme.assets.font};
-  border-radius: 10px;
-  margin-top: 32px;
+export const InputBox = styled.div`
+  display: flex;
+  justify-content: center;
 
-  > img {
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-  }
+  width: 100%;
+  height: auto;
 
-  h1,
-  p {
-    margin: 8px;
+  > input {
+    height: 150px;
+    background-color: transparent;
+    border: 2px solid ${theme.assets.borderDark};
+    border-radius: 10px;
+    text-align: center;
+    font-size: 36px;
+    max-width: 80%;
+    padding: 0 16px;
+    font-weight: bold;
+    color: ${theme.assets.font};
+    margin-top: 32px;
+
+    &::placeholder {
+      color: ${theme.assets.borderLight};
+      font-weight: bold;
+    }
+
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
   }
 
   @media screen and (min-width: 1024px) {
-    margin-top: 8px;
+    > input {
+      margin-top: 0;
+    }
   }
 `;

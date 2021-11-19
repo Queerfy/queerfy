@@ -1,40 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useResidence } from '../../../../hooks/residence';
 
-import { HeaderMobile } from '../../../HeaderMobile';
-import { Filter } from '../../Filter';
-
-import { Coffee, Wifi } from 'react-feather';
-
-import { Container, FiltersBox } from './styles';
-import { GeneralButton } from '../../../GeneralButton';
 import { theme } from '../../../../styles/theme';
+import { Container, CounterBox } from './styles';
+
+import { HeaderMobile } from '../../../HeaderMobile';
+import { Counter } from '../../Counter';
+import { GeneralButton } from '../../../GeneralButton';
 import { toast } from 'react-toastify';
 
 export const StepFour = () => {
-  const { advanceStep, backStep, handleStep } = useResidence();
-  const [haveWifi, setHaveWifi] = useState(false);
-  const [haveKitchen, setHaveKitchen] = useState(false);
-  const [haveSuite, setHaveSuite] = useState(false);
-  const [haveGarage, setHaveGarage] = useState(false);
-  const [haveAnimals, setHaveAnimals] = useState(false);
+  const { advanceStep, backStep, handleStep, residenceData } = useResidence();
 
-  function handleSelect(state, setState) {
-    if (!state) {
-      setState(true);
+  console.log(residenceData);
 
-    } else {
-      setState(false);
-    }
-  }
+  const [guestCounter, setGuestCounter] = useState(0);
+  const [roomCounter, setRoomCounter] = useState(0);
+  const [bedCounter, setBedCounter] = useState(0);
+  const [bathroomCounter, setBathroomCounter] = useState(0);
 
   function hasEmptyProperties() {
     if (
-      haveWifi === false &&
-      haveKitchen === false &&
-      haveSuite === false &&
-      haveGarage === false &&
-      haveAnimals === false
+      guestCounter == 0 ||
+      roomCounter == 0 ||
+      bedCounter == 0 ||
+      bathroomCounter == 0
     ) {
       return true;
     } else {
@@ -43,33 +33,47 @@ export const StepFour = () => {
   }
 
   function sendParams() {
-    const filters = {
-      haveWifi: haveWifi,
-      haveKitchen: haveKitchen,
-      haveSuite: haveSuite,
-      haveGarage: haveGarage,
-      haveAnimals: haveAnimals
+    const specifications = {
+      guestsQuantity: guestCounter,
+      roomQuantity: roomCounter,
+      bedsQuantity: bedCounter,
+      bathroomQuantity: bathroomCounter,
     }
 
     if (hasEmptyProperties()) {
-      return toast.error("Selecione ao menos um filtro");
+      return toast.error("Sua propriedade deve ter pelo menos 1 de cada item!");
     }
 
-    handleStep(filters);
+    handleStep(specifications);
     advanceStep();
   }
 
   return (
     <Container>
       <HeaderMobile />
-      <h1>Quais filtros se encaixam na residência?</h1>
-      <FiltersBox>
-        <Filter onClick={() => handleSelect(haveWifi, setHaveWifi)} icon={<Wifi size={30} />} label="Wi-Fi" />
-        <Filter onClick={() => handleSelect(haveKitchen, setHaveKitchen)} icon={<Coffee size={30} />} label="Cozinha" />
-        <Filter onClick={() => handleSelect(haveSuite, setHaveSuite)} image="bed.svg" label="Suíte" />
-        <Filter onClick={() => handleSelect(haveGarage, setHaveGarage)} image="parking.svg" label="Garagem" />
-        <Filter onClick={() => handleSelect(haveAnimals, setHaveAnimals)} image="cat-paw.svg" label="Animais" />
-      </FiltersBox>
+      <h1>Quais são as especificações do espaço que você deseja alugar?</h1>
+      <CounterBox>
+        <Counter
+          counter={guestCounter}
+          setCounter={setGuestCounter}
+          label="Hóspedes"
+        />
+        <Counter
+          counter={roomCounter}
+          setCounter={setRoomCounter}
+          label="Quartos"
+        />
+        <Counter
+          counter={bedCounter}
+          setCounter={setBedCounter}
+          label="Camas"
+        />
+        <Counter
+          counter={bathroomCounter}
+          setCounter={setBathroomCounter}
+          label="Banheiros"
+        />
+      </CounterBox>
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}

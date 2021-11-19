@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 
+import { useResidence } from '../../hooks/residence';
+
 import { Container, BannerContainer, LogoContainer, FormContainer } from '../../components/ResidenceRegister/styles';
 
 import { StepOne } from '../../components/ResidenceRegister/Steps';
@@ -11,8 +13,7 @@ import { StepFive } from './Steps/StepFive';
 import { StepSix } from './Steps/StepSix';
 import { StepSeven } from './Steps/StepSeven';
 import { StepEight } from './Steps/StepEight';
-import { useResidence } from '../../hooks/residence';
-import { Adress } from './Steps/Adress';
+import { StepNine } from './Steps/StepNine';
 
 export const ResidenceForm = () => {
   const { step } = useResidence();
@@ -43,7 +44,7 @@ export const ResidenceForm = () => {
         <span>Queerfy © 2021 Todos os direitos reservados</span>
       </BannerContainer>
       <FormContainer>
-        {step === 1 && <Adress />}
+        {step === 1 && <StepOne />}
         {step === 2 && <StepTwo />}
         {step === 3 && <StepThree />}
         {step === 4 && <StepFour />}
@@ -51,6 +52,7 @@ export const ResidenceForm = () => {
         {step === 6 && <StepSix />}
         {step === 7 && <StepSeven />}
         {step === 8 && <StepEight />}
+        {step === 9 && <StepNine />}
       </FormContainer>
     </Container>
   );

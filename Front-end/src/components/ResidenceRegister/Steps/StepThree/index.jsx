@@ -1,83 +1,93 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useResidence } from '../../../../hooks/residence';
-
 import { theme } from '../../../../styles/theme';
-import { Container, CounterBox } from './styles';
-
-import { HeaderMobile } from '../../../HeaderMobile';
-import { Counter } from '../../Counter';
+import { FormInput } from '../../../FormInput';
 import { GeneralButton } from '../../../GeneralButton';
-import { toast } from 'react-toastify';
+import { HeaderMobile } from '../../../HeaderMobile';
+
+import { Container, InputsSection } from './styles';
 
 export const StepThree = () => {
   const { advanceStep, backStep, handleStep } = useResidence();
 
-  const [guestCounter, setGuestCounter] = useState(0);
-  const [roomCounter, setRoomCounter] = useState(0);
-  const [bedCounter, setBedCounter] = useState(0);
-  const [bathroomCounter, setBathroomCounter] = useState(0);
-
-  function hasEmptyProperties() {
-    if (
-      guestCounter == 0 ||
-      roomCounter == 0 ||
-      bedCounter == 0 ||
-      bathroomCounter == 0
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  const [street, setStreet] = useState(null);
+  const [city, setCity] = useState(null);
+  const [uf, setUf] = useState(null);
+  const [cep, setCep] = useState(null);
+  const [complement, setComplement] = useState(null);
+  const [neighbor, setNeighbor] = useState(null);
+  const [number, setNumber] = useState(null);
+  const [referencePoint, setReferencePoint] = useState(null);
 
   function sendParams() {
-    const specifications = {
-      guestsQuantity: guestCounter,
-      roomQuantity: roomCounter,
-      bedsQuantity: bedCounter,
-      bathroomQuantity: bathroomCounter,
+    const address = {
+      street: street,
+      city: city,
+      uf: uf,
+      cep: cep,
+      addressComplement: complement,
+      neighbor: neighbor,
+      houseNumber: number,
+      referencePoint: referencePoint
     }
 
-    if (hasEmptyProperties()) {
-      return toast.error("Sua propriedade deve ter pelo menos 1 de cada item!");
-    }
-
-    handleStep(specifications);
+    handleStep(address);
     advanceStep();
   }
 
   return (
     <Container>
       <HeaderMobile />
-      <h1>Quais são as especificações do espaço que você deseja alugar?</h1>
-      <CounterBox>
-        <Counter
-          counter={guestCounter}
-          setCounter={setGuestCounter}
-          label="Hóspedes"
+      <h1>Insira o endereço da sua locação</h1>
+      <FormInput
+        label="Rua / Logradouro"
+        placeholder="Rua das Laranjeiras"
+      />
+      <InputsSection>
+        <FormInput
+          label="Cidade"
+          placeholder="São Paulo"
+          width="75%"
         />
-        <Counter
-          counter={roomCounter}
-          setCounter={setRoomCounter}
-          label="Quartos"
+        <FormInput
+          label="UF"
+          placeholder="SP"
+          width="20%"
         />
-        <Counter
-          counter={bedCounter}
-          setCounter={setBedCounter}
-          label="Camas"
+      </InputsSection>
+      <InputsSection>
+        <FormInput
+          label="CEP"
+          placeholder="_____-___"
+          width="45%"
         />
-        <Counter
-          counter={bathroomCounter}
-          setCounter={setBathroomCounter}
-          label="Banheiros"
+        <FormInput
+          label="Complemento"
+          placeholder="Ap. 34 Bloco 4"
+          width="50%"
         />
-      </CounterBox>
+      </InputsSection>
+      <InputsSection>
+        <FormInput
+          label="Bairro"
+          placeholder="Parque Terra Nova"
+          width="75%"
+        />
+        <FormInput
+          label="Número"
+          placeholder="290"
+          width="20%"
+        />
+      </InputsSection>
+      <FormInput
+        label="Ponto de referência"
+        placeholder="Próximo a padaria alpha"
+      />
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}
-        onClick={sendParams}
       />
       <span onClick={backStep}>Voltar</span>
     </Container>
   );
-};
+}

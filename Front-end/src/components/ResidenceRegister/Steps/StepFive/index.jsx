@@ -1,22 +1,41 @@
-import React, { useRef } from 'react';
-import { toast } from 'react-toastify';
+import React, { useState, useEffect } from 'react';
 import { useResidence } from '../../../../hooks/residence';
 
-import { theme } from '../../../../styles/theme';
-
-import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
+import { Filter } from '../../Filter';
 
-import { Container } from './styles';
+import { Coffee, Wifi } from 'react-feather';
+
+import { Container, FiltersBox } from './styles';
+import { GeneralButton } from '../../../GeneralButton';
+import { theme } from '../../../../styles/theme';
+import { toast } from 'react-toastify';
 
 export const StepFive = () => {
   const { advanceStep, backStep, handleStep } = useResidence();
+  const [haveWifi, setHaveWifi] = useState(false);
+  const [haveKitchen, setHaveKitchen] = useState(false);
+  const [haveSuite, setHaveSuite] = useState(false);
+  const [haveGarage, setHaveGarage] = useState(false);
+  const [haveAnimals, setHaveAnimals] = useState(false);
 
-  const nameRef = useRef();
-  const descriptionRef = useRef();
+  function handleSelect(state, setState) {
+    if (!state) {
+      setState(true);
 
-  function hasEmptyProperties(name, description) {
-    if (name === "" || description === "") {
+    } else {
+      setState(false);
+    }
+  }
+
+  function hasEmptyProperties() {
+    if (
+      haveWifi === false &&
+      haveKitchen === false &&
+      haveSuite === false &&
+      haveGarage === false &&
+      haveAnimals === false
+    ) {
       return true;
     } else {
       return false;
@@ -24,25 +43,33 @@ export const StepFive = () => {
   }
 
   function sendParams() {
-    const name = nameRef.current.value;
-    const description = descriptionRef.current.value;
-
-    if (hasEmptyProperties(name, description)) {
-      return toast.error("Preencha todos os campos!");
+    const filters = {
+      haveWifi: haveWifi,
+      haveKitchen: haveKitchen,
+      haveSuite: haveSuite,
+      haveGarage: haveGarage,
+      haveAnimals: haveAnimals
     }
 
-    handleStep({ name, description });
+    if (hasEmptyProperties()) {
+      return toast.error("Selecione ao menos um filtro");
+    }
+
+    handleStep(filters);
     advanceStep();
   }
 
   return (
     <Container>
       <HeaderMobile />
-      <h1>Vamos dar um nome e uma descrição ao seu espaço</h1>
-      <h2>Crie seu título</h2>
-      <input ref={nameRef} type="text" placeholder="Casa em frente ao mar de Penha" />
-      <h2>Crie sua descrição</h2>
-      <textarea ref={descriptionRef} maxLength="100" placeholder="Casa bélissima em frente a lagoa do porto." />
+      <h1>Quais filtros se encaixam na residência?</h1>
+      <FiltersBox>
+        <Filter onClick={() => handleSelect(haveWifi, setHaveWifi)} icon={<Wifi size={30} />} label="Wi-Fi" />
+        <Filter onClick={() => handleSelect(haveKitchen, setHaveKitchen)} icon={<Coffee size={30} />} label="Cozinha" />
+        <Filter onClick={() => handleSelect(haveSuite, setHaveSuite)} image="bed.svg" label="Suíte" />
+        <Filter onClick={() => handleSelect(haveGarage, setHaveGarage)} image="parking.svg" label="Garagem" />
+        <Filter onClick={() => handleSelect(haveAnimals, setHaveAnimals)} image="cat-paw.svg" label="Animais" />
+      </FiltersBox>
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}
