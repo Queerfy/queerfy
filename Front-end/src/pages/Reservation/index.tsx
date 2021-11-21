@@ -92,7 +92,7 @@ const Reservation: NextPage = () => {
 
     setTimeout(() => {
       router.push('/Chat');
-    }, 1000);
+    }, 2000);
   };
 
   useEffect(() => {
