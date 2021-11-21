@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../../../styles/theme';
 
 export const Container = styled.div`
   display: flex;
@@ -48,5 +49,48 @@ export const InputsSection = styled.div`
 
   @media screen and (min-width: 1024px) {
     margin: 8px 0;
+  }
+`;
+
+export const FormInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: ${(props) => (props.width ? props.width : '100%')};
+  height: auto;
+
+  > label {
+    align-self: flex-start;
+    color: ${theme.colors.red};
+    cursor: pointer;
+  }
+
+  > input {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid ${theme.assets.borderDark};
+    padding: 0 16px;
+    color: ${theme.assets.font};
+
+    &::placeholder {
+      color: ${theme.assets.borderDark};
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: ${(props) => (props.desktopWidth ? props.desktopWidth : '100%')};
   }
 `;

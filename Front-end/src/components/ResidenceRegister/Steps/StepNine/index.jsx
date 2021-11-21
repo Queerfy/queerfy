@@ -18,6 +18,8 @@ export const StepNine = () => {
   // filtro de data: string
   // latitude, longitude
 
+  console.log(residenceData);
+
   const handleSubmit = async () => {
     const defaultValues = {
       idUser: userApp.id,
