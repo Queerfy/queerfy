@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
             toast.success('Logado com sucesso!');
 
             setTimeout(() => {
-              router.push('/ResidenceList');
+              router.push('/');
             }, 2000);
           })
           .catch((err) => {
