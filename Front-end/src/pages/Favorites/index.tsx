@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { Navbar } from '../../components/Navbar';
 import { Footer } from '../../components/Footer';
@@ -13,7 +14,10 @@ import {
   CardsMain,
   CardHouse,
   ImageCard,
+  DescribeResidence,
 } from './style';
+
+import { IconBack } from '../Register/style';
 
 const Favorites: NextPage = () => {
   return (
@@ -27,21 +31,48 @@ const Favorites: NextPage = () => {
 
       <MainContainer>
         <HeaderBox>
+          <Link href="/">
+            <IconBack color="#a993f5" size={30} />
+          </Link>
           <TitleHeader>Minhas reservas favoritas</TitleHeader>
         </HeaderBox>
 
         <CardsMain>
           <CardHouse>
-            <ImageCard></ImageCard>
+            <ImageCard>
+              <img src="residence-vila.jpg" alt="Imagem da propriedade" />
+            </ImageCard>
+            <DescribeResidence>
+              <p>Casa - 1 quarto disponivel</p>
+              <p>O locador é Cristina Finzchz</p>
+            </DescribeResidence>
           </CardHouse>
           <CardHouse>
-            <ImageCard></ImageCard>
+            <ImageCard>
+              <img src="residence-vila.jpg" alt="Imagem da propriedade" />
+            </ImageCard>
+            <DescribeResidence>
+              <p>Casa - 1 quarto disponivel</p>
+              <p>O locador é Cristina Finzchz</p>
+            </DescribeResidence>
           </CardHouse>
           <CardHouse>
-            <ImageCard></ImageCard>
+            <ImageCard>
+              <img src="residence-vila.jpg" alt="Imagem da propriedade" />
+            </ImageCard>
+            <DescribeResidence>
+              <p>Casa - 1 quarto disponivel</p>
+              <p>O locador é Cristina Finzchz</p>
+            </DescribeResidence>
           </CardHouse>
           <CardHouse>
-            <ImageCard></ImageCard>
+            <ImageCard>
+              <img src="residence-vila.jpg" alt="Imagem da propriedade" />
+            </ImageCard>
+            <DescribeResidence>
+              <p>Casa - 1 quarto disponivel</p>
+              <p>O locador é Cristina Finzchz</p>
+            </DescribeResidence>
           </CardHouse>
         </CardsMain>
       </MainContainer>
