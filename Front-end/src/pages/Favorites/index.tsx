@@ -1,9 +1,9 @@
+import React from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 
 import { Navbar } from '../../components/Navbar';
-import { Footer } from '../../components/Footer';
 import { NavbarMobile } from '../../components/NavbarMobile';
 import { HeaderMobile } from '../../components/HeaderMobile';
 
@@ -18,6 +18,7 @@ import {
 } from './style';
 
 import { IconBack } from '../Register/style';
+import { Footer } from '../../components/Footer';
 
 const Favorites: NextPage = () => {
   return (
