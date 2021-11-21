@@ -69,7 +69,7 @@ const Chat: NextPage = () => {
         setMessages(messagesList);
       });
     }
-  }, [userJoinChat]);
+  }, []);
 
   //[X] Quando for clicar na notificação de nova mensagem, pegar o objeto que foi enviado e fazer o get com as informações que foram recebidas
   //Exemplo emailSender e emailReceiver

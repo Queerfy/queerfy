@@ -23,7 +23,7 @@ const Favorites: NextPage = () => {
           <Link href="/">
             <ArrowLeft />
           </Link>
-          <h1>Meus anúncios</h1>
+          <h1>Favoritos</h1>
         </HeaderContainer>
       </ContainerMain>
       <NavbarMobile />

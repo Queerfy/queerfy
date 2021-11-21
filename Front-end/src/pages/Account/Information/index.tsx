@@ -5,7 +5,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { theme } from '../../../styles/theme';
 import { ContainerMain, HeaderContainer } from '../styles';
-import { ContainerInfo, ContainerColumn, Container } from './styles';
+import { ContainerInfo, ContainerColumn, Container, InputsBox } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import {
   ArrowLeft,
