@@ -35,7 +35,7 @@ export const ResidenceForm = () => {
           {step === 6 && 'A seguir, vamos adicionar algumas fotos'}
           {step === 7 && `Agora vem a parte divertida. Vamos definir seu preço`}
         </h1>
-        {step === 8 && (
+        {step === 9 && (
           <p>
             <h1>Confira seu anúncio!</h1>
             <span>Este anúncio ficará visível aos hóspedes imediatamente.</span>

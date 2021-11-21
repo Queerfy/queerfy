@@ -39,6 +39,9 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+
   border: 2px solid ${theme.assets.font};
   border-radius: 10px;
   margin-top: 32px;
@@ -48,12 +51,47 @@ export const Content = styled.div`
     border-radius: 10px 10px 0px 0px;
   }
 
-  h1,
+  > h1,
   p {
     margin: 8px;
   }
 
   @media screen and (min-width: 1024px) {
     margin-top: 8px;
+  }
+`;
+
+export const Divider = styled.div`
+  align-self: center;
+
+  width: 95%;
+  height: 1px;
+  background-color: ${theme.assets.borderLight};
+  margin: 8px 0;
+`;
+
+export const Espefications = styled.div`
+  width: 100%;
+  height: auto;
+
+  padding: 0 8px;
+
+  > strong {
+    text-decoration: underline;
+  }
+
+  p {
+    display: flex;
+    align-self: center;
+
+    > strong {
+      margin-right: 8px;
+    }
+  }
+
+  img,
+  svg {
+    width: 20px;
+    margin-right: 8px;
   }
 `;

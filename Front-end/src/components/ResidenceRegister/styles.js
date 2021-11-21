@@ -24,7 +24,7 @@ export const BannerContainer = styled.aside`
   padding: 64px;
 
   width: 50vw;
-  height: 100vh;
+  min-height: 100vh;
   color: ${theme.assets.background};
 
   > h1 {
@@ -59,6 +59,6 @@ export const LogoContainer = styled.div`
 export const FormContainer = styled.div`
   @media screen and (min-width: 1024px) {
     width: 50vw;
-    height: 100vh;
+    min-height: 100vh;
   }
 `;

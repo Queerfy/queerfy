@@ -7,9 +7,10 @@ import { api } from '../../../../services/api';
 import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
 
-import { Container, Content } from './styles';
+import { Container, Content, Divider, Espefications } from './styles';
 import { theme } from '../../../../styles/theme';
 import { toast } from 'react-toastify';
+import { Coffee, Wifi } from 'react-feather';
 
 export const StepNine = () => {
   const { backStep, residenceData } = useResidence();
@@ -45,6 +46,24 @@ export const StepNine = () => {
         <img src="city-example.jpg" alt="casa" />
         <h1>{residenceData.name}</h1>
         <p>{residenceData.description}</p>
+        <Divider />
+        <Espefications>
+          <strong>Espeficações</strong>
+          <p><strong>Hóspedes: </strong>{residenceData.guestsQuantity}</p>
+          <p><strong>Quartos: </strong>{residenceData.roomQuantity}</p>
+          <p><strong>Camas: </strong>{residenceData.bedsQuantity}</p>
+          <p><strong>Banheiros: </strong>{residenceData.bathroomQuantity}</p>
+        </Espefications>
+        <Divider />
+        <Espefications>
+          <strong>Filtros:</strong>
+          {residenceData.haveWifi && (<p><Wifi size={20} /> Wi-Fi</p>)}
+          {residenceData.haveKitchen && (<p><Coffee size={20} /> Cozinha</p>)}
+          {residenceData.haveWifi && (<p><img src="bed.svg" alt="cama" /> Suíte</p>)}
+          {residenceData.haveWifi && (<p><img src="parking.svg" /> Garagem</p>)}
+          {residenceData.haveWifi && (<p><img src="cat-paw.svg" /> Permitido animais</p>)}
+        </Espefications>
+        <Divider />
         <p><strong>Valor diária: </strong>
           {residenceData.dailyPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
         </p>

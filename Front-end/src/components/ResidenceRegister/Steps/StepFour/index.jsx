@@ -10,9 +10,7 @@ import { GeneralButton } from '../../../GeneralButton';
 import { toast } from 'react-toastify';
 
 export const StepFour = () => {
-  const { advanceStep, backStep, handleStep, residenceData } = useResidence();
-
-  console.log(residenceData);
+  const { advanceStep, backStep, handleStep } = useResidence();
 
   const [guestCounter, setGuestCounter] = useState(0);
   const [roomCounter, setRoomCounter] = useState(0);
