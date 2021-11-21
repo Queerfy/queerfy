@@ -1,19 +1,14 @@
+import React from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
 import { Navbar } from '../../components/Navbar';
-import { Footer } from '../../components/Footer';
 import { NavbarMobile } from '../../components/NavbarMobile';
 import { HeaderMobile } from '../../components/HeaderMobile';
-
-import {
-  MainContainer,
-  HeaderBox,
-  TitleHeader,
-  CardsMain,
-  CardHouse,
-  ImageCard,
-} from './style';
+import { ContainerMain, HeaderContainer } from '../Account/styles';
+import { theme } from '../../styles/theme';
+import Link from 'next/link';
+import { ArrowLeft } from 'react-feather';
 
 const Favorites: NextPage = () => {
   return (
@@ -21,32 +16,16 @@ const Favorites: NextPage = () => {
       <Head>
         <title>Queerfy | Favoritos</title>
       </Head>
-
-      <Navbar />
-      <HeaderMobile />
-
-      <MainContainer>
-        <HeaderBox>
-          <TitleHeader>Minhas reservas favoritas</TitleHeader>
-        </HeaderBox>
-
-        <CardsMain>
-          <CardHouse>
-            <ImageCard></ImageCard>
-          </CardHouse>
-          <CardHouse>
-            <ImageCard></ImageCard>
-          </CardHouse>
-          <CardHouse>
-            <ImageCard></ImageCard>
-          </CardHouse>
-          <CardHouse>
-            <ImageCard></ImageCard>
-          </CardHouse>
-        </CardsMain>
-      </MainContainer>
-
-      <Footer />
+      <Navbar accountNavbar />
+      <ContainerMain>
+        <HeaderMobile />
+        <HeaderContainer title={theme.colors.purple} text={theme.colors.purple}>
+          <Link href="/">
+            <ArrowLeft />
+          </Link>
+          <h1>Favoritos</h1>
+        </HeaderContainer>
+      </ContainerMain>
       <NavbarMobile />
     </>
   );

@@ -4,14 +4,13 @@ import Switch from 'react-switch';
 import Link from 'next/link';
 import { NextPage } from 'next';
 import Head from 'next/head';
-
-import { ContainerMain, HeaderContainer } from '../styles';
 import { theme } from '../../../styles/theme';
 import { ContainerLeft, ContainerNotification, ContainerRow } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import { ArrowLeft, Mail, Bell, MessageSquare } from 'react-feather';
 import { NavbarMobile } from '../../../components/NavbarMobile';
 import { HeaderMobile } from '../../../components/HeaderMobile';
+import { ContainerMain, HeaderContainer } from '../Information/styles';
 
 const NotificationPage: NextPage = () => {
   return (
@@ -23,7 +22,7 @@ const NotificationPage: NextPage = () => {
       <ContainerMain>
         <HeaderMobile />
         <HeaderContainer title={theme.colors.blue} text={theme.colors.blue}>
-          <Link href="/Account/Main">
+          <Link href="/">
             <ArrowLeft />
           </Link>
           <h1>Notificações</h1>
