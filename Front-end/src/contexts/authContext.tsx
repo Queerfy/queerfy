@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
     const pathName = router.pathname;
 
-    const paths = ['/', '/Login', '/Register'];
+    const paths = ['/Login', '/Register'];
 
     if (!paths.includes(pathName)) {
       if (storagedUser) {
@@ -131,10 +131,8 @@ export const AuthProvider = ({ children }) => {
         admin: userApp.admin,
       };
       socket.emit('entry_sistem', userSender);
-      console.log('Chamou o entry_sistem');
       setTimeout(() => {
         socket.emit('check_messages', userSender, (messagesList) => {
-          console.log('Chamou o check_messages');
           if (messagesList.length > 0) {
             return toast.success(
               `Você tem ${messagesList.length} mensagem não lidas`
@@ -147,7 +145,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     socket.on('user_receiver_message', (message) => {
-      console.log('Chamou o user_receiver_message');
       const { text, name, userSender, userReceiver } = message;
       setMessageReceiver(message);
       const pathName = router.pathname;
@@ -171,28 +168,28 @@ export const AuthProvider = ({ children }) => {
     });
   }, [messagesNotification]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     if (userApp) {
-      const userSender = {
-      name: userApp.name,
-      email: userApp.email,
-      rg: userApp.rg,
-      cpf: userApp.cpf,
-      password: userApp.password,
-      perfilImg: userApp.perfilImg,
-      descUser: userApp.descUser,
-      genre: userApp.genre,
-      likes: userApp.likes,
-      birthDate: userApp.birthDate,
-      admin: userApp.admin,
-    };
-      socket.emit('list_proposals', userSender, (messagesProposals) => {
+      const userReceiver = {
+        name: userApp.name,
+        email: userApp.email,
+        rg: userApp.rg,
+        cpf: userApp.cpf,
+        password: userApp.password,
+        perfilImg: userApp.perfilImg,
+        descUser: userApp.descUser,
+        genre: userApp.genre,
+        likes: userApp.likes,
+        birthDate: userApp.birthDate,
+        admin: userApp.admin,
+      };
+      socket.emit('list_proposals', userReceiver, (messagesProposals) => {
         if (messagesProposals.length > 0) {
           console.log(messagesProposals);
         }
       });
     }
-  }, [userApp]); */
+  }, [userApp]);
 
   return (
     <AuthContext.Provider

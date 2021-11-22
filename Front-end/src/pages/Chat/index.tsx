@@ -56,7 +56,6 @@ const Chat: NextPage = () => {
         acceptProposal: false,
       };
 
-      console.log('Chamou send_message');
       socket.emit('send_message', paramsMessage);
 
       messageRef.current.value = '';
@@ -70,7 +69,6 @@ const Chat: NextPage = () => {
     };
 
     socket.emit('list_messages', params, (messagesList) => {
-      console.log('Chamou primeiro list_messages');
       setMessages(messagesList);
     });
   }, []);
@@ -86,11 +84,9 @@ const Chat: NextPage = () => {
         userReceiver,
       };
 
-      console.log('Chamou update_messages');
-      socket.emit('update_messages', params.emailSender);
+      /* socket.emit('update_messages', params.emailSender); */
 
       socket.emit('list_messages', params, (messagesList) => {
-        console.log('Chamou list_messages');
         setMessages(messagesList);
       });
     }
