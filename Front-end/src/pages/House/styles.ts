@@ -45,13 +45,11 @@ export const BoxContents = styled.div`
 
   @media screen and (min-width: 1024px) {
     display: flex;
-    align-items: center;
-    justify-content: center;
   }
 `;
 
 export const BoxInformations = styled.div`
-  width: 100%;
+  min-width: 50%;
 
   @media screen and (min-width: 1024px) {
     display: flex;
@@ -126,7 +124,7 @@ export const Description = styled.div`
 `;
 
 export const ChangeBox = styled.div`
-  width: 100%;
+  min-width: 50%;
 
   display: flex;
   flex-direction: column;
