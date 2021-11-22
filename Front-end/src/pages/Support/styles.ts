@@ -43,6 +43,7 @@ export const InstagramButton = styled.button`
 
   font-size: 16px;
   font-weight: bold;
+  cursor: pointer;
 
   display: flex;
   align-items: center;
