@@ -36,9 +36,11 @@ import {
   LabelInput,
   BoxConfirm,
   ButtonConfirm,
+  Likes,
+  Details,
 } from './styles';
 
-import { IHouseData, IUserData, IConfirmReservation } from '../../interfaces';
+import { IHouseData, IUserData } from '../../interfaces';
 
 import { api } from '../../services/api';
 import { useRouter } from 'next/router';
@@ -144,7 +146,13 @@ const Reservation: NextPage = () => {
             </BoxImageHouse>
             <InformationsHouse>
               <h3>{house?.name}</h3>
-              <span>Alphaville - SP</span>
+              <Details>
+                <span>Alphaville - SP</span>
+                <Likes>
+                  <img src="../colorful-heart.svg" alt="Coração preenchido" />
+                  <span>246</span>
+                </Likes>
+              </Details>
             </InformationsHouse>
           </House>
         </BorderHouse>

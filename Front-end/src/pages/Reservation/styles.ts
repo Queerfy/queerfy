@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
 export const Header = styled.div`
-  width: 70%;
+  width: 100%;
   margin-top: 40px;
 
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
 
   h1 {
     color: ${theme.colors.red};
@@ -15,7 +14,7 @@ export const Header = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-    width: 12%;
+    width: 100%;
   }
 `;
 
@@ -46,6 +45,10 @@ export const BorderHouse = styled.div`
     rgba(169, 147, 245, 1) 84%,
     rgba(242, 107, 156, 1) 100%
   );
+
+  @media screen and (min-width: 1024px) {
+    width: 35%;
+  }
 `;
 
 export const House = styled.div`
@@ -81,6 +84,32 @@ export const InformationsHouse = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  h3 {
+    font-size: 16px;
+  }
+`;
+
+export const Details = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Likes = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    height: 10px;
+  }
+
+  span {
+    color: ${theme.colors.red};
+    margin-left: 10px;
+    font-weight: bold;
+  }
 `;
 
 export const IconArrow = styled.div`
@@ -104,6 +133,10 @@ export const InformationsReservation = styled.div`
     color: ${theme.colors.orange};
     font-size: 24px;
     margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 40%;
   }
 `;
 
@@ -153,6 +186,10 @@ export const Payments = styled.div`
     font-size: 24px;
     margin-bottom: 10px;
   }
+
+  @media screen and (min-width: 1024px) {
+    width: 40%;
+  }
 `;
 
 export const TitleCard = styled.div`
@@ -189,6 +226,8 @@ export const Input = styled.input`
 export const AdditionalBox = styled.div`
   width: 100%;
 
+  margin-bottom: 10px;
+
   display: flex;
   justify-content: space-between;
 
@@ -206,6 +245,10 @@ export const OwnerData = styled.div`
     color: ${theme.colors.purple};
     font-size: 24px;
     margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 40%;
   }
 `;
 
@@ -226,6 +269,10 @@ export const BoxConfirm = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (min-width: 1024px) {
+    width: 40%;
+  }
 `;
 
 export const ButtonConfirm = styled.button`
