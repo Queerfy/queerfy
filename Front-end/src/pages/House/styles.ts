@@ -365,6 +365,6 @@ export const Email = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-     max-width: 100%;
-    }
+    max-width: 100%;
+  }
 `;
