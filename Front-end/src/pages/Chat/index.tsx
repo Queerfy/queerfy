@@ -5,6 +5,8 @@ import io from 'socket.io-client';
 
 import { useAuth } from '../../hooks/useAuth';
 
+import { toast } from 'react-toastify';
+
 import {
   Main,
   MainContainer,
@@ -119,6 +121,17 @@ const Chat: NextPage = () => {
     messageRef.current.value = '';
   };
 
+  const submitProposal = (idMessage, type) => {
+    const params = {
+      emailSender: userJoinChat.userReceiver.email,
+      emailReceiver: userJoinChat.userSender.email,
+      acceptProposal: type == 'accept' ? true : false,
+      idMessage,
+    };
+    socket.emit('handle_proposal', params);
+    return toast.success('Resposta Enviada com Sucesso!');
+  };
+
   return (
     <Main>
       <MainContainer>
@@ -126,7 +139,7 @@ const Chat: NextPage = () => {
         <ContainerChat>
           {messages.map((item, index) => (
             <>
-              {item.proposal != true ? (
+              {item.proposal != true && !item.acceptProposal ? (
                 <MessageUser
                   userLoged={item.emailSender == userJoinChat.userSender.email}
                 >
@@ -148,8 +161,16 @@ const Chat: NextPage = () => {
                 </MessageUser>
               ) : (
                 <>
-                  <MessageUser userLoged>
-                    <ProposalContainer userLoged>
+                  <MessageUser
+                    userLoged={
+                      item.emailSender == userJoinChat.userSender.email
+                    }
+                  >
+                    <ProposalContainer
+                      userLoged={
+                        item.emailSender == userJoinChat.userSender.email
+                      }
+                    >
                       <ProposalBox>
                         <MessageBox>{item.message}</MessageBox>
                         <ContainerButtonsProposal>
@@ -161,10 +182,20 @@ const Chat: NextPage = () => {
                             </ButtonLoadindProposal>
                           ) : (
                             <>
-                              <ButtonProposal bgColor={theme.colors.yellow}>
+                              <ButtonProposal
+                                bgColor={theme.colors.yellow}
+                                onClick={() =>
+                                  submitProposal(item.id, 'accept')
+                                }
+                              >
                                 Aceitar
                               </ButtonProposal>
-                              <ButtonProposal bgColor={theme.colors.red}>
+                              <ButtonProposal
+                                bgColor={theme.colors.red}
+                                onClick={() =>
+                                  submitProposal(item.id, 'reject')
+                                }
+                              >
                                 Rejeitar
                               </ButtonProposal>
                             </>
