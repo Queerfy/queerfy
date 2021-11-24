@@ -170,6 +170,7 @@ export const AuthProvider = ({ children }) => {
       }
     });
 
+    //Implementar a notificação de proposta corretamente
     socket.on('response_proposal', (params) => {
       const { acceptProposal } = params;
 

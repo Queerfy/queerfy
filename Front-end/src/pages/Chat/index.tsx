@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import dayjs from 'dayjs';
 import io from 'socket.io-client';
 
@@ -44,8 +45,11 @@ const Chat: NextPage = () => {
   useEffect(() => {
     const storagedUsersJoin = JSON.parse(localStorage.getItem('usersJoin'));
     if (storagedUsersJoin.proposal && storagedUsersJoin.proposal !== false) {
+      const { idHouse, idOwer, total, totalDays, checkIn, checkOut } =
+        storagedUsersJoin.confirmReservation;
+
       messageRef.current.value = `
-        Olá ${storagedUsersJoin.userReceiver?.name}, estou interessado em uma das suas residências (${storagedUsersJoin.house.name}). Encaminhei uma proposta com os dias ${storagedUsersJoin.confirmReservation.checkIn}/${storagedUsersJoin.confirmReservation.checkOut}, gostaria de me hospedar em sua propriedade, está disponível?
+        Olá ${storagedUsersJoin.userReceiver?.name}, estou interessado em uma das suas residências (${storagedUsersJoin.house.name}). Encaminhei uma proposta com os dias ${checkIn}/${checkOut}, gostaria de me hospedar em sua propriedade, está disponível?
       `;
 
       const paramsMessage = {
@@ -56,6 +60,12 @@ const Chat: NextPage = () => {
         userReceiver: storagedUsersJoin.userReceiver,
         proposal: true,
         acceptProposal: false,
+        idHouse,
+        idOwer,
+        total,
+        totalDays,
+        checkIn,
+        checkOut,
       };
 
       socket.emit('send_message', paramsMessage);
@@ -105,6 +115,12 @@ const Chat: NextPage = () => {
       userReceiver: userJoinChat.userReceiver,
       proposal: false,
       acceptProposal: null,
+      idHouse: null,
+      idOwer: null,
+      total: null,
+      totalDays: null,
+      checkIn: null,
+      checkOut: null,
     };
 
     socket.emit('send_message', params);
@@ -128,96 +144,106 @@ const Chat: NextPage = () => {
       acceptProposal: type == 'accept' ? true : false,
       idMessage,
     };
+    //Post de reserva da pagina
     socket.emit('handle_proposal', params);
     return toast.success('Resposta Enviada com Sucesso!');
   };
 
   return (
-    <Main>
-      <MainContainer>
-        <TitleChat>Mensagens</TitleChat>
-        <ContainerChat>
-          {messages.map((item, index) => (
-            <>
-              {item.proposal != true && !item.acceptProposal ? (
-                <MessageUser
-                  userLoged={item.emailSender == userJoinChat.userSender.email}
-                >
-                  <ContainerMessage
-                    userLoged={
-                      item.emailSender == userJoinChat.userSender.email
-                    }
-                  >
-                    <UsernameLoged
-                      userLoged={
-                        item.emailSender == userJoinChat.userSender.email
-                      }
-                    >
-                      {item.nameUserSender}
-                    </UsernameLoged>
-                    <MessageBox>{item.message}</MessageBox>
-                    <DateMessage>{item.createdAt}</DateMessage>
-                  </ContainerMessage>
-                </MessageUser>
-              ) : (
-                <>
+    <>
+      <Head>
+        <title>Queerfy | Chat</title>
+      </Head>
+
+      <Main>
+        <MainContainer>
+          <TitleChat>Mensagens</TitleChat>
+          <ContainerChat>
+            {messages.map((item, index) => (
+              <>
+                {item.proposal != true && !item.acceptProposal ? (
                   <MessageUser
                     userLoged={
                       item.emailSender == userJoinChat.userSender.email
                     }
                   >
-                    <ProposalContainer
+                    <ContainerMessage
                       userLoged={
                         item.emailSender == userJoinChat.userSender.email
                       }
                     >
-                      <ProposalBox>
-                        <MessageBox>{item.message}</MessageBox>
-                        <ContainerButtonsProposal>
-                          {item.emailSender == userJoinChat.userSender.email ? (
-                            <ButtonLoadindProposal
-                              bgColor={theme.colors.orange}
-                            >
-                              Proposta Enviada
-                            </ButtonLoadindProposal>
-                          ) : (
-                            <>
-                              <ButtonProposal
-                                bgColor={theme.colors.yellow}
-                                onClick={() =>
-                                  submitProposal(item.id, 'accept')
-                                }
-                              >
-                                Aceitar
-                              </ButtonProposal>
-                              <ButtonProposal
-                                bgColor={theme.colors.red}
-                                onClick={() =>
-                                  submitProposal(item.id, 'reject')
-                                }
-                              >
-                                Rejeitar
-                              </ButtonProposal>
-                            </>
-                          )}
-                        </ContainerButtonsProposal>
-                      </ProposalBox>
-                      <ProposalDate>
-                        <DateMessage>{item.createdAt}</DateMessage>
-                      </ProposalDate>
-                    </ProposalContainer>
+                      <UsernameLoged
+                        userLoged={
+                          item.emailSender == userJoinChat.userSender.email
+                        }
+                      >
+                        {item.nameUserSender}
+                      </UsernameLoged>
+                      <MessageBox>{item.message}</MessageBox>
+                      <DateMessage>{item.createdAt}</DateMessage>
+                    </ContainerMessage>
                   </MessageUser>
-                </>
-              )}
-            </>
-          ))}
-        </ContainerChat>
-        <FooterChat>
-          <FooterInput ref={messageRef} />
-          <ButtonSendMessage onClick={handleMessage}></ButtonSendMessage>
-        </FooterChat>
-      </MainContainer>
-    </Main>
+                ) : (
+                  <>
+                    <MessageUser
+                      userLoged={
+                        item.emailSender == userJoinChat.userSender.email
+                      }
+                    >
+                      <ProposalContainer
+                        userLoged={
+                          item.emailSender == userJoinChat.userSender.email
+                        }
+                      >
+                        <ProposalBox>
+                          <MessageBox>{item.message}</MessageBox>
+                          <ContainerButtonsProposal>
+                            {item.emailSender ==
+                            userJoinChat.userSender.email ? (
+                              <ButtonLoadindProposal
+                                bgColor={theme.colors.orange}
+                              >
+                                Proposta Enviada
+                              </ButtonLoadindProposal>
+                            ) : (
+                              <>
+                                <ButtonProposal
+                                  bgColor={theme.colors.yellow}
+                                  onClick={() =>
+                                    submitProposal(item.id, 'accept')
+                                  }
+                                >
+                                  Aceitar
+                                </ButtonProposal>
+                                <ButtonProposal
+                                  bgColor={theme.colors.red}
+                                  onClick={() =>
+                                    submitProposal(item.id, 'reject')
+                                  }
+                                >
+                                  Rejeitar
+                                </ButtonProposal>
+                              </>
+                            )}
+                          </ContainerButtonsProposal>
+                        </ProposalBox>
+                        <ProposalDate>
+                          <DateMessage>{item.createdAt}</DateMessage>
+                        </ProposalDate>
+                      </ProposalContainer>
+                    </MessageUser>
+                  </>
+                )}
+              </>
+            ))}
+          </ContainerChat>
+          <FooterChat>
+            <FooterInput ref={messageRef} />
+            <ButtonSendMessage onClick={handleMessage}></ButtonSendMessage>
+          </FooterChat>
+        </MainContainer>
+      </Main>
+    </>
   );
 };
 
