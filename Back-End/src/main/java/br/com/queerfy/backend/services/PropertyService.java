@@ -29,7 +29,7 @@ public class PropertyService {
     public PropertyDTO create(PropertyDTO propertyDTO) throws UserAlreadyExistsException {
         Optional<User> userOptional = Optional.of(userRepository.getById(propertyDTO.getIdUser()));
 
-        if(userOptional.isPresent()) {
+        if (userOptional.isPresent()) {
             User user = userOptional.get();
             Property property = new Property(propertyDTO);
             property.setUser(user);
@@ -40,25 +40,26 @@ public class PropertyService {
     }
 
     @Transactional
-    public List<PropertyDTO> getAllProperties(){
+    public List<PropertyDTO> getAllProperties() {
         List<PropertyDTO> list = propertyRepository.findAll().stream()
                 .map(property -> new PropertyDTO(property)).collect(Collectors.toList());
         return list;
     }
+
     @Transactional
     public PropertyDTO getPropertyById(Integer id) throws UserNotFoundException {
-        try{
+        try {
             Property property = propertyRepository.findById(id).get();
             return new PropertyDTO(property);
-        }catch(EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             throw new UserNotFoundException();
         }
     }
+
     @Transactional
     public PropertyDTO updateProperty(Integer id, PropertyDTO property) throws UserNotFoundException {
         Optional<Property> entity = propertyRepository.findById(id);
-        if (entity.isPresent()){
-
+        if (entity.isPresent()) {
             Property prop = entity.get();
             prop.setState(property.getState());
             prop.setUf(property.getUf());

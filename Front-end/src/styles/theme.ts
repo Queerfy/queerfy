@@ -15,6 +15,11 @@ export const theme = {
     borderLight: '#E0E0E0',
     borderDark: '#C4C4C4',
   },
+  gradients: {
+    red: 'linear-gradient(180deg, #F26B9C 0%, #F15356 80.21%)',
+    rainbow:
+      'linear-gradient(270deg, #F15356 2.68%, #F0BF5A 15.4%, #FDE980 31.84%, #85DB6B 48.27%, #439EFA 64.71%, #A993F5 83.26%, #F26B9C 101.82%)',
+  },
 };
 
 export type Theme = typeof theme;

@@ -2,9 +2,18 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
-export const Container = styled.section`
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   width: 100%;
   height: auto;
+`;
+
+export const Container = styled.section`
+  width: 100%;
+  max-width: 1366px;
 
   > h1 {
     color: ${theme.colors.blue};
