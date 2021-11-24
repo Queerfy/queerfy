@@ -45,13 +45,11 @@ export const BoxContents = styled.div`
 
   @media screen and (min-width: 1024px) {
     display: flex;
-    align-items: center;
-    justify-content: center;
   }
 `;
 
 export const BoxInformations = styled.div`
-  width: 100%;
+  min-width: 50%;
 
   @media screen and (min-width: 1024px) {
     display: flex;
@@ -126,7 +124,7 @@ export const Description = styled.div`
 `;
 
 export const ChangeBox = styled.div`
-  width: 100%;
+  min-width: 50%;
 
   display: flex;
   flex-direction: column;
@@ -144,7 +142,7 @@ export const BoxReservation = styled.div`
 
 export const BorderRainbow = styled.div`
   width: 100%;
-  height: 240px;
+  height: 220px;
 
   display: flex;
   align-items: center;
@@ -167,6 +165,7 @@ export const BorderRainbow = styled.div`
 export const Reservation = styled.div`
   width: 99%;
   height: 98%;
+  padding: 10px;
 
   border-radius: 10px;
 
@@ -176,7 +175,8 @@ export const Reservation = styled.div`
 
 export const HeaderReservation = styled.div`
   width: 100%;
-  padding: 20px 10px;
+
+  margin-bottom: 15px;
 
   display: flex;
   align-items: center;
@@ -317,6 +317,7 @@ export const BorderHost = styled.div`
 export const Host = styled.div`
   width: 99%;
   height: 98%;
+  padding: 10px;
 
   border-radius: 10px;
 
@@ -325,7 +326,8 @@ export const Host = styled.div`
 
 export const ProfileHost = styled.div`
   width: 100%;
-  padding: 15px 10px;
+
+  margin-bottom: 15px;
 
   display: flex;
   align-items: center;
@@ -336,7 +338,7 @@ export const ProfileHost = styled.div`
     height: 65px;
     border-radius: 50%;
 
-    @media screen and (min-width: 1240px) {
+    @media screen and (min-width: 1024px) {
       width: 65px;
       height: 65px;
     }
@@ -350,6 +352,8 @@ export const ProfileHost = styled.div`
 export const Email = styled.div`
   width: 100%;
 
+  margin-bottom: 15px;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -358,5 +362,9 @@ export const Email = styled.div`
     font-size: 14px;
     margin-left: 6px;
     text-align: center;
+  }
+
+  @media screen and (min-width: 1024px) {
+    max-width: 100%;
   }
 `;
