@@ -54,7 +54,9 @@ export const Navbar = ({ accountNavbar }: NavbarProps) => {
               />
             </IconBox>
           </InputBox>
-          <span>Sobre nós</span>
+          <Link href="/AboutUs">
+            <span>Sobre nós</span>
+          </Link>
           <Link href="/Support">
             <span>Suporte</span>
           </Link>
