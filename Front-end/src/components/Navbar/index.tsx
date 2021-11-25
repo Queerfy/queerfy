@@ -15,7 +15,7 @@ type NavbarProps = {
 export const Navbar = ({ accountNavbar }: NavbarProps) => {
   return (
     <Container>
-      <Link href="/" >
+      <Link href="/">
         <img src="../logo.svg" alt="logo" style={{ cursor: 'pointer' }} />
       </Link>
       {!accountNavbar && (
@@ -26,7 +26,9 @@ export const Navbar = ({ accountNavbar }: NavbarProps) => {
               <Search />
             </IconBox>
           </InputBox>
-          <span>Sobre nós</span>
+          <Link href="/AboutUs">
+            <span>Sobre nós</span>
+          </Link>
           <Link href="/Support">
             <span>Suporte</span>
           </Link>
