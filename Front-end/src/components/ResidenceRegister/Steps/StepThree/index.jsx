@@ -70,7 +70,7 @@ export const StepThree = () => {
         />
       </FormInput>
       <InputsSection>
-        <FormInput width="75%" desktopWidth="85% ">
+        <FormInput width="75%" desktopWidth="83% ">
           <label htmlFor="inputCidade">Cidade</label>
           <input
             id="inputCidade"
@@ -79,7 +79,7 @@ export const StepThree = () => {
             ref={cityRef}
           />
         </FormInput>
-        <FormInput width="20%" desktopWidth="10%">
+        <FormInput width="20%" desktopWidth="12%">
           <label htmlFor="inputUf">UF</label>
           <input
             id="inputUf"

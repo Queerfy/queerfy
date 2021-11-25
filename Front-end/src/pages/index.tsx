@@ -62,6 +62,7 @@ const IndexPage: NextPage = () => {
             description="Ganhe dinheiro, tenha novas experiências e ajude a comunidade"
             buttonLabel="Hospedar"
             buttonColor={theme.colors.red}
+            pageLink="/ResidenceRegister"
           />
         </HostBanner>
         <Map></Map>
@@ -73,6 +74,7 @@ const IndexPage: NextPage = () => {
             description="Entre em contato conosco"
             buttonLabel="Suporte"
             buttonColor={theme.colors.pink}
+            pageLink="/Support"
           />
         </PinkBunners>
         <Nearby>

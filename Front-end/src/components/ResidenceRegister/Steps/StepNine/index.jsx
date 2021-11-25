@@ -16,9 +16,6 @@ export const StepNine = () => {
   const { backStep, residenceData } = useResidence();
   const { userApp } = useAuth();
 
-  // filtro de data: string
-  // latitude, longitude
-
   console.log(residenceData);
 
   const handleSubmit = async () => {
@@ -59,9 +56,9 @@ export const StepNine = () => {
           <strong>Filtros:</strong>
           {residenceData.haveWifi && (<p><Wifi size={20} /> Wi-Fi</p>)}
           {residenceData.haveKitchen && (<p><Coffee size={20} /> Cozinha</p>)}
-          {residenceData.haveWifi && (<p><img src="bed.svg" alt="cama" /> Suíte</p>)}
-          {residenceData.haveWifi && (<p><img src="parking.svg" /> Garagem</p>)}
-          {residenceData.haveWifi && (<p><img src="cat-paw.svg" /> Permitido animais</p>)}
+          {residenceData.haveSuite && (<p><img src="bed.svg" alt="cama" /> Suíte</p>)}
+          {residenceData.haveGarage && (<p><img src="parking.svg" /> Garagem</p>)}
+          {residenceData.haveAnimals && (<p><img src="cat-paw.svg" /> Permitido animais</p>)}
         </Espefications>
         <Divider />
         <p><strong>Valor diária: </strong>

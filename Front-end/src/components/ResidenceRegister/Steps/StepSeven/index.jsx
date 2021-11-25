@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useResidence } from '../../../../hooks/residence';
 
 import { theme } from '../../../../styles/theme';
@@ -10,7 +10,7 @@ import { Image } from 'react-feather';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 export const StepSeven = () => {
-  const { advanceStep, backStep } = useResidence();
+  const { advanceStep, backStep, setImagesUser } = useResidence();
 
   return (
     <Container>
@@ -21,7 +21,14 @@ export const StepSeven = () => {
           <h1>Vamos adicionar algumas fotos!</h1>
           <p>Adicione pelo menos 5 fotos</p>
         </label>
-        <input type="file" name="arquivo" id="arquivo" />
+        <input
+          type="file"
+          name="arquivo"
+          id="arquivo"
+          multiple="multiple"
+          accept=".jpg,.png"
+          onChange={e => setImagesUser(e.target.files)}
+        />
       </InputBox>
       <GeneralButton
         text="Continuar"
