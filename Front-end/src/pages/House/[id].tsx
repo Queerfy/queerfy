@@ -359,7 +359,7 @@ const House: NextPage = () => {
                   <ButtonInteraction
                     style={{ width: '60%' }}
                     onClick={handleChat}
-                    /* disabled={house?.idUser != userApp?.id} */
+                  /* disabled={house?.idUser != userApp?.id} */
                   >
                     Conversar
                   </ButtonInteraction>

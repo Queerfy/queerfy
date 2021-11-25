@@ -18,7 +18,6 @@ import {
   BorderHouse,
   BoxImageHouse,
   House,
-  InformationsHouse,
   InformationsReservation,
   IconArrow,
   Date,
@@ -36,6 +35,7 @@ import {
   LabelInput,
   BoxConfirm,
   ButtonConfirm,
+  HeaderInformations,
 } from './styles';
 
 import { IHouseData, IUserData, IConfirmReservation } from '../../interfaces';
@@ -134,49 +134,49 @@ const Reservation: NextPage = () => {
         <h1>Confirmar reserva</h1>
       </Header>
 
-      <BoxHouse>
-        <BorderHouse>
-          <House>
-            <BoxImageHouse>
+      <HeaderInformations>
+        <InformationsReservation>
+          <h1>Informações</h1>
+          <Date>
+            <h2>Datas</h2>
+            <p>
+              {moment(confirmReservation?.checkIn).locale('pt-br').format('ll')}.
+              -{' '}
+              {moment(confirmReservation?.checkOut).locale('pt-br').format('ll')}.
+            </p>
+          </Date>
+          <BoxPrice>
+            <h2>Preços</h2>
+            <DailyValue>
+              <p>
+                R${house?.dailyPrice.toFixed(2)} x {confirmReservation?.totalDays}{' '}
+                diárias
+              </p>
+              <p>R${confirmReservation?.total.toFixed(2)} </p>
+            </DailyValue>
+            <AdditionalValues>
+              <p>Taxa de serviço</p>
+              <p>R$0,00</p>
+            </AdditionalValues>
+            <TotalValue>
+              <h2>Total</h2>
+              <b>{confirmReservation?.total.toFixed(2)}</b>
+            </TotalValue>
+          </BoxPrice>
+        </InformationsReservation>
+
+        <BoxHouse>
+          <BorderHouse>
+            <House>
               <img src="../img-casa.svg" alt="Imagem da propriedade" />
-            </BoxImageHouse>
-            <InformationsHouse>
+
               <h3>{house?.name}</h3>
               <span>Alphaville - SP</span>
-            </InformationsHouse>
-          </House>
-        </BorderHouse>
-      </BoxHouse>
+            </House>
+          </BorderHouse>
+        </BoxHouse>
 
-      <InformationsReservation>
-        <h1>Informações</h1>
-        <Date>
-          <h2>Datas</h2>
-          <p>
-            {moment(confirmReservation?.checkIn).locale('pt-br').format('ll')}.
-            -{' '}
-            {moment(confirmReservation?.checkOut).locale('pt-br').format('ll')}.
-          </p>
-        </Date>
-        <BoxPrice>
-          <h2>Preços</h2>
-          <DailyValue>
-            <p>
-              R${house?.dailyPrice.toFixed(2)} x {confirmReservation?.totalDays}{' '}
-              diárias
-            </p>
-            <p>R${confirmReservation?.total.toFixed(2)} </p>
-          </DailyValue>
-          <AdditionalValues>
-            <p>Taxa de serviço</p>
-            <p>R$0,00</p>
-          </AdditionalValues>
-          <TotalValue>
-            <h2>Total</h2>
-            <b>{confirmReservation?.total.toFixed(2)}</b>
-          </TotalValue>
-        </BoxPrice>
-      </InformationsReservation>
+      </HeaderInformations>
 
       <Payments>
         <h1>Pagamentos</h1>

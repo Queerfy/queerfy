@@ -134,10 +134,6 @@ export const ChangeBox = styled.div`
 export const BoxReservation = styled.div`
   width: 100%;
   padding: 8px 0px 45px 0px;
-
-  @media screen and (min-width: 1024px) {
-    width: 50%;
-  }
 `;
 
 export const BorderRainbow = styled.div`
@@ -226,6 +222,7 @@ export const CheckDate = styled.div`
 export const InputDate = styled.input`
   padding: 6px 6px;
 
+  font-size: 14px;
   border-radius: 10px;
   border: 2px solid ${theme.assets.borderLight};
 `;
@@ -286,10 +283,6 @@ export const TotalValue = styled.div`
 export const BoxHost = styled.div`
   width: 100%;
   padding: 8px 0px 8px 0px;
-
-  @media screen and (min-width: 1024px) {
-    width: 60%;
-  }
 `;
 
 export const BorderHost = styled.div`
