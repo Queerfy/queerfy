@@ -54,12 +54,14 @@ const ResidenceList: NextPage = () => {
             {residences.map((item) => {
               return (
                 item.likes > 1000 && (
-                  <Residence
-                    key={item.id}
-                    name={item.name}
-                    description={item.description}
-                    trend={true}
-                  />
+                  <a onClick={() => router.push(`/House/${item.id}`)}>
+                    <Residence
+                      key={item.id}
+                      name={item.name}
+                      description={item.description}
+                      trend={true}
+                    />
+                  </a>
                 )
               );
             })}
@@ -94,11 +96,13 @@ const ResidenceList: NextPage = () => {
           <h1>Outros aluguéis excelentes na área selecionada</h1>
           <RoomRow>
             {residences.map((item) => (
-              <Residence
-                key={item.id}
-                name={item.name}
-                description={item.description}
-              />
+              <a onClick={() => router.push(`/House/${item.id}`)}>
+                <Residence
+                  key={item.id}
+                  name={item.name}
+                  description={item.description}
+                />
+              </a>
             ))}
           </RoomRow>
         </Container>

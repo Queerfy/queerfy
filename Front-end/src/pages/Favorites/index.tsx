@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -20,7 +20,32 @@ import {
 import { IconBack } from '../Register/style';
 import { Footer } from '../../components/Footer';
 
+import { useRouter } from 'next/router';
+
+import { api } from '../../services/api';
+
+import { useAuth } from '../../hooks/useAuth';
+import { IUserData } from '../../interfaces';
+
 const Favorites: NextPage = () => {
+  const { userApp } = useAuth();
+
+  const [favoritesUser, setFavoritesUser] = useState([]);
+  const [owner, setOwner] = useState<IUserData>();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    api
+      .get(`/users/${userApp.id}`)
+      .then((response) => {
+        setFavoritesUser(response.data.favorite);
+      })
+      .catch((err) => {
+        router.push('/ResidenceList');
+      });
+  }, []);
+
   return (
     <>
       <Head>
@@ -39,42 +64,17 @@ const Favorites: NextPage = () => {
         </HeaderBox>
 
         <CardsMain>
-          <CardHouse>
-            <ImageCard>
-              <img src="residence-vila.jpg" alt="Imagem da propriedade" />
-            </ImageCard>
-            <DescribeResidence>
-              <p>Casa - 1 quarto disponivel</p>
-              <p>O locador é Cristina Finzchz</p>
-            </DescribeResidence>
-          </CardHouse>
-          <CardHouse>
-            <ImageCard>
-              <img src="residence-vila.jpg" alt="Imagem da propriedade" />
-            </ImageCard>
-            <DescribeResidence>
-              <p>Casa - 1 quarto disponivel</p>
-              <p>O locador é Cristina Finzchz</p>
-            </DescribeResidence>
-          </CardHouse>
-          <CardHouse>
-            <ImageCard>
-              <img src="residence-vila.jpg" alt="Imagem da propriedade" />
-            </ImageCard>
-            <DescribeResidence>
-              <p>Casa - 1 quarto disponivel</p>
-              <p>O locador é Cristina Finzchz</p>
-            </DescribeResidence>
-          </CardHouse>
-          <CardHouse>
-            <ImageCard>
-              <img src="residence-vila.jpg" alt="Imagem da propriedade" />
-            </ImageCard>
-            <DescribeResidence>
-              <p>Casa - 1 quarto disponivel</p>
-              <p>O locador é Cristina Finzchz</p>
-            </DescribeResidence>
-          </CardHouse>
+          {favoritesUser.map((item) => (
+            <CardHouse>
+              <ImageCard>
+                <img src="residence-vila.jpg" alt="Imagem da propriedade" />
+              </ImageCard>
+              <DescribeResidence>
+                <p>Casa - 1 quarto disponivel</p>
+                <p>O locador é Cristina Finzchz</p>
+              </DescribeResidence>
+            </CardHouse>
+          ))}
         </CardsMain>
       </MainContainer>
 

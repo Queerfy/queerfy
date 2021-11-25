@@ -1,3 +1,9 @@
+export interface IFavorites {
+  id: number;
+  propertyId: number;
+  userId: number;
+}
+
 export interface ISetDataUser {
   setDataUser: any;
   setStepRegister: any;

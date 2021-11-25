@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
 import { ArrowLeft, Eye } from 'react-feather';
@@ -18,7 +18,42 @@ import {
   ContainerButtonAds,
 } from './style';
 
+import { useRouter } from 'next/router';
+import { useAuth } from '../../hooks/useAuth';
+
+import { api } from '../../services/api';
+import { IUserData } from '../../interfaces';
+
 const MyAdsPage: NextPage = () => {
+  const { userApp } = useAuth();
+  const [myAds, setMyAds] = useState([]);
+  const [owner, setOwner] = useState<IUserData>();
+  const router = useRouter();
+
+  const getMyAds = async () => {
+    if (userApp) {
+      api.get('/properties').then((response) => {
+        const adsUser = response.data.filter(
+          (item) => item.idUser == userApp.id
+        );
+
+        setMyAds(adsUser);
+        api
+          .get(`/users/${userApp.id}`)
+          .then((resOwner) => {
+            setOwner(resOwner.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    }
+  };
+
+  useEffect(() => {
+    getMyAds();
+  }, []);
+
   return (
     <>
       <Head>
@@ -36,72 +71,46 @@ const MyAdsPage: NextPage = () => {
         <ContainerMyReservations>
           <ContainerColumn>
             <Container subtitle={theme.colors.purple} text={theme.assets.font}>
-              <ContainerAds>
-                <ImageBox>
-                  <HoveredImage>
-                    <Eye />
-                  </HoveredImage>
-                  <img src="support-banner.svg" width="100%" height="100%" />
-                </ImageBox>
-                <AdsInformation>
-                  <h1>Casa - 1 quarto disponível</h1>
-                  <p>
-                    Seu locador é <b>Cristina Finzch</b>
-                  </p>
-                  <ContainerButtonAds>
-                    <ButtonAds color={theme.colors.purple}>
-                      Visualizar anúncio
-                    </ButtonAds>
-                    <ButtonAds color={theme.colors.purple}>
-                      Editar anúncio
-                    </ButtonAds>
-                  </ContainerButtonAds>
-                </AdsInformation>
-              </ContainerAds>
-              <ContainerAds>
-                <ImageBox>
-                  <HoveredImage>
-                    <Eye />
-                  </HoveredImage>
-                  <img src="support-banner.svg" width="100%" height="100%" />
-                </ImageBox>
-                <AdsInformation>
-                  <h1>Casa - 2 quarto disponível</h1>
-                  <p>
-                    Seu locador é <b>Cristina Finzch</b>
-                  </p>
-                  <ContainerButtonAds>
-                    <ButtonAds color={theme.colors.purple}>
-                      Visualizar anúncio
-                    </ButtonAds>
-                    <ButtonAds color={theme.colors.purple}>
-                      Editar anúncio
-                    </ButtonAds>
-                  </ContainerButtonAds>
-                </AdsInformation>
-              </ContainerAds>
-              <ContainerAds>
-                <ImageBox>
-                  <HoveredImage>
-                    <Eye />
-                  </HoveredImage>
-                  <img src="support-banner.svg" width="100%" height="100%" />
-                </ImageBox>
-                <AdsInformation>
-                  <h1>Casa - 3 quarto disponível</h1>
-                  <p>
-                    Seu locador é <b>Cristina Finzch</b>
-                  </p>
-                  <ContainerButtonAds>
-                    <ButtonAds color={theme.colors.purple}>
-                      Visualizar anúncio
-                    </ButtonAds>
-                    <ButtonAds color={theme.colors.purple}>
-                      Editar anúncio
-                    </ButtonAds>
-                  </ContainerButtonAds>
-                </AdsInformation>
-              </ContainerAds>
+              {myAds ? (
+                <>
+                  {myAds.map((item) => (
+                    <ContainerAds>
+                      <ImageBox>
+                        <HoveredImage>
+                          <Eye />
+                        </HoveredImage>
+                        <img
+                          src="support-banner.svg"
+                          width="100%"
+                          height="100%"
+                        />
+                      </ImageBox>
+                      <AdsInformation>
+                        <h1>
+                          {item?.propertyType} - {item?.roomQuantity} quarto
+                          disponível
+                        </h1>
+                        <p>
+                          Seu locador é <b>{owner?.name}</b>
+                        </p>
+                        <ContainerButtonAds>
+                          <ButtonAds
+                            color={theme.colors.purple}
+                            onClick={() => router.push(`/House/${item.id}`)}
+                          >
+                            Visualizar anúncio
+                          </ButtonAds>
+                          <ButtonAds color={theme.colors.purple}>
+                            Editar anúncio
+                          </ButtonAds>
+                        </ContainerButtonAds>
+                      </AdsInformation>
+                    </ContainerAds>
+                  ))}
+                </>
+              ) : (
+                <span>Você ainda não contém anuncios!</span>
+              )}
             </Container>
           </ContainerColumn>
         </ContainerMyReservations>
