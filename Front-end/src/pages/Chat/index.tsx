@@ -8,7 +8,6 @@ import { useAuth } from '../../hooks/useAuth';
 import {
   Main,
   MainContainer,
-  TitleChat,
   ContainerChat,
   MessageUser,
   ContainerMessage,
@@ -19,6 +18,7 @@ import {
   FooterInput,
   ButtonSendMessage,
 } from './style';
+import { MessageSquare, Send } from 'react-feather';
 
 const socket = io('http://localhost:3333');
 
@@ -112,33 +112,33 @@ const Chat: NextPage = () => {
   return (
     <Main>
       <MainContainer>
-        <TitleChat>Mensagens</TitleChat>
+        <h1><MessageSquare /> Queerfy Chat</h1>
         <ContainerChat>
-          {messages.map((item, index) => (
-            <>
-              <MessageUser
+          {messages.map((item, _) => (
+            <MessageUser
+              userLoged={item.emailSender == userJoinChat.userSender.email}
+            >
+              <ContainerMessage
                 userLoged={item.emailSender == userJoinChat.userSender.email}
               >
-                <ContainerMessage
-                  userLoged={item.emailSender == userJoinChat.userSender.email}
+                <UsernameLoged
+                  userLoged={
+                    item.emailSender == userJoinChat.userSender.email
+                  }
                 >
-                  <UsernameLoged
-                    userLoged={
-                      item.emailSender == userJoinChat.userSender.email
-                    }
-                  >
-                    {item.nameUserSender}
-                  </UsernameLoged>
-                  <MessageBox>{item.message}</MessageBox>
-                  <DateMessage>{item.createdAt}</DateMessage>
-                </ContainerMessage>
-              </MessageUser>
-            </>
+                  {item.emailSender == userJoinChat.userSender.email ? "Você" : item.nameUserSender}
+                </UsernameLoged>
+                <MessageBox>{item.message}</MessageBox>
+                <DateMessage>{item.createdAt}</DateMessage>
+              </ContainerMessage>
+            </MessageUser>
           ))}
         </ContainerChat>
         <FooterChat>
-          <FooterInput ref={messageRef} />
-          <ButtonSendMessage onClick={handleMessage}></ButtonSendMessage>
+          <FooterInput placeholder="Digite aqui..." ref={messageRef} />
+          <ButtonSendMessage onClick={handleMessage}>
+            <Send size={30} />
+          </ButtonSendMessage>
         </FooterChat>
       </MainContainer>
     </Main>
