@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { theme } from '../../styles/theme';
+
 import { ArrowLeft } from 'react-feather';
 
 export const InformationsBox = styled.div`
@@ -45,7 +47,7 @@ export const ContainerInitial = styled.div`
 
 export const HeaderBox = styled.div`
   padding: 10px 0px 4px 0px;
-  border-bottom: 1px solid #bdc3c7;
+  border-bottom: 1px solid ${theme.assets.borderDark};
 
   @media screen and (max-width: 1024px) {
     padding: 14px 0px 0px 0px;

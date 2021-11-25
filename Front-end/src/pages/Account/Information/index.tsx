@@ -5,7 +5,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { theme } from '../../../styles/theme';
 import { ContainerMain, HeaderContainer } from '../styles';
-import { ContainerInfo, ContainerColumn, Container } from './styles';
+import { ContainerInfo, ContainerColumn, Container, InputsBox } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import {
   ArrowLeft,
@@ -18,7 +18,6 @@ import {
   CreditCard,
   Users,
 } from 'react-feather';
-import { InputsBox } from '../../Login/style';
 import { NavbarMobile } from '../../../components/NavbarMobile';
 import { HeaderMobile } from '../../../components/HeaderMobile';
 
@@ -32,7 +31,7 @@ const InfoAccount: NextPage = () => {
       <ContainerMain>
         <HeaderMobile />
         <HeaderContainer title={theme.colors.red} text={theme.colors.red}>
-          <Link href="/Account/Main">
+          <Link href="/">
             <ArrowLeft />
           </Link>
           <h1>Informações da conta</h1>
@@ -50,14 +49,14 @@ const InfoAccount: NextPage = () => {
               <Users />
               <InputsBox>
                 <h2>Orientação sexual</h2>
-                <input type="text" placeholder="Masculino" />
+                <input type="text" placeholder="Hétero" />
               </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Calendar />
               <InputsBox>
                 <h2>Data de nascimento</h2>
-                <input type="text" placeholder="** de janeiro de ***" />
+                <input type="text" placeholder="** de janeiro de ****" />
               </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>

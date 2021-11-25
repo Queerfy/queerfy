@@ -7,6 +7,7 @@ import org.apache.tomcat.jni.Local;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Property {
@@ -31,7 +32,7 @@ public class Property {
     private String street;
     private String houseNumber;
     private String addressComplement;
-
+    private byte[] fotos;
     //Lista de Fotos
 
     //ATUALIZAR= ponto de referencia

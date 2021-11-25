@@ -24,7 +24,7 @@ export const ContainerMain = styled.main`
 export const HeaderContainer = styled.div<Colors>`
   margin-top: 32px;
 
-  width: 100%;
+  width: 85%;
 
   svg {
     color: ${(props) => props.text};

@@ -2,15 +2,11 @@ import React from 'react';
 
 import { Search } from 'react-feather';
 
-import {
-  Container,
-  IconBox,
-  InputBox,
-  SearchInput,
-  Separator,
-} from './styles';
+import { Container, IconBox, InputBox, SearchInput, Separator } from './styles';
 
 import { MenuDropdown } from './MenuDropdown';
+
+import Link from 'next/link';
 
 type NavbarProps = {
   accountNavbar?: boolean;
@@ -19,7 +15,9 @@ type NavbarProps = {
 export const Navbar = ({ accountNavbar }: NavbarProps) => {
   return (
     <Container>
-      <img src="../logo.svg" alt="logo" />
+      <Link href="/" >
+        <img src="../logo.svg" alt="logo" style={{ cursor: 'pointer' }} />
+      </Link>
       {!accountNavbar && (
         <>
           <InputBox>
@@ -29,7 +27,9 @@ export const Navbar = ({ accountNavbar }: NavbarProps) => {
             </IconBox>
           </InputBox>
           <span>Sobre nós</span>
-          <span>Suporte</span>
+          <Link href="/Support">
+            <span>Suporte</span>
+          </Link>
           <Separator />
         </>
       )}

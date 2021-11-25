@@ -20,7 +20,7 @@ export const Subtitle = styled.div`
 export const Local = styled.div`
   display: flex;
 
-  p {
+  span {
     font-size: 16px;
     margin-left: 10px;
   }
@@ -31,7 +31,7 @@ export const Favorite = styled.div`
 
   display: flex;
 
-  p {
+  span {
     margin-right: 10px;
   }
 
@@ -45,13 +45,11 @@ export const BoxContents = styled.div`
 
   @media screen and (min-width: 1024px) {
     display: flex;
-    align-items: center;
-    justify-content: center;
   }
 `;
 
 export const BoxInformations = styled.div`
-  width: 100%;
+  min-width: 50%;
 
   @media screen and (min-width: 1024px) {
     display: flex;
@@ -69,6 +67,7 @@ export const Informations = styled.div`
   align-items: flex-start;
 
   h2 {
+    color: ${theme.colors.red};
     padding-bottom: 20px;
   }
 
@@ -87,6 +86,24 @@ export const AlignInformations = styled.div`
   }
 `;
 
+export const Rules = styled.div`
+  width: 100%;
+  padding: 12px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  h2 {
+    color: ${theme.colors.green};
+    padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 80%;
+  }
+`;
+
 export const Description = styled.div`
   width: 100%;
   padding: 0px 0px 12px 0px;
@@ -97,6 +114,7 @@ export const Description = styled.div`
   text-align: justify;
 
   h2 {
+    color: ${theme.colors.orange};
     padding-bottom: 20px;
   }
 
@@ -106,7 +124,7 @@ export const Description = styled.div`
 `;
 
 export const ChangeBox = styled.div`
-  width: 100%;
+  min-width: 50%;
 
   display: flex;
   flex-direction: column;
@@ -124,7 +142,7 @@ export const BoxReservation = styled.div`
 
 export const BorderRainbow = styled.div`
   width: 100%;
-  height: 240px;
+  height: 220px;
 
   display: flex;
   align-items: center;
@@ -147,16 +165,18 @@ export const BorderRainbow = styled.div`
 export const Reservation = styled.div`
   width: 99%;
   height: 98%;
+  padding: 10px;
 
   border-radius: 10px;
 
   color: ${theme.assets.font};
-  background-color: ${theme.assets.background};
+  background: ${theme.assets.background};
 `;
 
 export const HeaderReservation = styled.div`
   width: 100%;
-  padding: 20px 10px;
+
+  margin-bottom: 15px;
 
   display: flex;
   align-items: center;
@@ -166,6 +186,21 @@ export const HeaderReservation = styled.div`
 export const Value = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const Likes = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    height: 10px;
+  }
+
+  span {
+    color: ${theme.colors.red};
+    margin-left: 10px;
+    font-weight: bold;
+  }
 `;
 
 export const ChooseDate = styled.div`
@@ -183,7 +218,7 @@ export const CheckDate = styled.div`
   display: flex;
   flex-direction: column;
 
-  p {
+  span {
     color: ${theme.colors.red};
   }
 `;
@@ -205,8 +240,7 @@ export const BoxInteraction = styled.div`
 `;
 
 export const ButtonInteraction = styled.button`
-  width: 50%;
-  height: 50%;
+  padding: 6px 40px;
 
   background: ${theme.colors.blue};
 
@@ -244,7 +278,7 @@ export const TotalValue = styled.div`
     font-size: 22px;
   }
 
-  p {
+  span {
     font-size: 18px;
   }
 `;
@@ -283,15 +317,17 @@ export const BorderHost = styled.div`
 export const Host = styled.div`
   width: 99%;
   height: 98%;
+  padding: 10px;
 
   border-radius: 10px;
 
-  background-color: ${theme.assets.background};
+  background: ${theme.assets.background};
 `;
 
 export const ProfileHost = styled.div`
   width: 100%;
-  padding: 15px 10px;
+
+  margin-bottom: 15px;
 
   display: flex;
   align-items: center;
@@ -302,7 +338,7 @@ export const ProfileHost = styled.div`
     height: 65px;
     border-radius: 50%;
 
-    @media screen and (min-width: 1240px) {
+    @media screen and (min-width: 1024px) {
       width: 65px;
       height: 65px;
     }
@@ -316,13 +352,19 @@ export const ProfileHost = styled.div`
 export const Email = styled.div`
   width: 100%;
 
+  margin-bottom: 15px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  p {
+  span {
     font-size: 14px;
     margin-left: 6px;
     text-align: center;
+  }
+
+  @media screen and (min-width: 1024px) {
+    max-width: 100%;
   }
 `;

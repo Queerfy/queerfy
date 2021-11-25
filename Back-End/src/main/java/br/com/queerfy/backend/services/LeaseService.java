@@ -14,7 +14,9 @@ import br.com.queerfy.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,6 +29,23 @@ public class LeaseService {
     UserRepository userRepository;
     @Autowired
     LeaseRepository leaseRepository;
+
+
+    public List<PropertyDTO> getAllPropertiesFromDateAndCity(String date1, String date2, String city){
+        List<Integer> getDto = leaseRepository.getAllPropertiesFromDateAndCity(date1, date2, city);
+        List<PropertyDTO> propertyDTO = new ArrayList<>();
+        getDto.forEach(property -> {
+            propertyDTO.add(new PropertyDTO(propertyRepository.getById(property)));
+        });
+        return propertyDTO;
+    }
+
+    public List<LeaseAssociativeDTO> getAllLeaseDateFromId(Integer id){
+        List<LeaseDTO> dtoList = leaseRepository.getAllLeaseDatesFromId(id).stream().map(lease -> new LeaseDTO(lease)).collect(Collectors.toList());
+        List<LeaseAssociativeDTO> associativeDto = new ArrayList<>();
+        dtoList.forEach(leaseDTO -> associativeDto.add(convertToLeaseAssossiative(leaseDTO)));
+        return associativeDto;
+    }
 
     public List<LeaseAssociativeDTO> getAllLeases() throws UserNotFoundException {
         List<LeaseDTO> dtoList = leaseRepository.findAll().stream().map(lease -> new LeaseDTO(lease)).collect(Collectors.toList());
@@ -59,16 +78,16 @@ public class LeaseService {
         }
         throw new UserNotFoundException();
     }
-
-    public LeaseAssociativeDTO convertToLeaseAssossiativeAndUserDTO(LeaseDTO dto){
-        UserDTO user = new UserDTO(userRepository.findById(dto.getIdUser()).get());
-        PropertyDTO property = new PropertyDTO(propertyRepository.findById(dto.getIdProperty()).get());
-        LeaseAssociativeDTO leaseAssociativeDTO = new LeaseAssociativeDTO(dto, property, user);
-        return leaseAssociativeDTO;
+    public List<LeaseAssociativeDTO> findLeaseByUserId(Integer id){
+        List<Lease> leaseList = leaseRepository.findLeaseByUserId(id);
+        List<LeaseDTO> leaseDTOS = leaseList.stream().map(lease -> new LeaseDTO(lease)).collect(Collectors.toList());
+        List<LeaseAssociativeDTO> leaseDtoSupport = leaseDTOS.stream().map(leaseDTO -> convertToLeaseAssossiative(leaseDTO)).collect(Collectors.toList());
+        return leaseDtoSupport;
     }
 
     public LeaseAssociativeDTO convertToLeaseAssossiative(LeaseDTO dto){
-        UserDTO user = new UserDTO(userRepository.findById(dto.getIdUser()).get());
+        User user1 = userRepository.getById(dto.getIdUser());
+        UserDTO user = new UserDTO(user1);
         PropertyDTO property = new PropertyDTO(propertyRepository.findById(dto.getIdProperty()).get());
         LeaseAssociativeDTO leaseAssociativeDTO = new LeaseAssociativeDTO(dto, property, user);
         return leaseAssociativeDTO;

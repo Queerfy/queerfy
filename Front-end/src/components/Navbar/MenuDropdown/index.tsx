@@ -60,13 +60,34 @@ export const MenuDropdown = () => {
             </>
           )}
           <li>
-            <a href="#">Notificações</a>
+            <Link href="/Account/Information">
+              <a href="#">Conta</a>
+            </Link>
           </li>
           <li>
-            <a href="#">Pagamentos</a>
+            <Link href="/MyAds">
+              <a href="#">Meus anúncios</a>
+            </Link>
           </li>
           <li>
-            <a href="#">Ajuda</a>
+            <Link href="/Favorites">
+              <a href="#">Favoritos</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/MyReservations">
+              <a href="#">Minhas reservas</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/Account/Notification">
+              <a href="#">Notificações</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/ResidenceRegister">
+            <a href="#">Hospedar</a>
+            </Link>
           </li>
           {signed && (
             <>
