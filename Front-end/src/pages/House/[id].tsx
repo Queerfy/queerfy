@@ -54,7 +54,12 @@ import { api } from '../../services/api';
 import { useRouter } from 'next/router';
 import { HeaderMobile } from '../../components/HeaderMobile';
 
-import { IHouseData, IUserData, IConfirmReservation } from '../../interfaces';
+import {
+  IHouseData,
+  IUserData,
+  IConfirmReservation,
+  IFavorites,
+} from '../../interfaces';
 
 const House: NextPage = () => {
   const { userApp, handleUsersChatJoin, handleConfirmReservation } = useAuth();
@@ -69,7 +74,9 @@ const House: NextPage = () => {
   const [total, setTotal] = useState<number>();
   const [disableButton, setDisableButton] = useState(false);
   const [differenceDays, setDifferenceDays] = useState<number>();
-
+  const [totalLikes, setTotalLikes] = useState<number>();
+  const [likedHouse, setLikedHouse] = useState(false);
+  const [favoritesUser, setFavoritesUser] = useState<IFavorites[]>([]);
   const handleReservationConfirm = async () => {
     const confirmReservation: IConfirmReservation = {
       idHouse: house?.id,
@@ -86,9 +93,7 @@ const House: NextPage = () => {
     }
 
     handleConfirmReservation(confirmReservation);
-    setTimeout(() => {
-      router.push('/Reservation');
-    }, 1000);
+    router.push('/Reservation');
   };
 
   const handleChat = async () => {
@@ -127,9 +132,27 @@ const House: NextPage = () => {
 
     handleUsersChatJoin(usersJoined);
 
-    setTimeout(() => {
-      router.push('/Chat');
-    }, 1000);
+    router.push('/Chat');
+  };
+
+  const handleLikeHouse = () => {
+    const houseLiked = favoritesUser.filter(
+      (item) => item.propertyId == house.id
+    );
+
+    if (houseLiked.length > 0) {
+      api.delete(`/favorites/${houseLiked[0].id}`);
+      setLikedHouse(false);
+      return toast.success('Casa Desfavoritada com Sucesso!');
+    } else {
+      const data = {
+        propertyId: id,
+        userId: userApp.id,
+      };
+      api.post('/favorites', data);
+      setLikedHouse(true);
+      return toast.success('Casa Favoritada com Sucesso!');
+    }
   };
 
   useEffect(() => {
@@ -141,13 +164,27 @@ const House: NextPage = () => {
           .get(`/users/${res.data.idUser}`)
           .then((resOwner) => {
             setOwner(resOwner.data);
+
+            setFavoritesUser(userApp.favorite);
+
+            const houseLiked = userApp.favorite.filter(
+              (item) => item.propertyId == res.data.id
+            );
+
+            console.log(houseLiked);
+
+            if (houseLiked.length > 0) {
+              setLikedHouse(true);
+            } else {
+              setLikedHouse(false);
+            }
           })
           .catch((err) => {
-            router.push('/ResidenceList');
+            router.push('/');
           });
       })
       .catch((err) => {
-        router.push('/ResidenceList');
+        router.push('/');
       });
   }, []);
 
@@ -185,9 +222,15 @@ const House: NextPage = () => {
             <MapPin />
             <span>SP - Alphaville</span>
           </Local>
-          <Favorite>
+          <Favorite onClick={handleLikeHouse}>
             <span>Amei</span>
-            <Heart />
+            {likedHouse === false ? (
+              <Heart />
+            ) : (
+              <Likes>
+                <img src="../colorful-heart.svg" alt="Coração preenchido" />
+              </Likes>
+            )}
           </Favorite>
         </Subtitle>
       </Header>

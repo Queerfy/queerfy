@@ -7,6 +7,8 @@ import { HeaderMobile } from '../../../HeaderMobile';
 
 import { Container, InputsSection, FormInput } from './styles';
 
+import { apiGeocode } from '../../../../services/api';
+
 export const StepThree = () => {
   const { advanceStep, backStep, handleStep } = useResidence();
 
@@ -21,14 +23,14 @@ export const StepThree = () => {
 
   function haveEmptyProperties(address) {
     if (
-      address.street === "" ||
-      address.city === "" ||
-      address.uf === "" ||
-      address.cep === "" ||
-      address.complement === "" ||
-      address.neighbourhood === "" ||
-      address.number === "" ||
-      address.referencePoint === ""
+      address.street === '' ||
+      address.city === '' ||
+      address.uf === '' ||
+      address.cep === '' ||
+      address.complement === '' ||
+      address.neighbourhood === '' ||
+      address.number === '' ||
+      address.referencePoint === ''
     ) {
       return true;
     } else {
@@ -36,7 +38,17 @@ export const StepThree = () => {
     }
   }
 
-  function sendParams() {
+  async function sendParams() {
+    const { data } = await apiGeocode.get('/address', {
+      params: {
+        key: '38GhVvh0oG1ELtq8z7FDb7UI6S3ymwHU',
+        location: `${numberRef.current.value} ${streetRef.current.value}, ${cityRef.current.value}`,
+      },
+    });
+
+    const latitude = data.results[0].locations[0].latLng.lat;
+    const longitude = data.results[0].locations[0].latLng.lng;
+
     const address = {
       street: streetRef.current.value,
       city: cityRef.current.value,
@@ -45,11 +57,13 @@ export const StepThree = () => {
       addressComplement: complementRef.current.value,
       neighbourhood: neighbourhoodRef.current.value,
       houseNumber: numberRef.current.value,
-      referencePoint: referencePointRef.current.value
-    }
+      referencePoint: referencePointRef.current.value,
+      latitude,
+      longitude,
+    };
 
     if (haveEmptyProperties(address)) {
-      return toast.error("Preencha todos os campos.")
+      return toast.error('Preencha todos os campos.');
     }
 
     handleStep(address);
@@ -149,4 +163,4 @@ export const StepThree = () => {
       <span onClick={backStep}>Voltar</span>
     </Container>
   );
-}
+};

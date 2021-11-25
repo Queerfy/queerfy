@@ -1,9 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import dayjs from 'dayjs';
 import io from 'socket.io-client';
 
 import { useAuth } from '../../hooks/useAuth';
+
+import { toast } from 'react-toastify';
 
 import {
   Main,
@@ -14,10 +17,18 @@ import {
   UsernameLoged,
   MessageBox,
   DateMessage,
+  ProposalContainer,
+  ImageProposal,
+  ProposalBox,
+  ContainerButtonsProposal,
+  ButtonProposal,
+  ButtonLoadindProposal,
+  ProposalDate,
   FooterChat,
   FooterInput,
   ButtonSendMessage,
 } from './style';
+import { theme } from '../../styles/theme';
 import { MessageSquare, Send } from 'react-feather';
 
 const socket = io('http://localhost:3333');
@@ -32,40 +43,48 @@ const Chat: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    if (userJoinChat) {
-      const { userSender, userReceiver } = userJoinChat;
+    const storagedUsersJoin = JSON.parse(localStorage.getItem('usersJoin'));
+    if (storagedUsersJoin.proposal && storagedUsersJoin.proposal !== false) {
+      const { idHouse, idOwer, total, totalDays, checkIn, checkOut } =
+        storagedUsersJoin.confirmReservation;
 
-      if (userJoinChat.proposal) {
-        const { house, confirmReservation } = userJoinChat;
-        messageRef.current.value = `Olá ${userReceiver.name}, estou interessado em uma das suas residências (${house.name}). Encaminhei uma proposta com os dias ${confirmReservation.checkIn}/${confirmReservation.checkOut}, gostaria de me hospedar em sua propriedade, está disponível?`;
+      messageRef.current.value = `
+        Olá ${storagedUsersJoin.userReceiver?.name}, estou interessado em uma das suas residências (${storagedUsersJoin.house.name}). Encaminhei uma proposta com os dias ${checkIn}/${checkOut}, gostaria de me hospedar em sua propriedade, está disponível?
+      `;
 
-        const paramsMessage = {
-          name: userApp.name,
-          text: messageRef.current.value,
-          emailSender: userApp.email,
-          emailReceiver: userJoinChat.userReceiver.email,
-        };
-
-        socket.emit('send_message', paramsMessage);
-
-        messageRef.current.value = '';
-      }
-
-      const params = {
-        emailSender: userSender.email,
-        emailReceiver: userReceiver.email,
-        userSender,
-        userReceiver,
+      const paramsMessage = {
+        name: storagedUsersJoin.userSender.name,
+        text: messageRef.current.value,
+        emailSender: storagedUsersJoin.userSender.email,
+        emailReceiver: storagedUsersJoin.userReceiver.email,
+        userReceiver: storagedUsersJoin.userReceiver,
+        proposal: true,
+        acceptProposal: false,
+        idHouse,
+        idOwer,
+        total,
+        totalDays,
+        checkIn,
+        checkOut,
       };
 
-      socket.emit('list_messages', params, (messagesList) => {
-        setMessages(messagesList);
-      });
+      socket.emit('send_message', paramsMessage);
+
+      messageRef.current.value = '';
     }
+
+    const params = {
+      emailSender: storagedUsersJoin.userSender.email,
+      emailReceiver: storagedUsersJoin.userReceiver.email,
+      userSender: storagedUsersJoin.userSender,
+      userReceiver: storagedUsersJoin.userReceiver,
+    };
+
+    socket.emit('list_messages', params, (messagesList) => {
+      setMessages(messagesList);
+    });
   }, []);
 
-  //[X] Quando for clicar na notificação de nova mensagem, pegar o objeto que foi enviado e fazer o get com as informações que foram recebidas
-  //Exemplo emailSender e emailReceiver
   useEffect(() => {
     if (userJoinChat) {
       const { userSender, userReceiver } = userJoinChat;
@@ -77,7 +96,7 @@ const Chat: NextPage = () => {
         userReceiver,
       };
 
-      socket.emit('update_messages', params.emailSender);
+      /* socket.emit('update_messages', params.emailSender); */
 
       socket.emit('list_messages', params, (messagesList) => {
         setMessages(messagesList);
@@ -93,6 +112,15 @@ const Chat: NextPage = () => {
       text: message,
       emailSender: userApp.email,
       emailReceiver: userJoinChat.userReceiver.email,
+      userReceiver: userJoinChat.userReceiver,
+      proposal: false,
+      acceptProposal: null,
+      idHouse: null,
+      idOwer: null,
+      total: null,
+      totalDays: null,
+      checkIn: null,
+      checkOut: null,
     };
 
     socket.emit('send_message', params);
@@ -109,10 +137,24 @@ const Chat: NextPage = () => {
     messageRef.current.value = '';
   };
 
+  const submitProposal = (idMessage, type) => {
+    const params = {
+      emailSender: userJoinChat.userReceiver.email,
+      emailReceiver: userJoinChat.userSender.email,
+      acceptProposal: type == 'accept' ? true : false,
+      idMessage,
+    };
+    //Post de reserva da pagina
+    socket.emit('handle_proposal', params);
+    return toast.success('Resposta Enviada com Sucesso!');
+  };
+
   return (
     <Main>
       <MainContainer>
-        <h1><MessageSquare /> Queerfy Chat</h1>
+        <h1>
+          <MessageSquare /> Queerfy Chat
+        </h1>
         <ContainerChat>
           {messages.map((item, _) => (
             <MessageUser
@@ -122,11 +164,11 @@ const Chat: NextPage = () => {
                 userLoged={item.emailSender == userJoinChat.userSender.email}
               >
                 <UsernameLoged
-                  userLoged={
-                    item.emailSender == userJoinChat.userSender.email
-                  }
+                  userLoged={item.emailSender == userJoinChat.userSender.email}
                 >
-                  {item.emailSender == userJoinChat.userSender.email ? "Você" : item.nameUserSender}
+                  {item.emailSender == userJoinChat.userSender.email
+                    ? 'Você'
+                    : item.nameUserSender}
                 </UsernameLoged>
                 <MessageBox>{item.message}</MessageBox>
                 <DateMessage>{item.createdAt}</DateMessage>

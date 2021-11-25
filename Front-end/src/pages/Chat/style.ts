@@ -5,6 +5,10 @@ interface UserLogedMessage {
   userLoged?: boolean;
 }
 
+interface IButtonProposal {
+  bgColor: string;
+}
+
 export const Main = styled.main`
   display: flex;
   justify-content: center;
@@ -101,6 +105,72 @@ export const UsernameLoged = styled.span<UserLogedMessage>`
 
 export const MessageBox = styled.span`
   color: ${theme.assets.background};
+`;
+
+export const ProposalContainer = styled.div<UserLogedMessage>`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 500px;
+
+  padding: 10px;
+  margin: 10px;
+
+  background: #3c096c;
+
+  border-radius: ${(props) =>
+    props.userLoged ? '10px 10px 0px 10px' : '10px 10px 10px 0px'};
+`;
+
+export const ImageProposal = styled.img`
+  width: 120px;
+
+  border-radius: 5px;
+`;
+
+export const ProposalBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100px;
+  width: 450px;
+`;
+
+export const ContainerButtonsProposal = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  width: 100%;
+  height: 50px;
+`;
+
+export const ButtonProposal = styled.button<IButtonProposal>`
+  padding: 5px;
+
+  border-radius: 5px;
+  border: none;
+
+  width: 100px;
+
+  color: white;
+  font-weight: 600;
+
+  background-color: ${(props) => props.bgColor};
+`;
+
+export const ButtonLoadindProposal = styled(ButtonProposal)`
+  width: 300px;
+`;
+
+export const ProposalDate = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
 `;
 
 export const DateMessage = styled.span`

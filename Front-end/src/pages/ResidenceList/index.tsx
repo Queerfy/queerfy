@@ -18,22 +18,57 @@ import { HeaderMobile } from '../../components/HeaderMobile';
 import { NavbarMobile } from '../../components/NavbarMobile';
 import { Residence } from '../../components/Residence';
 import { Footer } from '../../components/Footer';
+import moment from 'moment';
 
 const ResidenceList: NextPage = () => {
-  const { userApp } = useAuth();
+  const { search, getLastSearch } = useAuth();
 
   const router = useRouter();
 
   const [residences, setResidences] = useState([]);
 
   useEffect(() => {
-    api
-      .get('/properties')
-      .then((response) => {
-        setResidences(response.data);
-      })
-      .catch((err) => console.log(err));
+    getLastSearch();
   }, []);
+
+  useEffect(() => {
+    if (search.city && !search.checkIn && !search.checkOut) {
+      const { city } = search;
+      const citySearch = String(city)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/( )+/g, '-');
+
+      api
+        .get(`/properties/city/${citySearch}`)
+        .then((response) => {
+          setResidences(response.data);
+        })
+        .catch((err) => console.log(err));
+    } else if (search.city && search.checkIn && search.checkOut) {
+      const { city, checkIn, checkOut } = search;
+      const citySearch = String(city)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/( )+/g, '-');
+
+      ///leases/available?dataInicio=2021-05-10&dataFim=2021-05-20&city=sao-paulo
+      api
+        .get(`/leases/available/`, {
+          params: {
+            dataInicio: moment(checkIn, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+            dataFim: moment(checkOut, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+            city: citySearch,
+          },
+        })
+        .then((response) => {
+          setResidences(response.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [search]);
 
   return (
     <>
@@ -44,27 +79,31 @@ const ResidenceList: NextPage = () => {
       <Body>
         <Navbar />
         <HeaderMobile />
-        <Container>
-          <h1>Locações com as melhores avaliações em cidade</h1>
-          <p>
-            Os hóspedes concordam: estas acomodações foram muito bem avaliadas
-            quanto a localização, limpeza e outros aspectos.
-          </p>
-          <RoomRow>
-            {residences.map((item) => {
-              return (
-                item.likes > 1000 && (
-                  <Residence
-                    key={item.id}
-                    name={item.name}
-                    description={item.description}
-                    trend={true}
-                  />
-                )
-              );
-            })}
-          </RoomRow>
-        </Container>
+        {residences.filter((item) => item.likes > 1000).length > 0 && (
+          <Container>
+            <h1>Locações com as melhores avaliações em cidade</h1>
+            <p>
+              Os hóspedes concordam: estas acomodações foram muito bem avaliadas
+              quanto a localização, limpeza e outros aspectos.
+            </p>
+            <RoomRow>
+              {residences.map((item) => {
+                return (
+                  item.likes > 1000 && (
+                    <a onClick={() => router.push(`/House/${item.id}`)}>
+                      <Residence
+                        key={item.id}
+                        name={item.name}
+                        description={item.description}
+                        trend={true}
+                      />
+                    </a>
+                  )
+                );
+              })}
+            </RoomRow>
+          </Container>
+        )}
         <Container>
           <h1>O que você gostaria de ter no local onde está procurando?</h1>
           <Categories>
@@ -81,11 +120,11 @@ const ResidenceList: NextPage = () => {
               <span>Piscina</span>
             </CategorieItem>
             <CategorieItem>
-              <img src="parking-icon.svg" alt="estacionamento" />
+              <img src="../parking-icon.svg" alt="estacionamento" />
               <span>Garagem</span>
             </CategorieItem>
             <CategorieItem>
-              <img src="cat-paw.svg" alt="pata" />
+              <img src="../cat-paw.svg" alt="pata" />
               <span>Animais</span>
             </CategorieItem>
           </Categories>
@@ -94,11 +133,13 @@ const ResidenceList: NextPage = () => {
           <h1>Outros aluguéis excelentes na área selecionada</h1>
           <RoomRow>
             {residences.map((item) => (
-              <Residence
-                key={item.id}
-                name={item.name}
-                description={item.description}
-              />
+              <a onClick={() => router.push(`/House/${item.id}`)}>
+                <Residence
+                  key={item.id}
+                  name={item.name}
+                  description={item.description}
+                />
+              </a>
             ))}
           </RoomRow>
         </Container>
