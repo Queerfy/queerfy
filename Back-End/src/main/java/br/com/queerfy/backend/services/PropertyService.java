@@ -26,6 +26,18 @@ public class PropertyService {
     UserRepository userRepository;
 
     @Transactional
+    public List<PropertyDTO> allPropertyFromSpaceType(String spaceType){
+        List<PropertyDTO> propertyDTO = propertyRepository.findAllPropertiesWhereSpaceType(spaceType).stream().map(property -> new PropertyDTO(property)).collect(Collectors.toList());
+        return propertyDTO;
+    }
+
+    @Transactional
+    public List<PropertyDTO> allPropertyFromCity(String city){
+        List<PropertyDTO> propertyDTO = propertyRepository.findAllPropertiesFromCity(city).stream().map(property -> new PropertyDTO(property)).collect(Collectors.toList());
+        return propertyDTO;
+    }
+
+    @Transactional
     public PropertyDTO create(PropertyDTO propertyDTO) throws UserAlreadyExistsException {
         Optional<User> userOptional = Optional.of(userRepository.getById(propertyDTO.getIdUser()));
 

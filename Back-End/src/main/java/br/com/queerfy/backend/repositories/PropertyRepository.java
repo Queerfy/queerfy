@@ -13,4 +13,11 @@ public interface PropertyRepository extends JpaRepository<Property, Integer> {
 
     @Query(value = "select p from Property p where p.active = true")
     List<Property> findAllAvaliableProperties();
+
+    @Query(value = "select * from property p where p.city = ?1", nativeQuery = true)
+    List<Property> findAllPropertiesFromCity(String city);
+
+    @Query(value = "select * from property p where p.space_type = ?1", nativeQuery = true)
+    List<Property> findAllPropertiesWhereSpaceType(String spaceType);
+
 }
