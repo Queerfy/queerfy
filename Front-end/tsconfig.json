@@ -16,5 +16,6 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "typeRoots": [".src/types", "./node_modules/@types"]
 }

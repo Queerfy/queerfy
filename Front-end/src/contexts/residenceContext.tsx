@@ -1,12 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
 import { useRouter } from 'next/router';
-
-import { api } from '../services/api';
-
-import { ToastContainer, toast } from 'react-toastify';
 
 export const ResidenceContext = createContext(null);
 
@@ -14,6 +10,12 @@ export const ResidenceProvider = ({ children }) => {
   const [residenceData, setResidenceData] = useState({});
   const [step, setStep] = useState(1);
   const router = useRouter();
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    console.log('context images');
+    console.log(images);
+  }, [images])
 
   function advanceStep() {
     if (step !== 9) {
@@ -31,6 +33,12 @@ export const ResidenceProvider = ({ children }) => {
     }
   }
 
+  function setImagesUser(localImages) {
+    images.push(localImages);
+
+    console.log(images);
+  }
+
   const handleStep = (stepData) => {
     const newStepData = { ...residenceData, ...stepData };
     setResidenceData(newStepData);
@@ -43,7 +51,8 @@ export const ResidenceProvider = ({ children }) => {
         handleStep,
         advanceStep,
         backStep,
-        step
+        step,
+        setImagesUser
       }}
     >
       {children}

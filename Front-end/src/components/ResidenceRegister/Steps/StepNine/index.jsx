@@ -19,7 +19,7 @@ export const StepNine = () => {
   const { userApp } = useAuth();
   const router = useRouter();
 
-  // filtro de data: string
+  console.log(residenceData);
 
   const handleSubmit = async () => {
     const defaultValues = {
@@ -85,17 +85,17 @@ export const StepNine = () => {
               <Coffee size={20} /> Cozinha
             </p>
           )}
-          {residenceData.haveWifi && (
+          {residenceData.haveSuite && (
             <p>
               <img src="bed.svg" alt="cama" /> Suíte
             </p>
           )}
-          {residenceData.haveWifi && (
+          {residenceData.haveGarage && (
             <p>
               <img src="parking.svg" /> Garagem
             </p>
           )}
-          {residenceData.haveWifi && (
+          {residenceData.haveAnimals && (
             <p>
               <img src="cat-paw.svg" /> Permitido animais
             </p>

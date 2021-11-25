@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link';
 
 import { GeneralButton } from "../../GeneralButton";
 import { NewsletterInput } from "../../NewsletterInput";
@@ -20,6 +21,7 @@ interface BannerProps {
   buttonColor?: string;
   backgroundImg: string;
   newsletter?: boolean;
+  pageLink?: string;
 }
 
 export const Banner = (props: BannerProps) => {
@@ -34,10 +36,12 @@ export const Banner = (props: BannerProps) => {
               <NewsletterInput />
             </MobileInputBox>
           ) : (
-            <GeneralButton
-              text={props.buttonLabel}
-              bgColor={props.buttonColor}
-            />
+            <Link href={`${props.pageLink}`}>
+              <GeneralButton
+                text={props.buttonLabel}
+                bgColor={props.buttonColor}
+              />
+            </Link>
           )}
         </BannerContent>
         {props.newsletter && (
