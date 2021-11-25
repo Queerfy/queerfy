@@ -11,7 +11,6 @@ import { toast } from 'react-toastify';
 import {
   Main,
   MainContainer,
-  TitleChat,
   ContainerChat,
   MessageUser,
   ContainerMessage,
@@ -30,6 +29,7 @@ import {
   ButtonSendMessage,
 } from './style';
 import { theme } from '../../styles/theme';
+import { MessageSquare, Send } from 'react-feather';
 
 const socket = io('http://localhost:3333');
 
@@ -150,100 +150,40 @@ const Chat: NextPage = () => {
   };
 
   return (
-    <>
-      <Head>
-        <title>Queerfy | Chat</title>
-      </Head>
-
-      <Main>
-        <MainContainer>
-          <TitleChat>Mensagens</TitleChat>
-          <ContainerChat>
-            {messages.map((item, index) => (
-              <>
-                {item.proposal != true && !item.acceptProposal ? (
-                  <MessageUser
-                    userLoged={
-                      item.emailSender == userJoinChat.userSender.email
-                    }
-                  >
-                    <ContainerMessage
-                      userLoged={
-                        item.emailSender == userJoinChat.userSender.email
-                      }
-                    >
-                      <UsernameLoged
-                        userLoged={
-                          item.emailSender == userJoinChat.userSender.email
-                        }
-                      >
-                        {item.nameUserSender}
-                      </UsernameLoged>
-                      <MessageBox>{item.message}</MessageBox>
-                      <DateMessage>{item.createdAt}</DateMessage>
-                    </ContainerMessage>
-                  </MessageUser>
-                ) : (
-                  <>
-                    <MessageUser
-                      userLoged={
-                        item.emailSender == userJoinChat.userSender.email
-                      }
-                    >
-                      <ProposalContainer
-                        userLoged={
-                          item.emailSender == userJoinChat.userSender.email
-                        }
-                      >
-                        <ProposalBox>
-                          <MessageBox>{item.message}</MessageBox>
-                          <ContainerButtonsProposal>
-                            {item.emailSender ==
-                            userJoinChat.userSender.email ? (
-                              <ButtonLoadindProposal
-                                bgColor={theme.colors.orange}
-                              >
-                                Proposta Enviada
-                              </ButtonLoadindProposal>
-                            ) : (
-                              <>
-                                <ButtonProposal
-                                  bgColor={theme.colors.yellow}
-                                  onClick={() =>
-                                    submitProposal(item.id, 'accept')
-                                  }
-                                >
-                                  Aceitar
-                                </ButtonProposal>
-                                <ButtonProposal
-                                  bgColor={theme.colors.red}
-                                  onClick={() =>
-                                    submitProposal(item.id, 'reject')
-                                  }
-                                >
-                                  Rejeitar
-                                </ButtonProposal>
-                              </>
-                            )}
-                          </ContainerButtonsProposal>
-                        </ProposalBox>
-                        <ProposalDate>
-                          <DateMessage>{item.createdAt}</DateMessage>
-                        </ProposalDate>
-                      </ProposalContainer>
-                    </MessageUser>
-                  </>
-                )}
-              </>
-            ))}
-          </ContainerChat>
-          <FooterChat>
-            <FooterInput ref={messageRef} />
-            <ButtonSendMessage onClick={handleMessage}></ButtonSendMessage>
-          </FooterChat>
-        </MainContainer>
-      </Main>
-    </>
+    <Main>
+      <MainContainer>
+        <h1>
+          <MessageSquare /> Queerfy Chat
+        </h1>
+        <ContainerChat>
+          {messages.map((item, _) => (
+            <MessageUser
+              userLoged={item.emailSender == userJoinChat.userSender.email}
+            >
+              <ContainerMessage
+                userLoged={item.emailSender == userJoinChat.userSender.email}
+              >
+                <UsernameLoged
+                  userLoged={item.emailSender == userJoinChat.userSender.email}
+                >
+                  {item.emailSender == userJoinChat.userSender.email
+                    ? 'Você'
+                    : item.nameUserSender}
+                </UsernameLoged>
+                <MessageBox>{item.message}</MessageBox>
+                <DateMessage>{item.createdAt}</DateMessage>
+              </ContainerMessage>
+            </MessageUser>
+          ))}
+        </ContainerChat>
+        <FooterChat>
+          <FooterInput placeholder="Digite aqui..." ref={messageRef} />
+          <ButtonSendMessage onClick={handleMessage}>
+            <Send size={30} />
+          </ButtonSendMessage>
+        </FooterChat>
+      </MainContainer>
+    </Main>
   );
 };
 

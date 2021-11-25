@@ -8,6 +8,7 @@ export interface ISetDataUser {
   setDataUser: any;
   setStepRegister: any;
 }
+
 export interface IHouseData {
   id: number;
   name: string;
@@ -23,6 +24,7 @@ export interface IHouseData {
   description: string;
   likes: number;
 }
+
 export interface IUserData {
   name: string;
   email: string;
@@ -36,6 +38,7 @@ export interface IUserData {
   birthDate: string;
   admin: boolean;
 }
+
 export interface IConfirmReservation {
   idHouse: number;
   idOwer: number;

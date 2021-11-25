@@ -21,6 +21,26 @@ public class PropertyController {
     @Autowired
     private PropertyService service;
 
+    @GetMapping("/space/{spaceType}")
+    public ResponseEntity<List<PropertyDTO>> getAllPropertiesFromCertainSpace(@PathVariable String spaceType){
+        List<PropertyDTO> propertyDTOList = service.allPropertyFromSpaceType(spaceType);
+        if(!propertyDTOList.isEmpty()){
+            return ResponseEntity.status(200).body(propertyDTOList);
+        }else{
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+    @GetMapping("/city/{city}")
+    public ResponseEntity<List<PropertyDTO>> getAllPropertiesFromCertainCity(@PathVariable String city){
+        List<PropertyDTO> propertyDTOList = service.allPropertyFromCity(city);
+        if(!propertyDTOList.isEmpty()){
+            return ResponseEntity.status(200).body(propertyDTOList);
+        }else{
+            return ResponseEntity.status(404).build();
+        }
+    }
+
     @PostMapping
     public PropertyDTO create(@RequestBody @Valid PropertyDTO propertyDTO) throws UserAlreadyExistsException, UserNotFoundException {
         return service.create(propertyDTO);
