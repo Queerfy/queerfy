@@ -143,7 +143,7 @@ const House: NextPage = () => {
     if (houseLiked.length > 0) {
       api.delete(`/favorites/${houseLiked[0].id}`);
       setLikedHouse(false);
-      return toast.success('Casa Desfavoritada com Sucesso!');
+      return toast.success('Propriedade desfavoritada com sucesso!');
     } else {
       const data = {
         propertyId: id,
@@ -151,7 +151,7 @@ const House: NextPage = () => {
       };
       api.post('/favorites', data);
       setLikedHouse(true);
-      return toast.success('Casa Favoritada com Sucesso!');
+      return toast.success('Propriedade favoritada com sucesso!');
     }
   };
 

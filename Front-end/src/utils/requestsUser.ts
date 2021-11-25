@@ -19,7 +19,7 @@ export const registerUser = async (userData: IRequestUser) => {
   //Validações dos campos digitados no formulario
   const schema = Yup.object().shape({
     name: Yup.string().required('O nome é obrigatório para prosseguir!'),
-    gener: Yup.string().required('Gênero é obrigatório para prosseguir!'),
+    gener: Yup.string().required('O gênero é obrigatório para prosseguir!'),
     cpf: Yup.string()
       .min(14, 'Dgite um CPF válido!')
       .required('Digite um CPF!'),
