@@ -90,14 +90,12 @@ const Reservation: NextPage = () => {
 
     handleUsersChatJoin(usersJoined);
 
-    setTimeout(() => {
-      router.push('/Chat');
-    }, 2000);
+    router.push('/Chat');
   };
 
   useEffect(() => {
     if (!confirmReservation?.idHouse) {
-      router.push('/ResidenceList');
+      router.push('/');
     } else {
       api
         .get(`/properties/${confirmReservation?.idHouse}`)

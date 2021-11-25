@@ -28,22 +28,15 @@ export const AuthProvider = ({ children }) => {
   const [confirmReservation, setConfirmReservation] =
     useState<IConfirmReservation>();
   const [proposals, setProposals] = useState();
+  const [search, setSearch] = useState();
 
   const router = useRouter();
 
   const loadStorageData = () => {
     const storagedUser = localStorage.getItem('user');
 
-    const pathName = router.pathname;
-
-    const paths = ['/Login', '/Register'];
-
-    if (!paths.includes(pathName)) {
-      if (storagedUser) {
-        setUserApp(JSON.parse(storagedUser));
-      } else {
-        router.push('/Login');
-      }
+    if (storagedUser) {
+      setUserApp(JSON.parse(storagedUser));
     }
   };
 
@@ -111,6 +104,19 @@ export const AuthProvider = ({ children }) => {
     setConfirmReservation(reservationDate);
   };
 
+  const handleSearch = (objectSearch) => {
+    localStorage.setItem('lastSearch', JSON.stringify(objectSearch));
+    setSearch(objectSearch);
+  };
+
+  const getLastSearch = () => {
+    const storagedSearch = localStorage.getItem('lastSearch');
+
+    if (storagedSearch) {
+      setSearch(storagedSearch);
+    }
+  };
+
   useEffect(() => {
     loadStorageData();
   }, []);
@@ -162,9 +168,7 @@ export const AuthProvider = ({ children }) => {
             };
             localStorage.setItem('usersJoin', JSON.stringify(params));
             setJoinChat(params);
-            setTimeout(() => {
-              router.push('/Chat');
-            }, 1000);
+            router.push('/Chat');
           },
         });
       }
@@ -227,11 +231,14 @@ export const AuthProvider = ({ children }) => {
         userJoinChat,
         messagesReceiver,
         confirmReservation,
+        search,
         handleLogin,
         handleLogout,
         handleUsersChatJoin,
         loadUsersJoin,
         handleConfirmReservation,
+        handleSearch,
+        getLastSearch,
       }}
     >
       {children}

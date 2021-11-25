@@ -93,9 +93,7 @@ const House: NextPage = () => {
     }
 
     handleConfirmReservation(confirmReservation);
-    setTimeout(() => {
-      router.push('/Reservation');
-    }, 1000);
+    router.push('/Reservation');
   };
 
   const handleChat = async () => {
@@ -134,9 +132,7 @@ const House: NextPage = () => {
 
     handleUsersChatJoin(usersJoined);
 
-    setTimeout(() => {
-      router.push('/Chat');
-    }, 1000);
+    router.push('/Chat');
   };
 
   const handleLikeHouse = () => {
@@ -169,11 +165,13 @@ const House: NextPage = () => {
           .then((resOwner) => {
             setOwner(resOwner.data);
 
-            setFavoritesUser(resOwner.data.favorite);
+            setFavoritesUser(userApp.favorite);
 
-            const houseLiked = resOwner.data.favorite.filter(
+            const houseLiked = userApp.favorite.filter(
               (item) => item.propertyId == res.data.id
             );
+
+            console.log(houseLiked);
 
             if (houseLiked.length > 0) {
               setLikedHouse(true);
@@ -182,11 +180,11 @@ const House: NextPage = () => {
             }
           })
           .catch((err) => {
-            router.push('/ResidenceList');
+            router.push('/');
           });
       })
       .catch((err) => {
-        router.push('/ResidenceList');
+        router.push('/');
       });
   }, []);
 

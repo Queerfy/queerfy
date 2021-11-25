@@ -36,14 +36,18 @@ const Favorites: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    api
-      .get(`/users/${userApp.id}`)
-      .then((response) => {
-        setFavoritesUser(response.data.favorite);
-      })
-      .catch((err) => {
-        router.push('/ResidenceList');
-      });
+    if (userApp) {
+      api
+        .get(`/users/${userApp.id}`)
+        .then((response) => {
+          setFavoritesUser(response.data.favorite);
+        })
+        .catch((err) => {
+          router.push('/');
+        });
+    } else {
+      router.push('/');
+    }
   }, []);
 
   return (
@@ -65,7 +69,7 @@ const Favorites: NextPage = () => {
 
         <CardsMain>
           {favoritesUser.map((item) => (
-            <CardHouse>
+            <CardHouse onClick={() => router.push(`/House/${item.propertyId}`)}>
               <ImageCard>
                 <img src="residence-vila.jpg" alt="Imagem da propriedade" />
               </ImageCard>

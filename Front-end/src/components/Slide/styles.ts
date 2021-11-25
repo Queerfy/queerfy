@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
+import { Form } from '@unform/web';
+
 export const SlideContainer = styled.section`
   display: flex;
   justify-content: center;
@@ -40,7 +42,7 @@ export const SlideItem = styled.div`
   }
 `;
 
-export const AdressBar = styled.div`
+export const AdressBar = styled(Form)`
   position: absolute;
 
   display: flex;
@@ -56,6 +58,10 @@ export const AdressBar = styled.div`
 
   > div {
     margin-bottom: 8px;
+  }
+
+  button {
+    background-color: transparent;
   }
 
   @media screen and (min-width: 1024px) {
