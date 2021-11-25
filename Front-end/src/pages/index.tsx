@@ -50,12 +50,9 @@ const IndexPage: NextPage = () => {
         <Categories>
           <h1>Qual tipo de acomodação você precisa?</h1>
           <CategorieTypes>
-            <HandleCategorie image="suit.svg" title="Lugar inteiro" />
-            <HandleCategorie image="room.svg" title="Suíte" />
-            <HandleCategorie
-              image="allowPets.svg"
-              title="Quarto compartilhado"
-            />
+            <HandleCategorie image="suit.svg" title="Quarto inteiro" />
+            <HandleCategorie image="room.svg" title="Quarto compartilhado" />
+            <HandleCategorie image="house.jpg" title="Lugar inteiro" />
           </CategorieTypes>
         </Categories>
         <HostBanner>
@@ -69,14 +66,6 @@ const IndexPage: NextPage = () => {
         </HostBanner>
         <Map></Map>
         <PinkBunners>
-          <Banner
-            backgroundImg="post-banner.svg"
-            title="Conheça nosso mural de postagens!"
-            titleColor={theme.colors.pink}
-            description="Precisa de alguém para dividir as contas?"
-            buttonLabel="Conhecer"
-            buttonColor={theme.colors.pink}
-          />
           <Banner
             backgroundImg="support-banner.svg"
             title="Precisa de ajuda?"
@@ -111,7 +100,7 @@ const IndexPage: NextPage = () => {
             />
           </NearbyContainer>
         </Nearby>
-        <NewslletterContainer>
+        {/* <NewslletterContainer>
           <h1>Newsletter</h1>
           <Banner
             backgroundImg="newsletter-banner.svg"
@@ -120,7 +109,7 @@ const IndexPage: NextPage = () => {
             description="Aqui você fica por dentro de nossas campanhas para ajudar os membros da comunidade."
             newsletter={true}
           />
-        </NewslletterContainer>
+        </NewslletterContainer> */}
         <Footer />
       </MainContainer>
       <NavbarMobile />
