@@ -39,7 +39,7 @@ export const StepFour = () => {
     }
 
     if (hasEmptyProperties()) {
-      return toast.error("Sua propriedade deve ter pelo menos 1 de cada item!");
+      return toast.error("Sua propriedade deve ter pelo menos 1 de cada item.");
     }
 
     handleStep(specifications);

@@ -64,7 +64,7 @@ const Favorites: NextPage = () => {
           <Link href="/">
             <IconBack color="#a993f5" size={30} />
           </Link>
-          <TitleHeader>Minhas reservas favoritas</TitleHeader>
+          <TitleHeader>Minhas propriedades favoritas</TitleHeader>
         </HeaderBox>
 
         <CardsMain>

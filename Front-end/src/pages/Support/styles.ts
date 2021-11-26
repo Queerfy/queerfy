@@ -38,7 +38,7 @@ export const BoxContent = styled.div`
 `;
 
 export const InstagramButton = styled.button`
-  padding: 5px;
+  padding: 5px 20px;
   margin-top: 20px;
 
   font-size: 16px;

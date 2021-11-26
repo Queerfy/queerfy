@@ -18,7 +18,7 @@ export const StepEight = () => {
     const dailyPrice = parseFloat(dailyPriceRef.current.value);
 
     if (dailyPrice === 0 || isNaN(dailyPrice)) {
-      return toast.error('Informe um preço válido!');
+      return toast.error('Informe um preço válido.');
     }
 
     handleStep({ dailyPrice });

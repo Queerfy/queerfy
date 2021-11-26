@@ -28,7 +28,7 @@ export const StepSix = () => {
     const description = descriptionRef.current.value;
 
     if (hasEmptyProperties(name, description)) {
-      return toast.error("Preencha todos os campos!");
+      return toast.error("Preencha todos os campos.");
     }
 
     handleStep({ name, description });
@@ -40,9 +40,9 @@ export const StepSix = () => {
       <HeaderMobile />
       <h1>Vamos dar um nome e uma descrição ao seu espaço</h1>
       <h2>Crie seu título</h2>
-      <input ref={nameRef} type="text" placeholder="Casa em frente ao mar de Penha" />
+      <input ref={nameRef} type="text" placeholder="Casa em frente ao mar" />
       <h2>Crie sua descrição</h2>
-      <textarea ref={descriptionRef} maxLength="100" placeholder="Casa bélissima em frente a lagoa do porto." />
+      <textarea ref={descriptionRef} maxLength="100" placeholder="Casa belíssima em frente ao mar na praia do Porto" />
       <GeneralButton
         text="Continuar"
         bgColor={theme.gradients.red}

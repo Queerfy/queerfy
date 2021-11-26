@@ -16,7 +16,7 @@ const MyReservationPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Queerfy | Minhas Reservas</title>
+        <title>Queerfy | Minhas reservas</title>
       </Head>
       <Navbar accountNavbar />
       <ContainerMain>
