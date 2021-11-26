@@ -80,7 +80,7 @@ const House: NextPage = () => {
   const handleReservationConfirm = async () => {
     const confirmReservation: IConfirmReservation = {
       idHouse: house?.id,
-      idOwer: house?.idUser,
+      idOwer: userApp.id,
       total,
       totalDays: differenceDays,
       checkIn: checkInHouse,
@@ -132,7 +132,9 @@ const House: NextPage = () => {
 
     handleUsersChatJoin(usersJoined);
 
-    router.push('/Chat');
+    setTimeout(() => {
+      router.push('/Chat');
+    }, 1000);
   };
 
   const handleLikeHouse = () => {
@@ -170,8 +172,6 @@ const House: NextPage = () => {
             const houseLiked = userApp.favorite.filter(
               (item) => item.propertyId == res.data.id
             );
-
-            console.log(houseLiked);
 
             if (houseLiked.length > 0) {
               setLikedHouse(true);

@@ -113,7 +113,7 @@ export const AuthProvider = ({ children }) => {
     const storagedSearch = localStorage.getItem('lastSearch');
 
     if (storagedSearch) {
-      setSearch(storagedSearch);
+      setSearch(JSON.parse(storagedSearch));
     }
   };
 

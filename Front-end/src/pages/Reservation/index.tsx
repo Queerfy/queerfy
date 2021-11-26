@@ -89,8 +89,9 @@ const Reservation: NextPage = () => {
     };
 
     handleUsersChatJoin(usersJoined);
-
-    router.push('/Chat');
+    setTimeout(() => {
+      router.push('/Chat');
+    }, 1000);
   };
 
   useEffect(() => {

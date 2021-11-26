@@ -5,10 +5,6 @@ interface UserLogedMessage {
   userLoged?: boolean;
 }
 
-interface IButtonProposal {
-  bgColor: string;
-}
-
 export const Main = styled.main`
   display: flex;
   justify-content: center;
@@ -105,6 +101,7 @@ export const UsernameLoged = styled.span<UserLogedMessage>`
 
 export const MessageBox = styled.span`
   color: ${theme.assets.background};
+  text-align: justify;
 `;
 
 export const ProposalContainer = styled.div<UserLogedMessage>`
@@ -114,13 +111,17 @@ export const ProposalContainer = styled.div<UserLogedMessage>`
 
   width: 500px;
 
-  padding: 10px;
+  padding: 16px;
   margin: 10px;
 
-  background: #3c096c;
+  background: ${theme.colors.blue};
 
   border-radius: ${(props) =>
     props.userLoged ? '10px 10px 0px 10px' : '10px 10px 10px 0px'};
+
+  @media screen and (min-width: 1024px) {
+    padding: 32px;
+  }
 `;
 
 export const ImageProposal = styled.img`
@@ -135,8 +136,13 @@ export const ProposalBox = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 100px;
+  height: auto;
   width: 450px;
+
+  button {
+    margin-top: 16px;
+    font-weight: bold;
+  }
 `;
 
 export const ContainerButtonsProposal = styled.div`
@@ -148,39 +154,20 @@ export const ContainerButtonsProposal = styled.div`
   height: 50px;
 `;
 
-export const ButtonProposal = styled.button<IButtonProposal>`
-  padding: 5px;
-
-  border-radius: 5px;
-  border: none;
-
-  width: 100px;
-
-  color: white;
-  font-weight: 600;
-
-  background-color: ${(props) => props.bgColor};
-`;
-
-export const ButtonLoadindProposal = styled(ButtonProposal)`
-  width: 300px;
-`;
-
 export const ProposalDate = styled.div`
   display: flex;
   justify-content: flex-end;
 
   width: 100%;
-`;
+  margin-top: 16px;
 
-export const DateMessage = styled.span`
-  display: flex;
-  justify-content: flex-end;
+  > span {
+    display: flex;
+    justify-content: flex-end;
 
-  color: ${theme.assets.background};
-
-  font-size: 10px;
-  margin-top: 3px;
+    color: ${theme.assets.background};
+    font-size: 10px;
+  }
 `;
 
 export const FooterChat = styled.div`
@@ -202,7 +189,7 @@ export const FooterChat = styled.div`
 
 export const FooterInput = styled.input`
   font-size: 16px;
-  background: ${theme.assets.borderDark};
+  background: ${theme.assets.borderLight};
 
   border: none;
   outline: none;
@@ -228,7 +215,7 @@ export const ButtonSendMessage = styled.div`
 
   width: 10%;
   max-width: 100px;
-  min-width: 65px;
+  min-width: 70px;
 
   border-radius: 10px;
   background: ${theme.colors.pink};
