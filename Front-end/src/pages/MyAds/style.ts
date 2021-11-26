@@ -49,7 +49,7 @@ export const AdsInformation = styled.div<Colors>`
   justify-content: space-around;
   align-items: center;
 
-  width: 750px;
+  width: 800px;
   height: auto;
 
   padding: 16px;
@@ -104,5 +104,40 @@ export const ContainerAds = styled.div<Colors>`
 
   @media screen and (min-width: 1023px) {
     display: flex;
+  }
+`;
+
+export const HeaderAds = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 1000px;
+`;
+
+export const ContainerIcon = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  width: 100%;
+  height: 0px;
+
+  margin-right: 10px;
+`;
+
+export const IconButton = styled.button`
+  display: flex;
+  align-items: center;
+
+  width: 40px;
+
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 40px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 200px;
+    height: 100px;
+    font-size: 17px;
   }
 `;

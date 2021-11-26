@@ -22,6 +22,11 @@ export const ContainerMain = styled.main`
 `;
 
 export const HeaderContainer = styled.div<Colors>`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
   margin-top: 32px;
 
   width: 85%;
