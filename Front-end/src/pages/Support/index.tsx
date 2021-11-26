@@ -29,10 +29,10 @@ const Support: NextPage = () => {
       <BoxContent>
         <h1>Fale conosco</h1>
         <span>
-          Horários disponíveis para atendimento: 08h às 17h de segunda à sábado
+          Horários disponíveis para atendimento: 08h às 17h de segunda à sábado.
         </span>
         <span>
-          Entre em contato pelo nosso Instagram, e-mail ou chat em tempo real
+          Entre em contato pelo nosso Instagram, e-mail ou chat em tempo real.
         </span>
         <InstagramButton>
           <Instagram />

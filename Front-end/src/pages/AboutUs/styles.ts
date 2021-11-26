@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
 export const Header = styled.div`
-  width: 100%;
   margin-top: 40px;
 
   display: flex;
@@ -15,6 +14,7 @@ export const Header = styled.div`
   }
 
   img {
+    width: 60%;
     margin-top: 20px;
     border-radius: 10px;
   }
@@ -25,8 +25,18 @@ export const Header = styled.div`
   }
 
   p {
-    max-width: 65%;
+    max-width: 90%;
     text-align: center;
+  }
+
+  @media screen and (min-width: 1024px) {
+    img {
+      width: 30%;
+    }
+
+    p {
+      width: 65%;
+    }
   }
 `;
 
@@ -51,15 +61,26 @@ export const Content = styled.div`
 
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  span {
-    text-align: justify;
-    margin-right: 30px;
-  }
+  flex-direction: column;
 
   img {
+    width: 100%;
     border-radius: 10px;
+  }
+
+  span {
+    margin-top: 20px;
+    text-align: justify;
+  }
+
+  @media screen and (min-width: 1024px) {
+    img {
+      width: 50%;
+    }
+
+    span {
+      width: 60%;
+    }
   }
 `;
 
@@ -73,8 +94,6 @@ export const BoxTeam = styled.div`
 `;
 
 export const Team = styled.div`
-  width: 100%;
-
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -85,20 +104,29 @@ export const Team = styled.div`
   }
 
   p {
-    max-width: 70%;
-    text-align: center;
+    max-width: 100%;
+    text-align: justify;
     margin-top: 10px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    p {
+      width: 50%;
+    }
   }
 `;
 
 export const TeamMember = styled.div`
-  width: 100%;
-
   display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: unset;
+  }
 `;
 
 export const Developers = styled.div`
-  width: 80%;
   margin-top: 20px;
 
   display: flex;
@@ -110,13 +138,20 @@ export const Developers = styled.div`
   }
 
   p {
+    width: 100%;
+    text-align: justify;
+  }
+
+  @media screen and (min-width: 1024px) {
     width: 80%;
-    text-align: center;
+
+    p {
+      width: 70%;
+    }
   }
 `;
 
 export const Business = styled.div`
-  width: 80%;
   margin-top: 20px;
 
   display: flex;
@@ -128,8 +163,16 @@ export const Business = styled.div`
   }
 
   p {
+    width: 100%;
+    text-align: justify;
+  }
+
+  @media screen and (min-width: 1024px) {
     width: 80%;
-    text-align: center;
+
+    p {
+      width: 70%;
+    }
   }
 `;
 
@@ -138,15 +181,13 @@ export const BoxContact = styled.div`
   margin-top: 80px;
 
   display: flex;
-  align-items: center;
   justify-content: center;
 
   border-top: 2px solid ${theme.assets.borderDark};
 `;
 
 export const ButtonContact = styled.button`
-  width: 20%;
-  padding: 10px;
+  padding: 10px 60px;
   margin-top: 30px;
 
   color: ${theme.assets.background};
