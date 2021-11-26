@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
-import { ArrowLeft, Eye } from 'react-feather';
+import { ArrowLeft, Eye, CornerDownLeft, Trash2 } from 'react-feather';
 import { Navbar } from '../../components/Navbar';
 import { NavbarMobile } from '../../components/NavbarMobile';
 import { ContainerMain, HeaderContainer } from '../Account/styles';
@@ -16,6 +16,9 @@ import {
   ButtonAds,
   ContainerAds,
   ContainerButtonAds,
+  ContainerIcon,
+  HeaderAds,
+  IconButton,
 } from './style';
 
 import { useRouter } from 'next/router';
@@ -63,10 +66,15 @@ const MyAdsPage: NextPage = () => {
       <ContainerMain>
         <HeaderMobile />
         <HeaderContainer title={theme.colors.purple} text={theme.colors.purple}>
-          <Link href="/">
-            <ArrowLeft />
-          </Link>
-          <h1>Meus anúncios</h1>
+          <HeaderAds>
+            <Link href="/">
+              <ArrowLeft />
+            </Link>
+            <h1>Meus anúncios</h1>
+          </HeaderAds>
+          <ButtonAds color={theme.colors.purple}>
+            Adicionar residência
+          </ButtonAds>
         </HeaderContainer>
         <ContainerMyReservations>
           <ContainerColumn>
@@ -86,6 +94,14 @@ const MyAdsPage: NextPage = () => {
                         />
                       </ImageBox>
                       <AdsInformation>
+                        <ContainerIcon>
+                          <IconButton>
+                            <CornerDownLeft />
+                          </IconButton>
+                          <IconButton>
+                            <Trash2 />
+                          </IconButton>
+                        </ContainerIcon>
                         <h1>
                           {item?.propertyType} - {item?.roomQuantity} quarto
                           disponível
