@@ -35,7 +35,7 @@ const AboutUs: NextPage = () => {
 
       <Header>
         <h1>Sobre a Queerfy</h1>
-        <img src="../working-office.svg" width="30%" alt="Imagem ilustrativa" />
+        <img src="../working-office.svg" alt="Imagem ilustrativa" />
         <h2>2021</h2>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit id
@@ -48,6 +48,7 @@ const AboutUs: NextPage = () => {
       <BoxContent>
         <TitleContent>Nosso produto</TitleContent>
         <Content>
+          <img src="../home-queerfy.png" alt="Home da Queerfy" />
           <span>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum
             dolores veritatis nam? Sapiente libero inventore tempore, dolorum
@@ -57,7 +58,6 @@ const AboutUs: NextPage = () => {
             inventore tempore, dolorum eum modi voluptatem? Dicta fugit ea
             provident adipisci obcaecati quaerat eius illum corporis!
           </span>
-          <img src="../home-queerfy.png" width="50%" alt="Home da Queerfy" />
         </Content>
       </BoxContent>
 

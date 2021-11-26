@@ -43,9 +43,9 @@ export const AuthProvider = ({ children }) => {
   const handleLogin = (data: IUserAuthData) => {
     const schema = Yup.object().shape({
       email: Yup.string()
-        .email('Digite um e-mail válido')
-        .required('Coloque o e-mail para prosseguir!'),
-      password: Yup.string().required('Digite a senha para prosseguir!'),
+        .email('Digite um e-mail válido.')
+        .required('Coloque o e-mail para prosseguir.'),
+      password: Yup.string().required('Digite a senha para prosseguir.'),
     });
 
     schema
