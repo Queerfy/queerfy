@@ -146,7 +146,7 @@ const Chat: NextPage = () => {
     };
     //Post de reserva da pagina
     socket.emit('handle_proposal', params);
-    return toast.success('Resposta Enviada com Sucesso!');
+    return toast.success('Resposta enviada com sucesso!');
   };
 
   return (

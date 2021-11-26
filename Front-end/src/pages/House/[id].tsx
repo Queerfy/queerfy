@@ -88,7 +88,7 @@ const House: NextPage = () => {
     };
 
     if (checkInHouse === '' || checkOutHouse === '') {
-      toast.error('Selecione uma data válida!');
+      toast.error('Selecione uma data válida.');
       return;
     }
 
@@ -143,7 +143,7 @@ const House: NextPage = () => {
     if (houseLiked.length > 0) {
       api.delete(`/favorites/${houseLiked[0].id}`);
       setLikedHouse(false);
-      return toast.success('Casa Desfavoritada com Sucesso!');
+      return toast.success('Propriedade desfavoritada com sucesso.');
     } else {
       const data = {
         propertyId: id,
@@ -151,7 +151,7 @@ const House: NextPage = () => {
       };
       api.post('/favorites', data);
       setLikedHouse(true);
-      return toast.success('Casa Favoritada com Sucesso!');
+      return toast.success('Propriedade favoritada com sucesso.');
     }
   };
 
@@ -193,7 +193,7 @@ const House: NextPage = () => {
       moment(checkOutHouse).isBefore(checkInHouse) ||
       moment(checkInHouse).isAfter(checkOutHouse)
     ) {
-      toast.error('Selecione uma data válida!');
+      toast.error('Selecione uma data válida.');
       setDisableButton(true);
       setTotal(0);
     } else {
