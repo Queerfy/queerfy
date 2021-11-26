@@ -143,7 +143,7 @@ export const AuthProvider = ({ children }) => {
           socket.emit('check_messages', userSender, (messagesList) => {
             if (messagesList.length > 0) {
               return toast.success(
-                `Você tem ${messagesList.length} mensagem não lidas`
+                `Você tem ${messagesList.length} mensagem não lida`
               );
             }
           });

@@ -28,7 +28,7 @@ export const StepSix = () => {
     const description = descriptionRef.current.value;
 
     if (hasEmptyProperties(name, description)) {
-      return toast.error("Preencha todos os campos!");
+      return toast.error("Preencha todos os campos.");
     }
 
     handleStep({ name, description });

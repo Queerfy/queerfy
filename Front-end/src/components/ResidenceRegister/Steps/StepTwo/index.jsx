@@ -21,7 +21,7 @@ export const StepTwo = () => {
 
   function sendParams() {
     if (spaceType === null) {
-      return toast.error("Selecione uma tipo de espaço!");
+      return toast.error("Selecione um tipo de espaço!");
     }
 
     handleStep({ spaceType });

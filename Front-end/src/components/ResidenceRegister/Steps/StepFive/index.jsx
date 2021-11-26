@@ -52,7 +52,7 @@ export const StepFive = () => {
     }
 
     if (hasEmptyProperties()) {
-      return toast.error("Selecione ao menos um filtro");
+      return toast.error("Selecione ao menos um filtro.");
     }
 
     handleStep(filters);
