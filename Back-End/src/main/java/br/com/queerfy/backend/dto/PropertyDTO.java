@@ -1,17 +1,11 @@
 package br.com.queerfy.backend.dto;
 
 import br.com.queerfy.backend.entities.Property;
-import br.com.queerfy.backend.entities.User;
-
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
 
 public class PropertyDTO {
 
     private Integer id;
     private String name;
-    private String houseImg;
     private Boolean active;
     private Double dailyPrice;
     private String filterDate;
@@ -49,7 +43,6 @@ public class PropertyDTO {
         this.name = entity.getName();
         this.description = entity.getDescription();
         this.likes = entity.getLikes();
-        this.houseImg = entity.getHouseImg();
         this.active = entity.getActive();
         this.dailyPrice = entity.getDailyPrice();
         this.filterDate = entity.getFilterDate();
@@ -76,7 +69,10 @@ public class PropertyDTO {
         this.haveGarage = entity.getHaveGarage();
         this.haveAnimals  = entity.getHaveAnimals();
 
+
     }
+
+
 
     public Boolean getHaveWifi() {
         return haveWifi;
@@ -260,14 +256,6 @@ public class PropertyDTO {
 
     public void setId(Integer id) {
         id = id;
-    }
-
-    public String getHouseImg() {
-        return houseImg;
-    }
-
-    public void setHouseImg(String houseImg) {
-        this.houseImg = houseImg;
     }
 
     public Boolean getActive() {
