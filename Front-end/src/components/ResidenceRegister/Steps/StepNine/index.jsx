@@ -74,7 +74,7 @@ export const StepNine = () => {
         </Espefications>
         <Divider />
         <Espefications>
-          <strong>Filtros:</strong>
+          <strong>Filtros</strong>
           {residenceData.haveWifi && (
             <p>
               <Wifi size={20} /> Wi-Fi

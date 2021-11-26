@@ -130,7 +130,7 @@ const ResidenceList: NextPage = () => {
           </Categories>
         </Container>
         <Container>
-          <h1>Outros aluguéis excelentes na área selecionada</h1>
+          <h1>Aluguéis excelentes na área selecionada</h1>
           <RoomRow>
             {residences.map((item) => (
               <a onClick={() => router.push(`/House/${item.id}`)}>
