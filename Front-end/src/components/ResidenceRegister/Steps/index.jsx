@@ -18,7 +18,7 @@ export const StepOne = () => {
 
   function sendParams() {
     if (propertyType === null) {
-      return toast.error('Selecione o tipo da sua propriedade!');
+      return toast.error('Selecione o tipo da sua propriedade.');
     }
 
     handleStep({ propertyType });

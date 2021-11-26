@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
             }, 2000);
           })
           .catch((err) => {
-            return toast.error('E-mail/Senha incorreto!');
+            return toast.error('E-mail ou senha incorretos.');
           });
       })
       .catch((error) => {
@@ -143,7 +143,7 @@ export const AuthProvider = ({ children }) => {
           socket.emit('check_messages', userSender, (messagesList) => {
             if (messagesList.length > 0) {
               return toast.success(
-                `Você tem ${messagesList.length} mensagem não lida`
+                `Você tem ${messagesList.length} mensagens não lidas.`
               );
             }
           });
@@ -158,7 +158,7 @@ export const AuthProvider = ({ children }) => {
       setMessageReceiver(message);
       const pathName = router.pathname;
       if (pathName != '/Chat') {
-        return toast.info(`${name} te mandou uma mensagem`, {
+        return toast.info(`${name} te mandou uma mensagem.`, {
           onClick: () => {
             const newUserSender = userReceiver.user; //Trocando pra quem recebeu para quem vai mandar a mensagem agora
             const newUserReceiver = userSender.user; //Trocando para quem mandou para quem vai recebcer a mensagem agora
@@ -179,7 +179,7 @@ export const AuthProvider = ({ children }) => {
       const { acceptProposal } = params;
 
       return toast.info(
-        `Sua foi proposta foi ${acceptProposal ? 'Aceita' : 'Recusada'}`
+        `Sua foi proposta foi ${acceptProposal ? 'aceita' : 'recusada'}.`
       );
     });
   }, [messagesNotification]);
@@ -202,7 +202,7 @@ export const AuthProvider = ({ children }) => {
       socket.emit('list_proposals', userReceiver, (messagesProposals) => {
         if (messagesProposals.length > 0) {
           messagesProposals.map((item) => {
-            toast.info(`Você recebeu uma nova proposta!`, {
+            toast.info(`Você recebeu uma nova proposta.`, {
               onClick: () => {
                 const newUserSender = item.user_receiver; //Trocando pra quem recebeu para quem vai mandar a mensagem agora
                 const newUserReceiver = item.user_sender; //Trocando para quem mandou para quem vai recebcer a mensagem agora
