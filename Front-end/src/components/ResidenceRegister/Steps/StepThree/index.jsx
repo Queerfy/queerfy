@@ -7,7 +7,7 @@ import { HeaderMobile } from '../../../HeaderMobile';
 
 import { Container, InputsSection, FormInput } from './styles';
 
-// import { apiGeocode } from '../../../../services/api';
+import { apiGeocode } from '../../../../services/api';
 
 export const StepThree = () => {
   const { advanceStep, backStep, handleStep } = useResidence();
@@ -48,7 +48,7 @@ export const StepThree = () => {
   }
 
   async function sendParams() {
-    /*
+
     const { data } = await apiGeocode.get('/address', {
       params: {
         key: '38GhVvh0oG1ELtq8z7FDb7UI6S3ymwHU',
@@ -58,7 +58,7 @@ export const StepThree = () => {
 
     const latitude = data.results[0].locations[0].latLng.lat;
     const longitude = data.results[0].locations[0].latLng.lng;
-    */
+
 
     const address = {
       street: streetRef.current.value,
@@ -69,12 +69,9 @@ export const StepThree = () => {
       neighbourhood: neighbourhoodRef.current.value,
       houseNumber: numberRef.current.value,
       referencePoint: referencePointRef.current.value,
-      // latitude,
-      // longitude,
+      latitude,
+      longitude,
     };
-
-    console.log('cep', address.cep);
-    console.log('cep.length', address.cep.length);
 
     if (address.cep.length !== 8) {
       return toast.error("Preencha o campo de CEP corretamente.");
@@ -117,7 +114,7 @@ export const StepThree = () => {
             id="inputUf"
             name="inputUf"
             placeholder="SP"
-            maxlength="2"
+            maxLength="2"
             ref={ufRef}
           />
         </FormInput>
@@ -131,7 +128,7 @@ export const StepThree = () => {
             placeholder="_____-___"
             ref={cepRef}
             type="number"
-            maxlength="8"
+            maxLength="8"
           />
         </FormInput>
         <FormInput width="50%" desktopWidth="50%">
