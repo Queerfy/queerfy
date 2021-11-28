@@ -8,7 +8,7 @@ export const Categorie = styled.div`
   height: auto;
   margin: 8px 0px 16px 0px;
 
-  > img {
+  img {
     max-width: 100%;
     border-radius: 10px;
   }

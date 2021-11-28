@@ -1,9 +1,11 @@
 import React from 'react';
+import { NextPage } from 'next';
+
+import Head from 'next/head';
+import Link from 'next/link';
 
 import Switch from 'react-switch';
-import Link from 'next/link';
-import { NextPage } from 'next';
-import Head from 'next/head';
+
 import { theme } from '../../../styles/theme';
 import { ContainerLeft, ContainerNotification, ContainerRow } from './styles';
 import { Navbar } from '../../../components/Navbar';

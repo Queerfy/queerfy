@@ -1,9 +1,9 @@
 import React from 'react';
+import { NextPage } from 'next';
 
 import Link from 'next/link';
 import Head from 'next/head';
 
-import { NextPage } from 'next';
 import {
   ContainerAccount,
   Container,

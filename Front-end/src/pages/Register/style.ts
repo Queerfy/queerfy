@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 import { ArrowLeft } from 'react-feather';
@@ -55,14 +56,13 @@ export const HeaderBox = styled.div`
 `;
 
 export const IconBack = styled(ArrowLeft)`
-  margin-bottom: 10px;
   margin-top: 20px;
-  color: #e74c3c;
+  color: ${theme.colors.red};
   cursor: pointer;
 `;
 
 export const TitleHeader = styled.p`
-  color: #e74c3c;
+  color: ${theme.colors.red};
   font-size: 30px;
   font-weight: 600;
 
@@ -108,7 +108,7 @@ export const ActionButton = styled.div`
   font-size: 25px;
   font-weight: 600;
   color: white;
-  background: #e74c3c;
+  background: ${theme.colors.red};
 
   border-radius: 5px;
   border: none;

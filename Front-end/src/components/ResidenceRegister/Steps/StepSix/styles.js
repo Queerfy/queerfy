@@ -10,14 +10,14 @@ export const Container = styled.div`
   width: 100%;
   height: auto;
 
-  > h1 {
+  h1 {
     font-size: 26px;
     text-align: center;
     margin: 32px 0;
     color: ${theme.assets.font};
   }
 
-  > h2 {
+  h2 {
     font-size: 26px;
     color: ${theme.colors.red};
     align-self: flex-start;
@@ -43,11 +43,11 @@ export const Container = styled.div`
     margin-bottom: 64px;
   }
 
-  > button {
+  button {
     margin-bottom: 32px;
   }
 
-  > span {
+  span {
     text-decoration: underline;
     font-weight: 500;
     cursor: pointer;
@@ -59,11 +59,11 @@ export const Container = styled.div`
     height: 100vh;
     padding: 0 64px;
 
-    > h1 {
+    h1 {
       display: none;
     }
 
-    > span {
+    span {
       margin-bottom: 0;
     }
   }

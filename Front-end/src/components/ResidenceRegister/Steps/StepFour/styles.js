@@ -8,19 +8,19 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
 
-  > h1 {
+  h1 {
     font-size: 22px;
     text-align: center;
     margin: 16px 0px;
   }
 
-  > span {
+  span {
     text-decoration: underline;
     font-weight: 500;
     cursor: pointer;
   }
 
-  > button {
+  button {
     margin: 16px 0;
   }
 
@@ -28,11 +28,11 @@ export const Container = styled.div`
     justify-content: center;
     padding: 64px;
 
-    > h1 {
+    h1 {
       display: none;
     }
 
-    > button {
+    button {
       margin: 32px 0;
     }
   }
@@ -41,7 +41,7 @@ export const Container = styled.div`
 export const CounterBox = styled.div`
   width: 100%;
 
-  > div {
+  div {
     margin: 16px 0px;
   }
 `;

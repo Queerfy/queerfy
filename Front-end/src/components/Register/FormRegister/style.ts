@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../../styles/theme';
 
 import { Form } from '@unform/web';
@@ -13,9 +14,8 @@ interface LabelProps {
 }
 
 export const HeaderTitle = styled.h2`
-  font-weight: 700;
-  color: #e74c3c;
-  padding: 10px 0px 4px 0px;
+  font-size: 36px;
+  color: ${theme.colors.red};
   border-bottom: 1px solid ${theme.assets.borderDark};
 `;
 
@@ -39,8 +39,7 @@ export const RowInputs = styled.div`
 `;
 
 export const LabelInputs = styled.span<LabelProps>`
-  color: #e74c3c;
-  font-weight: bold;
+  color: ${theme.colors.red};
   font-size: 16px;
 
   @media screen and (max-width: 1024px) {
@@ -107,7 +106,7 @@ export const ButtonSubmit = styled.button`
 
   font-weight: 600;
   color: white;
-  background: #e74c3c;
+  background: ${theme.colors.red};
 
   border-radius: 5px;
   border: none;

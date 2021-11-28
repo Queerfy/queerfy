@@ -1,8 +1,9 @@
 import React from 'react';
+import { NextPage } from 'next';
 
 import Link from 'next/link';
-import { NextPage } from 'next';
 import Head from 'next/head';
+
 import { theme } from '../../../styles/theme';
 import { ContainerMain, HeaderContainer } from '../styles';
 import { ContainerInfo, ContainerColumn, Container, InputsBox } from './styles';

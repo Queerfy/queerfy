@@ -16,9 +16,6 @@ import {
   Content,
   BoxTeam,
   Team,
-  TeamMember,
-  Developers,
-  Business,
   BoxContact,
   ButtonContact,
 } from './styles';
@@ -71,26 +68,6 @@ const AboutUs: NextPage = () => {
             iure obcaecati.
           </p>
         </Team>
-        <TeamMember>
-          <Developers>
-            <h2>Desenvolvedores</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-              quia tenetur esse illum aliquam minus doloremque sed sapiente
-              assumenda molestias quis nesciunt minima? Hic maxime, dolor iure
-              adipisci assumenda repellendus.
-            </p>
-          </Developers>
-          <Business>
-            <h2>Negócios</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-              quia tenetur esse illum aliquam minus doloremque sed sapiente
-              assumenda molestias quis nesciunt minima? Hic maxime, dolor iure
-              adipisci assumenda repellendus.
-            </p>
-          </Business>
-        </TeamMember>
       </BoxTeam>
 
       <BoxContact>

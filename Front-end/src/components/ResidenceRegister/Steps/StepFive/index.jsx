@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+import { theme } from '../../../../styles/theme';
+
 import { useResidence } from '../../../../hooks/residence';
 
 import { HeaderMobile } from '../../../HeaderMobile';
@@ -7,8 +10,9 @@ import { Filter } from '../../Filter';
 import { Coffee, Wifi } from 'react-feather';
 
 import { Container, FiltersBox } from './styles';
+
 import { GeneralButton } from '../../../GeneralButton';
-import { theme } from '../../../../styles/theme';
+
 import { toast } from 'react-toastify';
 
 export const StepFive = () => {

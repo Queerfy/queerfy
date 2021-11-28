@@ -15,22 +15,22 @@ export const Container = styled.section`
   width: 100%;
   max-width: 1366px;
 
-  > h1 {
+  h1 {
     color: ${theme.colors.blue};
   }
 
-  > p {
+  p {
     margin: 16px 0px;
     font-size: 14px;
   }
 
   @media screen and (min-width: 1024px) {
-    > h1 {
+    h1 {
       font-size: 36px;
       margin: 16px 0px;
     }
 
-    > p {
+    p {
       font-size: 20px;
     }
   }
@@ -78,7 +78,7 @@ export const CategorieItem = styled.div`
     transform: scale(1.02);
   }
 
-  > img {
+  img {
     height: 35px;
   }
 `;

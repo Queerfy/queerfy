@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../../../styles/theme';
 
 export const Container = styled.div`
@@ -9,17 +10,17 @@ export const Container = styled.div`
   width: 100%;
   height: auto;
 
-  > h1 {
+  h1 {
     margin: 32px 0;
     text-align: center;
     font-size: 24px;
   }
 
-  > button {
+  button {
     margin: 32px 0px 16px 0px;
   }
 
-  > span {
+  span {
     text-decoration: underline;
     font-weight: 500;
     cursor: pointer;
@@ -30,11 +31,11 @@ export const Container = styled.div`
     justify-content: center;
     padding: 0 64px;
 
-    > h1 {
+    h1 {
       display: none;
     }
 
-    > button {
+    button {
       margin: 16px 0px;
     }
   }
@@ -60,13 +61,13 @@ export const FormInput = styled.div`
   width: ${(props) => (props.width ? props.width : '100%')};
   height: auto;
 
-  > label {
+  label {
     align-self: flex-start;
     color: ${theme.colors.red};
     cursor: pointer;
   }
 
-  > input {
+  input {
     width: 100%;
     height: 50px;
     border-radius: 10px;

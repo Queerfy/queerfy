@@ -35,12 +35,12 @@ export const CityInfo = styled.div`
   width: auto;
   height: auto;
 
-  > h3 {
+  h3 {
     font-size: 16px;
     color: ${theme.assets.font};
   }
 
-  > p {
+  p {
     font-size: 12px;
     color: ${theme.assets.borderDark};
   }

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../../styles/theme';
 
 export const Container = styled.ul`
@@ -22,7 +23,7 @@ export const Container = styled.ul`
     }
   }
 
-  > li {
+  li {
     color: ${theme.assets.background};
     margin: 0 10px;
     position: relative;
@@ -70,13 +71,13 @@ export const Container = styled.ul`
         transform: translateX(-50%);
       }
 
-      & > li {
+      & li {
         &:not(:last-child) {
           margin-bottom: 10px;
         }
       }
 
-      & > a {
+      & a {
         color: ${theme.assets.background};
         text-decoration: none;
 

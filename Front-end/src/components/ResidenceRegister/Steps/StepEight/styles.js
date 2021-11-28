@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../../../styles/theme';
 
 export const Container = styled.div`
@@ -9,7 +10,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
 
-  > p {
+  p {
     text-align: center;
     margin: 32px 0;
     line-height: 32px;
@@ -19,11 +20,11 @@ export const Container = styled.div`
     }
   }
 
-  > button {
+  button {
     margin: 32px;
   }
 
-  > span {
+  span {
     text-decoration: underline;
     font-weight: 500;
     cursor: pointer;
@@ -42,7 +43,7 @@ export const InputBox = styled.div`
   width: 100%;
   height: auto;
 
-  > input {
+  input {
     height: 150px;
     background-color: transparent;
     border: 2px solid ${theme.assets.borderDark};
@@ -66,7 +67,7 @@ export const InputBox = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-    > input {
+    input {
       margin-top: 0;
     }
   }

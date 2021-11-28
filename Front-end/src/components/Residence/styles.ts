@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 export const Container = styled.div`
@@ -6,20 +7,20 @@ export const Container = styled.div`
   height: auto;
   margin-bottom: 16px;
 
-  > h4 {
+  h4 {
     margin: 8px 0px;
   }
 
-  > span {
+  span {
     display: flex;
     align-items: center;
 
-    > svg {
+    svg {
       margin-right: 8px;
     }
   }
 
-  > p {
+  p {
     color: ${theme.assets.borderDark};
     margin-top: 8px;
   }
@@ -42,7 +43,7 @@ export const ImageBox = styled.div`
   border-radius: 10px;
   overflow: hidden;
 
-  > img {
+  img {
     width: 100%;
   }
 `;
@@ -60,7 +61,7 @@ export const HoveredImage = styled.div`
   opacity: 0;
   transition: 0.3s;
 
-  > svg {
+  svg {
     color: ${theme.assets.background};
     width: 60px;
     height: 60px;

@@ -37,7 +37,15 @@ const FormRegister: NextPage = () => {
         <RowInputs>
           <InputsBox fixedSize={'50%'} sizeResponsive={'100%'}>
             <LabelInputs>Nome</LabelInputs>
-            <Input name="name" type="text" placeholder="Nome Completo" />
+            <Input name="name" type="text" placeholder="Nome completo" />
+          </InputsBox>
+          <InputsBox fixedSize={'25%'} sizeResponsive={'40%'}>
+            <LabelInputs>Identidade de gênero</LabelInputs>
+            <select ref={genreRef}>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
+              <option value="Feminino">Não informar</option>
+            </select>
           </InputsBox>
           <InputsBox fixedSize={'25%'} sizeResponsive={'55%'}>
             <LabelInputs>Data de nascimento</LabelInputs>
@@ -47,24 +55,16 @@ const FormRegister: NextPage = () => {
               placeholder="Data de Nascimento"
             />
           </InputsBox>
-          <InputsBox fixedSize={'25%'} sizeResponsive={'40%'}>
-            <LabelInputs>Gênero</LabelInputs>
-            <select ref={genreRef}>
-              <option value="Masculino">Masculino</option>
-              <option value="Feminino">Feminino</option>
-              <option value="Feminino">Não informar</option>
-            </select>
-          </InputsBox>
         </RowInputs>
 
         <RowInputs>
-          <InputsBox fixedSize={'50%'} sizeResponsive={'55%'}>
-            <LabelInputs>CPF</LabelInputs>
-            <InputMask name="cpf" type="text" mask="999.999.999-99" />
-          </InputsBox>
           <InputsBox fixedSize={'50%'} sizeResponsive={'40%'}>
             <LabelInputs>RG</LabelInputs>
             <InputMask name="rg" type="text" mask="99-999-999-*" />
+          </InputsBox>
+          <InputsBox fixedSize={'50%'} sizeResponsive={'55%'}>
+            <LabelInputs>CPF</LabelInputs>
+            <InputMask name="cpf" type="text" mask="999.999.999-99" />
           </InputsBox>
         </RowInputs>
 

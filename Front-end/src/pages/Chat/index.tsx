@@ -17,18 +17,10 @@ import {
   UsernameLoged,
   MessageBox,
   DateMessage,
-  ProposalContainer,
-  ImageProposal,
-  ProposalBox,
-  ContainerButtonsProposal,
-  ButtonProposal,
-  ButtonLoadindProposal,
-  ProposalDate,
   FooterChat,
   FooterInput,
   ButtonSendMessage,
 } from './style';
-import { theme } from '../../styles/theme';
 import { MessageSquare, Send } from 'react-feather';
 
 const socket = io('http://localhost:3333');

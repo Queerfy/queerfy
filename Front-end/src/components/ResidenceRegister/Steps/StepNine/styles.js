@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../../../styles/theme';
 
 export const Container = styled.div`
@@ -10,16 +11,16 @@ export const Container = styled.div`
   width: 100%;
   height: auto;
 
-  > h1 {
+  h1 {
     text-align: center;
     color: ${theme.assets.font};
   }
 
-  > button {
+  button {
     margin: 32px 0px 16px 0px;
   }
 
-  > span {
+  span {
     text-decoration: underline;
     font-weight: 500;
     cursor: pointer;
@@ -28,11 +29,11 @@ export const Container = styled.div`
   @media screen and (min-width: 1024px) {
     padding: 0 64px;
 
-    > h1 {
+    h1 {
       display: none;
     }
 
-    > button {
+    button {
       margin: 16px 0px;
     }
   }
@@ -46,12 +47,12 @@ export const Content = styled.div`
   border-radius: 10px;
   margin-top: 32px;
 
-  > img {
+  img {
     width: 100%;
     border-radius: 10px 10px 0px 0px;
   }
 
-  > h1,
+  h1,
   p {
     margin: 8px;
   }
@@ -76,7 +77,7 @@ export const Espefications = styled.div`
 
   padding: 0 8px;
 
-  > strong {
+  strong {
     text-decoration: underline;
   }
 
@@ -84,7 +85,7 @@ export const Espefications = styled.div`
     display: flex;
     align-self: center;
 
-    > strong {
+    strong {
       margin-right: 8px;
     }
   }

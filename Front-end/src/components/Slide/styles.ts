@@ -56,7 +56,7 @@ export const AdressBar = styled(Form)`
   padding: 8px 16px;
   margin-bottom: 60px;
 
-  > div {
+  div {
     margin-bottom: 8px;
   }
 
@@ -85,19 +85,16 @@ export const AdressItem = styled.div`
   height: 80px;
   border-bottom: 1px solid ${theme.assets.borderDark};
 
-  > input {
-    padding: 5px;
-    height: 50%;
-    width: 100%;
+  input {
     background-color: ${theme.assets.background};
     color: ${theme.assets.font};
   }
 
-  > h4 {
+  h4 {
     color: ${theme.colors.red};
   }
 
-  :last-child {
+  &:last-child {
     border: none;
   }
 
@@ -109,7 +106,7 @@ export const AdressItem = styled.div`
     margin-right: 3rem;
     border-bottom: none;
 
-    > input {
+    input {
       height: 60%;
       width: 100%;
       background-color: transparent;

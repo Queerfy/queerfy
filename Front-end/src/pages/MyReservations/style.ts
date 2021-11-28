@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 interface Colors {
@@ -57,7 +58,7 @@ export const ContainerReservation = styled.div<Colors>`
     transform: scale(1.01);
   }
 
-  > img {
+  img {
     width: 500px;
     height: 100%;
     border-radius: 25px;
