@@ -43,7 +43,7 @@ export const StepThree = () => {
     return city.toLowerCase().replace(' ', '-').normalize('NFD').replace(/[\u0300-\u036f]/g, "");
   }
 
-  function isCepValid(cep) {
+  function treatCep(cep) {
     return cep.replace('-', '');
   }
 
@@ -64,7 +64,7 @@ export const StepThree = () => {
       street: streetRef.current.value,
       city: treatCity(cityRef.current.value),
       uf: ufRef.current.value.toUpperCase(),
-      cep: isCepValid(cepRef.current.value),
+      cep: treatCep(cepRef.current.value),
       addressComplement: complementRef.current.value,
       neighbourhood: neighbourhoodRef.current.value,
       houseNumber: numberRef.current.value,
