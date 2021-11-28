@@ -14,7 +14,7 @@ export const Container = styled.div`
     margin: 16px 0px;
   }
 
-  span {
+  > span {
     text-decoration: underline;
     font-weight: 500;
     cursor: pointer;
@@ -28,7 +28,7 @@ export const Container = styled.div`
     justify-content: center;
     padding: 64px;
 
-    h1 {
+    > h1 {
       display: none;
     }
 

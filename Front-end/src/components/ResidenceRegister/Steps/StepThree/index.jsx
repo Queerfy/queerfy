@@ -38,7 +38,17 @@ export const StepThree = () => {
     }
   }
 
+  // Função para tratar o envio do campo cidade para o banco. Ex: São Paulo -> sao-paulo
+  function treatCity(city) {
+    return city.toLowerCase().replace(' ', '-').normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function treatCep(cep) {
+    return cep.replace('-', '');
+  }
+
   async function sendParams() {
+
     const { data } = await apiGeocode.get('/address', {
       params: {
         key: '38GhVvh0oG1ELtq8z7FDb7UI6S3ymwHU',
@@ -49,11 +59,12 @@ export const StepThree = () => {
     const latitude = data.results[0].locations[0].latLng.lat;
     const longitude = data.results[0].locations[0].latLng.lng;
 
+
     const address = {
       street: streetRef.current.value,
-      city: cityRef.current.value,
+      city: treatCity(cityRef.current.value),
       uf: ufRef.current.value.toUpperCase(),
-      cep: cepRef.current.value,
+      cep: treatCep(cepRef.current.value),
       addressComplement: complementRef.current.value,
       neighbourhood: neighbourhoodRef.current.value,
       houseNumber: numberRef.current.value,
@@ -61,6 +72,10 @@ export const StepThree = () => {
       latitude,
       longitude,
     };
+
+    if (address.cep.length !== 8) {
+      return toast.error("Preencha o campo de CEP corretamente.");
+    }
 
     if (haveEmptyProperties(address)) {
       return toast.error('Preencha todos os campos.');
@@ -99,7 +114,7 @@ export const StepThree = () => {
             id="inputUf"
             name="inputUf"
             placeholder="SP"
-            maxlength="2"
+            maxLength="2"
             ref={ufRef}
           />
         </FormInput>
@@ -113,6 +128,7 @@ export const StepThree = () => {
             placeholder="_____-___"
             ref={cepRef}
             type="number"
+            maxLength="8"
           />
         </FormInput>
         <FormInput width="50%" desktopWidth="50%">
