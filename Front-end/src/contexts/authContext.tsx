@@ -109,6 +109,16 @@ export const AuthProvider = ({ children }) => {
     setSearch(objectSearch);
   };
 
+  const handleFavorites = async (dataUser) => {
+    await api.post('/favorites', dataUser);
+    const { data } = await api.get(`/users/${dataUser.userId}`);
+
+    localStorage.setItem('user', JSON.stringify(data));
+    setUserApp(data);
+
+    return toast.success('Propriedade favoritada com sucesso.');
+  };
+
   const getLastSearch = () => {
     const storagedSearch = localStorage.getItem('lastSearch');
 
@@ -239,6 +249,7 @@ export const AuthProvider = ({ children }) => {
         handleConfirmReservation,
         handleSearch,
         getLastSearch,
+        handleFavorites,
       }}
     >
       {children}

@@ -62,7 +62,12 @@ import {
 } from '../../interfaces';
 
 const House: NextPage = () => {
-  const { userApp, handleUsersChatJoin, handleConfirmReservation } = useAuth();
+  const {
+    userApp,
+    handleUsersChatJoin,
+    handleConfirmReservation,
+    handleFavorites,
+  } = useAuth();
   const router = useRouter();
 
   const { id } = router.query;
@@ -138,7 +143,7 @@ const House: NextPage = () => {
   };
 
   const handleLikeHouse = () => {
-    const houseLiked = favoritesUser.filter(
+    /* const houseLiked = favoritesUser.filter(
       (item) => item.propertyId == house.id
     );
 
@@ -154,7 +159,12 @@ const House: NextPage = () => {
       api.post('/favorites', data);
       setLikedHouse(true);
       return toast.success('Propriedade favoritada com sucesso.');
-    }
+    } */
+    const data = {
+      propertyId: id,
+      userId: userApp.id,
+    };
+    handleFavorites(data);
   };
 
   useEffect(() => {
@@ -167,7 +177,7 @@ const House: NextPage = () => {
           .then((resOwner) => {
             setOwner(resOwner.data);
 
-            setFavoritesUser(userApp.favorite);
+            /* setFavoritesUser(userApp.favorite);
 
             const houseLiked = userApp.favorite.filter(
               (item) => item.propertyId == res.data.id
@@ -177,7 +187,7 @@ const House: NextPage = () => {
               setLikedHouse(true);
             } else {
               setLikedHouse(false);
-            }
+            } */
           })
           .catch((err) => {
             router.push('/');
