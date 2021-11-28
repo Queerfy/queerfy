@@ -20,7 +20,7 @@ export const Container = styled.div`
     margin: 32px 0px 16px 0px;
   }
 
-  span {
+  > span {
     text-decoration: underline;
     font-weight: 500;
     cursor: pointer;

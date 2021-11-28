@@ -35,7 +35,7 @@ export const StepNine = () => {
     try {
       await api.post('/properties', data);
       toast.success('Residência cadastrada com sucesso!');
-      router.push('/ResidenceList');
+      router.push('/');
     } catch (error) {
       console.log(error);
       return toast.error(

@@ -56,7 +56,7 @@ const FormUrgencyRegister: NextPage = () => {
                   <Input
                     name="email"
                     type="text"
-                    placeholder="contato@purple.com.br"
+                    placeholder="contato@queerfy.com.br"
                   />
                 </InputsBox>
               </RowInputs>
