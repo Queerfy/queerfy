@@ -44,6 +44,8 @@ import {
   Host,
   ProfileHost,
   Email,
+  Container,
+  Body,
 } from './styles';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -171,8 +173,6 @@ const House: NextPage = () => {
               (item) => item.propertyId == res.data.id
             );
 
-            console.log(houseLiked);
-
             if (houseLiked.length > 0) {
               setLikedHouse(true);
             } else {
@@ -208,162 +208,165 @@ const House: NextPage = () => {
 
       <Navbar />
       <HeaderMobile />
-
-      <Header>
-        <h1>{house?.name}</h1>
-        <Subtitle>
-          <Local>
-            <MapPin />
-            <span>SP - Alphaville</span>
-          </Local>
-          <Favorite onClick={handleLikeHouse}>
-            <span>Amei</span>
-            {likedHouse === false ? (
-              <Heart />
-            ) : (
-              <Likes>
-                <img src="../colorful-heart.svg" alt="Coração preenchido" />
-              </Likes>
-            )}
-          </Favorite>
-        </Subtitle>
-      </Header>
-
-      <img
-        src="../img-casa.svg"
-        width="100%"
-        alt="Imagens da propriedade"
-      />
-
-      <BoxContents>
-        <BoxInformations>
-          <Informations>
-            <h2>Características do local</h2>
-
-            <AlignInformations>
-              <AdditionalInformation />
-              <AdditionalInformation />
-            </AlignInformations>
-
-            <AlignInformations>
-              <AdditionalInformation />
-              <AdditionalInformation />
-            </AlignInformations>
-          </Informations>
-
-          <Rules>
-            <h2>Regras</h2>
-
-            <AlignInformations>
-              <AdditionalInformation />
-              <AdditionalInformation />
-            </AlignInformations>
-
-            <AlignInformations>
-              <AdditionalInformation />
-              <AdditionalInformation />
-            </AlignInformations>
-          </Rules>
-
-          <Description>
-            <h2>Descrição</h2>
-            <p>{house?.description}</p>
-          </Description>
-        </BoxInformations>
-
-        <ChangeBox>
-          <BoxReservation>
-            <BorderRainbow>
-              <Reservation>
-                <HeaderReservation>
-                  <Value>
-                    <h1>R${house?.dailyPrice.toFixed(0)} / </h1>
-                    <h2>diária</h2>
-                  </Value>
+      <Container>
+        <Body>
+          <Header>
+            <h1>{house?.name}</h1>
+            <Subtitle>
+              <Local>
+                <MapPin />
+                <span>SP - Alphaville</span>
+              </Local>
+              <Favorite onClick={handleLikeHouse}>
+                <span>Amei</span>
+                {likedHouse === false ? (
+                  <Heart />
+                ) : (
                   <Likes>
                     <img src="../colorful-heart.svg" alt="Coração preenchido" />
-                    <span>246</span>
                   </Likes>
-                </HeaderReservation>
+                )}
+              </Favorite>
+            </Subtitle>
+          </Header>
 
-                <ChooseDate>
-                  <CheckDate>
-                    <span>Check-in</span>
-                    <InputDate
-                      type="date"
-                      placeholder="dd/mm/aa"
-                      value={checkInHouse}
-                      onChange={(e) => setCheckInHouse(e.target.value)}
-                    />
-                  </CheckDate>
+          <img
+            src="../img-casa.svg"
+            width="100%"
+            alt="Imagens da propriedade"
+          />
 
-                  <CheckDate>
-                    <span>Check-out</span>
-                    <InputDate
-                      type="date"
-                      placeholder="dd/mm/aa"
-                      value={checkOutHouse}
-                      onChange={(e) => setCheckOutHouse(e.target.value)}
-                    />
-                  </CheckDate>
-                </ChooseDate>
+          <BoxContents>
+            <BoxInformations>
+              <Informations>
+                <h2>Características do local</h2>
 
-                <BoxInteraction>
-                  <ButtonInteraction
-                    disabled={disableButton}
-                    onClick={handleReservationConfirm}
-                  >
-                    Finalizar reserva
-                  </ButtonInteraction>
-                </BoxInteraction>
+                <AlignInformations>
+                  <AdditionalInformation />
+                  <AdditionalInformation />
+                </AlignInformations>
 
-                <BoxTotalValue>
-                  <Line />
-                  <TotalValue>
-                    <h2>Total</h2>
-                    <span>R${!isNaN(total) ? total.toFixed(2) : 0}</span>
-                  </TotalValue>
-                </BoxTotalValue>
-              </Reservation>
-            </BorderRainbow>
-          </BoxReservation>
+                <AlignInformations>
+                  <AdditionalInformation />
+                  <AdditionalInformation />
+                </AlignInformations>
+              </Informations>
 
-          <BoxHost>
-            <BorderHost>
-              <Host>
-                <ProfileHost>
-                  <img
-                    src={
-                      owner?.perfilImg == null
-                        ? 'https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-user-interface-kiranshastry-lineal-kiranshastry.png'
-                        : owner?.perfilImg
-                    }
-                    alt="Foto do perfil do host"
-                  />
-                  <h1>Hospedado por {owner?.name}</h1>
-                </ProfileHost>
+              <Rules>
+                <h2>Regras</h2>
 
-                <Email>
-                  <span>Tem interesse? <br />Envie uma mensagem para o host!</span>
-                </Email>
+                <AlignInformations>
+                  <AdditionalInformation />
+                  <AdditionalInformation />
+                </AlignInformations>
 
-                <BoxInteraction>
-                  <ButtonInteraction
-                    style={{ width: '60%' }}
-                    onClick={handleChat}
-                  /* disabled={house?.idUser != userApp?.id} */
-                  >
-                    Conversar
-                  </ButtonInteraction>
-                </BoxInteraction>
-              </Host>
-            </BorderHost>
-          </BoxHost>
-        </ChangeBox>
-      </BoxContents>
-      <Footer />
-      <NavbarMobile />
-      <ToastContainer />
+                <AlignInformations>
+                  <AdditionalInformation />
+                  <AdditionalInformation />
+                </AlignInformations>
+              </Rules>
+
+              <Description>
+                <h2>Descrição</h2>
+                <p>{house?.description}</p>
+              </Description>
+            </BoxInformations>
+
+            <ChangeBox>
+              <BoxReservation>
+                <BorderRainbow>
+                  <Reservation>
+                    <HeaderReservation>
+                      <Value>
+                        <h1>R${house?.dailyPrice.toFixed(0)} / </h1>
+                        <h2>diária</h2>
+                      </Value>
+                      <Likes>
+                        <img src="../colorful-heart.svg" alt="Coração preenchido" />
+                        <span>{house?.likes}</span>
+                      </Likes>
+                    </HeaderReservation>
+
+                    <ChooseDate>
+                      <CheckDate>
+                        <span>Check-in</span>
+                        <InputDate
+                          type="date"
+                          placeholder="dd/mm/aa"
+                          value={checkInHouse}
+                          onChange={(e) => setCheckInHouse(e.target.value)}
+                        />
+                      </CheckDate>
+
+                      <CheckDate>
+                        <span>Check-out</span>
+                        <InputDate
+                          type="date"
+                          placeholder="dd/mm/aa"
+                          value={checkOutHouse}
+                          onChange={(e) => setCheckOutHouse(e.target.value)}
+                        />
+                      </CheckDate>
+                    </ChooseDate>
+
+                    <BoxInteraction>
+                      <ButtonInteraction
+                        disabled={disableButton}
+                        onClick={handleReservationConfirm}
+                      >
+                        Finalizar reserva
+                      </ButtonInteraction>
+                    </BoxInteraction>
+
+                    <BoxTotalValue>
+                      <Line />
+                      <TotalValue>
+                        <h2>Total</h2>
+                        <span>R${!isNaN(total) ? total.toFixed(2) : 0}</span>
+                      </TotalValue>
+                    </BoxTotalValue>
+                  </Reservation>
+                </BorderRainbow>
+              </BoxReservation>
+
+              <BoxHost>
+                <BorderHost>
+                  <Host>
+                    <ProfileHost>
+                      <img
+                        src={
+                          owner?.perfilImg == null
+                            ? 'https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-user-interface-kiranshastry-lineal-kiranshastry.png'
+                            : owner?.perfilImg
+                        }
+                        alt="Foto do perfil do host"
+                      />
+                      <h1>Hospedado por {owner?.name}</h1>
+                    </ProfileHost>
+
+                    <Email>
+                      <span>Tem interesse? <br />Envie uma mensagem para o host!</span>
+                    </Email>
+
+                    <BoxInteraction>
+                      <ButtonInteraction
+                        style={{ width: '60%' }}
+                        onClick={handleChat}
+                      /* disabled={house?.idUser != userApp?.id} */
+                      >
+                        Conversar
+                      </ButtonInteraction>
+                    </BoxInteraction>
+                  </Host>
+                </BorderHost>
+              </BoxHost>
+            </ChangeBox>
+          </BoxContents>
+          <Footer />
+          <NavbarMobile />
+          <ToastContainer />
+        </Body>
+      </Container>
     </>
   );
 };

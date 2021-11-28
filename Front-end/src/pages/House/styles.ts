@@ -2,6 +2,16 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Body = styled.div`
+  max-width: 1920px;
+`;
+
 export const Header = styled.header`
   width: 100%;
 
@@ -72,20 +82,12 @@ export const Informations = styled.div`
     color: ${theme.colors.red};
     padding-bottom: 20px;
   }
-
-  @media screen and (min-width: 1024px) {
-    width: 80%;
-  }
 `;
 
 export const AlignInformations = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-
-  @media screen and (min-width: 1024px) {
-    width: 80%;
-  }
 `;
 
 export const Rules = styled.div`
@@ -99,10 +101,6 @@ export const Rules = styled.div`
   h2 {
     color: ${theme.colors.green};
     padding-bottom: 20px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 80%;
   }
 `;
 
@@ -118,10 +116,6 @@ export const Description = styled.div`
   h2 {
     color: ${theme.colors.orange};
     padding-bottom: 20px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 80%;
   }
 `;
 
