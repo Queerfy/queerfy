@@ -15,6 +15,11 @@ public class FavoriteController {
     @Autowired
     private FavoriteService service;
 
+    @GetMapping
+    public ResponseEntity getAllFavorites(){
+        return ResponseEntity.status(200).body(service.getAllFavorites());
+    }
+
     @PostMapping
     public ResponseEntity createFavorite(@RequestBody FavoriteDTO entity) throws FkNotFound {
         service.create(entity);
