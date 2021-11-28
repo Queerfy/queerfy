@@ -8,6 +8,7 @@ import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
 import br.com.queerfy.backend.exceptions.UserNotFoundException;
 import br.com.queerfy.backend.repositories.PropertyRepository;
 import br.com.queerfy.backend.repositories.UserRepository;
+import br.com.queerfy.backend.utils.PilhaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,11 +23,20 @@ import java.util.stream.Collectors;
 @Service
 public class PropertyService {
 
+    PilhaObj<Property> pilhaObj = new PilhaObj<>(5);
+
     @Autowired
     PropertyRepository propertyRepository;
 
     @Autowired
     UserRepository userRepository;
+
+    @Transactional
+    public PropertyDTO undoProperty(Integer id) throws UserAlreadyExistsException {
+        PropertyDTO property =  new PropertyDTO(pilhaObj.pop());
+        create(property);
+        return property;
+    }
 
     @Transactional
     public List<PropertyDTO> allPropertyFromSpaceType(String spaceType){
@@ -112,6 +122,7 @@ public class PropertyService {
     public Boolean deleteProperty(Integer id) throws UserNotFoundException {
         Optional<Property> property = propertyRepository.findById(id);
         if(property.isPresent()){
+            pilhaObj.push(property.get());
             propertyRepository.deleteById(id);
             return true;
         }

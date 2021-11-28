@@ -6,6 +6,7 @@ import br.com.queerfy.backend.exceptions.ImageNotFound;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
 import br.com.queerfy.backend.exceptions.UserNotFoundException;
 import br.com.queerfy.backend.services.PropertyService;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,15 @@ public class PropertyController {
 
     @Autowired
     private PropertyService service;
+
+
+
+    @GetMapping("/undo/{id}")
+    public ResponseEntity undoProperty(Integer id) throws UserAlreadyExistsException {
+        return ResponseEntity.status(200).body(service.undoProperty(id));
+    }
+
+
 
     @PatchMapping("/image1/{propertyId}")
     public ResponseEntity postImage1(@PathVariable Integer propertyId, @RequestBody MultipartFile image) throws IOException {
@@ -112,8 +122,9 @@ public class PropertyController {
         return ResponseEntity.status(200).body(service.getPropertyById(id));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity deletePropertyById(@PathVariable Integer id) throws UserNotFoundException{
+    public ResponseEntity deletePropertyById(@PathVariable Integer id) throws UserNotFoundException {
         service.deleteProperty(id);
         return ResponseEntity.status(201).build();
+
     }
 }
