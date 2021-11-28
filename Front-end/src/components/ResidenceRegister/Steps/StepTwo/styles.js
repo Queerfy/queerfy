@@ -14,7 +14,6 @@ export const Container = styled.div`
   }
 
   div {
-    height: 80px;
     margin: 16px 0px;
   }
 

@@ -27,7 +27,7 @@ const NotificationPage: NextPage = () => {
           <Link href="/">
             <ArrowLeft />
           </Link>
-          <h1>Notificações</h1>
+          <h1>Configurações das notificações</h1>
         </HeaderContainer>
         <ContainerNotification>
           <ContainerRow>
@@ -63,7 +63,7 @@ const NotificationPage: NextPage = () => {
           <ContainerRow>
             <ContainerLeft>
               <MessageSquare />
-              <h2 id="textOne">Direta</h2>
+              <h2 id="textOne">Usuários</h2>
               <h2 id="textTwo">Mensagens de texto de outros usuários</h2>
             </ContainerLeft>
             <Switch

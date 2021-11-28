@@ -65,16 +65,22 @@ const MyAdsPage: NextPage = () => {
       <Navbar accountNavbar />
       <ContainerMain>
         <HeaderMobile />
-        <HeaderContainer title={theme.colors.purple} text={theme.colors.purple}>
+        <HeaderContainer
+          title={theme.colors.purple}
+          text={theme.colors.purple}
+          style={{ flexDirection: 'row', alignItems: 'center' }}
+        >
           <HeaderAds>
             <Link href="/">
               <ArrowLeft />
             </Link>
             <h1>Meus anúncios</h1>
           </HeaderAds>
-          <ButtonAds color={theme.colors.purple}>
-            Adicionar residência
-          </ButtonAds>
+          <Link href="/ResidenceRegister">
+            <ButtonAds color={theme.colors.purple}>
+              Adicionar residência
+            </ButtonAds>
+          </Link>
         </HeaderContainer>
         <ContainerMyReservations>
           <ContainerColumn>
