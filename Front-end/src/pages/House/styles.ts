@@ -46,6 +46,7 @@ export const BoxContents = styled.div`
 
   @media screen and (min-width: 1024px) {
     display: flex;
+    justify-content: space-between;
   }
 `;
 
@@ -125,32 +126,31 @@ export const Description = styled.div`
 `;
 
 export const ChangeBox = styled.div`
-  min-width: 50%;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (min-width: 1024px) {
+    width: 40%;
+    max-width: 650px;
+  }
 `;
 
 export const BoxReservation = styled.div`
   width: 100%;
   padding: 8px 0px 45px 0px;
-
-  @media screen and (min-width: 1024px) {
-    width: 50%;
-  }
 `;
 
 export const BorderRainbow = styled.div`
-  width: 100%;
-  height: 220px;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
+  width: 100%;
+  height: 220px;
   border-radius: 12px;
-
   background: ${theme.gradients.rainbow};
 `;
 
@@ -217,9 +217,13 @@ export const CheckDate = styled.div`
 
 export const InputDate = styled.input`
   padding: 6px 6px;
-
+  font-size: 11px;
   border-radius: 10px;
   border: 2px solid ${theme.assets.borderLight};
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const BoxInteraction = styled.div`
@@ -277,54 +281,48 @@ export const TotalValue = styled.div`
 
 export const BoxHost = styled.div`
   width: 100%;
+  height: 240px;
   padding: 8px 0px 8px 0px;
 
   @media screen and (min-width: 1024px) {
-    width: 60%;
+    height: 200px;
   }
 `;
 
 export const BorderHost = styled.div`
-  width: 100%;
-  height: 180px;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
+  width: 100%;
+  height: 100%;
   border-radius: 12px;
-
   background: ${theme.gradients.rainbow};
 `;
 
 export const Host = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
   width: 99%;
   height: 98%;
   padding: 10px;
-
   border-radius: 10px;
 
   background: ${theme.assets.background};
 `;
 
 export const ProfileHost = styled.div`
-  width: 100%;
-
-  margin-bottom: 15px;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
+  width: 100%;
+
   img {
     width: 65px;
-    height: 65px;
-    border-radius: 50%;
-
-    @media screen and (min-width: 1024px) {
-      width: 65px;
-      height: 65px;
-    }
   }
 
   h1 {
@@ -333,10 +331,6 @@ export const ProfileHost = styled.div`
 `;
 
 export const Email = styled.div`
-  width: 100%;
-
-  margin-bottom: 15px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -345,9 +339,5 @@ export const Email = styled.div`
     font-size: 14px;
     margin-left: 6px;
     text-align: center;
-  }
-
-  @media screen and (min-width: 1024px) {
-    max-width: 100%;
   }
 `;

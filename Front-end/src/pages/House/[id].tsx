@@ -179,13 +179,7 @@ const House: NextPage = () => {
               setLikedHouse(false);
             }
           })
-          .catch((err) => {
-            router.push('/');
-          });
       })
-      .catch((err) => {
-        router.push('/');
-      });
   }, []);
 
   useEffect(() => {
@@ -238,7 +232,6 @@ const House: NextPage = () => {
       <img
         src="../img-casa.svg"
         width="100%"
-        height="100%"
         alt="Imagens da propriedade"
       />
 
@@ -351,15 +344,14 @@ const House: NextPage = () => {
                 </ProfileHost>
 
                 <Email>
-                  <Mail />
-                  <span>Tem interesse? Envie uma mensagem para o host!</span>
+                  <span>Tem interesse? <br />Envie uma mensagem para o host!</span>
                 </Email>
 
                 <BoxInteraction>
                   <ButtonInteraction
                     style={{ width: '60%' }}
                     onClick={handleChat}
-                    /* disabled={house?.idUser != userApp?.id} */
+                  /* disabled={house?.idUser != userApp?.id} */
                   >
                     Conversar
                   </ButtonInteraction>
