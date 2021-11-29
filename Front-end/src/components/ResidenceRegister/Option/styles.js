@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../../styles/theme';
 
 export const Container = styled.div`
@@ -27,7 +28,7 @@ export const InsideContainer = styled.div`
   border-radius: 10px;
   padding: 16px 32px;
 
-  > img {
+  img {
     width: 85px;
     max-height: 75px;
     margin-right: 16px;
@@ -36,7 +37,7 @@ export const InsideContainer = styled.div`
   @media screen and (min-width: 1024px) {
     cursor: pointer;
 
-    > span {
+    span {
       font-size: 20px;
     }
   }

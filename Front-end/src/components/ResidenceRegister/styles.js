@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 export const Container = styled.div`
@@ -27,7 +28,7 @@ export const BannerContainer = styled.aside`
   min-height: 100vh;
   color: ${theme.assets.background};
 
-  > h1 {
+  h1 {
     font-size: 36px;
   }
 `;
@@ -42,11 +43,11 @@ export const LogoContainer = styled.div`
   background-color: ${theme.assets.background};
   border-radius: 10px;
 
-  > img {
+  img {
     width: 80px;
   }
 
-  > h1 {
+  h1 {
     margin: 0 16px;
     color: ${theme.assets.font};
   }

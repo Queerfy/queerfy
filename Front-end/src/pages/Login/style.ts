@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 import { Form } from '@unform/web';
@@ -42,7 +43,7 @@ export const LogoBox = styled.div`
   background-color: ${theme.assets.background};
   border-radius: 25px;
 
-  > img {
+  img {
     width: 120px;
     height: 120px;
   }
@@ -66,7 +67,7 @@ export const LoginContainer = styled.div`
     height: 50px;
     margin-top: 32px;
 
-    > svg {
+    svg {
       color: ${theme.colors.red};
       cursor: pointer;
     }
@@ -95,16 +96,8 @@ export const ContainerBox = styled.div`
   width: 50%;
   height: 70%;
 
-  background: linear-gradient(
-    to right,
-    rgba(241, 83, 86, 1) 0%,
-    rgba(240, 191, 90, 1) 17%,
-    rgba(253, 233, 128, 1) 34%,
-    rgba(133, 219, 107, 1) 50%,
-    rgba(67, 158, 250, 1) 68%,
-    rgba(169, 147, 245, 1) 84%,
-    rgba(242, 107, 156, 1) 100%
-  );
+  background: ${theme.gradients.rainbow};
+
   border-radius: 15px;
 
   @media screen and (max-width: 1024px) {
@@ -127,7 +120,7 @@ export const ItemContainer = styled.div`
 
   h1 {
     padding: 10px;
-    font-weight: 700;
+    font-size: 28px;
     color: ${theme.colors.red};
   }
 
@@ -139,20 +132,19 @@ export const ItemContainer = styled.div`
     width: 95%;
     padding: 12px;
 
-    margin-top: 10px;
     border-radius: 5px;
     border: 1px solid ${theme.assets.borderDark};
     cursor: pointer;
 
-    > svg {
+    svg {
       margin-right: 8px;
       color: ${theme.colors.red};
     }
 
-    > p {
+    p {
       font-size: 14px;
 
-      > span {
+      span {
         font-weight: 700;
         color: ${theme.colors.red};
       }
@@ -212,12 +204,12 @@ export const ButtonRegister = styled.button`
   justify-content: space-evenly;
   padding: 10px;
 
-  background: #f15356;
+  background: ${theme.colors.red};
   color: white;
   font-weight: 600;
 
   border: none;
-  width: 150px;
+  width: 200px;
 
   border-radius: 5px;
   cursor: pointer;

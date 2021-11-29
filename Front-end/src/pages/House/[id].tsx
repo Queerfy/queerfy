@@ -407,8 +407,10 @@ const House: NextPage = () => {
                 </ProfileHost>
 
                 <Email>
-                  <Mail />
-                  <span>Tem interesse? Envie uma mensagem para o host!</span>
+                  <span>
+                    Tem interesse? <br />
+                    Envie uma mensagem para o host!
+                  </span>
                 </Email>
 
                 <BoxInteraction>

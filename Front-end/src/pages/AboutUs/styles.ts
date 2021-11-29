@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 export const Header = styled.div`
@@ -111,67 +112,7 @@ export const Team = styled.div`
 
   @media screen and (min-width: 1024px) {
     p {
-      width: 50%;
-    }
-  }
-`;
-
-export const TeamMember = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  @media screen and (min-width: 1024px) {
-    flex-direction: unset;
-  }
-`;
-
-export const Developers = styled.div`
-  margin-top: 20px;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  h2 {
-    font-size: 22px;
-  }
-
-  p {
-    width: 100%;
-    text-align: justify;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 80%;
-
-    p {
-      width: 70%;
-    }
-  }
-`;
-
-export const Business = styled.div`
-  margin-top: 20px;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  h2 {
-    font-size: 22px;
-  }
-
-  p {
-    width: 100%;
-    text-align: justify;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 80%;
-
-    p {
-      width: 70%;
+      width: 60%;
     }
   }
 `;

@@ -13,23 +13,20 @@ export const ContainerMain = styled.main`
   height: auto;
   width: 100%;
 
-  @media screen and (min-width: 1023px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
-
     justify-content: center;
     align-items: center;
   }
 `;
 
 export const HeaderContainer = styled.div<Colors>`
+  width: 85%;
+
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
 
   margin-top: 32px;
-
-  width: 85%;
 
   svg {
     color: ${(props) => props.text};
@@ -48,16 +45,19 @@ export const HeaderContainer = styled.div<Colors>`
   h1 {
     font-size: 26px;
     color: ${(props) => props.title};
-
-    @media screen and (min-width: 1023px) {
-      font-size: 36px;
-    }
   }
+
   h2 {
     font-size: 18px;
     color: ${(props) => props.subtitle};
+  }
 
-    @media screen and (min-width: 1023px) {
+  @media screen and (min-width: 1024px) {
+    h1 {
+      font-size: 36px;
+    }
+
+    h2 {
       font-size: 24px;
     }
   }
@@ -65,17 +65,13 @@ export const HeaderContainer = styled.div<Colors>`
 
 export const Container = styled.div<Colors>`
   margin-bottom: 32px;
+
   svg {
     width: 50px;
     height: 50px;
 
     &:hover {
       cursor: pointer;
-    }
-
-    @media screen and (min-width: 1023px) {
-      width: 80px;
-      height: 80px;
     }
   }
 
@@ -91,14 +87,20 @@ export const Container = styled.div<Colors>`
       cursor: pointer;
     }
   }
+
   h3 {
     font-size: 18px;
     color: ${(props) => props.text};
   }
 
-  @media screen and (min-width: 1023px) {
+  @media screen and (min-width: 1024px) {
     width: 400px;
     height: 200px;
+
+    svg {
+      width: 80px;
+      height: 80px;
+    }
   }
 `;
 
@@ -110,11 +112,12 @@ export const ContainerAccount = styled.div`
   margin-top: 32px;
   height: 450px;
 
-  @media screen and (min-width: 1023px) {
+  @media screen and (min-width: 1024px) {
+    width: 85%;
+
     flex-direction: row;
     flex-wrap: wrap;
     height: auto;
-    width: 85%;
 
     margin-top: 64px;
   }

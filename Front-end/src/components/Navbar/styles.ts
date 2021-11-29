@@ -17,11 +17,11 @@ export const Container = styled.nav`
   height: 70px;
   padding: 0 64px;
 
-  > img {
+  img {
     height: 45px;
   }
 
-  > span {
+  span {
     color: ${theme.assets.font};
     transition: 0.3s;
 
@@ -40,16 +40,7 @@ export const InputBox = styled(Center)`
   width: 300px;
   height: 45px;
   border-radius: 100px;
-  background: linear-gradient(
-    to right,
-    rgba(241, 83, 86, 1) 0%,
-    rgba(240, 191, 90, 1) 17%,
-    rgba(253, 233, 128, 1) 34%,
-    rgba(133, 219, 107, 1) 50%,
-    rgba(67, 158, 250, 1) 68%,
-    rgba(169, 147, 245, 1) 84%,
-    rgba(242, 107, 156, 1) 100%
-  );
+  background: ${theme.gradients.rainbow};
 
   svg {
     width: 35px;
@@ -81,7 +72,7 @@ export const IconBox = styled(Center)`
   height: 38px;
   width: 40px;
 
-  > svg {
+  svg {
     transform: scale(0.95);
     transition: 0.3s;
     margin-right: 16px;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { NextPage } from 'next';
 
 import Link from 'next/link';
-import { NextPage } from 'next';
 import Head from 'next/head';
 import { Form } from '@unform/web';
 import { theme } from '../../../styles/theme';

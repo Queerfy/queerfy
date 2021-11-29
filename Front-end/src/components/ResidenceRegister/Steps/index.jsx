@@ -5,11 +5,13 @@ import { useAuth } from '../../../hooks/useAuth';
 
 import { theme } from '../../../styles/theme';
 
-import { Container } from './styles';
+import { useResidence } from '../../../hooks/residence';
 
 import { Option } from '../Option';
 import { GeneralButton } from '../../GeneralButton';
 import { HeaderMobile } from '../../HeaderMobile';
+
+import { Container } from './styles';
 
 import { toast } from 'react-toastify';
 import { api } from '../../../services/api';

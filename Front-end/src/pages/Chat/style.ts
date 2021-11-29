@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 interface UserLogedMessage {
@@ -33,7 +34,7 @@ export const MainContainer = styled.div`
   background: ${theme.assets.background};
   border-radius: 20px;
 
-  > h1 {
+  h1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -180,7 +181,7 @@ export const FooterChat = styled.div`
   padding: 0 8px;
   border-top: 1px solid ${theme.assets.borderDark};
 
-  > div,
+  div,
   input {
     max-height: 75px;
     height: 70px;
@@ -223,7 +224,7 @@ export const ButtonSendMessage = styled.div`
   transition: background-color 0.3s;
   cursor: pointer;
 
-  > svg {
+  svg {
     color: ${theme.assets.background};
   }
 

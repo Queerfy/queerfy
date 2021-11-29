@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../../styles/theme';
 
 export const Container = styled.div`
@@ -12,7 +13,7 @@ export const Container = styled.div`
   padding: 0 32px;
   border: 2px solid ${theme.assets.font};
 
-  > span {
+  span {
     margin-left: 16px;
     font-size: 24px;
   }

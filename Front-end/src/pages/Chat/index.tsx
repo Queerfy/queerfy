@@ -16,15 +16,11 @@ import {
   ContainerMessage,
   UsernameLoged,
   MessageBox,
-  ProposalContainer,
-  ProposalBox,
-  ContainerButtonsProposal,
-  ProposalDate,
+  DateMessage,
   FooterChat,
   FooterInput,
   ButtonSendMessage,
 } from './style';
-import { theme } from '../../styles/theme';
 import { MessageSquare, Send } from 'react-feather';
 import { GeneralButton } from '../../components/GeneralButton';
 import { api } from '../../services/api';

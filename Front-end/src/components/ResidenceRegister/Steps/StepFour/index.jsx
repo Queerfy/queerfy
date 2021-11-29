@@ -79,7 +79,7 @@ export const StepFour = () => {
   return (
     <Container>
       <HeaderMobile />
-      <h1>Quais são as especificações do espaço que você deseja alugar?</h1>
+      <h1>Quais são as especificações do espaço que você deseja hospedar?</h1>
       <CounterBox>
         <Counter
           counter={guestCounter}

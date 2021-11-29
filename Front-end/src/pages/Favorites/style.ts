@@ -85,7 +85,7 @@ export const ImageCard = styled.div`
   width: 270px;
   height: 150px;
 
-  > img {
+  img {
     width: 100%;
     border-radius: 10px;
   }

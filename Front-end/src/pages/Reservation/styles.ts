@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 export const Header = styled.div`
@@ -36,16 +37,7 @@ export const BorderHouse = styled.div`
 
   border-radius: 12px;
 
-  background: linear-gradient(
-    to right,
-    rgba(241, 83, 86, 1) 0%,
-    rgba(240, 191, 90, 1) 17%,
-    rgba(253, 233, 128, 1) 34%,
-    rgba(133, 219, 107, 1) 50%,
-    rgba(67, 158, 250, 1) 68%,
-    rgba(169, 147, 245, 1) 84%,
-    rgba(242, 107, 156, 1) 100%
-  );
+  background: ${theme.gradients.rainbow};
 `;
 
 export const House = styled.div`
@@ -89,7 +81,7 @@ export const IconArrow = styled.div`
   display: flex;
   align-items: center;
 
-  > svg {
+  svg {
     color: ${theme.colors.red};
     cursor: pointer;
   }
@@ -192,7 +184,7 @@ export const AdditionalBox = styled.div`
   display: flex;
   justify-content: space-between;
 
-  > :first-child {
+  &:first-child {
     margin-right: 2%;
   }
 `;

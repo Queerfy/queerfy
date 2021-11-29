@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+
+import { theme } from '../../styles/theme';
+
 import { Popup } from 'react-leaflet';
 
 export const MapContainer = styled.div`
@@ -47,6 +50,6 @@ export const PopupStyled = styled(Popup)`
 export const TitleMap = styled.p`
   margin-bottom: 15px;
   font-size: 25px;
-  color: #439efa;
+  color: ${theme.colors.blue};
   font-weight: 700;
 `;

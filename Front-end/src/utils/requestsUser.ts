@@ -23,12 +23,12 @@ export const registerUser = async (userData: IRequestUser) => {
     cpf: Yup.string()
       .min(14, 'Dgite um CPF válido.')
       .required('Digite um CPF.'),
-    email: Yup.string().required('O email é obrigatório para prosseguir.'),
+    email: Yup.string().required('O e-mail é obrigatório para prosseguir.'),
     password: Yup.string().required('A senha é obrigatória para prosseguir.'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'As senhas não conferem.')
       .required('A confirmação de senha é obrigatória para prosseguir.'),
-    rg: Yup.string().min(12, 'Digite um RG válido.'),
+    rg: Yup.string().min(12, 'Digite um RG.'),
   });
 
   schema

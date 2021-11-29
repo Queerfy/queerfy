@@ -8,7 +8,7 @@ export const Container = styled.div`
   width: 100%;
   height: 50px;
 
-  > h1 {
+  h1 {
     font-size: 22px;
   }
 `;
@@ -20,7 +20,7 @@ export const CounterBox = styled.div`
 
   width: 50%;
 
-  > svg {
+  svg {
     cursor: pointer;
     transform: scale(0.95);
     transition: 0.3s;
@@ -30,7 +30,7 @@ export const CounterBox = styled.div`
     }
   }
 
-  > span {
+  span {
     font-size: 24px;
     font-weight: bold;
   }

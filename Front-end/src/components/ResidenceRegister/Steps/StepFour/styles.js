@@ -8,7 +8,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
 
-  > h1 {
+  h1 {
     font-size: 22px;
     text-align: center;
     margin: 16px 0px;
@@ -20,7 +20,7 @@ export const Container = styled.div`
     cursor: pointer;
   }
 
-  > button {
+  button {
     margin: 16px 0;
   }
 
@@ -32,7 +32,7 @@ export const Container = styled.div`
       display: none;
     }
 
-    > button {
+    button {
       margin: 32px 0;
     }
   }
@@ -41,7 +41,7 @@ export const Container = styled.div`
 export const CounterBox = styled.div`
   width: 100%;
 
-  > div {
+  div {
     margin: 16px 0px;
   }
 `;

@@ -8,12 +8,12 @@ export const Container = styled.div`
   width: 100%;
   height: auto;
 
-  > h1 {
+  h1 {
     text-align: center;
     font-size: 24px;
   }
 
-  > button {
+  button {
     margin: 32px 0;
   }
 
@@ -28,11 +28,11 @@ export const Container = styled.div`
     justify-content: center;
     height: 100vh;
 
-    > h1 {
+    h1 {
       display: none;
     }
 
-    > button {
+    button {
       margin: 16px 0;
     }
   }
@@ -46,12 +46,12 @@ export const FiltersBox = styled.div`
   width: 100%;
   height: auto;
 
-  > div {
+  div {
     margin: 16px 0;
   }
 
   @media screen and (min-width: 1024px) {
-    > div {
+    div {
       margin: 12px 0;
     }
   }

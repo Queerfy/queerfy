@@ -65,7 +65,11 @@ const MyAdsPage: NextPage = () => {
       <Navbar accountNavbar />
       <ContainerMain>
         <HeaderMobile />
-        <HeaderContainer title={theme.colors.purple} text={theme.colors.purple}>
+        <HeaderContainer
+          title={theme.colors.purple}
+          text={theme.colors.purple}
+          style={{ flexDirection: 'row', alignItems: 'center' }}
+        >
           <HeaderAds>
             <Link href="/">
               <ArrowLeft />
