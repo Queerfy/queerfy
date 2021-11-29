@@ -37,8 +37,8 @@ public class UserController {
     }
 
     @PostMapping()
-    public UserDTO create(@RequestBody UserDTO userDTO) throws UserAlreadyExistsException {
-        return userService.create(userDTO);
+    public ResponseEntity create(@RequestBody UserDTO userDTO) throws UserAlreadyExistsException {
+        return ResponseEntity.status(201).body(userService.create(userDTO));
     }
 
     @GetMapping

@@ -16,6 +16,10 @@ public class User {
 
     }
 
+    public User(Integer id) {
+        this.id = id;
+    }
+
     public User(UserDTO user) {
         this.name = user.getName();
         this.birthDate = user.getBirthDate();
