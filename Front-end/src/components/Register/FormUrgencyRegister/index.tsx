@@ -41,7 +41,7 @@ const FormUrgencyRegister: NextPage = () => {
               <RowInputs>
                 <InputsBox fixedSize={'100%'} sizeResponsive={'100%'}>
                   <LabelInputs>Nome</LabelInputs>
-                  <Input name="name" type="text" placeholder="Nome Completo" />
+                  <Input name="name" type="text" placeholder="Nome completo" />
                 </InputsBox>
               </RowInputs>
               <RowInputs>
@@ -56,17 +56,17 @@ const FormUrgencyRegister: NextPage = () => {
                   <Input
                     name="email"
                     type="text"
-                    placeholder="contato@purple.com.br"
+                    placeholder="contato@queerfy.com.br"
                   />
                 </InputsBox>
               </RowInputs>
               <RowInputs>
                 <InputsBox fixedSize={'50%'} sizeResponsive={'50%'}>
-                  <LabelInputs>Sexualidade</LabelInputs>
+                  <LabelInputs>Orientação sexual</LabelInputs>
                   <Input
                     name="gener"
                     type="text"
-                    placeholder="Orientação sexual"
+                    placeholder="Lésbica"
                   />
                 </InputsBox>
                 <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
@@ -98,7 +98,7 @@ const FormUrgencyRegister: NextPage = () => {
                   />
                 </InputsBox>
                 <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
-                  <LabelInputs>Confirmação</LabelInputs>
+                  <LabelInputs>Confirmação de senha</LabelInputs>
                   <Input
                     name="confirmPassword"
                     type="password"

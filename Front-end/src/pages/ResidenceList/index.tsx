@@ -7,7 +7,7 @@ import { api } from '../../services/api';
 
 import { useAuth } from '../../hooks/useAuth';
 
-import { Container, Categories, RoomRow, CategorieItem } from './styles';
+import { Container, Categories, RoomRow, CategorieItem, Body } from './styles';
 
 import { useRouter } from 'next/router';
 
@@ -18,22 +18,80 @@ import { HeaderMobile } from '../../components/HeaderMobile';
 import { NavbarMobile } from '../../components/NavbarMobile';
 import { Residence } from '../../components/Residence';
 import { Footer } from '../../components/Footer';
+import moment from 'moment';
+import { toast } from 'react-toastify';
 
 const ResidenceList: NextPage = () => {
-  const { userApp } = useAuth();
+  const { search, getLastSearch } = useAuth();
 
   const router = useRouter();
 
   const [residences, setResidences] = useState([]);
+  const [filters, setFilters] = useState([]);
+
+  const handleFiltersHouse = (type: string) => {
+    const filter = residences
+      ? residences.filter((item) => item[`${type}`] === true)
+      : filters.filter((item) => item[`${type}`] === true);
+    if (filter.length === 0) {
+      return toast.info('Nenhum filtro encontrado!');
+    }
+    setFilters(filter);
+    setResidences(null);
+  };
 
   useEffect(() => {
-    api
-      .get('/properties')
-      .then((response) => {
-        setResidences(response.data);
-      })
-      .catch((err) => console.log(err));
+    getLastSearch();
   }, []);
+
+  useEffect(() => {
+    const storagedSearch = JSON.parse(localStorage.getItem('lastSearch'));
+    if (
+      storagedSearch.city &&
+      !storagedSearch.checkIn &&
+      !storagedSearch.checkOut
+    ) {
+      const { city } = storagedSearch;
+      const citySearch = String(city)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/( )+/g, '-');
+
+      api
+        .get(`/properties/city/${citySearch}`)
+        .then((response) => {
+          setResidences(response.data);
+        })
+        .catch((err) => console.log(err));
+    } else if (
+      storagedSearch.city &&
+      storagedSearch.checkIn &&
+      storagedSearch.checkOut
+    ) {
+      const { city, checkIn, checkOut } = storagedSearch;
+      const citySearch = String(city)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/( )+/g, '-');
+
+      ///leases/available?dataInicio=2021-05-10&dataFim=2021-05-20&city=sao-paulo
+      api
+        .get(`/leases/available/`, {
+          params: {
+            dataInicio: moment(checkIn, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+            dataFim: moment(checkOut, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+            city: citySearch,
+          },
+        })
+        .then((response) => {
+          setResidences(response.data);
+          setFilters(null);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [search]);
 
   return (
     <>
@@ -41,70 +99,112 @@ const ResidenceList: NextPage = () => {
         <title>Queerfy | Residências</title>
       </Head>
 
-      <Navbar />
-      <HeaderMobile />
-      <Container>
-        <h1>Locações com as melhores avaliações em cidade</h1>
-        <p>
-          Os hóspedes concordam: estas acomodações foram muito bem avaliadas
-          quanto a localização, limpeza e outros aspectos.
-        </p>
-        <RoomRow>
-          {residences.map((item) => {
-            return (
-              item.likes > 1000 && (
-                <a onClick={() => router.push(`/House/${item.id}`)}>
-                  <Residence
-                    key={item.id}
-                    name={item.name}
-                    description={item.description}
-                    trend={true}
-                  />
-                </a>
-              )
-            );
-          })}
-        </RoomRow>
-      </Container>
-      <Container>
-        <h1>O que você gostaria de ter no local onde está procurando?</h1>
-        <Categories>
-          <CategorieItem>
-            <Wifi />
-            <span>Wi-Fi</span>
-          </CategorieItem>
-          <CategorieItem>
-            <Coffee />
-            <span>Cozinha</span>
-          </CategorieItem>
-          <CategorieItem>
-            <Droplet />
-            <span>Piscina</span>
-          </CategorieItem>
-          <CategorieItem>
-            <img src="parking-icon.svg" alt="estacionamento" />
-            <span>Garagem</span>
-          </CategorieItem>
-          <CategorieItem>
-            <img src="paw.svg" alt="pata" />
-            <span>Animais</span>
-          </CategorieItem>
-        </Categories>
-      </Container>
-      <Container>
-        <h1>Outros aluguéis excelentes na área selecionada</h1>
-        <RoomRow>
-          {residences.map((item) => (
-            <Residence
-              key={item.id}
-              name={item.name}
-              description={item.description}
-            />
+      <Body>
+        <Navbar />
+        <HeaderMobile />
+        {residences?.filter((item) => item.likes > 1000).length > 0 ||
+          (filters?.filter((item) => item.likes > 1000).length > 0 && (
+            <Container>
+              <h1>Locações com as melhores avaliações em cidade</h1>
+              <p>
+                Os hóspedes concordam: estas acomodações foram muito bem
+                avaliadas quanto a localização, limpeza e outros aspectos.
+              </p>
+              <RoomRow>
+                <>
+                  {residences?.map((item) => {
+                    return (
+                      item.likes > 1000 && (
+                        <a onClick={() => router.push(`/House/${item.id}`)}>
+                          <Residence
+                            key={item.id}
+                            name={item.name}
+                            description={item.description}
+                            trend={true}
+                          />
+                        </a>
+                      )
+                    );
+                  })}
+                </>
+                <>
+                  {filters?.map((item) => {
+                    return (
+                      item.likes > 1000 && (
+                        <a onClick={() => router.push(`/House/${item.id}`)}>
+                          <Residence
+                            key={item.id}
+                            name={item.name}
+                            description={item.description}
+                            trend={true}
+                          />
+                        </a>
+                      )
+                    );
+                  })}
+                </>
+              </RoomRow>
+            </Container>
           ))}
-        </RoomRow>
-      </Container>
-      <Footer />
-      <NavbarMobile />
+        <Container>
+          <h1>O que você gostaria de ter no local onde está procurando?</h1>
+          <Categories>
+            <CategorieItem onClick={() => handleFiltersHouse('haveWifi')}>
+              <Wifi />
+              <span>Wi-Fi</span>
+            </CategorieItem>
+            <CategorieItem onClick={() => handleFiltersHouse('haveKitchen')}>
+              <Coffee />
+              <span>Cozinha</span>
+            </CategorieItem>
+            <CategorieItem onClick={() => handleFiltersHouse('haveSuite')}>
+              <Droplet />
+              <span>Piscina</span>
+            </CategorieItem>
+            <CategorieItem onClick={() => handleFiltersHouse('haveGarage')}>
+              <img src="../parking-icon.svg" alt="estacionamento" />
+              <span>Garagem</span>
+            </CategorieItem>
+            <CategorieItem onClick={() => handleFiltersHouse('haveAnimals')}>
+              <img src="../cat-paw.svg" alt="pata" />
+              <span>Animais</span>
+            </CategorieItem>
+          </Categories>
+        </Container>
+        <Container>
+          <h1>Aluguéis excelentes na área selecionada</h1>
+          <RoomRow>
+            {residences && (
+              <>
+                {residences.map((item) => (
+                  <a onClick={() => router.push(`/House/${item.id}`)}>
+                    <Residence
+                      key={item.id}
+                      name={item.name}
+                      description={item.description}
+                    />
+                  </a>
+                ))}
+              </>
+            )}
+            {filters && (
+              <>
+                {filters.map((item) => (
+                  <a onClick={() => router.push(`/House/${item.id}`)}>
+                    <Residence
+                      key={item.id}
+                      name={item.name}
+                      description={item.description}
+                    />
+                  </a>
+                ))}
+              </>
+            )}
+          </RoomRow>
+        </Container>
+        <Footer />
+        <NavbarMobile />
+      </Body>
     </>
   );
 };

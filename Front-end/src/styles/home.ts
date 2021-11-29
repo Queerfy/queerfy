@@ -33,7 +33,7 @@ export const CategorieTypes = styled.div`
       margin-left: 20px;
     }
 
-    > div img {
+    div img {
       transition: 0.3s;
 
       &:hover {
@@ -54,11 +54,11 @@ export const HostBanner = styled.section`
 export const PinkBunners = styled.section`
   height: auto;
 
-  > div {
+  div {
     height: 350px;
   }
 
-  > :first-child {
+  &:first-child {
     margin-bottom: 32px;
   }
 
@@ -66,7 +66,7 @@ export const PinkBunners = styled.section`
     display: flex;
     margin-bottom: 0px;
 
-    > :first-child {
+    &:first-child {
       margin-right: 20px;
       margin-bottom: 0px;
     }
@@ -77,13 +77,14 @@ export const PinkBunners = styled.section`
 export const Nearby = styled.section`
   height: auto;
 
-  > h1 {
+  h1 {
+    font-size: 28px;
     color: ${theme.colors.purple};
     margin-bottom: 16px;
   }
 
   @media screen and (min-width: 1024px) {
-    > h1 {
+    h1 {
       font-size: 36px;
     }
   }
@@ -94,14 +95,8 @@ export const NearbyContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
 
-  > div {
+  div {
     margin-bottom: 32px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    > div {
-      margin: 0px;
-    }
   }
 `;
 
@@ -109,12 +104,12 @@ export const NearbyContainer = styled.div`
 export const NewslletterContainer = styled.section`
   height: 350px;
 
-  > h1 {
+  h1 {
     color: ${theme.colors.orange};
   }
 
   @media screen and (min-width: 1024px) {
-    > h1 {
+    h1 {
       font-size: 36px;
     }
   }

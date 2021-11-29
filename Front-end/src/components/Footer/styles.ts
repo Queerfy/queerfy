@@ -31,7 +31,7 @@ export const IconsBox = styled.div`
   height: 100%;
   margin-bottom: 16px;
 
-  > svg {
+  svg {
     width: 40px;
     height: 40px;
   }

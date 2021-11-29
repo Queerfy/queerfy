@@ -37,23 +37,23 @@ export const BannerContent = styled.div`
   font-size: 20px;
   padding: 16px;
 
-  > h1 {
+  h1 {
     font-size: 26px;
     color: ${theme.assets.background};
   }
 
-  > p {
+  p {
     color: ${theme.assets.background};
   }
 
   @media screen and (min-width: 1024px) {
     width: 70%;
 
-    > h1 {
+    h1 {
       font-size: 36px;
     }
 
-    > p {
+    p {
       font-size: 24px;
     }
   }
@@ -61,7 +61,7 @@ export const BannerContent = styled.div`
 
 export const MobileInputBox = styled.div`
   @media screen and (min-width: 1024px) {
-    > div {
+    div {
       display: none;
     }
   }
@@ -77,7 +77,7 @@ export const InputBox = styled.div`
   width: 30%;
   padding: 16px;
 
-  > h1 {
+  h1 {
     color: ${theme.assets.background};
     font-size: 28px;
     margin-bottom: 16px;

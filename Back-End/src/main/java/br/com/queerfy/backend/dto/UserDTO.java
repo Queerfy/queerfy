@@ -196,7 +196,4 @@ public class UserDTO {
     public Set<PropertyDTO> mapProperties(User user){
         return  user.getProperties().stream().map(property -> new PropertyDTO(property)).collect(Collectors.toSet());
     }
-
-
-
 }

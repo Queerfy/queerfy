@@ -27,7 +27,7 @@ const FormRegister: NextPage = () => {
       ...data,
       gener,
     };
-    registerUser(dataUser)
+    registerUser(dataUser);
   };
 
   return (
@@ -37,33 +37,34 @@ const FormRegister: NextPage = () => {
         <RowInputs>
           <InputsBox fixedSize={'50%'} sizeResponsive={'100%'}>
             <LabelInputs>Nome</LabelInputs>
-            <Input name="name" type="text" placeholder="Nome Completo" />
+            <Input name="name" type="text" placeholder="Nome completo" />
+          </InputsBox>
+          <InputsBox fixedSize={'25%'} sizeResponsive={'40%'}>
+            <LabelInputs>Identidade de gênero</LabelInputs>
+            <select ref={genreRef}>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
+              <option value="Feminino">Não informar</option>
+            </select>
           </InputsBox>
           <InputsBox fixedSize={'25%'} sizeResponsive={'55%'}>
-            <LabelInputs>Data de Nascimento</LabelInputs>
+            <LabelInputs>Data de nascimento</LabelInputs>
             <Input
               name="birthDate"
               type="date"
               placeholder="Data de Nascimento"
             />
           </InputsBox>
-          <InputsBox fixedSize={'25%'} sizeResponsive={'40%'}>
-            <LabelInputs>Gênero</LabelInputs>
-            <select ref={genreRef}>
-              <option value="Masculino">Masculino</option>
-              <option value="Feminino">Feminino</option>
-            </select>
-          </InputsBox>
         </RowInputs>
 
         <RowInputs>
-          <InputsBox fixedSize={'50%'} sizeResponsive={'55%'}>
-            <LabelInputs>CPF</LabelInputs>
-            <InputMask name="cpf" type="text" mask="999.999.999-99" />
-          </InputsBox>
           <InputsBox fixedSize={'50%'} sizeResponsive={'40%'}>
             <LabelInputs>RG</LabelInputs>
             <InputMask name="rg" type="text" mask="99-999-999-*" />
+          </InputsBox>
+          <InputsBox fixedSize={'50%'} sizeResponsive={'55%'}>
+            <LabelInputs>CPF</LabelInputs>
+            <InputMask name="cpf" type="text" mask="999.999.999-99" />
           </InputsBox>
         </RowInputs>
 
@@ -84,7 +85,7 @@ const FormRegister: NextPage = () => {
               mask={maskPhone}
               onBlur={(e) => {
                 if (e.target.value.replace('_', '').length === 14) {
-                  setMaskPhone('(99) 9999-9999');
+                  setMaskPhone('(99) 99999-9999');
                 }
               }}
               onFocus={(e) => {
@@ -105,7 +106,7 @@ const FormRegister: NextPage = () => {
             />
           </InputsBox>
           <InputsBox fixedSize={'50%'} sizeResponsive={'45%'}>
-            <LabelInputs minSize>Confirmação de Senha</LabelInputs>
+            <LabelInputs minSize>Confirmação de senha</LabelInputs>
             <Input
               name="confirmPassword"
               type="password"

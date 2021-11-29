@@ -30,14 +30,17 @@ export default createGlobalStyle<{ theme: Theme }>`
   h3 {
     font-size: 14px;
   }
-  
-  input {
-    font-family: 'Poppins';
-    border: none;
-    outline: none;
-  }
-  
+
   button {
     cursor: pointer;
+  }
+
+  input,
+  button,
+  textarea {
+    font-family: 'Poppins';
+    font-size: 16px;
+    border: none;
+    outline: none;
   }
 `;

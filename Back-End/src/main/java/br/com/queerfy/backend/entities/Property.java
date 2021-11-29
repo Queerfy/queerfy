@@ -66,9 +66,10 @@ public class Property {
     @JoinColumn(name = "fkUser")
     private User user;
 
-    public Property(){}
+    public Property() {
+    }
 
-    public Property(PropertyDTO entity){
+    public Property(PropertyDTO entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.description = entity.getDescription();

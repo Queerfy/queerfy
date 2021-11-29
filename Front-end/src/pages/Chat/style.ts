@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
+import { theme } from '../../styles/theme';
+
 interface UserLogedMessage {
-  userLoged?: true;
+  userLoged?: boolean;
 }
 
 export const Main = styled.main`
@@ -13,7 +15,12 @@ export const Main = styled.main`
   width: 100vw;
   overflow-y: hidden;
 
-  background: #353b48;
+  margin: 0 -32px;
+  background: ${theme.assets.borderLight};
+
+  @media (min-width: 1024px) {
+    margin: 0 -64px;
+  }
 `;
 
 export const MainContainer = styled.div`
@@ -23,19 +30,26 @@ export const MainContainer = styled.div`
   height: 90%;
   width: 90%;
 
-  background: rgba(0, 0, 0, 0.5);
+  padding: 0 32px;
+  background: ${theme.assets.background};
   border-radius: 20px;
-`;
 
-export const TitleChat = styled.p`
-  text-align: center;
-  font-size: 25px;
-  font-weight: 500;
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  padding: 15px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 16px;
+    color: ${theme.assets.font};
+    border-bottom: 1px solid ${theme.assets.borderDark};
 
-  color: white;
-  border-bottom: 1px solid #636e72;
+    svg {
+      margin-right: 16px;
+    }
+  }
 `;
 
 export const ContainerChat = styled.div`
@@ -61,7 +75,8 @@ export const ContainerMessage = styled.div<UserLogedMessage>`
 
   width: 300px;
 
-  background: #3c096c;
+  background: ${(props) =>
+    props.userLoged ? theme.colors.pink : theme.colors.purple};
 
   margin-top: 1%;
   margin-bottom: 3px;
@@ -76,65 +91,144 @@ export const ContainerMessage = styled.div<UserLogedMessage>`
 
 export const UsernameLoged = styled.span<UserLogedMessage>`
   display: flex;
-  justify-content: end;
+  justify-content: ${(props) => (props.userLoged ? 'end' : 'start')};
 
-  color: ${(props) => (props.userLoged ? '#240046' : 'purple')};
-  font-size: 10px;
+  color: ${theme.assets.font};
+  font-size: 12px;
 
   font-weight: bold;
   margin-bottom: 8px;
 `;
 
 export const MessageBox = styled.span`
-  color: white;
-  font-size: 10px;
+  color: ${theme.assets.background};
+  text-align: justify;
 `;
 
-export const DateMessage = styled.span`
+export const ProposalContainer = styled.div<UserLogedMessage>`
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
 
-  color: white;
+  width: 500px;
 
-  font-size: 10px;
-  margin-top: 3px;
+  padding: 16px;
+  margin: 10px;
+
+  background: ${theme.colors.blue};
+
+  border-radius: ${(props) =>
+    props.userLoged ? '10px 10px 0px 10px' : '10px 10px 10px 0px'};
+
+  @media screen and (min-width: 1024px) {
+    padding: 32px;
+  }
 `;
 
-export const FooterChat = styled.div`
+export const ImageProposal = styled.img`
+  width: 120px;
+
+  border-radius: 5px;
+`;
+
+export const ProposalBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: auto;
+  width: 450px;
+
+  button {
+    margin-top: 16px;
+    font-weight: bold;
+  }
+`;
+
+export const ContainerButtonsProposal = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 
   width: 100%;
+  height: 50px;
+`;
+
+export const ProposalDate = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+  margin-top: 16px;
+
+  > span {
+    display: flex;
+    justify-content: flex-end;
+
+    color: ${theme.assets.background};
+    font-size: 10px;
+  }
+`;
+
+export const FooterChat = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
   height: 20%;
+  padding: 0 8px;
+  border-top: 1px solid ${theme.assets.borderDark};
+
+  div,
+  input {
+    max-height: 75px;
+    height: 70px;
+  }
 `;
 
 export const FooterInput = styled.input`
-  height: 55%;
-  width: 80%;
-
-  font-size: 15px;
-  background: rgba(73, 80, 87, 0.5);
+  font-size: 16px;
+  background: ${theme.assets.borderLight};
 
   border: none;
   outline: none;
+  width: 80%;
 
-  color: #636e72;
+  color: ${theme.assets.font};
   border-radius: 10px;
-  padding: 0px 8px;
+  padding: 0px 16px;
+
+  &::placeholder {
+    font-style: italic;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 90%;
+  }
 `;
 
 export const ButtonSendMessage = styled.div`
-  height: 55%;
-  width: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 10%;
+  max-width: 100px;
+  min-width: 70px;
 
   border-radius: 10px;
-  background: #5f27cd;
+  background: ${theme.colors.pink};
 
   transition: background-color 0.3s;
   cursor: pointer;
 
+  svg {
+    color: ${theme.assets.background};
+  }
+
   &:hover {
-    background-color: #341f97;
+    opacity: 0.9;
   }
 `;

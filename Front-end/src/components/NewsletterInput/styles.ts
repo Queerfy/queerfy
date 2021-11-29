@@ -33,7 +33,7 @@ export const IconBox = styled.div`
   background-color: ${theme.colors.orange};
   transition: 0.3s;
 
-  > svg {
+  svg {
     margin-right: 5px;
     color: ${theme.assets.background};
     transition: 0.3s;
@@ -42,7 +42,7 @@ export const IconBox = styled.div`
   &:hover {
     cursor: pointer;
 
-    > svg {
+    svg {
       transform: scale(1.1);
     }
   }

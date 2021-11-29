@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+
+import { theme } from '../../styles/theme';
+
 import { Popup } from 'react-leaflet';
 
 export const MapContainer = styled.div`
@@ -9,7 +12,7 @@ export const MapContainer = styled.div`
 export const PopupStyled = styled(Popup)`
   //Container que contem o conteudo do popup
   .leaflet-popup-content-wrapper {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
   }
 
@@ -47,6 +50,6 @@ export const PopupStyled = styled(Popup)`
 export const TitleMap = styled.p`
   margin-bottom: 15px;
   font-size: 25px;
-  color: #439efa;
+  color: ${theme.colors.blue};
   font-weight: 700;
 `;
