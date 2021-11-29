@@ -32,8 +32,60 @@ import { toast } from 'react-toastify';
 const MyAdsPage: NextPage = () => {
   const { userApp, handleResidenceEdit } = useAuth();
   const [myAds, setMyAds] = useState([]);
+  const [adsUndo, setAdsUndo] = useState([]);
   const [owner, setOwner] = useState<IUserData>();
   const router = useRouter();
+
+  const handleUndo = async (id) => {
+    api
+      .get(`/properties/${id}`)
+      .then((res) => {
+        console.log(res.data);
+
+        return toast.info('Impossivel relizar essa ação!');
+      })
+      .catch((err) => {
+        api.get(`/properties/undo/${id}`).then((response) => {
+          console.log(response.data);
+          setAdsUndo(response.data);
+          return toast.success('Ação desfeita com Sucesso!');
+        });
+      });
+  };
+
+  const handleDelete = async (id) => {
+    await api.delete(`/properties/${id}`);
+    const adsFilters = myAds.filter((item) => item.id != id);
+  };
+
+  const handleEdit = async (id) => {
+    api
+      .get(`/properties/${id}`)
+      .then((res) => {
+        handleResidenceEdit(true, id);
+        setTimeout(() => {
+          router.push('/ResidenceRegister');
+        }, 1000);
+      })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          return toast.info('Desfaça a ação para editar esse anuncio');
+        }
+      });
+  };
+
+  const handleView = async (id) => {
+    api
+      .get(`/properties/${id}`)
+      .then((res) => {
+        router.push(`/House/${id}`);
+      })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          return toast.info('Desfaça a ação para ver esse anuncio');
+        }
+      });
+  };
 
   useEffect(() => {
     if (userApp) {
@@ -42,20 +94,22 @@ const MyAdsPage: NextPage = () => {
           (item) => item.idUser == userApp.id
         );
 
-        setMyAds(adsUser);
-        api
-          .get(`/users/${adsUser[0].idUser}`)
-          .then((resOwner) => {
-            setOwner(resOwner.data);
-          })
-          .catch((err) => {
-            console.log(err);
+        if (adsUser.length > 0) {
+          setMyAds(adsUser);
+          api
+            .get(`/users/${adsUser[0].idUser}`)
+            .then((resOwner) => {
+              setOwner(resOwner.data);
+            })
+            .catch((err) => {
+              console.log(err);
 
-            return toast.error('Erro ao listar meus anuncios!');
-          });
+              return toast.error('Erro ao listar meus anuncios!');
+            });
+        }
       });
     }
-  }, [userApp]);
+  }, [userApp, adsUndo]);
 
   return (
     <>
@@ -93,7 +147,7 @@ const MyAdsPage: NextPage = () => {
             <Container subtitle={theme.colors.purple} text={theme.assets.font}>
               {myAds ? (
                 <>
-                  {myAds.map((item) => (
+                  {myAds.map((item, index) => (
                     <ContainerAds>
                       <ImageBox>
                         <HoveredImage>
@@ -107,12 +161,20 @@ const MyAdsPage: NextPage = () => {
                       </ImageBox>
                       <AdsInformation>
                         <ContainerIcon>
-                          <IconButton>
-                            <CornerDownLeft />
-                          </IconButton>
-                          <IconButton>
-                            <Trash2 />
-                          </IconButton>
+                          {index === 0 && (
+                            <IconButton>
+                              <CornerDownLeft
+                                onClick={() =>
+                                  index === 0 && handleUndo(item.id)
+                                }
+                              />
+                            </IconButton>
+                          )}
+                          {index === 0 && (
+                            <IconButton>
+                              <Trash2 onClick={() => handleDelete(item.id)} />
+                            </IconButton>
+                          )}
                         </ContainerIcon>
                         <h1>
                           <InformationText>
@@ -128,17 +190,12 @@ const MyAdsPage: NextPage = () => {
                         <ContainerButtonAds>
                           <ButtonAds
                             color={theme.colors.purple}
-                            onClick={() => router.push(`/House/${item.id}`)}
+                            onClick={() => handleView(item.id)}
                           >
                             Visualizar anúncio
                           </ButtonAds>
                           <ButtonAds
-                            onClick={() => {
-                              handleResidenceEdit(true, item.id);
-                              setTimeout(() => {
-                                router.push('/ResidenceRegister');
-                              }, 1000);
-                            }}
+                            onClick={() => handleEdit(item.id)}
                             color={theme.colors.purple}
                           >
                             Editar anúncio
