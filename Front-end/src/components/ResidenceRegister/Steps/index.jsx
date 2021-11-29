@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useResidence } from '../../../hooks/residence';
 import { useAuth } from '../../../hooks/useAuth';
-
-import { theme } from '../../../styles/theme';
 
 import { useResidence } from '../../../hooks/residence';
 
@@ -71,7 +68,7 @@ export const StepOne = () => {
       />
       <GeneralButton
         text="Continuar"
-        bgColor={theme.gradients.red}
+        bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'
         onClick={sendParams}
       />
       <span onClick={backStep}>Voltar</span>

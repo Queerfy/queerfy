@@ -8,7 +8,6 @@ import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 import { Container, Content, Divider, Espefications } from './styles';
-import { theme } from '../../../../styles/theme';
 import { toast } from 'react-toastify';
 import { Coffee, Wifi } from 'react-feather';
 
@@ -121,7 +120,7 @@ export const StepNine = () => {
       </Content>
       <GeneralButton
         text="Continuar"
-        bgColor={theme.gradients.red}
+        bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'
         onClick={handleSubmit}
       />
       <span onClick={backStep}>Voltar</span>

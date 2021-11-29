@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import { theme } from '../../../../styles/theme';
-
 import { useResidence } from '../../../../hooks/residence';
 
 import { HeaderMobile } from '../../../HeaderMobile';
@@ -111,7 +109,7 @@ export const StepFive = () => {
       </FiltersBox>
       <GeneralButton
         text="Continuar"
-        bgColor={theme.gradients.red}
+        bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'
         onClick={sendParams}
       />
       <span onClick={backStep}>Voltar</span>

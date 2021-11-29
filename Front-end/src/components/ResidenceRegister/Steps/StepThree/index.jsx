@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useResidence } from '../../../../hooks/residence';
-import { theme } from '../../../../styles/theme';
 import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
 
@@ -204,7 +203,7 @@ export const StepThree = () => {
       </FormInput>
       <GeneralButton
         text="Continuar"
-        bgColor={theme.gradients.red}
+        bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'
         onClick={sendParams}
       />
       <span onClick={backStep}>Voltar</span>
