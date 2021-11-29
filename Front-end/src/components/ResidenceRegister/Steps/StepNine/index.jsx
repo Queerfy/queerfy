@@ -16,10 +16,8 @@ import { useRouter } from 'next/router';
 
 export const StepNine = () => {
   const { backStep, residenceData } = useResidence();
-  const { userApp } = useAuth();
+  const { userApp, handleResidenceEdit } = useAuth();
   const router = useRouter();
-
-  console.log(residenceData);
 
   const handleSubmit = async () => {
     const defaultValues = {
@@ -33,9 +31,20 @@ export const StepNine = () => {
     console.log(data);
 
     try {
-      await api.post('/properties', data);
-      toast.success('Residência cadastrada com sucesso!');
-      router.push('/');
+      if (
+        userApp &&
+        userApp.editResidence.editing &&
+        userApp.editResidence.idHouse !== null
+      ) {
+        await api.put(`/properties/${userApp.editResidence.idHouse}`, data);
+        handleResidenceEdit(false, null);
+        toast.success('Residência atualizada com sucesso!');
+        router.push('/MyAds');
+      } else {
+        await api.post('/properties', data);
+        toast.success('Residência cadastrada com sucesso!');
+        router.push('/');
+      }
     } catch (error) {
       console.log(error);
       return toast.error(

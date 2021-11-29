@@ -27,7 +27,7 @@ export const StepSeven = () => {
           id="arquivo"
           multiple="multiple"
           accept=".jpg,.png"
-          onChange={e => setImagesUser(e.target.files)}
+          onChange={(e) => setImagesUser(e.target.files)}
         />
       </InputBox>
       <GeneralButton

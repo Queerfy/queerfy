@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 import { createContext, useState } from 'react';
 
 import { useRouter } from 'next/router';
+import { useAuth } from '../hooks/useAuth';
 
 export const ResidenceContext = createContext(null);
 
@@ -15,21 +16,19 @@ export const ResidenceProvider = ({ children }) => {
   useEffect(() => {
     console.log('context images');
     console.log(images);
-  }, [images])
+  }, [images]);
 
   function advanceStep() {
     if (step !== 9) {
       setStep(step + 1);
-      console.log(step);
     }
   }
 
   function backStep() {
     if (step !== 1) {
       setStep(step - 1);
-      console.log(step);
     } else {
-      router.push('/')
+      router.push('/');
     }
   }
 
@@ -42,7 +41,11 @@ export const ResidenceProvider = ({ children }) => {
   const handleStep = (stepData) => {
     const newStepData = { ...residenceData, ...stepData };
     setResidenceData(newStepData);
-  }
+  };
+
+  const handleDataUpdate = (dataUpdate) => {
+    setResidenceData(dataUpdate);
+  };
 
   return (
     <ResidenceContext.Provider
@@ -52,10 +55,11 @@ export const ResidenceProvider = ({ children }) => {
         advanceStep,
         backStep,
         step,
-        setImagesUser
+        setImagesUser,
+        handleDataUpdate,
       }}
     >
       {children}
     </ResidenceContext.Provider>
   );
-}
+};

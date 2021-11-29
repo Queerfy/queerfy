@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import { Form } from '@unform/web';
 
 import { theme } from '../../../styles/theme';
+
+import { GeneralButton } from '../../../components/GeneralButton';
 
 interface Colors {
   title?: string;
@@ -8,7 +11,7 @@ interface Colors {
   text?: string;
 }
 
-export const ContainerInfo = styled.div<Colors>`
+export const ContainerInfo = styled(Form)<Colors>`
   display: flex;
   flex-direction: column;
 
@@ -162,4 +165,8 @@ export const InputsBox = styled.div`
     border: 1px solid ${theme.assets.borderDark};
     outline: none;
   }
+`;
+
+export const SubmitButton = styled(GeneralButton)`
+  margin: 15px;
 `;

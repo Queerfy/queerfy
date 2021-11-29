@@ -1,20 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import { BaseButton } from "./styles";
+import { BaseButton } from './styles';
 
 interface GeneralButtonProps {
   text: string;
   bgColor?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  type?: string;
 }
 
 export const GeneralButton = (props: GeneralButtonProps) => {
   return (
-    <BaseButton
-      onClick={props.onClick}
-      color={props.bgColor}
-    >
+    <BaseButton onClick={props.onClick} color={props.bgColor}>
       {props.text}
     </BaseButton>
   );
-}
+};

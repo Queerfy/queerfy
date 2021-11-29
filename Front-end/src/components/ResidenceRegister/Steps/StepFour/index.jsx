@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useResidence } from '../../../../hooks/residence';
 
 import { theme } from '../../../../styles/theme';
@@ -10,12 +10,29 @@ import { GeneralButton } from '../../../GeneralButton';
 import { toast } from 'react-toastify';
 
 export const StepFour = () => {
-  const { advanceStep, backStep, handleStep } = useResidence();
+  const { advanceStep, backStep, handleStep, residenceData, handleDataUpdate } =
+    useResidence();
 
-  const [guestCounter, setGuestCounter] = useState(0);
-  const [roomCounter, setRoomCounter] = useState(0);
-  const [bedCounter, setBedCounter] = useState(0);
-  const [bathroomCounter, setBathroomCounter] = useState(0);
+  const [guestCounter, setGuestCounter] = useState(
+    residenceData.guestsQuantity !== undefined
+      ? Number(residenceData.guestsQuantity)
+      : 0
+  );
+  const [roomCounter, setRoomCounter] = useState(
+    residenceData.roomQuantity !== undefined
+      ? Number(residenceData.roomQuantity)
+      : 0
+  );
+  const [bedCounter, setBedCounter] = useState(
+    residenceData.bedsQuantity !== undefined
+      ? Number(residenceData.bedsQuantity)
+      : 0
+  );
+  const [bathroomCounter, setBathroomCounter] = useState(
+    residenceData.bathroomQuantity !== undefined
+      ? Number(residenceData.bathroomQuantity)
+      : 0
+  );
 
   function hasEmptyProperties() {
     if (
@@ -36,15 +53,28 @@ export const StepFour = () => {
       roomQuantity: roomCounter,
       bedsQuantity: bedCounter,
       bathroomQuantity: bathroomCounter,
-    }
+    };
 
     if (hasEmptyProperties()) {
-      return toast.error("Sua propriedade deve ter pelo menos 1 de cada item.");
+      return toast.error('Sua propriedade deve ter pelo menos 1 de cada item.');
     }
 
-    handleStep(specifications);
+    if (!residenceData.guestsQuantity === undefined) {
+      handleStep(specifications);
+    } else {
+      const newData = {
+        ...residenceData,
+        ...specifications,
+      };
+      handleDataUpdate(newData);
+    }
+
     advanceStep();
   }
+
+  useEffect(() => {
+    console.log(residenceData.bathroomQuantity);
+  }, []);
 
   return (
     <Container>

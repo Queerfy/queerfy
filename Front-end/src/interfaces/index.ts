@@ -23,6 +23,22 @@ export interface IHouseData {
   idUser: number;
   description: string;
   likes: number;
+  street: string;
+  houseNumber: string;
+  addressComplement: string;
+  city: string;
+  referencePoint: string;
+  propertyType: string;
+  spaceType: string;
+  guestsQuantity: number;
+  bedsQuantity: number;
+  roomQuantity: number;
+  bathroomQuantity: number;
+  haveWifi: boolean;
+  haveKitchen: boolean;
+  haveSuite: boolean;
+  haveGarage: boolean;
+  haveAnimals: boolean;
 }
 
 export interface IUserData {
