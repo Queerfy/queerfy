@@ -9,7 +9,7 @@ export const MapContainer = styled.div`
 export const PopupStyled = styled(Popup)`
   //Container que contem o conteudo do popup
   .leaflet-popup-content-wrapper {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
   }
 

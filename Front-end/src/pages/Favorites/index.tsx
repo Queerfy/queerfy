@@ -27,6 +27,33 @@ import { api } from '../../services/api';
 import { useAuth } from '../../hooks/useAuth';
 import { IUserData } from '../../interfaces';
 
+
+const ResidenceDescribe = ({ idProperty }) => {
+  interface IHouseData {
+    propertyType: number;
+    roomQuantity: number;
+  }
+
+  const [ house, setHouse ] = useState<IHouseData>();
+
+  useEffect(() => {
+    api.get(`/properties/${idProperty}`).then(res => {
+      setHouse(res.data);
+    }).catch(err => {
+      console.log(err);
+    })
+  }, []);
+
+  return (
+    <>
+      {house && (
+        <p>{house?.propertyType} - {house?.roomQuantity} quartos disponivel</p>
+      )}
+      
+    </>
+  )
+}
+
 const Favorites: NextPage = () => {
   const { userApp } = useAuth();
 
@@ -74,8 +101,7 @@ const Favorites: NextPage = () => {
                 <img src="residence-vila.jpg" alt="Imagem da propriedade" />
               </ImageCard>
               <DescribeResidence>
-                <p>Casa - 1 quarto disponivel</p>
-                <p>O locador é Cristina Finzchz</p>
+                <ResidenceDescribe idProperty={item.propertyId} />
               </DescribeResidence>
             </CardHouse>
           ))}

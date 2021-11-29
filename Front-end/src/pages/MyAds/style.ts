@@ -141,3 +141,7 @@ export const IconButton = styled.button`
     font-size: 17px;
   }
 `;
+
+export const InformationText = styled.span`
+  text-transform: capitalize;
+`;

@@ -19,6 +19,7 @@ import {
   ContainerIcon,
   HeaderAds,
   IconButton,
+  InformationText,
 } from './style';
 
 import { useRouter } from 'next/router';
@@ -26,14 +27,15 @@ import { useAuth } from '../../hooks/useAuth';
 
 import { api } from '../../services/api';
 import { IUserData } from '../../interfaces';
+import { toast } from 'react-toastify';
 
 const MyAdsPage: NextPage = () => {
-  const { userApp } = useAuth();
+  const { userApp, handleResidenceEdit } = useAuth();
   const [myAds, setMyAds] = useState([]);
   const [owner, setOwner] = useState<IUserData>();
   const router = useRouter();
 
-  const getMyAds = async () => {
+  useEffect(() => {
     if (userApp) {
       api.get('/properties').then((response) => {
         const adsUser = response.data.filter(
@@ -42,20 +44,18 @@ const MyAdsPage: NextPage = () => {
 
         setMyAds(adsUser);
         api
-          .get(`/users/${userApp.id}`)
+          .get(`/users/${adsUser[0].idUser}`)
           .then((resOwner) => {
             setOwner(resOwner.data);
           })
           .catch((err) => {
             console.log(err);
+
+            return toast.error('Erro ao listar meus anuncios!');
           });
       });
     }
-  };
-
-  useEffect(() => {
-    getMyAds();
-  }, []);
+  }, [userApp]);
 
   return (
     <>
@@ -72,7 +72,15 @@ const MyAdsPage: NextPage = () => {
             </Link>
             <h1>Meus anúncios</h1>
           </HeaderAds>
-          <ButtonAds color={theme.colors.purple}>
+          <ButtonAds
+            color={theme.colors.purple}
+            onClick={() => {
+              handleResidenceEdit(false, null);
+              setTimeout(() => {
+                router.push('/ResidenceRegister');
+              }, 1000);
+            }}
+          >
             Adicionar residência
           </ButtonAds>
         </HeaderContainer>
@@ -103,7 +111,11 @@ const MyAdsPage: NextPage = () => {
                           </IconButton>
                         </ContainerIcon>
                         <h1>
-                          {item?.propertyType} - {item?.roomQuantity} quarto
+                          <InformationText>
+                            {item?.propertyType}
+                          </InformationText>
+                          - {item?.roomQuantity}{' '}
+                          {item?.roomQuantity > 1 ? 'quartos' : 'quarto'}{' '}
                           disponível
                         </h1>
                         <p>
@@ -116,7 +128,15 @@ const MyAdsPage: NextPage = () => {
                           >
                             Visualizar anúncio
                           </ButtonAds>
-                          <ButtonAds color={theme.colors.purple}>
+                          <ButtonAds
+                            onClick={() => {
+                              handleResidenceEdit(true, item.id);
+                              setTimeout(() => {
+                                router.push('/ResidenceRegister');
+                              }, 1000);
+                            }}
+                            color={theme.colors.purple}
+                          >
                             Editar anúncio
                           </ButtonAds>
                         </ContainerButtonAds>

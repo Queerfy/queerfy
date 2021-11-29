@@ -36,7 +36,23 @@ export const AuthProvider = ({ children }) => {
     const storagedUser = localStorage.getItem('user');
 
     if (storagedUser) {
-      setUserApp(JSON.parse(storagedUser));
+      const userStoraged = JSON.parse(storagedUser);
+      if (!userStoraged.editResidence) {
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            ...userStoraged,
+            editResidence: { idHouse: null, editing: false },
+          })
+        );
+        setUserApp({
+          ...userStoraged,
+          editResidence: { idHouse: null, editing: false },
+        });
+      } else {
+        localStorage.setItem('user', JSON.stringify(userStoraged));
+        setUserApp(userStoraged);
+      }
     }
   };
 
@@ -55,7 +71,13 @@ export const AuthProvider = ({ children }) => {
           .post('/users/autenticate', data)
           .then((res) => {
             setUserApp(res.data);
-            localStorage.setItem('user', JSON.stringify(res.data));
+            localStorage.setItem(
+              'user',
+              JSON.stringify({
+                ...res.data,
+                editResidence: { idHouse: null, editing: false },
+              })
+            );
 
             toast.success('Logado com sucesso!');
 
@@ -110,13 +132,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleFavorites = async (dataUser) => {
-    await api.post('/favorites', dataUser);
     const { data } = await api.get(`/users/${dataUser.userId}`);
 
     localStorage.setItem('user', JSON.stringify(data));
     setUserApp(data);
-
-    return toast.success('Propriedade favoritada com sucesso.');
   };
 
   const getLastSearch = () => {
@@ -125,6 +144,25 @@ export const AuthProvider = ({ children }) => {
     if (storagedSearch) {
       setSearch(JSON.parse(storagedSearch));
     }
+  };
+
+  const handleResidenceEdit = (edit, idHouse) => {
+    const storagedUser = localStorage.getItem('user');
+    const userStoraged = JSON.parse(storagedUser);
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        ...userStoraged,
+        editResidence: { idHouse, editing: edit },
+      })
+    );
+    setUserApp({ ...userStoraged, editResidence: { idHouse, editing: edit } });
+  };
+
+  const handleUserApp = async (id, userData) => {
+    await api.put(`/users/${id}`);
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUserApp(userApp);
   };
 
   useEffect(() => {
@@ -250,6 +288,8 @@ export const AuthProvider = ({ children }) => {
         handleSearch,
         getLastSearch,
         handleFavorites,
+        handleResidenceEdit,
+        handleUserApp,
       }}
     >
       {children}

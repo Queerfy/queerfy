@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { useResidence } from '../../../../hooks/residence';
 
@@ -10,7 +10,8 @@ import { HeaderMobile } from '../../../HeaderMobile';
 import { toast } from 'react-toastify';
 
 export const StepEight = () => {
-  const { advanceStep, backStep, handleStep } = useResidence();
+  const { advanceStep, backStep, handleStep, residenceData, handleDataUpdate } =
+    useResidence();
 
   const dailyPriceRef = useRef();
 
@@ -21,9 +22,26 @@ export const StepEight = () => {
       return toast.error('Informe um preço válido.');
     }
 
-    handleStep({ dailyPrice });
+    if (residenceData.dailyPrice === undefined) {
+      handleStep({ dailyPrice });
+    } else {
+      const newData = {
+        ...residenceData,
+        dailyPrice,
+      };
+      handleDataUpdate(newData);
+    }
+
     advanceStep();
   }
+
+  useEffect(() => {
+    if (residenceData && residenceData.dailyPrice) {
+      dailyPriceRef.current.value = parseFloat(
+        String(residenceData.dailyPrice).replace(',', '.')
+      );
+    }
+  }, []);
 
   return (
     <Container>

@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { Form } from '@unform/web';
 import { theme } from '../../../styles/theme';
 import { ContainerMain, HeaderContainer } from '../styles';
-import { ContainerInfo, ContainerColumn, Container, InputsBox } from './styles';
+import {
+  ContainerInfo,
+  ContainerColumn,
+  Container,
+  InputsBox,
+  SubmitButton,
+} from './styles';
 import { Navbar } from '../../../components/Navbar';
 import {
   ArrowLeft,
@@ -21,7 +28,20 @@ import {
 import { NavbarMobile } from '../../../components/NavbarMobile';
 import { HeaderMobile } from '../../../components/HeaderMobile';
 
+import Input from '../../../components/Form/input';
+import InputMask from '../../../components/Form/inputMask';
+import { useAuth } from '../../../hooks/useAuth';
+import moment from 'moment';
+
 const InfoAccount: NextPage = () => {
+  const { userApp } = useAuth();
+
+  const [maskPhone, setMaskPhone] = useState('(99) 99999-9999');
+
+  const handleSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <>
       <Head>
@@ -36,34 +56,54 @@ const InfoAccount: NextPage = () => {
           </Link>
           <h1>Informações da conta</h1>
         </HeaderContainer>
-        <ContainerInfo>
+        <ContainerInfo onSubmit={handleSubmit}>
           <ContainerColumn>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <User />
               <InputsBox>
                 <h2>Nome</h2>
-                <input type="text" placeholder="Nicolas Sousa Conde" />
+                <Input
+                  type="text"
+                  placeholder="Nicolas Sousa Conde"
+                  name="name"
+                  value={userApp?.name}
+                />
               </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Users />
               <InputsBox>
                 <h2>Orientação sexual</h2>
-                <input type="text" placeholder="Hétero" />
+                <Input
+                  type="text"
+                  placeholder="Hétero"
+                  name="genre"
+                  value={userApp?.genre}
+                />
               </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Calendar />
               <InputsBox>
                 <h2>Data de nascimento</h2>
-                <input type="text" placeholder="** de janeiro de ****" />
+                <Input
+                  style={{ padding: '20px' }}
+                  type="date"
+                  value={moment(userApp?.birthDate).format('YYYY-MM-DD')}
+                  name="birthDate"
+                />
               </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Mail />
               <InputsBox>
                 <h2>E-mail</h2>
-                <input type="text" placeholder="***************@gmail.com" />
+                <Input
+                  type="email"
+                  placeholder="***************@gmail.com"
+                  value={userApp?.email}
+                  name="email"
+                />
               </InputsBox>
             </Container>
           </ContainerColumn>
@@ -72,28 +112,58 @@ const InfoAccount: NextPage = () => {
               <Lock />
               <InputsBox>
                 <h2>Senha</h2>
-                <input type="text" placeholder="***************" />
+                <Input
+                  type="password"
+                  placeholder="***************"
+                  value={userApp?.password}
+                  name="password"
+                />
               </InputsBox>
             </Container>
-            <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            {/* <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Phone />
               <InputsBox>
                 <h2>Número de telefone</h2>
-                <input type="text" placeholder="+** ** *****-****" />
+                <InputMask
+                  name="telephone"
+                  type="text"
+                  mask={maskPhone}
+                  value={userApp?.cel_number}
+                  onBlur={(e) => {
+                    if (e.target.value.replace('_', '').length === 14) {
+                      setMaskPhone('(99) 99999-9999');
+                    }
+                  }}
+                  onFocus={(e) => {
+                    if (e.target.value.replace('_', '').length === 14) {
+                      setMaskPhone('(99) 99999-9999');
+                    }
+                  }}
+                />
+              </InputsBox>
+            </Container> */}
+            <Container subtitle={theme.colors.red} text={theme.assets.font}>
+              <CreditCard />
+              <InputsBox>
+                <h2>CPF</h2>
+                <InputMask
+                  name="cpf"
+                  value={userApp?.cpf}
+                  type="text"
+                  mask="999.999.999-99"
+                />
               </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <CreditCard />
               <InputsBox>
-                <h2>Documentos</h2>
-                <input type="text" placeholder="CPF/RG" />
-              </InputsBox>
-            </Container>
-            <Container subtitle={theme.colors.red} text={theme.assets.font}>
-              <MapPin />
-              <InputsBox>
-                <h2>Endereço</h2>
-                <input type="text" placeholder="Rua Haddock Lobo, 595" />
+                <h2>RG</h2>
+                <InputMask
+                  name="rg"
+                  value={userApp?.rg}
+                  type="text"
+                  mask="99-999-999-*"
+                />
               </InputsBox>
             </Container>
           </ContainerColumn>
