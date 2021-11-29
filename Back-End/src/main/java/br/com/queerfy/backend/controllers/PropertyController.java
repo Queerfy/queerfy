@@ -2,16 +2,21 @@ package br.com.queerfy.backend.controllers;
 
 import br.com.queerfy.backend.dto.PropertyDTO;
 import br.com.queerfy.backend.dto.UserDTO;
+import br.com.queerfy.backend.exceptions.ImageNotFound;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
 import br.com.queerfy.backend.exceptions.UserNotFoundException;
 import br.com.queerfy.backend.services.PropertyService;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.stylesheets.LinkStyle;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -20,6 +25,63 @@ public class PropertyController {
 
     @Autowired
     private PropertyService service;
+
+
+
+    @GetMapping("/undo/{id}")
+    public ResponseEntity undoProperty(Integer id) throws UserAlreadyExistsException {
+        return ResponseEntity.status(200).body(service.undoProperty(id));
+    }
+
+
+
+    @PatchMapping("/image1/{propertyId}")
+    public ResponseEntity postImage1(@PathVariable Integer propertyId, @RequestBody MultipartFile image) throws IOException {
+        return ResponseEntity.status(200).body(service.insertImage1(propertyId, image));
+    }
+    @PatchMapping("/image2/{propertyId}")
+    public ResponseEntity postImage2(@PathVariable Integer propertyId, @RequestBody MultipartFile image) throws IOException {
+        return ResponseEntity.status(200).body(service.insertImage2(propertyId, image));
+    }
+    @PatchMapping("/image3/{propertyId}")
+    public ResponseEntity postImage3(@PathVariable Integer propertyId, @RequestBody MultipartFile image) throws IOException {
+        return ResponseEntity.status(200).body(service.insertImage3(propertyId, image));
+    }
+    @PatchMapping("/image4/{propertyId}")
+    public ResponseEntity postImage4(@PathVariable Integer propertyId, @RequestBody MultipartFile image) throws IOException {
+        return ResponseEntity.status(200).body(service.insertImage4(propertyId, image));
+    }
+    @PatchMapping("/image5/{propertyId}")
+    public ResponseEntity postImage5(@PathVariable Integer propertyId, @RequestBody MultipartFile image) throws IOException {
+        return ResponseEntity.status(200).body(service.insertImage5(propertyId, image));
+    }
+
+
+    @GetMapping("/image1/{id}")
+    public ResponseEntity getImage1(@PathVariable Integer id) throws ImageNotFound {
+        return ResponseEntity.status(200).header("content-type", "image/jpeg")
+                .body(service.getImage1(id));
+    }
+    @GetMapping("/image2/{id}")
+    public ResponseEntity getImage2(@PathVariable Integer id) throws ImageNotFound {
+        return ResponseEntity.status(200).header("content-type", "image/jpeg")
+                .body(service.getImage2(id));
+    }
+    @GetMapping("/image3/{id}")
+    public ResponseEntity getImage3(@PathVariable Integer id) throws ImageNotFound {
+        return ResponseEntity.status(200).header("content-type", "image/jpeg")
+                .body(service.getImage3(id));
+    }
+    @GetMapping("/image4/{id}")
+    public ResponseEntity getImage4(@PathVariable Integer id) throws ImageNotFound {
+        return ResponseEntity.status(200).header("content-type", "image/jpeg")
+                .body(service.getImage4(id));
+    }
+    @GetMapping("/image5/{id}")
+    public ResponseEntity getImage5(@PathVariable Integer id) throws ImageNotFound {
+        return ResponseEntity.status(200).header("content-type", "image/jpeg")
+                .body(service.getImage5(id));
+    }
 
     @GetMapping("/space/{spaceType}")
     public ResponseEntity<List<PropertyDTO>> getAllPropertiesFromCertainSpace(@PathVariable String spaceType){
@@ -60,8 +122,9 @@ public class PropertyController {
         return ResponseEntity.status(200).body(service.getPropertyById(id));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity deletePropertyById(@PathVariable Integer id) throws UserNotFoundException{
+    public ResponseEntity deletePropertyById(@PathVariable Integer id) throws UserNotFoundException {
         service.deleteProperty(id);
         return ResponseEntity.status(201).build();
+
     }
 }

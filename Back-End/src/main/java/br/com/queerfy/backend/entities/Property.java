@@ -1,6 +1,7 @@
 package br.com.queerfy.backend.entities;
 
 import br.com.queerfy.backend.dto.PropertyDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.apache.tomcat.jni.Local;
 
@@ -18,7 +19,6 @@ public class Property {
     private String name;
     @Column(columnDefinition = "TEXT")
     private String description;
-    private String houseImg;
     private Boolean active;
     private Double dailyPrice;
     private String filterDate;
@@ -32,10 +32,6 @@ public class Property {
     private String street;
     private String houseNumber;
     private String addressComplement;
-    private byte[] fotos;
-    //Lista de Fotos
-
-    //ATUALIZAR= ponto de referencia
     private String referencePoint;
     private String propertyType;
     private String spaceType;
@@ -49,8 +45,22 @@ public class Property {
     private Boolean haveSuite;
     private Boolean haveGarage;
     private Boolean haveAnimals;
-
-
+    //Images
+    @Column(length = 90_000_000)
+    @JsonIgnore
+    private byte[] image1;
+    @Column(length = 90_000_000)
+    @JsonIgnore
+    private byte[] image2;
+    @Column(length = 90_000_000)
+    @JsonIgnore
+    private byte[] image3;
+    @Column(length = 90_000_000)
+    @JsonIgnore
+    private byte[] image4;
+    @Column(length = 90_000_000)
+    @JsonIgnore
+    private byte[] image5;
 
     @ManyToOne()
     @JoinColumn(name = "fkUser")
@@ -64,7 +74,6 @@ public class Property {
         this.name = entity.getName();
         this.description = entity.getDescription();
         this.likes = entity.getLikes();
-        this.houseImg = entity.getHouseImg();
         this.active = entity.getActive();
         this.dailyPrice = entity.getDailyPrice();
         this.filterDate = entity.getFilterDate();
@@ -90,6 +99,48 @@ public class Property {
         this.haveSuite = entity.getHaveSuite();
         this.haveGarage = entity.getHaveGarage();
         this.haveAnimals  = entity.getHaveAnimals();
+
+    }
+
+
+    public byte[] getImage1() {
+        return image1;
+    }
+
+    public void setImage1(byte[] image1) {
+        this.image1 = image1;
+    }
+
+    public byte[] getImage2() {
+        return image2;
+    }
+
+    public void setImage2(byte[] image2) {
+        this.image2 = image2;
+    }
+
+    public byte[] getImage3() {
+        return image3;
+    }
+
+    public void setImage3(byte[] image3) {
+        this.image3 = image3;
+    }
+
+    public byte[] getImage4() {
+        return image4;
+    }
+
+    public void setImage4(byte[] image4) {
+        this.image4 = image4;
+    }
+
+    public byte[] getImage5() {
+        return image5;
+    }
+
+    public void setImage5(byte[] image5) {
+        this.image5 = image5;
     }
 
     public Boolean getHaveWifi() {
@@ -252,13 +303,6 @@ public class Property {
         id = id;
     }
 
-    public String getHouseImg() {
-        return houseImg;
-    }
-
-    public void setHouseImg(String houseImg) {
-        this.houseImg = houseImg;
-    }
 
     public Boolean getActive() {
         return active;
