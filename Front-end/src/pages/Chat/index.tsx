@@ -28,6 +28,7 @@ import { MessageSquare, Send } from 'react-feather';
 import { GeneralButton } from '../../components/GeneralButton';
 import { api } from '../../services/api';
 import moment from 'moment';
+import { theme } from '../../styles/theme';
 
 const socket = io('http://localhost:3333');
 
