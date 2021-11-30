@@ -307,21 +307,6 @@ const House: NextPage = () => {
               {house?.haveGarage && <AdditionalInformation type={'Garagem'} />}
             </AlignInformations>
           </Informations>
-
-          <Rules>
-            <h2>Regras</h2>
-
-            {/* <AlignInformations>
-              <AdditionalInformation />
-              <AdditionalInformation />
-            </AlignInformations>
-
-            <AlignInformations>
-              <AdditionalInformation />
-              <AdditionalInformation />
-            </AlignInformations> */}
-          </Rules>
-
           <Description>
             <h2>Descrição</h2>
             <p>{house?.description}</p>

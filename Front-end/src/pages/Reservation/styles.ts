@@ -140,8 +140,17 @@ export const TotalValue = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  border-top: 2px solid ${theme.assets.borderLight};
   width: 100%;
+  border-top: 2px solid ${theme.assets.borderLight};
+
+  span {
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  button {
+    margin-top: 16px;
+  }
 
   @media screen and (max-width: 1023px) {
     margin-top: 32px;

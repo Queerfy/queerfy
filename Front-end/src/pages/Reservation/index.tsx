@@ -185,16 +185,20 @@ const Reservation: NextPage = () => {
             </AdditionalValues>
           </BoxPrice>
           <TotalValue>
-            <h2>Total</h2>
-            <strong>{(confirmReservation?.total + 10).toLocaleString('pt-br', {
+            <h2>Total: <span>{(confirmReservation?.total + 10).toLocaleString('pt-br', {
               style: 'currency',
               currency: 'BRL',
-            })}</strong>
+            })}</span></h2>
+            <GeneralButton
+              text="Enviar proposta"
+              bgColor={theme.colors.blue}
+              onClick={handleChat}
+            />
           </TotalValue>
         </InformationsReservation>
       </ContentPanel>
 
-      <ContentPanel>
+      {/* <ContentPanel>
 
         <OwnerData>
           <h1>Dados do titular do cartão</h1>
@@ -246,7 +250,7 @@ const Reservation: NextPage = () => {
             />
           </BoxConfirm>
         </Payments>
-      </ContentPanel>
+      </ContentPanel> */}
 
 
       <Footer />

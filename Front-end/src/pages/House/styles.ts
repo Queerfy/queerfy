@@ -87,7 +87,10 @@ export const Informations = styled.div`
 export const AlignInformations = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
+
+  > div {
+    margin-top: 8px;
+  }
 `;
 
 export const Rules = styled.div`
@@ -215,6 +218,17 @@ export const CheckDate = styled.div`
 
   span {
     color: ${theme.colors.red};
+  }
+
+  input {
+    border: 1px solid ${theme.assets.borderDark};
+    border-radius: 10px;
+    height: 40px;
+    padding-left: 8px;
+
+    &::placeholder {
+      color: ${theme.assets.borderLight};
+    }
   }
 `;
 
