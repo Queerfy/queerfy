@@ -6,10 +6,6 @@ interface UserLogedMessage {
   userLoged?: boolean;
 }
 
-interface IButtonProposal {
-  bgColor: string;
-}
-
 export const Main = styled.main`
   display: flex;
   justify-content: center;
@@ -106,16 +102,73 @@ export const UsernameLoged = styled.span<UserLogedMessage>`
 
 export const MessageBox = styled.span`
   color: ${theme.assets.background};
+  text-align: justify;
 `;
 
-export const DateMessage = styled.span`
+export const ProposalContainer = styled.div<UserLogedMessage>`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 500px;
+
+  padding: 16px;
+  margin: 10px;
+
+  background: ${theme.colors.blue};
+
+  border-radius: ${(props) =>
+    props.userLoged ? '10px 10px 0px 10px' : '10px 10px 10px 0px'};
+
+  @media screen and (min-width: 1024px) {
+    padding: 32px;
+  }
+`;
+
+export const ImageProposal = styled.img`
+  width: 120px;
+
+  border-radius: 5px;
+`;
+
+export const ProposalBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: auto;
+  width: 450px;
+
+  button {
+    margin-top: 16px;
+    font-weight: bold;
+  }
+`;
+
+export const ContainerButtonsProposal = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  width: 100%;
+  height: 50px;
+`;
+
+export const ProposalDate = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  color: ${theme.assets.background};
+  width: 100%;
+  margin-top: 16px;
 
-  font-size: 10px;
-  margin-top: 3px;
+  > span {
+    display: flex;
+    justify-content: flex-end;
+
+    color: ${theme.assets.background};
+    font-size: 10px;
+  }
 `;
 
 export const FooterChat = styled.div`
@@ -137,7 +190,7 @@ export const FooterChat = styled.div`
 
 export const FooterInput = styled.input`
   font-size: 16px;
-  background: ${theme.assets.borderDark};
+  background: ${theme.assets.borderLight};
 
   border: none;
   outline: none;
@@ -163,7 +216,7 @@ export const ButtonSendMessage = styled.div`
 
   width: 10%;
   max-width: 100px;
-  min-width: 65px;
+  min-width: 70px;
 
   border-radius: 10px;
   background: ${theme.colors.pink};

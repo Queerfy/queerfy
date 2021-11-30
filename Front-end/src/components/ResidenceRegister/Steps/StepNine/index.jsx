@@ -8,7 +8,6 @@ import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
 
 import { Container, Content, Divider, Espefications } from './styles';
-import { theme } from '../../../../styles/theme';
 import { toast } from 'react-toastify';
 import { Coffee, Wifi } from 'react-feather';
 
@@ -16,10 +15,8 @@ import { useRouter } from 'next/router';
 
 export const StepNine = () => {
   const { backStep, residenceData } = useResidence();
-  const { userApp } = useAuth();
+  const { userApp, handleResidenceEdit } = useAuth();
   const router = useRouter();
-
-  console.log(residenceData);
 
   const handleSubmit = async () => {
     const defaultValues = {
@@ -33,9 +30,20 @@ export const StepNine = () => {
     console.log(data);
 
     try {
-      await api.post('/properties', data);
-      toast.success('Residência cadastrada com sucesso!');
-      router.push('/');
+      if (
+        userApp &&
+        userApp.editResidence.editing &&
+        userApp.editResidence.idHouse !== null
+      ) {
+        await api.put(`/properties/${userApp.editResidence.idHouse}`, data);
+        handleResidenceEdit(false, null);
+        toast.success('Residência atualizada com sucesso!');
+        router.push('/MyAds');
+      } else {
+        await api.post('/properties', data);
+        toast.success('Residência cadastrada com sucesso!');
+        router.push('/');
+      }
     } catch (error) {
       console.log(error);
       return toast.error(
@@ -112,7 +120,7 @@ export const StepNine = () => {
       </Content>
       <GeneralButton
         text="Continuar"
-        bgColor={theme.gradients.red}
+        bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'
         onClick={handleSubmit}
       />
       <span onClick={backStep}>Voltar</span>

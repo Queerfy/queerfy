@@ -20,9 +20,7 @@ public class Lease
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDate checkIn;
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDate checkOut;
     private Double totalValue;
     private String leaseStatus;

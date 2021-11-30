@@ -16,12 +16,19 @@ import {
   ContainerMessage,
   UsernameLoged,
   MessageBox,
-  DateMessage,
+  ProposalContainer,
+  ProposalBox,
+  ContainerButtonsProposal,
+  ProposalDate,
   FooterChat,
   FooterInput,
   ButtonSendMessage,
 } from './style';
 import { MessageSquare, Send } from 'react-feather';
+import { GeneralButton } from '../../components/GeneralButton';
+import { api } from '../../services/api';
+import moment from 'moment';
+import { theme } from '../../styles/theme';
 
 const socket = io('http://localhost:3333');
 
@@ -41,7 +48,7 @@ const Chat: NextPage = () => {
         storagedUsersJoin.confirmReservation;
 
       messageRef.current.value = `
-        Olá ${storagedUsersJoin.userReceiver?.name}, estou interessado em uma das suas residências (${storagedUsersJoin.house.name}). Encaminhei uma proposta com os dias ${checkIn}/${checkOut}, gostaria de me hospedar em sua propriedade, está disponível?
+        Olá ${storagedUsersJoin.userReceiver?.name}, estou interessado em uma de suas residências, a ${storagedUsersJoin.house.name}</strong>. Encaminhei uma proposta com os dias ${checkIn}/${checkOut} gostaria de me hospedar em sua propriedade. Está disponível?
       `;
 
       const paramsMessage = {
@@ -129,53 +136,127 @@ const Chat: NextPage = () => {
     messageRef.current.value = '';
   };
 
-  const submitProposal = (idMessage, type) => {
+  const submitProposal = async (item, type) => {
     const params = {
       emailSender: userJoinChat.userReceiver.email,
       emailReceiver: userJoinChat.userSender.email,
       acceptProposal: type == 'accept' ? true : false,
-      idMessage,
+      idMessage: item.id,
     };
+
     //Post de reserva da pagina
     socket.emit('handle_proposal', params);
-    return toast.success('Resposta enviada com sucesso!');
+
+    if (params.acceptProposal) {
+      const data = {
+        idProperty: item.idHouse,
+        idUser: item.idOwer,
+        checkIn: moment(item.checkIn).format('YYYY-MM-DD'),
+        checkOut: moment(item.checkOut).format('YYYY-MM-DD'),
+        totalValue: item.total,
+      };
+
+      await api.post('leases', data);
+    }
+    return toast.success('Resposta Enviada com Sucesso!');
   };
 
   return (
-    <Main>
-      <MainContainer>
-        <h1>
-          <MessageSquare /> Queerfy Chat
-        </h1>
-        <ContainerChat>
-          {messages.map((item, _) => (
-            <MessageUser
-              userLoged={item.emailSender == userJoinChat.userSender.email}
-            >
-              <ContainerMessage
-                userLoged={item.emailSender == userJoinChat.userSender.email}
-              >
-                <UsernameLoged
-                  userLoged={item.emailSender == userJoinChat.userSender.email}
-                >
-                  {item.emailSender == userJoinChat.userSender.email
-                    ? 'Você'
-                    : item.nameUserSender}
-                </UsernameLoged>
-                <MessageBox>{item.message}</MessageBox>
-                <DateMessage>{item.createdAt}</DateMessage>
-              </ContainerMessage>
-            </MessageUser>
-          ))}
-        </ContainerChat>
-        <FooterChat>
-          <FooterInput placeholder="Digite aqui..." ref={messageRef} />
-          <ButtonSendMessage onClick={handleMessage}>
-            <Send size={30} />
-          </ButtonSendMessage>
-        </FooterChat>
-      </MainContainer>
-    </Main>
+    <>
+      <Head>
+        <title>Queerfy | Chat</title>
+      </Head>
+
+      <Main>
+        <MainContainer>
+          <h1>
+            <MessageSquare /> Queerfy Chat
+          </h1>
+          <ContainerChat>
+            {messages.map((item, _) => (
+              <>
+                {item.proposal != true && !item.acceptProposal ? (
+                  <MessageUser
+                    userLoged={
+                      item.emailSender == userJoinChat.userSender.email
+                    }
+                  >
+                    <ContainerMessage
+                      userLoged={
+                        item.emailSender == userJoinChat.userSender.email
+                      }
+                    >
+                      <UsernameLoged
+                        userLoged={
+                          item.emailSender == userJoinChat.userSender.email
+                        }
+                      >
+                        {item.emailSender == userJoinChat.userSender.email
+                          ? 'Você'
+                          : item.nameUserSender}
+                      </UsernameLoged>
+                      <MessageBox>{item.message}</MessageBox>
+                      <ProposalDate>
+                        <span>{item.createdAt}</span>
+                      </ProposalDate>
+                    </ContainerMessage>
+                  </MessageUser>
+                ) : (
+                  <>
+                    <MessageUser
+                      userLoged={
+                        item.emailSender == userJoinChat.userSender.email
+                      }
+                    >
+                      <ProposalContainer
+                        userLoged={
+                          item.emailSender == userJoinChat.userSender.email
+                        }
+                      >
+                        <ProposalBox>
+                          <MessageBox>{item.message}</MessageBox>
+                          <ContainerButtonsProposal>
+                            {item.emailSender ==
+                            userJoinChat.userSender.email ? (
+                              <GeneralButton
+                                bgColor={theme.colors.green}
+                                text="Proposta enviada"
+                              />
+                            ) : (
+                              <>
+                                <GeneralButton
+                                  bgColor={theme.colors.red}
+                                  onClick={() => submitProposal(item, 'reject')}
+                                  text="Rejeitar"
+                                />
+                                <GeneralButton
+                                  bgColor={theme.colors.green}
+                                  onClick={() => submitProposal(item, 'accept')}
+                                  text="Aceitar"
+                                />
+                              </>
+                            )}
+                          </ContainerButtonsProposal>
+                        </ProposalBox>
+                        <ProposalDate>
+                          <span>{item.createdAt}</span>
+                        </ProposalDate>
+                      </ProposalContainer>
+                    </MessageUser>
+                  </>
+                )}
+              </>
+            ))}
+          </ContainerChat>
+          <FooterChat>
+            <FooterInput placeholder="Digite aqui..." ref={messageRef} />
+            <ButtonSendMessage onClick={handleMessage}>
+              <Send size={30} />
+            </ButtonSendMessage>
+          </FooterChat>
+        </MainContainer>
+      </Main>
+    </>
   );
 };
 

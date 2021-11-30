@@ -1,7 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useResidence } from '../../../../hooks/residence';
-import { theme } from '../../../../styles/theme';
 import { GeneralButton } from '../../../GeneralButton';
 import { HeaderMobile } from '../../../HeaderMobile';
 
@@ -9,8 +8,11 @@ import { Container, InputsSection, FormInput } from './styles';
 
 import { apiGeocode } from '../../../../services/api';
 
+import InputMask from 'react-input-mask';
+
 export const StepThree = () => {
-  const { advanceStep, backStep, handleStep } = useResidence();
+  const { advanceStep, backStep, handleStep, residenceData, handleDataUpdate } =
+    useResidence();
 
   const streetRef = useRef();
   const cityRef = useRef();
@@ -29,8 +31,7 @@ export const StepThree = () => {
       address.cep === '' ||
       address.complement === '' ||
       address.neighbourhood === '' ||
-      address.number === '' ||
-      address.referencePoint === ''
+      address.number === ''
     ) {
       return true;
     } else {
@@ -40,7 +41,11 @@ export const StepThree = () => {
 
   // Função para tratar o envio do campo cidade para o banco. Ex: São Paulo -> sao-paulo
   function treatCity(city) {
-    return city.toLowerCase().replace(' ', '-').normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    return city
+      .toLowerCase()
+      .replace(' ', '-')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
   }
 
   function treatCep(cep) {
@@ -48,7 +53,6 @@ export const StepThree = () => {
   }
 
   async function sendParams() {
-
     const { data } = await apiGeocode.get('/address', {
       params: {
         key: '38GhVvh0oG1ELtq8z7FDb7UI6S3ymwHU',
@@ -59,10 +63,15 @@ export const StepThree = () => {
     const latitude = data.results[0].locations[0].latLng.lat;
     const longitude = data.results[0].locations[0].latLng.lng;
 
+    const city = String(cityRef.current.value)
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/( )+/g, '-');
 
     const address = {
       street: streetRef.current.value,
-      city: treatCity(cityRef.current.value),
+      city,
       uf: ufRef.current.value.toUpperCase(),
       cep: treatCep(cepRef.current.value),
       addressComplement: complementRef.current.value,
@@ -74,16 +83,37 @@ export const StepThree = () => {
     };
 
     if (address.cep.length !== 8) {
-      return toast.error("Preencha o campo de CEP corretamente.");
+      return toast.error('Preencha o campo de CEP corretamente.');
     }
 
     if (haveEmptyProperties(address)) {
       return toast.error('Preencha todos os campos.');
     }
 
-    handleStep(address);
+    if (residenceData.street === undefined) {
+      handleStep(address);
+    } else {
+      const newData = {
+        ...residenceData,
+        ...address,
+      };
+      handleDataUpdate(newData);
+    }
+
     advanceStep();
   }
+
+  useEffect(() => {
+    if (residenceData && residenceData.street) {
+      streetRef.current.value = residenceData.street;
+      cityRef.current.value = residenceData.city.replace('-', ' ');
+      ufRef.current.value = residenceData.uf;
+      cepRef.current.value = residenceData.cep;
+      complementRef.current.value = residenceData.addressComplement;
+      numberRef.current.value = residenceData.houseNumber;
+      referencePointRef.current.value = residenceData.referencePoint;
+    }
+  }, []);
 
   return (
     <Container>
@@ -106,6 +136,7 @@ export const StepThree = () => {
             name="inputCidade"
             placeholder="São Paulo"
             ref={cityRef}
+            style={{ textTransform: 'capitalize' }}
           />
         </FormInput>
         <FormInput width="20%" desktopWidth="12%">
@@ -122,13 +153,12 @@ export const StepThree = () => {
       <InputsSection>
         <FormInput width="45%" desktopWidth="45%">
           <label htmlFor="inputCep">CEP</label>
-          <input
+          <InputMask
             id="inputCep"
             name="inputCep"
             placeholder="_____-___"
             ref={cepRef}
-            type="number"
-            maxLength="8"
+            mask="99999-999"
           />
         </FormInput>
         <FormInput width="50%" desktopWidth="50%">
@@ -173,7 +203,7 @@ export const StepThree = () => {
       </FormInput>
       <GeneralButton
         text="Continuar"
-        bgColor={theme.gradients.red}
+        bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'
         onClick={sendParams}
       />
       <span onClick={backStep}>Voltar</span>

@@ -1,8 +1,6 @@
 import React from 'react';
 import { useResidence } from '../../../../hooks/residence';
 
-import { theme } from '../../../../styles/theme';
-
 import { GeneralButton } from '../../../GeneralButton';
 
 import { Container, InputBox } from './styles';
@@ -27,12 +25,12 @@ export const StepSeven = () => {
           id="arquivo"
           multiple="multiple"
           accept=".jpg,.png"
-          onChange={e => setImagesUser(e.target.files)}
+          onChange={(e) => setImagesUser(e.target.files)}
         />
       </InputBox>
       <GeneralButton
         text="Continuar"
-        bgColor={theme.gradients.red}
+        bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'
         onClick={advanceStep}
       />
       <span onClick={backStep}>Voltar</span>

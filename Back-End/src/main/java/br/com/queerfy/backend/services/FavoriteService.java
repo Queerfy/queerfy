@@ -9,11 +9,15 @@ import br.com.queerfy.backend.exceptions.FkNotFound;
 import br.com.queerfy.backend.repositories.FavoriteRepository;
 import br.com.queerfy.backend.repositories.PropertyRepository;
 import br.com.queerfy.backend.repositories.UserRepository;
+import br.com.queerfy.backend.utils.FilaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FavoriteService {
@@ -26,6 +30,23 @@ public class FavoriteService {
 
     @Autowired
     FavoriteRepository favoriteRepository;
+
+    private Integer contador = 0;
+
+    private FilaObj<Favorite> filaObj = new FilaObj<>(99);
+
+    public List<FavoriteDTO> getAllFavorites(){
+        List<Favorite> favorites = favoriteRepository.findAll();
+        favorites.forEach(favorite -> {
+            filaObj.insert(favorite);
+            contador++;
+        });
+        List<FavoriteDTO> favoritesDTO = new ArrayList<>();
+        for(int i = 0; i < contador; i++){
+            favoritesDTO.add(new FavoriteDTO(filaObj.poll()));
+        }
+        return favoritesDTO;
+    }
 
     @Transactional
     public FavoriteDTO create(FavoriteDTO entity) throws FkNotFound {

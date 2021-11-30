@@ -12,6 +12,7 @@ import {
 import 'leaflet/dist/leaflet.css';
 
 import { MapContainer, PopupStyled, TitleMap } from './style';
+import { api } from '../../services/api';
 
 interface MapProps extends LeafletMapProps {
   interactive?: boolean;
@@ -32,22 +33,47 @@ const Map: NextPage = ({
   const [status, setStatus] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+  const [houses, setHouses] = useState([]);
 
-  const getLocation = () => {
+  const getLocation = async () => {
     if (!navigator.geolocation) {
       setStatus('Localização indisponível!');
     } else {
       setStatus('Carregando...');
-      navigator.geolocation.getCurrentPosition((position) => {
-        setStatus(null);
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
-      });
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          setStatus(null);
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+          /* const response = await api.get('/properties');
+          console.log(response.data); */
+
+          /* const { data } = await apiGeocodeSearch.get('/radius', {
+            params: {
+              key: '38GhVvh0oG1ELtq8z7FDb7UI6S3ymwHU',
+              origin: `${position.coords.latitude},${position.coords.longitude}`,
+            },
+          });
+          console.log(data); */
+        },
+        (error) => {
+          console.log(error);
+        },
+        {
+          timeout: 30000,
+          enableHighAccuracy: false,
+          maximumAge: 15000,
+        }
+      );
     }
   };
 
   useEffect(() => {
     getLocation();
+    api.get('/properties').then((res) => {
+      console.log(res.data);
+      setHouses(res.data);
+    });
   }, []);
 
   return (
@@ -65,11 +91,18 @@ const Map: NextPage = ({
               <TileLayer
                 url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`}
               />
-              <Marker position={[latitude, longitude]} icon={markerIconMap}>
-                <PopupStyled>
-                  <a href="">Você está aqui!</a>
-                </PopupStyled>
-              </Marker>
+              {houses.map((item) => (
+                <>
+                  <Marker
+                    position={[Number(item?.latitude), Number(item?.longitude)]}
+                    icon={markerIconMap}
+                  >
+                    <PopupStyled>
+                      <a>Ver mais</a>
+                    </PopupStyled>
+                  </Marker>
+                </>
+              ))}
             </LeafletMap>
           </MapContainer>
         </>

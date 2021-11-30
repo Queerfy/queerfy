@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import moment from 'moment';
+import 'moment/locale/pt-br';
 
 import { Navbar } from '../../components/Navbar';
 import { HeaderMobile } from '../../components/HeaderMobile';
@@ -89,8 +90,9 @@ const Reservation: NextPage = () => {
     };
 
     handleUsersChatJoin(usersJoined);
-
-    router.push('/Chat');
+    setTimeout(() => {
+      router.push('/Chat');
+    }, 1000);
   };
 
   useEffect(() => {

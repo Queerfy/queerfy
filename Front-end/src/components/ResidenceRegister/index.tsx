@@ -4,7 +4,12 @@ import Head from 'next/head';
 
 import { useResidence } from '../../hooks/residence';
 
-import { Container, BannerContainer, LogoContainer, FormContainer } from '../../components/ResidenceRegister/styles';
+import {
+  Container,
+  BannerContainer,
+  LogoContainer,
+  FormContainer,
+} from '../../components/ResidenceRegister/styles';
 
 import { StepOne } from '../../components/ResidenceRegister/Steps';
 import { StepTwo } from '../../components/ResidenceRegister/Steps/StepTwo';
@@ -33,10 +38,12 @@ export const ResidenceForm = () => {
             </LogoContainer>
           </Link>
           <h1>
-            {(step === 1 || step === 2) && 'Qual tipo de espaço você deseja hospedar?'}
+            {(step === 1 || step === 2) &&
+              'Qual tipo de espaço você deseja hospedar?'}
             {step === 3 && 'Insira o endereço da sua locação '}
-            {step === 4 && 'Quais são as especificações do espaço que você deseja hospedar?'}
-            {step === 5 && 'Agora vamos ser mais específicos'} 
+            {step === 4 &&
+              'Quais são as especificações do espaço que você deseja hospedar?'}
+            {step === 5 && 'Agora vamos ser mais específicos'}
             {step === 6 && 'Vamos dar um nome e uma descrição ao seu espaço'}
             {step === 7 && 'A seguir, vamos adicionar algumas fotos'}
             {step === 8 && `Agora vem a parte divertida: definir seu preço`}
@@ -44,7 +51,9 @@ export const ResidenceForm = () => {
           {step === 9 && (
             <p>
               <h1>Confira seu anúncio!</h1>
-              <span>Este anúncio ficará visível aos hóspedes imediatamente.</span>
+              <span>
+                Este anúncio ficará visível aos hóspedes imediatamente.
+              </span>
             </p>
           )}
           <span>Queerfy © 2021 Todos os direitos reservados</span>
@@ -63,4 +72,4 @@ export const ResidenceForm = () => {
       </Container>
     </>
   );
-}
+};

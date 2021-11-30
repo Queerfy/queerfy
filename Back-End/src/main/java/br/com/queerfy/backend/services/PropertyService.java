@@ -3,15 +3,19 @@ package br.com.queerfy.backend.services;
 import br.com.queerfy.backend.dto.PropertyDTO;
 import br.com.queerfy.backend.entities.Property;
 import br.com.queerfy.backend.entities.User;
+import br.com.queerfy.backend.exceptions.ImageNotFound;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
 import br.com.queerfy.backend.exceptions.UserNotFoundException;
 import br.com.queerfy.backend.repositories.PropertyRepository;
 import br.com.queerfy.backend.repositories.UserRepository;
+import br.com.queerfy.backend.utils.PilhaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,11 +23,20 @@ import java.util.stream.Collectors;
 @Service
 public class PropertyService {
 
+    PilhaObj<Property> pilhaObj = new PilhaObj<>(5);
+
     @Autowired
     PropertyRepository propertyRepository;
 
     @Autowired
     UserRepository userRepository;
+
+    @Transactional
+    public PropertyDTO undoProperty(Integer id) throws UserAlreadyExistsException {
+        PropertyDTO property =  new PropertyDTO(pilhaObj.pop());
+        create(property);
+        return property;
+    }
 
     @Transactional
     public List<PropertyDTO> allPropertyFromSpaceType(String spaceType){
@@ -85,7 +98,6 @@ public class PropertyService {
             prop.setActive(property.getActive());
             prop.setDailyPrice(property.getDailyPrice());
             prop.setFilterDate(property.getFilterDate());
-            prop.setHouseImg(property.getHouseImg());
             prop.setLatitude(property.getLatitude());
             prop.setLongitude(property.getLongitude());
             prop.setReferencePoint(property.getReferencePoint());
@@ -111,9 +123,105 @@ public class PropertyService {
     public Boolean deleteProperty(Integer id) throws UserNotFoundException {
         Optional<Property> property = propertyRepository.findById(id);
         if(property.isPresent()){
+            pilhaObj.push(property.get());
             propertyRepository.deleteById(id);
             return true;
         }
         throw new UserNotFoundException();
+    }
+
+    public byte[] getImage1(Integer propertyId) throws ImageNotFound {
+        Property property = propertyRepository.findById(propertyId).get();
+        if(propertyRepository.existsById(propertyId)){
+            return property.getImage1();
+            }
+        return null;
+    }
+    public byte[] getImage2(Integer propertyId) throws ImageNotFound {
+        Property property = propertyRepository.findById(propertyId).get();
+        if(propertyRepository.existsById(propertyId)){
+            return property.getImage2();
+        }
+        return null;
+    }
+    public byte[] getImage3(Integer propertyId) throws ImageNotFound {
+        Property property = propertyRepository.findById(propertyId).get();
+        if(propertyRepository.existsById(propertyId)){
+            return property.getImage3();
+        }
+        return null;
+    }
+    public byte[] getImage4(Integer propertyId) throws ImageNotFound {
+        Property property = propertyRepository.findById(propertyId).get();
+        if(propertyRepository.existsById(propertyId)){
+            return property.getImage4();
+        }
+        return null;
+    }
+    public byte[] getImage5(Integer propertyId) throws ImageNotFound {
+        Property property = propertyRepository.findById(propertyId).get();
+        if(propertyRepository.existsById(propertyId)){
+            return property.getImage5();
+        }
+        return null;
+    }
+
+
+
+    public byte[] insertImage1(Integer id, MultipartFile image) throws IOException {
+        Optional<Property> property = propertyRepository.findById(id);
+        if(property.isPresent()){
+            property.get().setImage1(image.getBytes());
+            propertyRepository.save(property.get());
+
+            return image.getBytes();
+        }
+        else{
+            throw new IOException();
+        }
+    }
+    public String insertImage2(Integer id, MultipartFile image) throws IOException {
+        Optional<Property> property = propertyRepository.findById(id);
+        if(property.isPresent()){
+            property.get().setImage2(image.getBytes());
+            propertyRepository.save(property.get());
+            return "Image2 added on property: " + property.get().getid();
+        }
+        else{
+            return "Can`t find property";
+        }
+    }
+    public String insertImage3(Integer id, MultipartFile image) throws IOException {
+        Optional<Property> property = propertyRepository.findById(id);
+        if(property.isPresent()){
+            property.get().setImage3(image.getBytes());
+            propertyRepository.save(property.get());
+            return "Image3 added on property: " + property.get().getid();
+        }
+        else{
+            return "Can`t find property";
+        }
+    }
+    public String insertImage4(Integer id, MultipartFile image) throws IOException {
+        Optional<Property> property = propertyRepository.findById(id);
+        if(property.isPresent()){
+            property.get().setImage4(image.getBytes());
+            propertyRepository.save(property.get());
+            return "Image4 added on property: " + property.get().getid();
+        }
+        else{
+            return "Can`t find property";
+        }
+    }
+    public String insertImage5(Integer id, MultipartFile image) throws IOException {
+        Optional<Property> property = propertyRepository.findById(id);
+        if(property.isPresent()){
+            property.get().setImage5(image.getBytes());
+            propertyRepository.save(property.get());
+            return "Image5 added on property: " + property.get().getid();
+        }
+        else{
+            return "Can`t find property";
+        }
     }
 }
