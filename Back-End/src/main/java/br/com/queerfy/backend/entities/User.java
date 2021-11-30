@@ -3,10 +3,12 @@ package br.com.queerfy.backend.entities;
 import br.com.queerfy.backend.dto.UserDTO;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@Transactional
 @Entity()
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Users")

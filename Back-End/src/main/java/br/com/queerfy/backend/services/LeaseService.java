@@ -14,6 +14,7 @@ import br.com.queerfy.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +31,7 @@ public class LeaseService {
     @Autowired
     LeaseRepository leaseRepository;
 
-
+    @Transactional
     public List<PropertyDTO> getAllPropertiesFromDateAndCity(String date1, String date2, String city){
         List<Integer> getDto = leaseRepository.getAllPropertiesFromDateAndCity(date1, date2, city);
         List<PropertyDTO> propertyDTO = new ArrayList<>();

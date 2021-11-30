@@ -6,10 +6,12 @@ import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+@Transactional
 @Entity
 public class Property {
 

@@ -3,6 +3,7 @@ package br.com.queerfy.backend.dto;
 import br.com.queerfy.backend.entities.Favorite;
 import br.com.queerfy.backend.entities.User;
 
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 

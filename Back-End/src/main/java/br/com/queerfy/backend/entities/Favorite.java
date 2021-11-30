@@ -4,9 +4,11 @@ import br.com.queerfy.backend.dto.FavoriteDTO;
 import br.com.queerfy.backend.dto.PropertyDTO;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
+@Transactional
 @Entity
 public class Favorite {
 

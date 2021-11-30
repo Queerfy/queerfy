@@ -2,6 +2,8 @@ package br.com.queerfy.backend.dto;
 
 import br.com.queerfy.backend.entities.Property;
 
+import javax.transaction.Transactional;
+
 public class PropertyDTO {
 
     private Integer id;

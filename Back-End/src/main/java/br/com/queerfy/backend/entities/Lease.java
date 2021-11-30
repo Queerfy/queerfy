@@ -4,9 +4,11 @@ import br.com.queerfy.backend.dto.LeaseDTO;
 import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Date;
 
+@Transactional
 @Entity
 public class Lease
 {
