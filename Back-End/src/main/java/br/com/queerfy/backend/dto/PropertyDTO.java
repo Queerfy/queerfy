@@ -72,6 +72,8 @@ public class PropertyDTO {
 
     }
 
+    public PropertyDTO(int id, String name, String description, boolean active, double dailyPrice, String filterDate, String latitude, String longitude, int likes, String state, String city, String uf, String cep, String street, String houseNumber, String addressComplement, String referencePoint, String propertyType, String spaceType, String guestsQuantity, String bedsQuantity, String roomQuantity, String bathroomQuantity, boolean haveWifi, boolean haveKitchen, boolean haveSuite, boolean haveGarage, boolean haveAnimals) {
+    }
 
 
     public Boolean getHaveWifi() {
