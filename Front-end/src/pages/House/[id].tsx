@@ -112,7 +112,7 @@ const House: NextPage = () => {
       handleConfirmReservation(confirmReservation);
       router.push('/Reservation');
     } else {
-      toast.info('Você nao pode acessar essa pagina');
+      toast.info('Você não pode acessar essa página.');
     }
   };
 
@@ -157,7 +157,7 @@ const House: NextPage = () => {
         router.push('/Chat');
       }, 1000);
     } else {
-      toast.info('Você nao pode acessar essa pagina');
+      toast.info('Você não pode acessar essa página.');
     }
   };
 
