@@ -166,7 +166,3 @@ export const InputsBox = styled.div`
     outline: none;
   }
 `;
-
-export const SubmitButton = styled(GeneralButton)`
-  margin: 15px;
-`;
