@@ -13,11 +13,6 @@ export const ResidenceProvider = ({ children }) => {
   const router = useRouter();
   const [images, setImages] = useState([]);
 
-  useEffect(() => {
-    console.log('context images');
-    console.log(images);
-  }, [images]);
-
   function advanceStep() {
     if (step !== 9) {
       setStep(step + 1);
@@ -34,8 +29,6 @@ export const ResidenceProvider = ({ children }) => {
 
   function setImagesUser(localImages) {
     images.push(localImages);
-
-    console.log(images);
   }
 
   const handleStep = (stepData) => {
@@ -51,6 +44,7 @@ export const ResidenceProvider = ({ children }) => {
     <ResidenceContext.Provider
       value={{
         residenceData,
+        images,
         handleStep,
         advanceStep,
         backStep,

@@ -40,8 +40,8 @@ export const StepOne = () => {
   useEffect(() => {
     if (userApp) {
       if (
-        userApp.editResidence.editing != false &&
-        userApp.editResidence.idHouse
+        userApp?.editResidence?.editing != false &&
+        userApp?.editResidence?.idHouse
       ) {
         api.get(`/properties/${userApp.editResidence.idHouse}`).then((res) => {
           handleDataUpdate(res.data);

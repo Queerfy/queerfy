@@ -62,8 +62,14 @@ const ResidenceList: NextPage = () => {
         .get(`/properties/city/${citySearch}`)
         .then((response) => {
           setResidences(response.data);
+          console.log(response.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          toast.info('Nenhuma casa encontrada!');
+          setTimeout(() => {
+            router.push('/');
+          }, 1000);
+        });
     } else if (
       storagedSearch.city &&
       storagedSearch.checkIn &&
@@ -89,7 +95,25 @@ const ResidenceList: NextPage = () => {
           setResidences(response.data);
           setFilters(null);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          toast.info('Nenhuma casa encontrada!');
+          setTimeout(() => {
+            router.push('/');
+          }, 1000);
+        });
+    } else if (storagedSearch.filterSpace) {
+      api
+        .get(`/properties/space/${storagedSearch.filterSpace}`)
+        .then((res) => {
+          setResidences(res.data);
+        })
+        .catch((err) => {
+          toast.info('Nenhuma casa encontrada!');
+          setTimeout(() => {
+            router.push('/');
+          }, 1000);
+          console.log(err);
+        });
     }
   }, [search]);
 
@@ -117,9 +141,11 @@ const ResidenceList: NextPage = () => {
                       item.likes > 1000 && (
                         <a onClick={() => router.push(`/House/${item.id}`)}>
                           <Residence
+                            id={item.id}
                             key={item.id}
                             name={item.name}
                             description={item.description}
+                            uf={item.uf}
                             trend={true}
                           />
                         </a>
@@ -133,9 +159,11 @@ const ResidenceList: NextPage = () => {
                       item.likes > 1000 && (
                         <a onClick={() => router.push(`/House/${item.id}`)}>
                           <Residence
+                            id={item.id}
                             key={item.id}
                             name={item.name}
                             description={item.description}
+                            uf={item.uf}
                             trend={true}
                           />
                         </a>
@@ -179,9 +207,11 @@ const ResidenceList: NextPage = () => {
                 {residences.map((item) => (
                   <a onClick={() => router.push(`/House/${item.id}`)}>
                     <Residence
+                      id={item.id}
                       key={item.id}
                       name={item.name}
                       description={item.description}
+                      uf={item.uf}
                     />
                   </a>
                 ))}
@@ -192,9 +222,11 @@ const ResidenceList: NextPage = () => {
                 {filters.map((item) => (
                   <a onClick={() => router.push(`/House/${item.id}`)}>
                     <Residence
+                      id={item.id}
                       key={item.id}
                       name={item.name}
                       description={item.description}
+                      uf={item.uf}
                     />
                   </a>
                 ))}
