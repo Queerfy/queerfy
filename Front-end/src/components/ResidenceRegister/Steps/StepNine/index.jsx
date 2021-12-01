@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useResidence } from '../../../../hooks/residence';
 import { useAuth } from '../../../../hooks/useAuth';
 
@@ -17,6 +17,7 @@ export const StepNine = () => {
   const { backStep, residenceData, images } = useResidence();
   const { userApp, handleResidenceEdit } = useAuth();
   const router = useRouter();
+  const [image, setImage] = useState('');
 
   const handleImages = async (newHouse) => {
     if (images.length > 0) {
@@ -70,6 +71,19 @@ export const StepNine = () => {
       );
     }
   };
+
+  useEffect(() => {
+    if(images.length > 0) {
+      console.log(images);
+     /*  let image = btoa(
+        new Uint8Array(images[0][0]).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ''
+        )
+      );
+      setImage(`data:${headers['content-type'].toLowerCase()};base64,${image}`); */
+    }
+  }, []);
 
   return (
     <Container>

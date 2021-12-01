@@ -44,6 +44,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../../hooks/useAuth';
 import { GeneralButton } from '../../components/GeneralButton';
 import { theme } from '../../styles/theme';
+import ImageResidence from '../../components/ImageResidence';
 
 const Reservation: NextPage = () => {
   const router = useRouter();
@@ -92,7 +93,7 @@ const Reservation: NextPage = () => {
     handleUsersChatJoin(usersJoined);
     setTimeout(() => {
       router.push('/Chat');
-    }, 1000);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -118,11 +119,6 @@ const Reservation: NextPage = () => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log('confirmReservation');
-    console.log(confirmReservation);
-  }, [])
-
   return (
     <>
       <Head>
@@ -145,7 +141,7 @@ const Reservation: NextPage = () => {
         <BoxHouse>
           <BorderHouse>
             <img src="../house.jpg" alt="Imagem da propriedade" />
-
+            <ImageResidence idHouse={confirmReservation?.idHouse} />
             <InformationsHouse>
               <h2>{house?.name}</h2>
               <span>Alphaville - SP</span>
