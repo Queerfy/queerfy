@@ -5,8 +5,6 @@ import { useAuth } from '../../../hooks/useAuth';
 
 import { theme } from '../../../styles/theme';
 
-import { useResidence } from '../../../hooks/residence';
-
 import { Option } from '../Option';
 import { GeneralButton } from '../../GeneralButton';
 import { HeaderMobile } from '../../HeaderMobile';
@@ -43,8 +41,8 @@ export const StepOne = () => {
   useEffect(() => {
     if (userApp) {
       if (
-        userApp.editResidence.editing != false &&
-        userApp.editResidence.idHouse
+        userApp?.editResidence?.editing != false &&
+        userApp?.editResidence?.idHouse
       ) {
         api.get(`/properties/${userApp.editResidence.idHouse}`).then((res) => {
           handleDataUpdate(res.data);

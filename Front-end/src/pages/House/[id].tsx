@@ -89,6 +89,7 @@ const House: NextPage = () => {
   const [totalLikes, setTotalLikes] = useState<number>();
   const [likedHouse, setLikedHouse] = useState(false);
   const [disableDays, setDisableDays] = useState([]);
+  const [houseImages, setHouseImages] = useState([]);
 
   const slideImages = [
     {
@@ -208,6 +209,48 @@ const House: NextPage = () => {
     }
   };
 
+  const getImages = async () => {
+    let images = [];
+    for (let i = 0; i < 5; i++) {
+      const { data, headers } = await api.get(
+        `/properties/image${i + 1}/${id}`,
+        {
+          responseType: 'arraybuffer',
+        }
+      );
+
+      if (data.byteLength > 0) {
+        let image = btoa(
+          new Uint8Array(data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ''
+          )
+        );
+        images.push(
+          `data:${headers['content-type'].toLowerCase()};base64,${image}`
+        );
+      }
+    }
+    if (images.length > 0) {
+      setHouseImages(images);
+    } else {
+      setHouseImages([
+        {
+          url: '../img-casa.svg',
+          caption: 'Slide 1',
+        },
+        {
+          url: '../img-casa.svg',
+          caption: 'Slide 2',
+        },
+        {
+          url: '../img-casa.svg',
+          caption: 'Slide 3',
+        },
+      ]);
+    }
+  };
+
   useEffect(() => {
     api.get(`/properties/${id}`).then((res) => {
       setHouse(res.data);
@@ -229,6 +272,10 @@ const House: NextPage = () => {
         }
       });
     });
+  }, []);
+
+  useEffect(() => {
+    getImages();
   }, []);
 
   useEffect(() => {
@@ -285,10 +332,10 @@ const House: NextPage = () => {
         </Subtitle>
       </Header>
 
-      <Slide>
+      <Slide autoplay={false}>
         {slideImages.map((slideImage, index) => (
           <div className="each-slide" key={index}>
-            <img src={`${slideImage.url}`} alt={`${slideImage.caption}`} />
+            <img src={slideImage.url} style={{ width: '100%' }} />
           </div>
         ))}
       </Slide>

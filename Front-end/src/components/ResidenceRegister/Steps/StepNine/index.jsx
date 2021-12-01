@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useResidence } from '../../../../hooks/residence';
 import { useAuth } from '../../../../hooks/useAuth';
 
@@ -15,9 +15,26 @@ import { Coffee, Wifi } from 'react-feather';
 import { useRouter } from 'next/router';
 
 export const StepNine = () => {
-  const { backStep, residenceData } = useResidence();
+  const { backStep, residenceData, images } = useResidence();
   const { userApp, handleResidenceEdit } = useAuth();
   const router = useRouter();
+
+  const handleImages = async (data) => {
+    const newHouse = await api.post('/properties', data);
+    if (images.length > 0) {
+      for (let i = 0; i < images[0].length; i++) {
+        var bodyFormData = new FormData();
+        bodyFormData.append('image', images[0][i]);
+        await api.patch(
+          `/properties/image${i + 1}/${newHouse.data.id}`,
+          bodyFormData,
+          {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          }
+        );
+      }
+    }
+  };
 
   const handleSubmit = async () => {
     const defaultValues = {
@@ -28,7 +45,7 @@ export const StepNine = () => {
 
     const data = { ...residenceData, ...defaultValues };
 
-    console.log(data);
+    console.log(images);
 
     try {
       if (
@@ -37,11 +54,12 @@ export const StepNine = () => {
         userApp.editResidence.idHouse !== null
       ) {
         await api.put(`/properties/${userApp.editResidence.idHouse}`, data);
+        handleImages(data);
         handleResidenceEdit(false, null);
         toast.success('Residência atualizada com sucesso!');
         router.push('/MyAds');
       } else {
-        await api.post('/properties', data);
+        handleImages(data);
         toast.success('Residência cadastrada com sucesso!');
         router.push('/');
       }

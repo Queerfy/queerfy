@@ -55,6 +55,9 @@ const MyAdsPage: NextPage = () => {
 
   const handleDelete = async (id) => {
     await api.delete(`/properties/${id}`);
+    toast.success(
+      'Anuncio deletado com sucesso, possibilidade de desfazer essa ação!'
+    );
     const adsFilters = myAds.filter((item) => item.id != id);
   };
 
@@ -89,25 +92,32 @@ const MyAdsPage: NextPage = () => {
 
   useEffect(() => {
     if (userApp) {
-      api.get('/properties').then((response) => {
-        const adsUser = response.data.filter(
-          (item) => item.idUser == userApp.id
-        );
+      setMyAds([]);
+      api
+        .get('/properties')
+        .then((response) => {
+          const adsUser = response.data.filter(
+            (item) => item.idUser == userApp.id
+          );
 
-        if (adsUser.length > 0) {
-          setMyAds(adsUser);
-          api
-            .get(`/users/${adsUser[0].idUser}`)
-            .then((resOwner) => {
-              setOwner(resOwner.data);
-            })
-            .catch((err) => {
-              console.log(err);
+          if (adsUser.length > 0) {
+            let sortAds = adsUser.sort((a, b) => a.id + b.id).reverse();
+            setMyAds(sortAds);
+            api
+              .get(`/users/${adsUser[0].idUser}`)
+              .then((resOwner) => {
+                setOwner(resOwner.data);
+              })
+              .catch((err) => {
+                console.log(err);
 
-              return toast.error('Erro ao listar meus anuncios!');
-            });
-        }
-      });
+                return toast.error('Erro ao listar meus anuncios!');
+              });
+          }
+        })
+        .catch((err) => {
+          return toast.info('Nenhum anuncio cadastrado');
+        });
     }
   }, [userApp, adsUndo]);
 

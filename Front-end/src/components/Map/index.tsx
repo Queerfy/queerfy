@@ -71,7 +71,6 @@ const Map: NextPage = ({
   useEffect(() => {
     getLocation();
     api.get('/properties').then((res) => {
-      console.log(res.data);
       setHouses(res.data);
     });
   }, []);
