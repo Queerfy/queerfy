@@ -41,7 +41,7 @@ export const InputBox = styled(Center)`
   width: 300px;
   height: 45px;
   border-radius: 100px;
-  
+
   background: linear-gradient(
     to right,
     rgba(241, 83, 86, 1) 0%,

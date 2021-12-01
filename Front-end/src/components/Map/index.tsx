@@ -11,8 +11,11 @@ import {
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import { MapContainer, PopupStyled, TitleMap } from './style';
+import { Divider, MapContainer, PopupStyled, TitleMap } from './style';
 import { api } from '../../services/api';
+import { useRouter } from 'next/router';
+import { route } from 'next/dist/next-server/server/router';
+import { Home, MapPin } from 'react-feather';
 
 interface MapProps extends LeafletMapProps {
   interactive?: boolean;
@@ -34,6 +37,8 @@ const Map: NextPage = ({
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [houses, setHouses] = useState([]);
+
+  const router = useRouter();
 
   const getLocation = async () => {
     if (!navigator.geolocation) {
@@ -97,7 +102,19 @@ const Map: NextPage = ({
                     icon={markerIconMap}
                   >
                     <PopupStyled>
-                      <a>Ver mais</a>
+                      <h3><Home size={15} /> {item.name}</h3>
+                      <span>{item.street}</span>
+                      <span>{item.description}</span>
+                      <Divider />
+                      <span><strong>CEP:</strong> {item.cep}</span>
+                      <span><strong>Diária:</strong> {item.dailyPrice.toLocaleString('pt-br', {
+                        style: 'currency',
+                        currency: 'BRL',
+                      })}</span>
+                      <Divider />
+                      <a onClick={() => {
+                        router.push(`/House/${item.id}`)
+                      }}>Ver mais</a>
                     </PopupStyled>
                   </Marker>
                 </>

@@ -123,8 +123,8 @@ const ResidenceList: NextPage = () => {
         <title>Queerfy | Residências</title>
       </Head>
 
+      <Navbar />
       <Body>
-        <Navbar />
         <HeaderMobile />
         {residences?.filter((item) => item.likes > 1000).length > 0 ||
           (filters?.filter((item) => item.likes > 1000).length > 0 && (
