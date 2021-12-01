@@ -35,10 +35,11 @@ const AboutUs: NextPage = () => {
         <img src="../working-office.svg" alt="Imagem ilustrativa" />
         <h2>2021</h2>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit id
-          consectetur ut deleniti laudantium earum autem voluptates omnis
-          voluptatem animi aut ex error eveniet, suscipit, minus similique
-          exercitationem et natus.
+          Se inicia a formalização da Queerfy em agosto de 2021, com previsão da
+          plataforma ser oficialmente lançada em julho de 2022. A Queerfy nasceu
+          para ajudar a comunidade LGBTQIA+ de alguma forma, com o propósito de
+          gerar oportunidades de moradia para este público que corre riscos
+          diariamente por conta de suas famílias.
         </p>
       </Header>
 
@@ -46,15 +47,15 @@ const AboutUs: NextPage = () => {
         <TitleContent>Nosso produto</TitleContent>
         <Content>
           <img src="../home-queerfy.png" alt="Home da Queerfy" />
-          <span>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum
-            dolores veritatis nam? Sapiente libero inventore tempore, dolorum
-            eum modi voluptatem? Dicta fugit ea provident adipisci obcaecati
-            quaerat eius illum corporis!Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Laborum dolores veritatis nam? Sapiente libero
-            inventore tempore, dolorum eum modi voluptatem? Dicta fugit ea
-            provident adipisci obcaecati quaerat eius illum corporis!
-          </span>
+          <p>
+            A plataforma desenvolvida pela Queerfy tem como foco principal
+            ajudar o próximo, sendo assim, disponibilizando a oportunidade de
+            alugar uma propriedade para se alocar com valores baixos ou até
+            mesmo sem custo nenhum. Sendo possível também, se hospedar em uma
+            propriedade a partir de uma viagem, tendo em mente que o
+            proprietário terá total respeito com seus hóspedes e gentileza em
+            recebo-los independente de seu gênero ou orientação sexual.
+          </p>
         </Content>
       </BoxContent>
 
@@ -62,10 +63,11 @@ const AboutUs: NextPage = () => {
         <Team>
           <h1>Equipe da Queerfy</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde minus
-            dignissimos quia. Fuga dolore vitae illum provident necessitatibus
-            sed, modi voluptatum natus, id ab placeat sapiente, repellat dolores
-            iure obcaecati.
+            A equipe da Queerfy é composta por 5 desenvolvedores e 1 pessoa da
+            àrea de négocios. Possuímos 3 desenvolvedores front-end, 1 back-end
+            e 1 full-stack. Há pessoas na equipe que fazem parte da comunidade
+            LGBTQIA+, influenciando completamente na ideia e relevância do
+            projeto.
           </p>
         </Team>
       </BoxTeam>
