@@ -6,9 +6,14 @@ import br.com.queerfy.backend.exceptions.ImageNotFound;
 import br.com.queerfy.backend.exceptions.UserAlreadyExistsException;
 import br.com.queerfy.backend.exceptions.UserNotFoundException;
 import br.com.queerfy.backend.services.PropertyService;
+import br.com.queerfy.backend.utils.TxtConverter;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +21,8 @@ import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.List;
 
 @RestController
@@ -26,7 +32,8 @@ public class PropertyController {
     @Autowired
     private PropertyService service;
 
-
+    @Autowired
+    private TxtConverter txtConverter;
 
     @GetMapping("/undo/{id}")
     public ResponseEntity undoProperty(Integer id) throws UserAlreadyExistsException {
@@ -126,5 +133,26 @@ public class PropertyController {
         service.deleteProperty(id);
         return ResponseEntity.status(201).build();
 
+    }
+
+    @GetMapping("/txt")
+    public ResponseEntity<Resource> getPropertyTxt() throws FileNotFoundException {
+
+        List<PropertyDTO> lista = service.getAllProperties();
+        txtConverter.gravaArquivoTxt(lista, "propriedades");
+        File file = new File("propriedades");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=propriedades.txt");
+        headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
+        headers.add(HttpHeaders.PRAGMA, "no-cache");
+        headers.add(HttpHeaders.EXPIRES, "0");
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentLength(file.length())
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
     }
 }

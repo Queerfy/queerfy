@@ -53,6 +53,7 @@ import {
   Email,
   Container,
   Body,
+  SlideContainer,
 } from './styles';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -112,7 +113,7 @@ const House: NextPage = () => {
       handleConfirmReservation(confirmReservation);
       router.push('/Reservation');
     } else {
-      toast.info('Você nao pode acessar essa pagina');
+      toast.info('Você não pode acessar essa página.');
     }
   };
 
@@ -157,7 +158,7 @@ const House: NextPage = () => {
         router.push('/Chat');
       }, 1000);
     } else {
-      toast.info('Você nao pode acessar essa pagina');
+      toast.info('Você não pode acessar essa página.');
     }
   };
 
@@ -317,13 +318,15 @@ const House: NextPage = () => {
         </Subtitle>
       </Header>
 
-      <Slide autoplay={false}>
-        {houseImages?.map((slideImage, index) => (
-          <div className="each-slide" key={index}>
-            <img src={slideImage} style={{ width: '100%' }} />
-          </div>
-        ))}
-      </Slide>
+      <SlideContainer>
+        <Slide autoplay={false}>
+          {houseImages?.map((slideImage, index) => (
+            <div className="each-slide" key={index}>
+              <img src={slideImage} style={{ width: '100%' }} />
+            </div>
+          ))}
+        </Slide>
+      </SlideContainer>
 
       <BoxContents>
         <BoxInformations>
