@@ -13,8 +13,10 @@ export const Container = styled.div`
   padding: 0 32px;
   border: ${(props) =>
     props.selected
-      ? `2px solid ${theme.colors.green}`
+      ? `4px solid ${theme.colors.green}`
       : `2px solid ${theme.assets.font}`};
+  transition: 0.3s;
+  transform: ${(props) => (props.selected ? `scale(0.95)` : '')};
 
   span {
     margin-left: 16px;
@@ -24,8 +26,6 @@ export const Container = styled.div`
   @media screen and (min-width: 1024px) {
     width: 250px;
     height: 60px;
-    border: 2px solid ${theme.assets.font};
-    transition: 0.3s;
 
     &:hover {
       cursor: pointer;
