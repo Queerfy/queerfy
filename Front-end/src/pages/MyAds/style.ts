@@ -112,7 +112,7 @@ export const HeaderAds = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 1000px;
+  width: 1090px;
 `;
 
 export const ContainerIcon = styled.div`
