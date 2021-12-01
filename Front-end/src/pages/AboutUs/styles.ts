@@ -11,7 +11,7 @@ export const Header = styled.div`
 
   h1 {
     font-size: 28px;
-    color: ${theme.colors.yellow};
+    color: ${theme.colors.purple};
   }
 
   img {
@@ -26,7 +26,8 @@ export const Header = styled.div`
   }
 
   p {
-    max-width: 90%;
+    width: 100%;
+    margin-top: 20px;
     text-align: center;
   }
 
@@ -36,7 +37,7 @@ export const Header = styled.div`
     }
 
     p {
-      width: 65%;
+      width: 55%;
     }
   }
 `;
@@ -69,9 +70,10 @@ export const Content = styled.div`
     border-radius: 10px;
   }
 
-  span {
+  p {
+    width: 100%;
     margin-top: 20px;
-    text-align: justify;
+    text-align: center;
   }
 
   @media screen and (min-width: 1024px) {
@@ -79,8 +81,8 @@ export const Content = styled.div`
       width: 50%;
     }
 
-    span {
-      width: 60%;
+    p {
+      width: 55%;
     }
   }
 `;
@@ -105,14 +107,14 @@ export const Team = styled.div`
   }
 
   p {
-    max-width: 100%;
-    text-align: justify;
-    margin-top: 10px;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
   }
 
   @media screen and (min-width: 1024px) {
     p {
-      width: 60%;
+      width: 41%;
     }
   }
 `;
