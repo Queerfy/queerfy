@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Head from 'next/head';
 
 import { useResidence } from '../../hooks/residence';
-import { useAuth } from '../../hooks/useAuth';
 
 import {
   Container,

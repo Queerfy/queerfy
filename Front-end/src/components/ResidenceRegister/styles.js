@@ -21,7 +21,8 @@ export const BannerContainer = styled.aside`
   flex-direction: column;
   justify-content: space-between;
 
-  background: ${theme.gradients.red};
+  background: linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%);
+
   padding: 64px;
 
   width: 50vw;

@@ -5,7 +5,6 @@ import { useResidence } from '../../../../hooks/residence';
 import { Container, InputBox } from './styles';
 
 import { GeneralButton } from '../../../GeneralButton';
-import { theme } from '../../../../styles/theme';
 import { HeaderMobile } from '../../../HeaderMobile';
 import { toast } from 'react-toastify';
 
@@ -56,7 +55,7 @@ export const StepEight = () => {
       </p>
       <GeneralButton
         text="Continuar"
-        bgColor={theme.gradients.red}
+        bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'
         onClick={sendParams}
       />
       <span onClick={backStep}>Voltar</span>

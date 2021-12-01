@@ -38,7 +38,7 @@ const NotificationPage: NextPage = () => {
             </ContainerLeft>
             <Switch
               checked={true}
-              onChange={() => { }}
+              onChange={() => {}}
               onColor="#439EFA"
               offColor="#C4C4C4"
               checkedIcon={false}
@@ -53,7 +53,7 @@ const NotificationPage: NextPage = () => {
             </ContainerLeft>
             <Switch
               checked={true}
-              onChange={() => { }}
+              onChange={() => {}}
               onColor="#439EFA"
               offColor="#C4C4C4"
               checkedIcon={false}
@@ -68,7 +68,7 @@ const NotificationPage: NextPage = () => {
             </ContainerLeft>
             <Switch
               checked={false}
-              onChange={() => { }}
+              onChange={() => {}}
               onColor="#439EFA"
               offColor="#C4C4C4"
               checkedIcon={false}

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Item, NavbarSpace } from './styles';
 
-import { Globe, Search, User } from 'react-feather'
+import { Download, Search, User } from 'react-feather'
 
 export const NavbarMobile = () => {
 
@@ -15,7 +15,7 @@ export const NavbarMobile = () => {
           <span>Explorar</span>
         </Item>
         <Item>
-          <Globe />
+          <Download />
           <span>Idioma</span>
         </Item>
         <Item>
