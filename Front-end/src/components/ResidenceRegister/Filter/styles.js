@@ -11,7 +11,10 @@ export const Container = styled.div`
   height: 70px;
   border-radius: 15px;
   padding: 0 32px;
-  border: 2px solid ${theme.assets.font};
+  border: ${(props) =>
+    props.selected
+      ? `2px solid ${theme.colors.green}`
+      : `2px solid ${theme.assets.font}`};
 
   span {
     margin-left: 16px;
