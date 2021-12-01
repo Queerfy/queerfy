@@ -53,6 +53,7 @@ import {
   Email,
   Container,
   Body,
+  SlideContainer,
 } from './styles';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -317,13 +318,15 @@ const House: NextPage = () => {
         </Subtitle>
       </Header>
 
-      <Slide autoplay={false}>
-        {houseImages?.map((slideImage, index) => (
-          <div className="each-slide" key={index}>
-            <img src={slideImage} style={{ width: '100%' }} />
-          </div>
-        ))}
-      </Slide>
+      <SlideContainer>
+        <Slide autoplay={false}>
+          {houseImages?.map((slideImage, index) => (
+            <div className="each-slide" key={index}>
+              <img src={slideImage} style={{ width: '100%' }} />
+            </div>
+          ))}
+        </Slide>
+      </SlideContainer>
 
       <BoxContents>
         <BoxInformations>
