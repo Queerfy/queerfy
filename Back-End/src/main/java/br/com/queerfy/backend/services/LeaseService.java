@@ -14,6 +14,7 @@ import br.com.queerfy.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -78,6 +79,8 @@ public class LeaseService {
         }
         throw new UserNotFoundException();
     }
+
+    @Transactional
     public List<LeaseAssociativeDTO> findLeaseByUserId(Integer id){
         List<Lease> leaseList = leaseRepository.findLeaseByUserId(id);
         List<LeaseDTO> leaseDTOS = leaseList.stream().map(lease -> new LeaseDTO(lease)).collect(Collectors.toList());

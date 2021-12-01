@@ -28,6 +28,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 import { IUserData } from '../../interfaces';
 import { toast } from 'react-toastify';
+import ImageResidence from '../../components/ImageResidence';
 
 const MyAdsPage: NextPage = () => {
   const { userApp, handleResidenceEdit } = useAuth();
@@ -163,11 +164,7 @@ const MyAdsPage: NextPage = () => {
                         <HoveredImage>
                           <Eye />
                         </HoveredImage>
-                        <img
-                          src="support-banner.svg"
-                          width="100%"
-                          height="100%"
-                        />
+                        <ImageResidence idHouse={item.id} />
                       </ImageBox>
                       <AdsInformation>
                         <ContainerIcon>

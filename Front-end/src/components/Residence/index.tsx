@@ -11,6 +11,7 @@ interface ResidenceProps {
     neighborhood?: string;
     city?: string;
   };
+  uf?: string;
   trend?: boolean;
   description?: string;
 }
@@ -50,7 +51,7 @@ export const Residence = (props: ResidenceProps) => {
       </ImageBox>
       <h4>{props.name}</h4>
       <span>
-        <MapPin /> SP - Alphaville
+        <MapPin /> {String(props.uf).toUpperCase()}
       </span>
 
       {props.trend && <p>{props.description}</p>}

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dfe2164f-e556-42b5-9a0d-a0bde218d6ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Front-end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/src/pages/House/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/src/pages/House/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front-end/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Front-end/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="dfe2164f-e556-42b5-9a0d-a0bde218d6ee" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -19,8 +19,7 @@ export const StepNine = () => {
   const { userApp, handleResidenceEdit } = useAuth();
   const router = useRouter();
 
-  const handleImages = async (data) => {
-    const newHouse = await api.post('/properties', data);
+  const handleImages = async (newHouse) => {
     if (images.length > 0) {
       for (let i = 0; i < images[0].length; i++) {
         var bodyFormData = new FormData();
@@ -45,21 +44,23 @@ export const StepNine = () => {
 
     const data = { ...residenceData, ...defaultValues };
 
-    console.log(images);
-
     try {
       if (
         userApp &&
         userApp.editResidence.editing &&
-        userApp.editResidence.idHouse !== null
+        userApp.editResidence.idHouse !== undefined
       ) {
-        await api.put(`/properties/${userApp.editResidence.idHouse}`, data);
-        handleImages(data);
+        const house = await api.put(
+          `/properties/${userApp.editResidence.idHouse}`,
+          data
+        );
+        handleImages(house);
         handleResidenceEdit(false, null);
         toast.success('Residência atualizada com sucesso!');
         router.push('/MyAds');
       } else {
-        handleImages(data);
+        const newHouse = await api.post('/properties', data);
+        handleImages(newHouse);
         toast.success('Residência cadastrada com sucesso!');
         router.push('/');
       }

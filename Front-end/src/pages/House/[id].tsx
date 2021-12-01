@@ -91,21 +91,6 @@ const House: NextPage = () => {
   const [disableDays, setDisableDays] = useState([]);
   const [houseImages, setHouseImages] = useState([]);
 
-  const slideImages = [
-    {
-      url: '../img-casa.svg',
-      caption: 'Slide 1',
-    },
-    {
-      url: '../img-casa.svg',
-      caption: 'Slide 2',
-    },
-    {
-      url: '../img-casa.svg',
-      caption: 'Slide 3',
-    },
-  ];
-
   const handleReservationConfirm = async () => {
     if ((userApp?.id === house?.idUser) == false) {
       const confirmReservation: IConfirmReservation = {
@@ -213,7 +198,7 @@ const House: NextPage = () => {
     let images = [];
     for (let i = 0; i < 5; i++) {
       const { data, headers } = await api.get(
-        `/properties/image${i + 1}/${id}`,
+        `/properties/image${i + 1}/${house.id}`,
         {
           responseType: 'arraybuffer',
         }
@@ -231,6 +216,7 @@ const House: NextPage = () => {
         );
       }
     }
+
     if (images.length > 0) {
       setHouseImages(images);
     } else {
@@ -275,12 +261,9 @@ const House: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    getImages();
-  }, []);
-
-  useEffect(() => {
     if (house) {
       getDisableDays();
+      getImages();
     }
   }, [house]);
 
@@ -333,9 +316,9 @@ const House: NextPage = () => {
       </Header>
 
       <Slide autoplay={false}>
-        {slideImages.map((slideImage, index) => (
+        {houseImages?.map((slideImage, index) => (
           <div className="each-slide" key={index}>
-            <img src={slideImage.url} style={{ width: '100%' }} />
+            <img src={slideImage} style={{ width: '100%' }} />
           </div>
         ))}
       </Slide>

@@ -62,6 +62,7 @@ const ResidenceList: NextPage = () => {
         .get(`/properties/city/${citySearch}`)
         .then((response) => {
           setResidences(response.data);
+          console.log(response.data);
         })
         .catch((err) => {
           toast.info('Nenhuma casa encontrada!');
@@ -144,6 +145,7 @@ const ResidenceList: NextPage = () => {
                             key={item.id}
                             name={item.name}
                             description={item.description}
+                            uf={item.uf}
                             trend={true}
                           />
                         </a>
@@ -161,6 +163,7 @@ const ResidenceList: NextPage = () => {
                             key={item.id}
                             name={item.name}
                             description={item.description}
+                            uf={item.uf}
                             trend={true}
                           />
                         </a>
@@ -208,6 +211,7 @@ const ResidenceList: NextPage = () => {
                       key={item.id}
                       name={item.name}
                       description={item.description}
+                      uf={item.uf}
                     />
                   </a>
                 ))}
@@ -222,6 +226,7 @@ const ResidenceList: NextPage = () => {
                       key={item.id}
                       name={item.name}
                       description={item.description}
+                      uf={item.uf}
                     />
                   </a>
                 ))}
