@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
-const Center = styled.div`
+export const Center = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,6 +16,7 @@ export const Container = styled.nav`
   width: 100%;
   height: 70px;
   padding: 0 64px;
+  max-width: 1920px;
 
   img {
     height: 45px;

@@ -3,85 +3,68 @@ import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
 export const Header = styled.div`
-  width: 70%;
-  margin-top: 40px;
-
   display: flex;
   align-items: center;
-  justify-content: space-between;
+
+  margin-top: 40px;
 
   h1 {
     color: ${theme.colors.red};
     font-size: 26px;
+    margin-left: 16px;
   }
+`;
 
-  @media screen and (min-width: 1024px) {
-    width: 12%;
+export const ContentPanel = styled.section`
+  width: 100%;
+  height: auto;
+  margin-bottom: 64px;
+
+  @media screen and (min-width: 1023px) {
+    display: flex;
   }
 `;
 
 export const BoxHouse = styled.div`
   width: 100%;
 
-  margin-top: 20px;
-  padding: 8px 0px 8px 0px;
+  @media screen and (min-width: 1023px) {
+    width: 50%;
+  }
 `;
 
 export const BorderHouse = styled.div`
-  width: 100%;
-  height: 90px;
-
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
 
-  border-radius: 12px;
-
-  background: linear-gradient(
-    to right,
-    rgba(241, 83, 86, 1) 0%,
-    rgba(240, 191, 90, 1) 17%,
-    rgba(253, 233, 128, 1) 34%,
-    rgba(133, 219, 107, 1) 50%,
-    rgba(67, 158, 250, 1) 68%,
-    rgba(169, 147, 245, 1) 84%,
-    rgba(242, 107, 156, 1) 100%
-  );
-`;
-
-export const House = styled.div`
-  width: 99%;
-  height: 97%;
-
-  padding: 10px;
-
-  display: flex;
-
+  width: 100%;
+  max-height: 300px;
   border-radius: 10px;
-
   background: ${theme.assets.background};
-`;
+  padding: 8px;
 
-export const BoxImageHouse = styled.div`
-  width: 50%;
-
-  img {
-    width: 35vw;
+  > img {
     border-radius: 10px;
+    width: 90%;
   }
 
-  @media screen and (min-width: 1024px) {
-    img {
-      width: 12vw;
-    }
+  @media screen and (min-width: 1023px) {
+    max-height: 500px;
   }
 `;
 
 export const InformationsHouse = styled.div`
   width: 50%;
-
   display: flex;
+  height: 100%;
   flex-direction: column;
+
+  @media screen and (min-width: 1023px) {
+    h2 {
+      font-size: 20px;
+    }
+  }
 `;
 
 export const IconArrow = styled.div`
@@ -98,26 +81,44 @@ export const IconArrow = styled.div`
 
 export const InformationsReservation = styled.div`
   width: 100%;
-
   margin-top: 20px;
 
   h1 {
     color: ${theme.colors.orange};
     font-size: 24px;
-    margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: 1023px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 50%;
+    padding: 8px;
+    margin-top: 0;
+
+    h2 {
+      font-size: 20px;
+      margin-top: 16px;
+    }
   }
 `;
 
 export const Date = styled.div`
   width: 100%;
+
+  @media screen and (max-width: 1023px) {
+    margin-top: 16px;
+  }
 `;
 
 export const BoxPrice = styled.div`
   width: 100%;
 
-  margin-top: 10px;
-
-  border-bottom: 2px solid ${theme.assets.borderDark};
+  @media screen and (max-width: 1023px) {
+    margin-top: 16px;
+  }
 `;
 
 export const DailyValue = styled.div`
@@ -135,34 +136,53 @@ export const AdditionalValues = styled.div`
 `;
 
 export const TotalValue = styled.div`
-  width: 100%;
-
-  margin-bottom: 25px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  width: 100%;
+  border-top: 2px solid ${theme.assets.borderLight};
+
+  span {
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  button {
+    margin-top: 16px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    margin-top: 32px;
+  }
 `;
 
 export const Payments = styled.div`
+  margin-top: 32px;
   width: 100%;
-
-  margin-top: 30px;
 
   h1 {
     color: ${theme.colors.pink};
     font-size: 24px;
     margin-bottom: 10px;
   }
+
+  @media screen and (min-width: 1023px) {
+    width: 50%;
+    padding-left: 32px;
+    margin-top: 8px;
+  }
 `;
 
 export const TitleCard = styled.div`
-  width: 100%;
-
   display: flex;
 
+  svg {
+    color: ${theme.colors.pink};
+  }
+
   p {
-    margin-left: 10px;
+    margin-left: 8px;
   }
 `;
 
@@ -191,22 +211,20 @@ export const AdditionalBox = styled.div`
   width: 100%;
 
   display: flex;
-  justify-content: space-between;
-
-  &:first-child {
-    margin-right: 2%;
-  }
 `;
 
 export const OwnerData = styled.div`
   width: 100%;
 
-  margin-top: 30px;
-
   h1 {
     color: ${theme.colors.purple};
     font-size: 24px;
     margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: 1023px) {
+    padding-right: 32px;
+    width: 50%;
   }
 `;
 
@@ -231,15 +249,11 @@ export const BoxConfirm = styled.div`
 
 export const ButtonConfirm = styled.button`
   width: 100%;
-
   padding: 8px;
-
   background: ${theme.colors.blue};
   color: ${theme.assets.background};
-
   border: none;
   border-radius: 10px;
-
   font-size: 20px;
   font-weight: bold;
 `;

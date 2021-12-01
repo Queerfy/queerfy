@@ -2,6 +2,16 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Body = styled.div`
+  max-width: 1920px;
+`;
+
 export const Header = styled.header`
   width: 100%;
 
@@ -72,20 +82,14 @@ export const Informations = styled.div`
     color: ${theme.colors.red};
     padding-bottom: 20px;
   }
-
-  @media screen and (min-width: 1024px) {
-    width: 80%;
-  }
 `;
 
 export const AlignInformations = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
 
-  @media screen and (min-width: 1024px) {
-    width: 80%;
+  > div {
+    margin-top: 8px;
   }
 `;
 
@@ -101,10 +105,6 @@ export const Rules = styled.div`
     color: ${theme.colors.green};
     padding-bottom: 20px;
   }
-
-  @media screen and (min-width: 1024px) {
-    width: 80%;
-  }
 `;
 
 export const Description = styled.div`
@@ -119,10 +119,6 @@ export const Description = styled.div`
   h2 {
     color: ${theme.colors.orange};
     padding-bottom: 20px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 80%;
   }
 `;
 
@@ -222,6 +218,17 @@ export const CheckDate = styled.div`
 
   span {
     color: ${theme.colors.red};
+  }
+
+  input {
+    border: 1px solid ${theme.assets.borderDark};
+    border-radius: 10px;
+    height: 40px;
+    padding-left: 8px;
+
+    &::placeholder {
+      color: ${theme.assets.borderLight};
+    }
   }
 `;
 

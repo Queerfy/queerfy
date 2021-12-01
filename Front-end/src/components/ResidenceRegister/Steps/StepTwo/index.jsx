@@ -14,6 +14,10 @@ export const StepTwo = () => {
   const { advanceStep, backStep, handleStep, residenceData, handleDataUpdate } =
     useResidence();
 
+  const [intireSpace, setIntireSpace] = useState(false);
+  const [intireRoom, setIntireRoom] = useState(false);
+  const [sharedRoom, setSharedRoom] = useState(false);
+
   function sendParams() {
     if (spaceType === null && residenceData.spaceType === undefined) {
       return toast.error('Selecione um tipo de espaço.');
@@ -32,21 +36,66 @@ export const StepTwo = () => {
     advanceStep();
   }
 
+  function handleSelectIntireSpace() {
+    setSpaceType('lugar inteiro');
+
+    if (intireSpace) {
+      setIntireSpace(false);
+      setIntireRoom(false);
+      setSharedRoom(false);
+    } else {
+      setIntireSpace(true);
+      setIntireRoom(false);
+      setSharedRoom(false);
+    }
+  }
+
+  function handleSelectIntireRoom() {
+    setSpaceType('quarto inteiro');
+
+    if (intireRoom) {
+      setIntireRoom(false);
+      setIntireSpace(false);
+      setSharedRoom(false);
+    } else {
+      setIntireRoom(true);
+      setIntireSpace(false);
+      setSharedRoom(false);
+    }
+  }
+
+  function handleSelectSharedRoom() {
+    setSpaceType('quarto compartilhado');
+
+    if (sharedRoom) {
+      setSharedRoom(false);
+      setIntireSpace(false);
+      setIntireRoom(false);
+    } else {
+      setSharedRoom(true);
+      setIntireSpace(false);
+      setIntireRoom(false);
+    }
+  }
+
   return (
     <Container>
       <HeaderMobile />
       <h1>Qual tipo de espaço você deseja hospedar?</h1>
       <Option
-        onClick={() => setSpaceType('lugar inteiro')}
+        onClick={handleSelectIntireSpace}
         label="Lugar inteiro"
+        selected={intireSpace}
       />
       <Option
-        onClick={() => setSpaceType('quarto inteiro')}
+        onClick={handleSelectIntireRoom}
         label="Quarto inteiro"
+        selected={intireRoom}
       />
       <Option
-        onClick={() => setSpaceType('quarto compartilhado')}
+        onClick={handleSelectSharedRoom}
         label="Quarto compartilhado"
+        selected={sharedRoom}
       />
       <GeneralButton
         text="Continuar"

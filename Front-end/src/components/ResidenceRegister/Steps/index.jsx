@@ -18,6 +18,8 @@ export const StepOne = () => {
     useResidence();
   const { userApp } = useAuth();
   const [propertyType, setPropertyType] = useState(null);
+  const [apartmentSelected, setApartmentSelected] = useState(false);
+  const [houseSelected, setHouseSelected] = useState(false);
 
   function sendParams() {
     if (propertyType === null && residenceData.propertyType === undefined) {
@@ -50,21 +52,47 @@ export const StepOne = () => {
     }
   }, [userApp]);
 
+  function handleSelectApartment() {
+    setPropertyType('apartamento');
+
+    if (apartmentSelected) {
+      setApartmentSelected(false);
+      setHouseSelected(false);
+    } else {
+      setHouseSelected(false);
+      setApartmentSelected(true);
+    }
+  }
+
+  function handleSelectHouse() {
+    setPropertyType('casa')
+
+    if (houseSelected) {
+      setApartmentSelected(false);
+      setHouseSelected(false);
+    } else {
+      setApartmentSelected(false);
+      setHouseSelected(true);
+    }
+  }
+
   return (
     <Container>
       <HeaderMobile />
       <h1>Qual tipo de espaço você deseja hospedar?</h1>
       <Option
-        onClick={() => setPropertyType('apartamento')}
+        onClick={handleSelectApartment}
         label="Apartamento"
         image="apartment.png"
         alt="apartamento"
+        selected={apartmentSelected}
       />
       <Option
-        onClick={() => setPropertyType('casa')}
+        onClick={handleSelectHouse}
         label="Casa"
         image="house.png"
         alt="casa"
+        selected={houseSelected}
       />
       <GeneralButton
         text="Continuar"

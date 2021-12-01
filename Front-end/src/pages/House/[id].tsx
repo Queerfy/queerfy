@@ -51,6 +51,8 @@ import {
   Host,
   ProfileHost,
   Email,
+  Container,
+  Body,
 } from './styles';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -335,21 +337,6 @@ const House: NextPage = () => {
               {house?.haveGarage && <AdditionalInformation type={'Garagem'} />}
             </AlignInformations>
           </Informations>
-
-          <Rules>
-            <h2>Regras</h2>
-
-            {/* <AlignInformations>
-              <AdditionalInformation />
-              <AdditionalInformation />
-            </AlignInformations>
-
-            <AlignInformations>
-              <AdditionalInformation />
-              <AdditionalInformation />
-            </AlignInformations> */}
-          </Rules>
-
           <Description>
             <h2>Descrição</h2>
             <p>{house?.description}</p>
@@ -367,7 +354,6 @@ const House: NextPage = () => {
                   </Value>
                   <Likes>
                     <img src="../colorful-heart.svg" alt="Coração preenchido" />
-                    <span>246</span>
                   </Likes>
                 </HeaderReservation>
 
