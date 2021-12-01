@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NextPage } from 'next';
 
 import Head from 'next/head';
@@ -26,6 +26,8 @@ import { Slide } from '../components/Slide';
 import { HandleCategorie } from '../components/Home/HandleCategorie';
 import { Banner } from '../components/Home/Banner';
 import { NearbyPlaces } from '../components/Home/NearbyPlaces';
+import { useAuth } from '../hooks/useAuth';
+import { useRouter } from 'next/router';
 
 const Map = dynamic(
   () => {
@@ -37,6 +39,9 @@ const Map = dynamic(
 );
 
 const IndexPage: NextPage = () => {
+  const { handleSearch } = useAuth();
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -50,9 +55,30 @@ const IndexPage: NextPage = () => {
         <Categories>
           <h1>Qual tipo de acomodação você precisa?</h1>
           <CategorieTypes>
-            <HandleCategorie image="suit.svg" title="Quarto inteiro" />
-            <HandleCategorie image="room.svg" title="Quarto compartilhado" />
-            <HandleCategorie image="house.jpg" title="Lugar inteiro" />
+            <HandleCategorie
+              onClick={() => {
+                handleSearch({ filterSpace: 'quarto inteiro' });
+                router.push(`/ResidenceList`);
+              }}
+              image="suit.svg"
+              title="Quarto inteiro"
+            />
+            <HandleCategorie
+              onClick={() => {
+                handleSearch({ filterSpace: 'quarto compartilhado' });
+                router.push(`/ResidenceList`);
+              }}
+              image="room.svg"
+              title="Quarto compartilhado"
+            />
+            <HandleCategorie
+              onClick={() => {
+                handleSearch({ filterSpace: 'inteiro' });
+                router.push(`/ResidenceList`);
+              }}
+              image="house.jpg"
+              title="Lugar inteiro"
+            />
           </CategorieTypes>
         </Categories>
         <HostBanner>

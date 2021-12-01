@@ -7,7 +7,7 @@ import ReactSwitch from 'react-switch';
 
 import { Container, Divider } from './styles';
 
-import { Globe, Inbox, User } from 'react-feather';
+import { Download, Inbox, User } from 'react-feather';
 
 export const MenuDropdown = () => {
   const [theme, setTheme] = useState(true);
@@ -38,7 +38,7 @@ export const MenuDropdown = () => {
       </li>
       <li>
         <a href="#">
-          <Globe size={25} />
+          <Download size={25} />
         </a>
       </li>
       <li>

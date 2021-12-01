@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { NextPage } from 'next';
 
 import Link from 'next/link';
 import Head from 'next/head';
-import { Form } from '@unform/web';
 import { theme } from '../../../styles/theme';
 import { ContainerMain, HeaderContainer } from '../styles';
-import {
-  ContainerInfo,
-  ContainerColumn,
-  Container,
-  InputsBox,
-  SubmitButton,
-} from './styles';
+import { ContainerInfo, ContainerColumn, Container, InputsBox } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import {
   ArrowLeft,
@@ -20,8 +13,6 @@ import {
   Calendar,
   Mail,
   Lock,
-  Phone,
-  MapPin,
   CreditCard,
   Users,
 } from 'react-feather';
@@ -32,11 +23,10 @@ import Input from '../../../components/Form/input';
 import InputMask from '../../../components/Form/inputMask';
 import { useAuth } from '../../../hooks/useAuth';
 import moment from 'moment';
+import { ButtonAds, HeaderAds } from '../../MyAds/style';
 
 const InfoAccount: NextPage = () => {
   const { userApp } = useAuth();
-
-  const [maskPhone, setMaskPhone] = useState('(99) 99999-9999');
 
   const handleSubmit = (data) => {
     console.log(data);
@@ -50,11 +40,22 @@ const InfoAccount: NextPage = () => {
       <Navbar accountNavbar />
       <ContainerMain>
         <HeaderMobile />
-        <HeaderContainer title={theme.colors.red} text={theme.colors.red}>
-          <Link href="/">
-            <ArrowLeft />
-          </Link>
-          <h1>Informações da conta</h1>
+        <HeaderContainer
+          title={theme.colors.red}
+          text={theme.colors.red}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}
+        >
+          <HeaderAds>
+            <Link href="/">
+              <ArrowLeft />
+            </Link>
+            <h1>Informações da conta</h1>
+          </HeaderAds>
+          <ButtonAds color={theme.colors.red}>Salvar alterações</ButtonAds>
         </HeaderContainer>
         <ContainerInfo onSubmit={handleSubmit}>
           <ContainerColumn>

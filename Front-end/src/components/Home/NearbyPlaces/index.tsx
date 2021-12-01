@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { CityInfo, Container, ItemImage } from "./styles";
+import { CityInfo, Container, ItemImage } from './styles';
 
 interface NearbyPlacesProps {
   title: string;
@@ -16,10 +16,10 @@ export const NearbyPlaces = (props: NearbyPlacesProps) => {
         <h3>{props.title}</h3>
         <p>
           {props.hours}
-          {props.hours <= 1 ? " hora " : " horas "}
+          {props.hours <= 1 ? ' hora ' : ' horas '}
           de distância.
         </p>
       </CityInfo>
     </Container>
   );
-}
+};

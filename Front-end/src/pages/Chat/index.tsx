@@ -33,8 +33,15 @@ import { theme } from '../../styles/theme';
 const socket = io('http://localhost:3333');
 
 const Chat: NextPage = () => {
-  const { userApp, userJoinChat, loadUsersJoin, messagesReceiver } = useAuth();
+  const {
+    userApp,
+    userJoinChat,
+    loadUsersJoin,
+    messagesReceiver,
+    handleUsersChatJoin,
+  } = useAuth();
   const [messages, setMessages] = useState([]);
+  const [statusProposal, setStatusProposal] = useState(false);
   const messageRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
@@ -48,7 +55,7 @@ const Chat: NextPage = () => {
         storagedUsersJoin.confirmReservation;
 
       messageRef.current.value = `
-        Olá ${storagedUsersJoin.userReceiver?.name}, estou interessado em uma de suas residências, a ${storagedUsersJoin.house.name}</strong>. Encaminhei uma proposta com os dias ${checkIn}/${checkOut} gostaria de me hospedar em sua propriedade. Está disponível?
+        Olá ${storagedUsersJoin.userReceiver?.name}, estou interessado em uma de suas residências, a ${storagedUsersJoin.house.name}. Encaminhei uma proposta com os dias ${checkIn}/${checkOut} gostaria de me hospedar em sua propriedade. Está disponível?
       `;
 
       const paramsMessage = {
@@ -70,6 +77,16 @@ const Chat: NextPage = () => {
       socket.emit('send_message', paramsMessage);
 
       messageRef.current.value = '';
+
+      const userSender = storagedUsersJoin.userSender;
+      const userReceiver = storagedUsersJoin.userReceiver;
+
+      const usersJoined = {
+        userSender,
+        userReceiver,
+      };
+
+      handleUsersChatJoin(usersJoined);
     }
 
     const params = {
@@ -95,7 +112,10 @@ const Chat: NextPage = () => {
         userReceiver,
       };
 
-      /* socket.emit('update_messages', params.emailSender); */
+      socket.emit('update_messages', {
+        emailSender: userReceiver.email,
+        emailReceiver: userSender.email,
+      });
 
       socket.emit('list_messages', params, (messagesList) => {
         setMessages(messagesList);
