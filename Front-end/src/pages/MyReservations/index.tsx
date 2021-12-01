@@ -32,12 +32,12 @@ const MyReservationPage: NextPage = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data.length === 0) {
-            return toast.info('Nenhuma Reserva cadastrada!');
+            return toast.info('Nenhuma reserva cadastrada.');
           }
           setReservations(res.data);
         })
         .catch((err) => {
-          return toast.info('Nenhuma Reserva cadastrada!');
+          return toast.info('Nenhuma reserva cadastrada.');
         });
     }
   };

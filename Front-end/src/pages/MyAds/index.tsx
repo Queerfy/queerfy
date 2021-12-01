@@ -57,7 +57,7 @@ const MyAdsPage: NextPage = () => {
   const handleDelete = async (id) => {
     await api.delete(`/properties/${id}`);
     toast.success(
-      'Anuncio deletado com sucesso, possibilidade de desfazer essa ação!'
+      'Anúncio deletado com sucesso, possibilidade de desfazer essa ação!'
     );
     const adsFilters = myAds.filter((item) => item.id != id);
   };
