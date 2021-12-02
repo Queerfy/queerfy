@@ -28,8 +28,7 @@ export const ResidenceProvider = ({ children }) => {
   }
 
   function setImagesUser(localImages) {
-    setImages([]);
-    images.push(localImages);
+    images.push(...localImages);
   }
 
   const handleStep = (stepData) => {

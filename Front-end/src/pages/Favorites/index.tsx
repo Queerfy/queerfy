@@ -26,6 +26,8 @@ import { api } from '../../services/api';
 
 import { useAuth } from '../../hooks/useAuth';
 import { IUserData } from '../../interfaces';
+import { toast } from 'react-toastify';
+import ImageResidence from '../../components/ImageResidence';
 
 
 const ResidenceDescribe = ({ idProperty }) => {
@@ -67,13 +69,18 @@ const Favorites: NextPage = () => {
       api
         .get(`/users/${userApp.id}`)
         .then((response) => {
-          setFavoritesUser(response.data.favorite);
+          if(response.data.favorite.length === 0) {
+            toast.info("Nenhuma casa Favoritada")
+            router.push('/')
+          }else {
+            setFavoritesUser(response.data.favorite);
+          }
+          
         })
         .catch((err) => {
-          router.push('/');
+          console.log(err);
+          /* router.push('/'); */
         });
-    } else {
-      router.push('/');
     }
   }, []);
 
@@ -98,7 +105,7 @@ const Favorites: NextPage = () => {
           {favoritesUser.map((item) => (
             <CardHouse onClick={() => router.push(`/House/${item.propertyId}`)}>
               <ImageCard>
-                <img src="residence-vila.jpg" alt="Imagem da propriedade" />
+                <ImageResidence idHouse={item.propertyId} />
               </ImageCard>
               <DescribeResidence>
                 <ResidenceDescribe idProperty={item.propertyId} />

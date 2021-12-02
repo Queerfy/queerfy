@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
     useState<IConfirmReservation>();
   const [proposals, setProposals] = useState();
   const [search, setSearch] = useState();
+  const [ user, setUser ] = useState()
 
   const router = useRouter();
 

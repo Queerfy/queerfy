@@ -17,7 +17,7 @@ export const StepThree = () => {
   const streetRef = useRef();
   const cityRef = useRef();
   const ufRef = useRef();
-  const cepRef = useRef();
+  const cepRef = useRef(null);
   const complementRef = useRef();
   const neighbourhoodRef = useRef();
   const numberRef = useRef();
@@ -30,7 +30,6 @@ export const StepThree = () => {
       address.uf === '' ||
       address.cep === '' ||
       address.complement === '' ||
-      address.neighbourhood === '' ||
       address.number === ''
     ) {
       return true;
@@ -153,13 +152,13 @@ export const StepThree = () => {
       <InputsSection>
         <FormInput width="45%" desktopWidth="45%">
           <label htmlFor="inputCep">CEP</label>
-          <InputMask
+          <input
             id="inputCep"
             name="inputCep"
             placeholder="_____-___"
             ref={cepRef}
-            value={cepRef.current.value}
-            mask="99999-999"
+            value={cepRef?.current?.value}
+            /* mask="99999-999" */
           />
         </FormInput>
         <FormInput width="50%" desktopWidth="50%">

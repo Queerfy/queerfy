@@ -14,16 +14,16 @@ import { Coffee, Wifi } from 'react-feather';
 import { useRouter } from 'next/router';
 
 export const StepNine = () => {
-  const { backStep, residenceData, images } = useResidence();
+  const { backStep, residenceData, images, setImagesUser } = useResidence();
   const { userApp, handleResidenceEdit } = useAuth();
   const router = useRouter();
   const [image, setImage] = useState('');
 
   const handleImages = async (newHouse) => {
     if (images.length > 0) {
-      for (let i = 0; i < images[0].length; i++) {
+      for (let i = 0; i < images.length; i++) {
         var bodyFormData = new FormData();
-        bodyFormData.append('image', images[0][i]);
+        bodyFormData.append('image', images[i]);
         await api.patch(
           `/properties/image${i + 1}/${newHouse.data.id}`,
           bodyFormData,
@@ -31,6 +31,15 @@ export const StepNine = () => {
             headers: { 'Content-Type': 'multipart/form-data' },
           }
         );
+      }
+    }else {
+      for (let i = 0; i < 5; i++) {
+        const { data } = await api.get(
+          `/properties/image${i + 1}/${residenceData.id}`
+        );
+        if (data != '') {
+          setImagesUser(data);
+        }
       }
     }
   };
