@@ -3,10 +3,13 @@ package br.com.queerfy.backend.entities;
 import br.com.queerfy.backend.dto.UserDTO;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
+@Transactional
 @Entity()
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Users")
@@ -14,6 +17,10 @@ public class User {
 
     public User() {
 
+    }
+
+    public User(Integer id) {
+        this.id = id;
     }
 
     public User(UserDTO user) {
@@ -210,5 +217,16 @@ public class User {
         this.admin = admin;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(birthDate, user.birthDate) && Objects.equals(notifications, user.notifications) && Objects.equals(rg, user.rg) && Objects.equals(cpf, user.cpf) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(perfilImg, user.perfilImg) && Objects.equals(descUser, user.descUser) && Objects.equals(genre, user.genre) && Objects.equals(likes, user.likes) && Objects.equals(admin, user.admin) && Objects.equals(autenticated, user.autenticated) && Objects.equals(favorites, user.favorites) && Objects.equals(properties, user.properties);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, birthDate, notifications, rg, cpf, email, password, perfilImg, descUser, genre, likes, admin, autenticated, favorites, properties);
+    }
 }

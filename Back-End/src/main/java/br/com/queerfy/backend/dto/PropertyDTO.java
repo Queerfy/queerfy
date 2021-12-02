@@ -2,6 +2,8 @@ package br.com.queerfy.backend.dto;
 
 import br.com.queerfy.backend.entities.Property;
 
+import javax.transaction.Transactional;
+
 public class PropertyDTO {
 
     private Integer id;
@@ -72,9 +74,39 @@ public class PropertyDTO {
 
     }
 
-    public PropertyDTO(int id, String name, String description, boolean active, double dailyPrice, String filterDate, String latitude, String longitude, int likes, String state, String city, String uf, String cep, String street, String houseNumber, String addressComplement, String referencePoint, String propertyType, String spaceType, String guestsQuantity, String bedsQuantity, String roomQuantity, String bathroomQuantity, boolean haveWifi, boolean haveKitchen, boolean haveSuite, boolean haveGarage, boolean haveAnimals) {
+    public PropertyDTO(Integer id, String name, String description, Boolean active, Double dailyPrice, String filterDate, String latitude,
+                       String longitude,   Integer likes, String state, String uf, String cep, String street, String houseNumber, String addressComplement, String city, String referencePoint, String propertyType,
+                       String spaceType, String guestsQuantity, String bedsQuantity, String roomQuantity, String bathroomQuantity, Boolean haveWifi, Boolean haveKitchen, Boolean haveSuite, Boolean haveGarage, Boolean haveAnimals,Integer idUser) {
+        this.id = id;
+        this.name = name;
+        this.active = active;
+        this.dailyPrice = dailyPrice;
+        this.filterDate = filterDate;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.idUser = idUser;
+        this.description = description;
+        this.likes = likes;
+        this.state = state;
+        this.uf = uf;
+        this.cep = cep;
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.addressComplement = addressComplement;
+        this.city = city;
+        this.referencePoint = referencePoint;
+        this.propertyType = propertyType;
+        this.spaceType = spaceType;
+        this.guestsQuantity = guestsQuantity;
+        this.bedsQuantity = bedsQuantity;
+        this.roomQuantity = roomQuantity;
+        this.bathroomQuantity = bathroomQuantity;
+        this.haveWifi = haveWifi;
+        this.haveKitchen = haveKitchen;
+        this.haveSuite = haveSuite;
+        this.haveGarage = haveGarage;
+        this.haveAnimals = haveAnimals;
     }
-
 
     public Boolean getHaveWifi() {
         return haveWifi;
@@ -257,7 +289,7 @@ public class PropertyDTO {
     }
 
     public void setId(Integer id) {
-        id = id;
+        this.id = id;
     }
 
     public Boolean getActive() {

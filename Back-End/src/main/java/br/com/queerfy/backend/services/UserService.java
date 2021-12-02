@@ -70,10 +70,8 @@ public class UserService {
         }
     }
     @Transactional
-    public UserDTO create(UserDTO userDTO) throws UserAlreadyExistsException {
-        boolean userExists = repository.findAll().stream().anyMatch(user -> user.getCpf().equals(userDTO.getCpf()) || user.getEmail().equals(userDTO.getEmail()));
+    public UserDTO create(UserDTO userDTO){
 
-        if(!userExists) {
             User user = new User(userDTO);
             user = repository.save(user);
             ListaObj<UserDTO> userList = new ListaObj(90);
@@ -81,9 +79,7 @@ public class UserService {
             csvConverter.gravaArquivoCsv(userList, "userList");
             return new UserDTO(user);
 
-        }
 
-        throw new UserAlreadyExistsException();
     }
 
     @Transactional

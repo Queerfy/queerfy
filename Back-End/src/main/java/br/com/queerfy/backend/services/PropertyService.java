@@ -10,6 +10,7 @@ import br.com.queerfy.backend.repositories.PropertyRepository;
 import br.com.queerfy.backend.repositories.UserRepository;
 import br.com.queerfy.backend.utils.PilhaObj;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -53,8 +54,8 @@ public class PropertyService {
     @Transactional
     public PropertyDTO create(PropertyDTO propertyDTO) throws UserAlreadyExistsException {
         Optional<User> userOptional = Optional.of(userRepository.getById(propertyDTO.getIdUser()));
-
         if (userOptional.isPresent()) {
+            propertyDTO.setId(null);
             User user = userOptional.get();
             Property property = new Property(propertyDTO);
             property.setUser(user);

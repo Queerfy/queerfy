@@ -31,7 +31,7 @@ public class LeaseService {
     @Autowired
     LeaseRepository leaseRepository;
 
-
+    @Transactional
     public List<PropertyDTO> getAllPropertiesFromDateAndCity(String date1, String date2, String city){
         List<Integer> getDto = leaseRepository.getAllPropertiesFromDateAndCity(date1, date2, city);
         List<PropertyDTO> propertyDTO = new ArrayList<>();
@@ -41,6 +41,7 @@ public class LeaseService {
         return propertyDTO;
     }
 
+    @Transactional
     public List<LeaseAssociativeDTO> getAllLeaseDateFromId(Integer id){
         List<LeaseDTO> dtoList = leaseRepository.getAllLeaseDatesFromId(id).stream().map(lease -> new LeaseDTO(lease)).collect(Collectors.toList());
         List<LeaseAssociativeDTO> associativeDto = new ArrayList<>();
@@ -48,6 +49,7 @@ public class LeaseService {
         return associativeDto;
     }
 
+    @Transactional
     public List<LeaseAssociativeDTO> getAllLeases() throws UserNotFoundException {
         List<LeaseDTO> dtoList = leaseRepository.findAll().stream().map(lease -> new LeaseDTO(lease)).collect(Collectors.toList());
         List<LeaseAssociativeDTO> associativeDTO = new ArrayList<>();
@@ -79,7 +81,6 @@ public class LeaseService {
         }
         throw new UserNotFoundException();
     }
-
     @Transactional
     public List<LeaseAssociativeDTO> findLeaseByUserId(Integer id){
         List<Lease> leaseList = leaseRepository.findLeaseByUserId(id);

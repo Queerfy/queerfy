@@ -40,8 +40,21 @@ public class PropertyController {
         return ResponseEntity.status(200).body(service.undoProperty(id));
     }
 
+    @PostMapping("/import")
+    public ResponseEntity importTxt(@RequestBody MultipartFile file) throws IOException, UserAlreadyExistsException {
+        byte[] data = file.getBytes();
+        FileOutputStream out = new FileOutputStream("properties.txt");
+        out.write(data);
+        List<PropertyDTO> listDTO =  txtConverter.leArquivoTxt("properties.txt");
+        for (PropertyDTO propertyDTO : listDTO){
+            service.create(propertyDTO);
+        }
+        PrintWriter writer = new PrintWriter("properties.txt");
+        writer.print("");
+        writer.close();
 
-
+        return ResponseEntity.status(200).body("Leu");
+    }
     @PatchMapping("/image1/{propertyId}")
     public ResponseEntity postImage1(@PathVariable Integer propertyId, @RequestBody MultipartFile image) throws IOException {
         return ResponseEntity.status(200).body(service.insertImage1(propertyId, image));
