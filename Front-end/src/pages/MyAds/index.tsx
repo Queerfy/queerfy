@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next';
-import { ArrowLeft, Eye, CornerDownLeft, Trash2 } from 'react-feather';
+import { ArrowLeft, Eye, CornerDownLeft, Trash2, Home } from 'react-feather';
 import { Navbar } from '../../components/Navbar';
 import { NavbarMobile } from '../../components/NavbarMobile';
 import { ContainerMain, HeaderContainer } from '../Account/styles';
@@ -41,11 +41,10 @@ const MyAdsPage: NextPage = () => {
     api
       .get(`/properties/${id}`)
       .then((res) => {
-
         return toast.info('Impossivel relizar essa ação!');
       })
       .catch((err) => {
-        api.get(`/properties/undo/${id}`).then((response) => {    
+        api.get(`/properties/undo/${id}`).then((response) => {
           setAdsUndo(response.data);
           return toast.success('Ação desfeita com Sucesso!');
         });
@@ -53,15 +52,18 @@ const MyAdsPage: NextPage = () => {
   };
 
   const handleDelete = async (id) => {
-    await api.delete(`/properties/${id}`).then(res => {
-      toast.success(
-        'Anúncio deletado com sucesso, possibilidade de desfazer essa ação!'
-      );
-    }).catch(err => {
-      console.log(err);
-      return toast.error('Erro ao fazer essa ação')
-    })
-    
+    await api
+      .delete(`/properties/${id}`)
+      .then((res) => {
+        toast.success(
+          'Anúncio deletado com sucesso, possibilidade de desfazer essa ação!'
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+        return toast.error('Erro ao fazer essa ação');
+      });
+
     //const adsFilters = myAds.filter((item) => item.id != id);
   };
 
@@ -164,7 +166,7 @@ const MyAdsPage: NextPage = () => {
                   {myAds.map((item, index) => (
                     <ContainerAds>
                       <ImageBox>
-                      <img src="../home.png" style={{ width: '100%' }} width="50%" height="50%" />
+                        <Home size={200} />
                       </ImageBox>
                       <AdsInformation>
                         <ContainerIcon>

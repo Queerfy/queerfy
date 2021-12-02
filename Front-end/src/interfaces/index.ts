@@ -27,6 +27,8 @@ export interface IHouseData {
   houseNumber: string;
   addressComplement: string;
   city: string;
+  uf?: string;
+  cep?: string;
   referencePoint: string;
   propertyType: string;
   spaceType: string;

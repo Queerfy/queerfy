@@ -44,8 +44,7 @@ export const ImageBox = styled.div`
   overflow: hidden;
 
   img {
-    width: 100%;
-    max-height: 200px;
+    height: 250px;
   }
 `;
 

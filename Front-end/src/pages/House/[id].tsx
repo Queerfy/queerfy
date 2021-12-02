@@ -207,7 +207,7 @@ const House: NextPage = () => {
             responseType: 'arraybuffer',
           }
         );
-  
+
         if (data.byteLength > 0) {
           let image = btoa(
             new Uint8Array(data).reduce(
@@ -220,56 +220,52 @@ const House: NextPage = () => {
           );
         }
       }
-  
+
       if (images.length > 0) {
         setHouseImages(images);
       } else {
         setHouseImages([
-          {
-            url: '../img-casa.svg',
-            caption: 'Slide 1',
-          },
-          {
-            url: '../img-casa.svg',
-            caption: 'Slide 2',
-          },
-          {
-            url: '../img-casa.svg',
-            caption: 'Slide 3',
-          },
+          '../img-casa.svg',
+          '../img-casa.svg',
+          '../img-casa.svg',
         ]);
       }
     } catch (error) {
       router.push('/');
     }
-    
   };
 
   useEffect(() => {
-    api.get(`/properties/${id}`).then((res) => {
-      setHouse(res.data);
-      api.get(`/users/${res.data.idUser}`).then((resOwner) => {
-        setOwner(resOwner.data);
+    api
+      .get(`/properties/${id}`)
+      .then((res) => {
+        setHouse(res.data);
+        api
+          .get(`/users/${res.data.idUser}`)
+          .then((resOwner) => {
+            setOwner(resOwner.data);
 
-        if (userApp) {
-          const houseLiked = userApp.favorite.filter(
-            (item) => item.propertyId == id
-          );
+            if (userApp) {
+              const houseLiked = userApp.favorite.filter(
+                (item) => item.propertyId == id
+              );
 
-          if (houseLiked.length > 0) {
-            setLikedHouse(true);
-          } else {
-            setLikedHouse(false);
-          }
-        } else {
-          setLikedHouse(false);
-        }
-      }).catch(err => {
-        router.push('/')
+              if (houseLiked.length > 0) {
+                setLikedHouse(true);
+              } else {
+                setLikedHouse(false);
+              }
+            } else {
+              setLikedHouse(false);
+            }
+          })
+          .catch((err) => {
+            router.push('/');
+          });
+      })
+      .catch((err) => {
+        router.push('/');
       });
-    }).catch(err => {
-      router.push('/')
-    });
   }, []);
 
   useEffect(() => {
@@ -312,7 +308,11 @@ const House: NextPage = () => {
         <Subtitle>
           <Local>
             <MapPin />
-            <span>SP - Alphaville</span>
+            <span>
+              {String(house?.uf).length > 2
+                ? String(house?.cep).toUpperCase()
+                : house?.uf}
+            </span>
           </Local>
           <Favorite onClick={handleLikeHouse}>
             <span>Amei</span>

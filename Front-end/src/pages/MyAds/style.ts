@@ -85,6 +85,7 @@ export const AdsInformation = styled.div<Colors>`
 
 export const ContainerAds = styled.div<Colors>`
   display: flex;
+  justify-content: space-evenly;
 
   width: 1250px;
   height: 250px;

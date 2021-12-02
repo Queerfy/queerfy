@@ -14,11 +14,13 @@ import { toast } from 'react-toastify';
 import { api } from '../../../services/api';
 
 import { FilePlus } from 'react-feather';
+import { useRouter } from 'next/router';
 
 export const StepOne = () => {
   const { advanceStep, backStep, handleStep, residenceData, handleDataUpdate } =
     useResidence();
   const { userApp } = useAuth();
+  const router = useRouter();
   const [propertyType, setPropertyType] = useState(null);
   const [apartmentSelected, setApartmentSelected] = useState(false);
   const [houseSelected, setHouseSelected] = useState(false);
@@ -79,8 +81,21 @@ export const StepOne = () => {
     }
   }
 
-  function setTxtUser(LocalTxt) {
-    txt.push(LocalTxt);
+  async function setTxtUser(localTxt) {
+    try {
+      var bodyFormData = new FormData();
+      bodyFormData.append('file', localTxt[0]);
+      await api.post('/properties/import', bodyFormData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      toast.success('Arquivo importado com sucesso!');
+      setTimeout(() => {
+        router.push('/');
+      }, 1000);
+    } catch (error) {
+      console.log(error.message);
+      return toast.error('Erro ao importar o arquivo');
+    }
   }
 
   return (

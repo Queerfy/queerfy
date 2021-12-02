@@ -6,11 +6,21 @@ import { useAuth } from '../../../hooks/useAuth';
 import { Container, Divider } from './styles';
 
 import { Download, Inbox, User } from 'react-feather';
+import { api } from '../../../services/api';
+import { toast } from 'react-toastify';
+import { saveAs } from 'file-saver';
 
 export const MenuDropdown = () => {
   const [theme, setTheme] = useState(true);
 
   const { signed, handleLogout } = useAuth();
+
+  const getExportFile = async () => {
+    const { data } = await api.get('/properties/txt');
+    const blob = new Blob([data], { type: 'text/plain;charset=utf-8' });
+    saveAs(blob, 'usuarios.txt');
+    return toast.success('Arquivo gerado com sucesso!');
+  };
 
   function handleTheme() {
     if (theme) {
@@ -23,8 +33,8 @@ export const MenuDropdown = () => {
   return (
     <Container>
       <li>
-        <a href="#">
-          <Download size={25} />
+        <a>
+          <Download onClick={getExportFile} size={25} />
         </a>
       </li>
       <li>
