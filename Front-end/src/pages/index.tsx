@@ -103,7 +103,7 @@ const IndexPage: NextPage = () => {
             pageLink="/Support"
           />
         </PinkBunners>
-        <Nearby>
+        {/* <Nearby>
           <h1>Lugares pertinho de você</h1>
           <NearbyContainer>
             <NearbyPlaces
@@ -127,7 +127,7 @@ const IndexPage: NextPage = () => {
               image="city-example.jpg"
             />
           </NearbyContainer>
-        </Nearby>
+        </Nearby> */}
         {/* <NewslletterContainer>
           <h1>Newsletter</h1>
           <Banner

@@ -93,7 +93,7 @@ const Reservation: NextPage = () => {
     handleUsersChatJoin(usersJoined);
     setTimeout(() => {
       router.push('/Chat');
-    }, 2000);
+    }, 1500);
   };
 
   useEffect(() => {
@@ -140,7 +140,7 @@ const Reservation: NextPage = () => {
       <ContentPanel>
         <BoxHouse>
           <BorderHouse>
-            <img src="../house.jpg" alt="Imagem da propriedade" />
+            {/* <img src="../house.jpg" alt="Imagem da propriedade" /> */}
             <ImageResidence idHouse={confirmReservation?.idHouse} />
             <InformationsHouse>
               <h2>{house?.name}</h2>
