@@ -139,7 +139,11 @@ const ResidenceList: NextPage = () => {
                   {residences?.map((item) => {
                     return (
                       item.likes > 1000 && (
-                        <a onClick={() => router.push(`/House/${item.id}`)}>
+                        <a onClick={() => {
+                          setTimeout(() => {
+                            router.push(`/House/${item.id}`)
+                          }, 1000)
+                        }}>
                           <Residence
                             id={item.id}
                             key={item.id}
@@ -157,7 +161,11 @@ const ResidenceList: NextPage = () => {
                   {filters?.map((item) => {
                     return (
                       item.likes > 1000 && (
-                        <a onClick={() => router.push(`/House/${item.id}`)}>
+                        <a onClick={() => {
+                          setTimeout(() => {
+                            router.push(`/House/${item.id}`)
+                          }, 1000)
+                        }}>
                           <Residence
                             id={item.id}
                             key={item.id}

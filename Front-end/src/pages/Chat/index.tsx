@@ -197,6 +197,7 @@ const Chat: NextPage = () => {
               <>
                 {item.proposal != true && !item.acceptProposal ? (
                   <MessageUser
+                    key={item.id}
                     userLoged={
                       item.emailSender == userJoinChat.userSender.email
                     }
@@ -224,6 +225,7 @@ const Chat: NextPage = () => {
                 ) : (
                   <>
                     <MessageUser
+                      key={item.id}
                       userLoged={
                         item.emailSender == userJoinChat.userSender.email
                       }
