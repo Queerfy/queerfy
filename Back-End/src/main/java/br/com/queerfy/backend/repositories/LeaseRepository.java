@@ -24,7 +24,6 @@ public interface LeaseRepository extends JpaRepository<Lease, Integer> {
     List<Lease> getAllLeaseDatesFromId(Integer id);
 
     @Query(
-            value = "select * from lease where user_id = ?1",
-            nativeQuery = true)
+            value = "select l from Lease l where l.user.id = ?1")
     List<Lease> findLeaseByUserId(Integer id);
 }
