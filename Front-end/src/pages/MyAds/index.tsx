@@ -41,13 +41,11 @@ const MyAdsPage: NextPage = () => {
     api
       .get(`/properties/${id}`)
       .then((res) => {
-        console.log(res.data);
 
         return toast.info('Impossivel relizar essa ação!');
       })
       .catch((err) => {
-        api.get(`/properties/undo/${id}`).then((response) => {
-          console.log(response.data);
+        api.get(`/properties/undo/${id}`).then((response) => {    
           setAdsUndo(response.data);
           return toast.success('Ação desfeita com Sucesso!');
         });
@@ -55,11 +53,16 @@ const MyAdsPage: NextPage = () => {
   };
 
   const handleDelete = async (id) => {
-    await api.delete(`/properties/${id}`);
-    toast.success(
-      'Anúncio deletado com sucesso, possibilidade de desfazer essa ação!'
-    );
-    const adsFilters = myAds.filter((item) => item.id != id);
+    await api.delete(`/properties/${id}`).then(res => {
+      toast.success(
+        'Anúncio deletado com sucesso, possibilidade de desfazer essa ação!'
+      );
+    }).catch(err => {
+      console.log(err);
+      return toast.error('Erro ao fazer essa ação')
+    })
+    
+    //const adsFilters = myAds.filter((item) => item.id != id);
   };
 
   const handleEdit = async (id) => {
@@ -161,10 +164,7 @@ const MyAdsPage: NextPage = () => {
                   {myAds.map((item, index) => (
                     <ContainerAds>
                       <ImageBox>
-                        <HoveredImage>
-                          <Eye />
-                        </HoveredImage>
-                        <ImageResidence idHouse={item.id} />
+                      <img src="../home.png" style={{ width: '100%' }} width="50%" height="50%" />
                       </ImageBox>
                       <AdsInformation>
                         <ContainerIcon>

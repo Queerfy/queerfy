@@ -170,20 +170,20 @@ const House: NextPage = () => {
 
       if (houseLiked.length > 0) {
         await api.delete(`/favorites/${houseLiked[0].id}`);
+        setLikedHouse(false);
         const data = {
           propertyId: id,
           userId: userApp.id,
         };
         handleFavorites(data);
-        setLikedHouse(false);
       } else {
         const data = {
           propertyId: id,
           userId: userApp.id,
         };
         await api.post('/favorites', data);
-        handleFavorites(data);
         setLikedHouse(true);
+        handleFavorites(data);
       }
     }
   };
