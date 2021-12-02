@@ -43,7 +43,9 @@ public class LeaseController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<LeaseAssociativeDTO>> getLeaseByUserId(@PathVariable Integer id) throws UserNotFoundException {
-        return ResponseEntity.status(200).body(service.findLeaseByUserId(id));
+        List<LeaseAssociativeDTO> userLeases = service.findLeaseByUserId(id);
+        System.out.println(userLeases);
+        return ResponseEntity.status(200).body(userLeases);
     }
 
     @GetMapping

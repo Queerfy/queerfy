@@ -2,6 +2,7 @@ package br.com.queerfy.backend.utils;
 
 import br.com.queerfy.backend.dto.PropertyDTO;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -12,11 +13,11 @@ import java.util.List;
 @Component
 public class TxtConverter {
 
-    public void gravaRegistro(String nomeArq, String registro) {
+    public void gravaRegistro(String arquivo, String registro) {
         BufferedWriter saida = null;
 
         try {
-            saida = new BufferedWriter (new FileWriter(nomeArq, true));
+            saida = new BufferedWriter (new FileWriter(arquivo, true));
         }
         catch (IOException erro) {
             System.out.println("Erro na abertura do arquivo: " +
@@ -34,7 +35,7 @@ public class TxtConverter {
         }
     }
 
-    public void gravaArquivoTxt(List<PropertyDTO> lista, String nomeArq) {
+    public void gravaArquivoTxt(List<PropertyDTO> lista, String arquivo) {
 
         int contaRegistro = 0;
 
@@ -45,7 +46,7 @@ public class TxtConverter {
         header += formataData.format(dataDeHoje);
         header += "01";
 
-        gravaRegistro(nomeArq, header);
+        gravaRegistro(arquivo, header);
 
         String corpo;
 
@@ -80,16 +81,16 @@ public class TxtConverter {
             corpo += String.format("%-10.05b", property.getHaveGarage());
             corpo += String.format("%-10.05b", property.getHaveAnimals());
 
-            gravaRegistro(nomeArq,corpo);
+            gravaRegistro(arquivo,corpo);
             contaRegistro++;
         }
 
         String trailer = "01";
         trailer += String.format("%010d", contaRegistro);
-        gravaRegistro(nomeArq,trailer);
+        gravaRegistro(arquivo,trailer);
     }
 
-    public List<PropertyDTO> leArquivoTxt(String nomeArq) {
+    public List<PropertyDTO> leArquivoTxt(String arquivo) {
         BufferedReader entrada = null;
 
         String registro, tipoRegistro, name, description, filterDate, latitude, longitude, state, city, uf, cep,
@@ -102,7 +103,7 @@ public class TxtConverter {
         List<PropertyDTO> listaLida = new ArrayList<>();
 
         try {
-            entrada = new BufferedReader(new FileReader(nomeArq));
+            entrada = new BufferedReader(new FileReader(arquivo));
         }
         catch (IOException erro) {
             System.out.println("Erro na abertura do arquivo: " +
@@ -139,11 +140,11 @@ public class TxtConverter {
                 else if (tipoRegistro.equals("02")) {
                     System.out.println("Eh um registro de corpo");
 
-                    id = Integer.parseInt(registro.substring(3, 6));
-                    name = registro.substring(7, 36).trim();
-                    description = registro.substring(37, 86).trim();
-                    active = Boolean.valueOf(registro.substring(87, 88).trim());
-                    dailyPrice = Double.valueOf(registro.substring(89, 98).replace(',','.'));
+                    id = Integer.parseInt(registro.substring(3, 4));
+                    name = registro.substring(5, 34).trim();
+                    description = registro.substring(35, 84).trim();
+                    active = Boolean.valueOf(registro.substring(85, 90).trim());
+                    dailyPrice = Double.valueOf(registro.substring(91, 98).replace(',','.'));
                     filterDate = registro.substring(99, 108).trim();
                     latitude = registro.substring(109, 138).trim();
                     longitude = registro.substring(139, 168).trim();
