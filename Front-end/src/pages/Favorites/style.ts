@@ -63,14 +63,17 @@ export const CardHouse = styled.div`
   margin-top: 10px;
   margin-right: 50px;
 
-  -webkit-box-shadow: 0px 10px 12px 0px rgba(0, 0, 0, 0.49);
-  -moz-box-shadow: 0px 10px 12px 0px rgba(0, 0, 0, 0.49);
-  box-shadow: 0px 10px 12px 0px rgba(0, 0, 0, 0.49);
+  cursor: pointer;
+  transition: 0.3s;
+
+  -webkit-box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.49);
+  -moz-box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.49);
+  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.49);
 
   &:hover {
-    -webkit-box-shadow: 0px 10px 12px 9px rgba(0, 0, 0, 0.49);
-    -moz-box-shadow: 0px 10px 12px 9px rgba(0, 0, 0, 0.49);
-    box-shadow: 0px 10px 12px 9px rgba(0, 0, 0, 0.49);
+    -webkit-box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.49);
+    -moz-box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.49);
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.49);
   }
 
   @media screen and (max-width: 1024px) {

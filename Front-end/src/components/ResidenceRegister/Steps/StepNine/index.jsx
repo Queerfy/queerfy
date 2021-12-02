@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useResidence } from '../../../../hooks/residence';
 import { useAuth } from '../../../../hooks/useAuth';
 
@@ -14,15 +14,16 @@ import { Coffee, Wifi } from 'react-feather';
 import { useRouter } from 'next/router';
 
 export const StepNine = () => {
-  const { backStep, residenceData, images } = useResidence();
+  const { backStep, residenceData, images, setImagesUser } = useResidence();
   const { userApp, handleResidenceEdit } = useAuth();
   const router = useRouter();
+  const [image, setImage] = useState('');
 
   const handleImages = async (newHouse) => {
     if (images.length > 0) {
-      for (let i = 0; i < images[0].length; i++) {
+      for (let i = 0; i < images.length; i++) {
         var bodyFormData = new FormData();
-        bodyFormData.append('image', images[0][i]);
+        bodyFormData.append('image', images[i]);
         await api.patch(
           `/properties/image${i + 1}/${newHouse.data.id}`,
           bodyFormData,
@@ -30,6 +31,15 @@ export const StepNine = () => {
             headers: { 'Content-Type': 'multipart/form-data' },
           }
         );
+      }
+    }else {
+      for (let i = 0; i < 5; i++) {
+        const { data } = await api.get(
+          `/properties/image${i + 1}/${residenceData.id}`
+        );
+        if (data != '') {
+          setImagesUser(data);
+        }
       }
     }
   };
@@ -70,6 +80,19 @@ export const StepNine = () => {
       );
     }
   };
+
+  useEffect(() => {
+    if(images.length > 0) {
+      console.log(images);
+     /*  let image = btoa(
+        new Uint8Array(images[0][0]).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ''
+        )
+      );
+      setImage(`data:${headers['content-type'].toLowerCase()};base64,${image}`); */
+    }
+  }, []);
 
   return (
     <Container>

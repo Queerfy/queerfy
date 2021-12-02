@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
     useState<IConfirmReservation>();
   const [proposals, setProposals] = useState();
   const [search, setSearch] = useState();
+  const [ user, setUser ] = useState()
 
   const router = useRouter();
 
@@ -160,9 +161,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleUserApp = async (id, userData) => {
-    await api.put(`/users/${id}`);
-    localStorage.setItem('user', JSON.stringify(userData));
-    setUserApp(userApp);
+    api.put(`/users/update/${id}`, userData).then(res => {
+      api.get(`/users/${id}`).then(response => {
+        localStorage.setItem('user', JSON.stringify(response.data))
+        setUserApp(response.data);
+        return toast.success('Atualizado com sucesso!');
+      }).catch(err => {
+        console.log(err);
+      })
+    }).catch(err => {
+      console.log(err);
+    })
   };
 
   useEffect(() => {

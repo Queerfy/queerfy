@@ -16,21 +16,29 @@ export const StepSeven = () => {
   const { userApp } = useAuth();
 
   const getImages = async () => {
-    if (userApp?.editResidence?.editing && residenceData.id !== undefined) {
+    let imagesGet = []
+    /* if (userApp?.editResidence?.editing && residenceData.id !== undefined) {
       for (let i = 0; i < 5; i++) {
         const { data } = await api.get(
           `/properties/image${i + 1}/${residenceData.id}`
         );
         if (data != '') {
-          setImagesUser(data);
+          imagesGet.push(data);
+          
         }
       }
-    }
+      setImagesUser([]);
+      setImagesUser(imagesGet);
+    } */
   };
 
-  useEffect(() => {
+  const handleImages = (file) => {
+    setImagesUser(file)
+  }
+
+  /* useEffect(() => {
     getImages();
-  }, []);
+  }, []); */
 
   return (
     <Container>
@@ -47,7 +55,7 @@ export const StepSeven = () => {
           id="arquivo"
           multiple="multiple"
           accept=".jpg,.png"
-          onChange={(e) => setImagesUser(e.target.files)}
+          onChange={(e) => handleImages(e.target.files)}
         />
       </InputBox>
       <GeneralButton

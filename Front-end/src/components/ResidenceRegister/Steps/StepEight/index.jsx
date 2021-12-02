@@ -9,7 +9,7 @@ import { HeaderMobile } from '../../../HeaderMobile';
 import { toast } from 'react-toastify';
 
 export const StepEight = () => {
-  const { advanceStep, backStep, handleStep, residenceData, handleDataUpdate } =
+  const { advanceStep, backStep, handleStep, residenceData, handleDataUpdate, images } =
     useResidence();
 
   const dailyPriceRef = useRef();

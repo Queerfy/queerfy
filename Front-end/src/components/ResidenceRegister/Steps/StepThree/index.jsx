@@ -17,7 +17,7 @@ export const StepThree = () => {
   const streetRef = useRef();
   const cityRef = useRef();
   const ufRef = useRef();
-  const cepRef = useRef();
+  const cepRef = useRef(null);
   const complementRef = useRef();
   const neighbourhoodRef = useRef();
   const numberRef = useRef();
@@ -30,7 +30,6 @@ export const StepThree = () => {
       address.uf === '' ||
       address.cep === '' ||
       address.complement === '' ||
-      address.neighbourhood === '' ||
       address.number === ''
     ) {
       return true;
@@ -75,7 +74,7 @@ export const StepThree = () => {
       uf: ufRef.current.value.toUpperCase(),
       cep: treatCep(cepRef.current.value),
       addressComplement: complementRef.current.value,
-      neighbourhood: neighbourhoodRef.current.value,
+      /* neighbourhood: neighbourhoodRef.current.value, */
       houseNumber: numberRef.current.value,
       referencePoint: referencePointRef.current.value,
       latitude,
@@ -153,12 +152,13 @@ export const StepThree = () => {
       <InputsSection>
         <FormInput width="45%" desktopWidth="45%">
           <label htmlFor="inputCep">CEP</label>
-          <InputMask
+          <input
             id="inputCep"
             name="inputCep"
             placeholder="_____-___"
             ref={cepRef}
-            mask="99999-999"
+            value={cepRef?.current?.value}
+            /* mask="99999-999" */
           />
         </FormInput>
         <FormInput width="50%" desktopWidth="50%">
@@ -172,7 +172,7 @@ export const StepThree = () => {
         </FormInput>
       </InputsSection>
       <InputsSection>
-        <FormInput width="75%" desktopWidth="80% ">
+        {/* <FormInput width="75%" desktopWidth="80% ">
           <label htmlFor="inputNeighbourhood">Bairro</label>
           <input
             id="inputNeighbourhood"
@@ -180,7 +180,7 @@ export const StepThree = () => {
             placeholder="Parque Terra Nova"
             ref={neighbourhoodRef}
           />
-        </FormInput>
+        </FormInput> */}
         <FormInput width="20%" desktopWidth="15%">
           <label htmlFor="inputNumber">Número</label>
           <input
@@ -191,8 +191,7 @@ export const StepThree = () => {
             type="number"
           />
         </FormInput>
-      </InputsSection>
-      <FormInput>
+        <FormInput width="75%" desktopWidth="80% ">
         <label htmlFor="inputReferencePoint">Ponto de referência</label>
         <input
           id="inputReferencePoint"
@@ -201,6 +200,8 @@ export const StepThree = () => {
           ref={referencePointRef}
         />
       </FormInput>
+      </InputsSection>
+      
       <GeneralButton
         text="Continuar"
         bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'

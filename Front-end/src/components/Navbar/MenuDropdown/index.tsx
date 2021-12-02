@@ -81,11 +81,11 @@ export const MenuDropdown = () => {
                   <a href="#">Minhas reservas</a>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/Account/Notification">
                   <a href="#">Notificações</a>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/ResidenceRegister">
                   <a href="#">Hospedar</a>

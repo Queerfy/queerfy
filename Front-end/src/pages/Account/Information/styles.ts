@@ -11,7 +11,21 @@ interface Colors {
   text?: string;
 }
 
-export const ContainerInfo = styled(Form)<Colors>`
+export const ContainerMainInformation = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  height: auto;
+  width: 100%;
+
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+export const ContainerInfo = styled.div<Colors>`
   display: flex;
   flex-direction: column;
 

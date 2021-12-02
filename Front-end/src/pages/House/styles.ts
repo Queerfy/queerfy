@@ -2,6 +2,15 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
+export const SlideContainer = styled.div`
+  width: 100%;
+
+  img {
+    max-height: 500px;
+    border-radius: 10px;
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -146,7 +155,7 @@ export const BorderRainbow = styled.div`
   justify-content: center;
 
   width: 100%;
-  height: 220px;
+  height: 300px;
   border-radius: 12px;
   background: linear-gradient(
     to right,
@@ -158,6 +167,10 @@ export const BorderRainbow = styled.div`
     rgba(169, 147, 245, 1) 84%,
     rgba(242, 107, 156, 1) 100%
   );
+
+  @media screen and (min-width: 1024px) {
+    height: 250px;
+  }
 `;
 
 export const Reservation = styled.div`
@@ -205,11 +218,16 @@ export const ChooseDate = styled.div`
   width: 100%;
 
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+
+  @media screen and (min-width: 1024px) {
+    justify-content: flex-end;
+    flex-direction: row;
+  }
 `;
 
 export const CheckDate = styled.div`
-  width: 50%;
+  width: 100%;
   height: 20%;
   padding: 0px 10px 0px 10px;
 
@@ -221,6 +239,7 @@ export const CheckDate = styled.div`
   }
 
   input {
+    width: 100%;
     border: 1px solid ${theme.assets.borderDark};
     border-radius: 10px;
     height: 40px;
@@ -229,6 +248,10 @@ export const CheckDate = styled.div`
     &::placeholder {
       color: ${theme.assets.borderLight};
     }
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 50%;
   }
 `;
 

@@ -8,10 +8,12 @@ import { Option } from '../Option';
 import { GeneralButton } from '../../GeneralButton';
 import { HeaderMobile } from '../../HeaderMobile';
 
-import { Container } from './styles';
+import { Container, InputBox, ContainerInputBox } from './styles';
 
 import { toast } from 'react-toastify';
 import { api } from '../../../services/api';
+
+import { FilePlus } from 'react-feather';
 
 export const StepOne = () => {
   const { advanceStep, backStep, handleStep, residenceData, handleDataUpdate } =
@@ -20,6 +22,7 @@ export const StepOne = () => {
   const [propertyType, setPropertyType] = useState(null);
   const [apartmentSelected, setApartmentSelected] = useState(false);
   const [houseSelected, setHouseSelected] = useState(false);
+  const [txt, setTxt] = useState([]);
 
   function sendParams() {
     if (propertyType === null && residenceData.propertyType === undefined) {
@@ -65,7 +68,7 @@ export const StepOne = () => {
   }
 
   function handleSelectHouse() {
-    setPropertyType('casa')
+    setPropertyType('casa');
 
     if (houseSelected) {
       setApartmentSelected(false);
@@ -74,6 +77,10 @@ export const StepOne = () => {
       setApartmentSelected(false);
       setHouseSelected(true);
     }
+  }
+
+  function setTxtUser(LocalTxt) {
+    txt.push(LocalTxt);
   }
 
   return (
@@ -94,11 +101,27 @@ export const StepOne = () => {
         alt="casa"
         selected={houseSelected}
       />
-      <GeneralButton
-        text="Continuar"
-        bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'
-        onClick={sendParams}
-      />
+      <ContainerInputBox>
+        <GeneralButton
+          text="Continuar"
+          bgColor="linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)"
+          onClick={sendParams}
+        />
+        <InputBox>
+          <label htmlFor="arquivo">
+            <FilePlus size={30} />
+          </label>
+          <input
+            type="file"
+            name="arquivo"
+            id="arquivo"
+            accept=".txt,.md,.markdown"
+            onChange={(e) => setTxtUser(e.target.files)}
+          />
+          <p>Deseja adicionar</p>
+          <p>várias residências?</p>
+        </InputBox>
+      </ContainerInputBox>
       <span onClick={backStep}>Voltar</span>
     </Container>
   );

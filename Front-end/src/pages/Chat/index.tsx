@@ -55,7 +55,7 @@ const Chat: NextPage = () => {
         storagedUsersJoin.confirmReservation;
 
       messageRef.current.value = `
-        Olá ${storagedUsersJoin.userReceiver?.name}, estou interessado em uma de suas residências, a ${storagedUsersJoin.house.name}. Encaminhei uma proposta com os dias ${checkIn}/${checkOut} gostaria de me hospedar em sua propriedade. Está disponível?
+        Olá ${storagedUsersJoin.userReceiver?.name}, tenho interesse em me hospedar na sua propriedade, a ${storagedUsersJoin.house.name}. Gostaria de me alocar na data: ${checkIn} / ${checkOut}.
       `;
 
       const paramsMessage = {
@@ -178,7 +178,7 @@ const Chat: NextPage = () => {
 
       await api.post('leases', data);
     }
-    return toast.success('Resposta Enviada com Sucesso!');
+    return toast.success('Resposta enviada com sucesso!');
   };
 
   return (
@@ -197,6 +197,7 @@ const Chat: NextPage = () => {
               <>
                 {item.proposal != true && !item.acceptProposal ? (
                   <MessageUser
+                    key={item.id}
                     userLoged={
                       item.emailSender == userJoinChat.userSender.email
                     }
@@ -224,6 +225,7 @@ const Chat: NextPage = () => {
                 ) : (
                   <>
                     <MessageUser
+                      key={item.id}
                       userLoged={
                         item.emailSender == userJoinChat.userSender.email
                       }

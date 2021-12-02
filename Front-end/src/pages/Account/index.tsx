@@ -21,8 +21,12 @@ import {
 } from 'react-feather';
 import { NavbarMobile } from '../../components/NavbarMobile';
 import { HeaderMobile } from '../../components/HeaderMobile';
+import { useAuth } from '../../hooks/useAuth';
 
 const MainPage: NextPage = () => {
+
+  const { userApp } = useAuth();
+
   return (
     <>
       <Head>
@@ -40,7 +44,7 @@ const MainPage: NextPage = () => {
             <ArrowLeft />
           </Link>
           <h1>Conta</h1>
-          <h2>Olá, Nicolas</h2>
+          <h2>Olá, {userApp?.name}</h2>
         </HeaderContainer>
         <ContainerAccount>
           <Container subtitle={theme.colors.red} text={theme.assets.font}>
