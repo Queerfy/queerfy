@@ -3,8 +3,6 @@ import Link from 'next/link';
 
 import { useAuth } from '../../../hooks/useAuth';
 
-import ReactSwitch from 'react-switch';
-
 import { Container, Divider } from './styles';
 
 import { Download, Inbox, User } from 'react-feather';
@@ -24,18 +22,6 @@ export const MenuDropdown = () => {
 
   return (
     <Container>
-      <li>
-        <ReactSwitch
-          checked={theme}
-          onChange={() => {
-            handleTheme();
-          }}
-          onColor="#F0BF5A"
-          offColor="#A993F5"
-          checkedIcon={false}
-          uncheckedIcon={false}
-        />
-      </li>
       <li>
         <a href="#">
           <Download size={25} />

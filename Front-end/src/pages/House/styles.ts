@@ -120,6 +120,8 @@ export const Description = styled.div`
   width: 100%;
   padding: 0px 0px 12px 0px;
 
+  max-width: 700px;
+
   display: flex;
   flex-direction: column;
 
