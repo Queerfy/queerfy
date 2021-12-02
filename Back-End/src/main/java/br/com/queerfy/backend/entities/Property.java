@@ -68,9 +68,10 @@ public class Property {
     @JoinColumn(name = "fkUser")
     private User user;
 
-    public Property(){}
+    public Property() {
+    }
 
-    public Property(PropertyDTO entity){
+    public Property(PropertyDTO entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.description = entity.getDescription();
@@ -100,9 +101,38 @@ public class Property {
         this.haveSuite = entity.getHaveSuite();
         this.haveGarage = entity.getHaveGarage();
         this.haveAnimals  = entity.getHaveAnimals();
-
     }
 
+    public Property(Integer id, String name, String description, Boolean active, Double dailyPrice, String filterDate, String latitude, String longitude, Integer likes, String state, String city, String uf, String cep, String street, String houseNumber, String addressComplement, String referencePoint, String propertyType, String spaceType, String guestsQuantity, String bedsQuantity, String roomQuantity, String bathroomQuantity, Boolean haveWifi, Boolean haveKitchen, Boolean haveSuite, Boolean haveGarage, Boolean haveAnimals) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.active = active;
+        this.dailyPrice = dailyPrice;
+        this.filterDate = filterDate;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.likes = likes;
+        this.state = state;
+        this.city = city;
+        this.uf = uf;
+        this.cep = cep;
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.addressComplement = addressComplement;
+        this.referencePoint = referencePoint;
+        this.propertyType = propertyType;
+        this.spaceType = spaceType;
+        this.guestsQuantity = guestsQuantity;
+        this.bedsQuantity = bedsQuantity;
+        this.roomQuantity = roomQuantity;
+        this.bathroomQuantity = bathroomQuantity;
+        this.haveWifi = haveWifi;
+        this.haveKitchen = haveKitchen;
+        this.haveSuite = haveSuite;
+        this.haveGarage = haveGarage;
+        this.haveAnimals = haveAnimals;
+    }
 
     public byte[] getImage1() {
         return image1;

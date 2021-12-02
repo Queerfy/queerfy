@@ -1,9 +1,9 @@
 import React from 'react';
+import { NextPage } from 'next';
 
 import Link from 'next/link';
 import Head from 'next/head';
 
-import { NextPage } from 'next';
 import {
   ContainerAccount,
   Container,
@@ -12,11 +12,21 @@ import {
 } from './styles';
 import { theme } from '../../styles/theme';
 import { Navbar } from '../../components/Navbar';
-import { ArrowLeft, DollarSign, Bell, Settings, ChevronRight } from 'react-feather';
+import {
+  ArrowLeft,
+  DollarSign,
+  Bell,
+  Settings,
+  ChevronRight,
+} from 'react-feather';
 import { NavbarMobile } from '../../components/NavbarMobile';
 import { HeaderMobile } from '../../components/HeaderMobile';
+import { useAuth } from '../../hooks/useAuth';
 
 const MainPage: NextPage = () => {
+
+  const { userApp } = useAuth();
+
   return (
     <>
       <Head>
@@ -25,12 +35,16 @@ const MainPage: NextPage = () => {
       <Navbar accountNavbar />
       <HeaderMobile />
       <ContainerMain>
-        <HeaderContainer title={theme.colors.pink} subtitle={theme.colors.pink} text={theme.colors.pink}>
+        <HeaderContainer
+          title={theme.colors.pink}
+          subtitle={theme.colors.pink}
+          text={theme.colors.pink}
+        >
           <Link href="/">
             <ArrowLeft />
           </Link>
           <h1>Conta</h1>
-          <h2>Olá, Nicolas</h2>
+          <h2>Olá, {userApp?.name}</h2>
         </HeaderContainer>
         <ContainerAccount>
           <Container subtitle={theme.colors.red} text={theme.assets.font}>
@@ -38,7 +52,9 @@ const MainPage: NextPage = () => {
               <Settings />
             </Link>
             <Link href="/Account/Information">
-              <h2>Informações <ChevronRight /></h2>
+              <h2>
+                Informações <ChevronRight />
+              </h2>
             </Link>
             <h3>Detalhes pessoais</h3>
           </Container>
@@ -47,7 +63,9 @@ const MainPage: NextPage = () => {
               <Bell />
             </Link>
             <Link href="/Account/Notification">
-              <h2>Notificações <ChevronRight /></h2>
+              <h2>
+                Notificações <ChevronRight />
+              </h2>
             </Link>
             <h3>Preferências de notificação</h3>
           </Container>
@@ -56,7 +74,9 @@ const MainPage: NextPage = () => {
               <DollarSign />
             </Link>
             <Link href="/Account/Payments">
-              <h2>Pagamentos <ChevronRight /></h2>
+              <h2>
+                Pagamentos <ChevronRight />
+              </h2>
             </Link>
             <h3>Formas de pagamento</h3>
           </Container>

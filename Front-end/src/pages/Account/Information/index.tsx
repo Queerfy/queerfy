@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { NextPage } from 'next';
+import { Form } from '@unform/web';
 
 import Link from 'next/link';
-import { NextPage } from 'next';
 import Head from 'next/head';
 import { theme } from '../../../styles/theme';
 import { ContainerMain, HeaderContainer } from '../styles';
-import { ContainerInfo, ContainerColumn, Container } from './styles';
+import { ContainerMainInformation, ContainerInfo, ContainerColumn, Container, InputsBox } from './styles';
 import { Navbar } from '../../../components/Navbar';
 import {
   ArrowLeft,
@@ -13,29 +14,66 @@ import {
   Calendar,
   Mail,
   Lock,
-  Phone,
-  MapPin,
   CreditCard,
   Users,
 } from 'react-feather';
-import { InputsBox } from '../../Login/style';
 import { NavbarMobile } from '../../../components/NavbarMobile';
 import { HeaderMobile } from '../../../components/HeaderMobile';
 
+import InputMask from 'react-input-mask'
+import { useAuth } from '../../../hooks/useAuth';
+import moment from 'moment';
+import { ButtonAds, HeaderAds } from '../../MyAds/style';
+
 const InfoAccount: NextPage = () => {
+  const { userApp, handleUserApp } = useAuth();
+
+  const nameRef = useRef(null);
+  const genreRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const cpfRef = useRef(null);
+  const rgRef = useRef(null);
+  const birthDateRef = useRef(null);
+
+  const handleSubmit = () => {
+
+    const data = {
+      name: nameRef.current.value,
+      genre: genreRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      cpf: cpfRef.current.value,
+      rg: rgRef.current.value,
+    }
+
+    handleUserApp(userApp.id, data);
+  };
+
   return (
     <>
       <Head>
         <title>Queerfy | Informações</title>
       </Head>
       <Navbar accountNavbar />
-      <ContainerMain>
+      <ContainerMainInformation>
         <HeaderMobile />
-        <HeaderContainer title={theme.colors.red} text={theme.colors.red}>
-          <Link href="/Account/Main">
-            <ArrowLeft />
-          </Link>
-          <h1>Informações da conta</h1>
+        <HeaderContainer
+          title={theme.colors.red}
+          text={theme.colors.red}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}
+        >
+          <HeaderAds>
+            <Link href="/">
+              <ArrowLeft />
+            </Link>
+            <h1>Informações da conta</h1>
+          </HeaderAds>
+          <ButtonAds type="submit" color={theme.colors.red} onClick={handleSubmit}>Salvar alterações</ButtonAds>
         </HeaderContainer>
         <ContainerInfo>
           <ContainerColumn>
@@ -43,28 +81,47 @@ const InfoAccount: NextPage = () => {
               <User />
               <InputsBox>
                 <h2>Nome</h2>
-                <input type="text" placeholder="Nicolas Sousa Conde" />
+                <input
+                  type="text"
+                  placeholder="Nicolas Sousa Conde"
+                  value={userApp?.name}
+                  ref={nameRef}
+                />
               </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Users />
               <InputsBox>
                 <h2>Orientação sexual</h2>
-                <input type="text" placeholder="Masculino" />
+                <input
+                  type="text"
+                  placeholder="Hétero"
+                  value={userApp?.genre}
+                  ref={genreRef}
+                />
               </InputsBox>
             </Container>
-            <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            {/* <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Calendar />
               <InputsBox>
                 <h2>Data de nascimento</h2>
-                <input type="text" placeholder="** de janeiro de ***" />
+                <input
+                  style={{ padding: '20px' }}
+                  type="date"
+                  ref={birthDateRef}
+                />
               </InputsBox>
-            </Container>
+            </Container> */}
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Mail />
               <InputsBox>
                 <h2>E-mail</h2>
-                <input type="text" placeholder="***************@gmail.com" />
+                <input
+                  type="email"
+                  placeholder="***************@gmail.com"
+                  value={userApp?.email}
+                  ref={emailRef}
+                />
               </InputsBox>
             </Container>
           </ContainerColumn>
@@ -73,33 +130,65 @@ const InfoAccount: NextPage = () => {
               <Lock />
               <InputsBox>
                 <h2>Senha</h2>
-                <input type="text" placeholder="***************" />
+                <input
+                  type="password"
+                  placeholder="***************"
+                  value={userApp?.password}
+                  ref={passwordRef}
+                />
               </InputsBox>
             </Container>
-            <Container subtitle={theme.colors.red} text={theme.assets.font}>
+            {/* <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <Phone />
               <InputsBox>
                 <h2>Número de telefone</h2>
-                <input type="text" placeholder="+** ** *****-****" />
+                <InputMask
+                  name="telephone"
+                  type="text"
+                  mask={maskPhone}
+                  value={userApp?.cel_number}
+                  onBlur={(e) => {
+                    if (e.target.value.replace('_', '').length === 14) {
+                      setMaskPhone('(99) 99999-9999');
+                    }
+                  }}
+                  onFocus={(e) => {
+                    if (e.target.value.replace('_', '').length === 14) {
+                      setMaskPhone('(99) 99999-9999');
+                    }
+                  }}
+                />
+              </InputsBox>
+            </Container> */}
+            <Container subtitle={theme.colors.red} text={theme.assets.font}>
+              <CreditCard />
+              <InputsBox>
+                <h2>CPF</h2>
+                <InputMask
+                  name="cpf"
+                  value={userApp?.cpf}
+                  type="text"
+                  mask="999.999.999-99"
+                  ref={cpfRef}
+                />
               </InputsBox>
             </Container>
             <Container subtitle={theme.colors.red} text={theme.assets.font}>
               <CreditCard />
               <InputsBox>
-                <h2>Documentos</h2>
-                <input type="text" placeholder="CPF/RG" />
-              </InputsBox>
-            </Container>
-            <Container subtitle={theme.colors.red} text={theme.assets.font}>
-              <MapPin />
-              <InputsBox>
-                <h2>Endereço</h2>
-                <input type="text" placeholder="Rua Haddock Lobo, 595" />
+                <h2>RG</h2>
+                <InputMask
+                  name="rg"
+                  value={userApp?.rg}
+                  type="text"
+                  mask="99-999-999-*"
+                  ref={rgRef}
+                />
               </InputsBox>
             </Container>
           </ContainerColumn>
         </ContainerInfo>
-      </ContainerMain>
+      </ContainerMainInformation>
       <NavbarMobile />
     </>
   );

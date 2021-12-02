@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
-const Center = styled.div`
+export const Center = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,12 +16,13 @@ export const Container = styled.nav`
   width: 100%;
   height: 70px;
   padding: 0 64px;
+  max-width: 1920px;
 
-  > img {
+  img {
     height: 45px;
   }
 
-  > span {
+  span {
     color: ${theme.assets.font};
     transition: 0.3s;
 
@@ -40,6 +41,7 @@ export const InputBox = styled(Center)`
   width: 300px;
   height: 45px;
   border-radius: 100px;
+
   background: linear-gradient(
     to right,
     rgba(241, 83, 86, 1) 0%,
@@ -81,7 +83,7 @@ export const IconBox = styled(Center)`
   height: 38px;
   width: 40px;
 
-  > svg {
+  svg {
     transform: scale(0.95);
     transition: 0.3s;
     margin-right: 16px;

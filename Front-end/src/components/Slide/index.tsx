@@ -1,8 +1,28 @@
-import React, { useEffect, useRef } from "react";
-import { SlideContainer, SlideItem, SlidePanel, AdressBar, AdressItem } from "./styles";
+import React, { useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
+
+import Input from '../Form/input';
+
+import {
+  SlideContainer,
+  SlideItem,
+  SlidePanel,
+  AdressBar,
+  AdressItem,
+} from './styles';
+import { Send } from 'react-feather';
+import { useAuth } from '../../hooks/useAuth';
 
 export const Slide = () => {
+  const { handleSearch } = useAuth();
+
+  const router = useRouter();
   const refItems = useRef(null);
+
+  const handleSubmit = (data) => {
+    handleSearch(data);
+    router.push(`/ResidenceList`);
+  };
 
   useEffect(() => {
     if (refItems.current) {
@@ -32,24 +52,27 @@ export const Slide = () => {
         </SlideItem>
       </SlidePanel>
 
-      <AdressBar>
+      <AdressBar onSubmit={handleSubmit}>
         <AdressItem>
           <h4>Localização</h4>
-          <input placeholder="Onde você vai?" />
+          <Input type="text" name="city" placeholder="Onde você vai?" />
         </AdressItem>
         <AdressItem>
           <h4>Check-in</h4>
-          <input placeholder="Quando?" />
+          <Input type="text" name="checkIn" placeholder="Quando?" />
         </AdressItem>
         <AdressItem>
           <h4>Check-out</h4>
-          <input placeholder="Quando?" />
+          <Input type="text" name="checkOut" placeholder="Quando?" />
         </AdressItem>
         <AdressItem>
           <h4>Hóspedes</h4>
-          <input placeholder="Quantos?" />
+          <Input type="text" name="guestsQuantity" placeholder="Quantos?" />
         </AdressItem>
+        <button type="submit">
+          <Send />
+        </button>
       </AdressBar>
     </SlideContainer>
   );
-}
+};

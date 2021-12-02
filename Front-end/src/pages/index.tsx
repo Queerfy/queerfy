@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NextPage } from 'next';
 
 import Head from 'next/head';
 import { theme } from '../styles/theme';
 
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 import {
   MainContainer,
@@ -26,15 +26,22 @@ import { Slide } from '../components/Slide';
 import { HandleCategorie } from '../components/Home/HandleCategorie';
 import { Banner } from '../components/Home/Banner';
 import { NearbyPlaces } from '../components/Home/NearbyPlaces';
+import { useAuth } from '../hooks/useAuth';
+import { useRouter } from 'next/router';
 
-
-const Map = dynamic(() => {
-  return import("../components/Map");
-}, {
-  ssr: false
-})
+const Map = dynamic(
+  () => {
+    return import('../components/Map');
+  },
+  {
+    ssr: false,
+  }
+);
 
 const IndexPage: NextPage = () => {
+  const { handleSearch } = useAuth();
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -48,9 +55,30 @@ const IndexPage: NextPage = () => {
         <Categories>
           <h1>Qual tipo de acomodação você precisa?</h1>
           <CategorieTypes>
-            <HandleCategorie image="suit.svg" title="Suíte" />
-            <HandleCategorie image="room.svg" title="Quarto" />
-            <HandleCategorie image="allowPets.svg" title="Permitido animais" />
+            <HandleCategorie
+              onClick={() => {
+                handleSearch({ filterSpace: 'quarto inteiro' });
+                router.push(`/ResidenceList`);
+              }}
+              image="suit.svg"
+              title="Quarto inteiro"
+            />
+            <HandleCategorie
+              onClick={() => {
+                handleSearch({ filterSpace: 'quarto compartilhado' });
+                router.push(`/ResidenceList`);
+              }}
+              image="room.svg"
+              title="Quarto compartilhado"
+            />
+            <HandleCategorie
+              onClick={() => {
+                handleSearch({ filterSpace: 'inteiro' });
+                router.push(`/ResidenceList`);
+              }}
+              image="house.jpg"
+              title="Lugar inteiro"
+            />
           </CategorieTypes>
         </Categories>
         <HostBanner>
@@ -60,20 +88,11 @@ const IndexPage: NextPage = () => {
             description="Ganhe dinheiro, tenha novas experiências e ajude a comunidade"
             buttonLabel="Hospedar"
             buttonColor={theme.colors.red}
+            pageLink="/ResidenceRegister"
           />
         </HostBanner>
-        <Map>
-
-        </Map>
+        <Map></Map>
         <PinkBunners>
-          <Banner
-            backgroundImg="post-banner.svg"
-            title="Conheça nosso mural de postagens!"
-            titleColor={theme.colors.pink}
-            description="Precisa de alguém para dividir as contas?"
-            buttonLabel="Conhecer"
-            buttonColor={theme.colors.pink}
-          />
           <Banner
             backgroundImg="support-banner.svg"
             title="Precisa de ajuda?"
@@ -81,9 +100,10 @@ const IndexPage: NextPage = () => {
             description="Entre em contato conosco"
             buttonLabel="Suporte"
             buttonColor={theme.colors.pink}
+            pageLink="/Support"
           />
         </PinkBunners>
-        <Nearby>
+        {/* <Nearby>
           <h1>Lugares pertinho de você</h1>
           <NearbyContainer>
             <NearbyPlaces
@@ -107,8 +127,8 @@ const IndexPage: NextPage = () => {
               image="city-example.jpg"
             />
           </NearbyContainer>
-        </Nearby>
-        <NewslletterContainer>
+        </Nearby> */}
+        {/* <NewslletterContainer>
           <h1>Newsletter</h1>
           <Banner
             backgroundImg="newsletter-banner.svg"
@@ -117,7 +137,7 @@ const IndexPage: NextPage = () => {
             description="Aqui você fica por dentro de nossas campanhas para ajudar os membros da comunidade."
             newsletter={true}
           />
-        </NewslletterContainer>
+        </NewslletterContainer> */}
         <Footer />
       </MainContainer>
       <NavbarMobile />

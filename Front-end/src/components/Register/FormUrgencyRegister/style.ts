@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+
+import { theme } from '../../../styles/theme';
+
 import { ButtonSubmit } from '../FormRegister/style';
 
 export const TextHeader = styled.p`
@@ -6,7 +9,7 @@ export const TextHeader = styled.p`
   font-weight: 500;
 
   span {
-    color: #e74c3c;
+    color: ${theme.colors.red};
   }
 
   @media screen and (max-width: 1024px) {
