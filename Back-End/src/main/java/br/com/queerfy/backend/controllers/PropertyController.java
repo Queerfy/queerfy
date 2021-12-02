@@ -41,12 +41,14 @@ public class PropertyController {
     }
 
     @PostMapping("/import")
-    public ResponseEntity importTxt(@RequestBody MultipartFile file) throws IOException {
+    public ResponseEntity importTxt(@RequestBody MultipartFile file) throws IOException, UserAlreadyExistsException {
         byte[] data = file.getBytes();
         FileOutputStream out = new FileOutputStream("properties.txt");
         out.write(data);
-        txtConverter.leArquivoTxt("properties.txt");
-
+        List<PropertyDTO> listDTO =  txtConverter.leArquivoTxt("properties.txt");
+        for (PropertyDTO propertyDTO : listDTO){
+            service.create(propertyDTO);
+        }
         PrintWriter writer = new PrintWriter("properties.txt");
         writer.print("");
         writer.close();

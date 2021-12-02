@@ -80,6 +80,7 @@ public class TxtConverter {
             corpo += String.format("%-10.05b", property.getHaveSuite());
             corpo += String.format("%-10.05b", property.getHaveGarage());
             corpo += String.format("%-10.05b", property.getHaveAnimals());
+            corpo += String.format("%2d", property.getIdUser());
 
             gravaRegistro(arquivo,corpo);
             contaRegistro++;
@@ -97,7 +98,7 @@ public class TxtConverter {
                 street, houseNumber, addressComplement, referencePoint, propertyType,
                 spaceType, guestsQuantity, bedsQuantity, roomQuantity, bathroomQuantity;
         boolean active, haveWifi, haveKitchen, haveSuite, haveGarage, haveAnimals;
-        int id, likes, qtdRegGravados, contaRegDados = 0;
+        int id, likes,id_user ,qtdRegGravados, contaRegDados = 0;
         double dailyPrice;
 
         List<PropertyDTO> listaLida = new ArrayList<>();
@@ -140,39 +141,40 @@ public class TxtConverter {
                 else if (tipoRegistro.equals("02")) {
                     System.out.println("Eh um registro de corpo");
 
-                    id = Integer.parseInt(registro.substring(3, 4));
+                    id = Integer.parseInt(registro.substring(3, 5));
                     name = registro.substring(5, 34).trim();
-                    description = registro.substring(35, 84).trim();
-                    active = Boolean.valueOf(registro.substring(85, 90).trim());
-                    dailyPrice = Double.valueOf(registro.substring(91, 98).replace(',','.'));
-                    filterDate = registro.substring(99, 108).trim();
-                    latitude = registro.substring(109, 138).trim();
-                    longitude = registro.substring(139, 168).trim();
-                    likes = Integer.parseInt(registro.substring(169, 174));
-                    state = registro.substring(175, 194).trim();
-                    city = registro.substring(195, 214).trim();
-                    uf = registro.substring(215, 218).trim();
-                    cep = registro.substring(219, 228).trim();
-                    street = registro.substring(229, 288).trim();
-                    houseNumber = registro.substring(289, 293).trim();
-                    addressComplement = registro.substring(294, 343).trim();
-                    referencePoint = registro.substring(344, 393).trim();
-                    propertyType = registro.substring(394, 403).trim();
-                    spaceType = registro.substring(404, 418).trim();
-                    guestsQuantity = registro.substring(419, 422).trim();
-                    bedsQuantity = registro.substring(423, 426).trim();
-                    roomQuantity = registro.substring(427, 430).trim();
-                    bathroomQuantity = registro.substring(431, 434).trim();
-                    haveWifi = Boolean.valueOf(registro.substring(435, 436).trim());
-                    haveKitchen = Boolean.valueOf(registro.substring(437, 438).trim());
-                    haveSuite = Boolean.valueOf(registro.substring(439, 440).trim());
-                    haveGarage = Boolean.valueOf(registro.substring(441, 442).trim());
-                    haveAnimals = Boolean.valueOf(registro.substring(443, 444).trim());
+                    description = registro.substring(34, 84).trim();
+                    active = Boolean.parseBoolean(registro.substring(84, 90).trim());
+                    dailyPrice = Double.parseDouble(registro.substring(90, 125).trim());
+                    filterDate = registro.substring(125, 135).trim();
+                    latitude = registro.substring(135, 155).trim();
+                    longitude = registro.substring(155, 174).trim();
+                    likes = Integer.parseInt(registro.substring(174, 180).trim());
+                    state = registro.substring(180, 200).trim();
+                    city = registro.substring(200, 214).trim();
+                    uf = registro.substring(214, 222).trim();
+                    cep = registro.substring(222, 260).trim();
+                    street = registro.substring(260, 290).trim();
+                    houseNumber = registro.substring(290, 310).trim();
+                    addressComplement = registro.substring(310, 330).trim();
+                    referencePoint = registro.substring(330, 380).trim();
+                    propertyType = registro.substring(380, 400).trim();
+                    spaceType = registro.substring(400, 420).trim();
+                    guestsQuantity = registro.substring(420, 430).trim();
+                    bedsQuantity = registro.substring(430, 440).trim();
+                    roomQuantity = registro.substring(440, 450).trim();
+                    bathroomQuantity = registro.substring(450, 460).trim();
+                    haveWifi = Boolean.parseBoolean(registro.substring(460, 470).trim());
+                    haveKitchen = Boolean.parseBoolean(registro.substring(470, 480).trim());
+                    haveSuite = Boolean.parseBoolean(registro.substring(480, 490).trim());
+                    haveGarage = Boolean.parseBoolean(registro.substring(490, 500).trim());
+                    haveAnimals = Boolean.parseBoolean(registro.substring(500, 510).trim());
+                    id_user = Integer.parseInt(registro.substring(510, 512).trim());
 
                     PropertyDTO property = new PropertyDTO(id, name, description, active, dailyPrice, filterDate, latitude,
                             longitude, likes, state, city, uf , cep, street, houseNumber, addressComplement,
                             referencePoint, propertyType, spaceType, guestsQuantity, bedsQuantity, roomQuantity,
-                            bathroomQuantity, haveWifi, haveKitchen, haveSuite, haveGarage, haveAnimals);
+                            bathroomQuantity, haveWifi, haveKitchen, haveSuite, haveGarage, haveAnimals, id_user);
 
                     listaLida.add(property);
 
