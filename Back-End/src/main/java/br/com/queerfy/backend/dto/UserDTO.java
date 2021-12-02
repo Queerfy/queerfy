@@ -62,6 +62,18 @@ public class UserDTO {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return Objects.equals(id, userDTO.id) && Objects.equals(name, userDTO.name) && Objects.equals(birthDate, userDTO.birthDate) && Objects.equals(notifications, userDTO.notifications) && Objects.equals(rg, userDTO.rg) && Objects.equals(cpf, userDTO.cpf) && Objects.equals(email, userDTO.email) && Objects.equals(password, userDTO.password) && Objects.equals(perfilImg, userDTO.perfilImg) && Objects.equals(descUser, userDTO.descUser) && Objects.equals(genre, userDTO.genre) && Objects.equals(likes, userDTO.likes) && Objects.equals(admin, userDTO.admin) && Objects.equals(autenticated, userDTO.autenticated) && Objects.equals(property, userDTO.property) && Objects.equals(favorite, userDTO.favorite);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, birthDate, notifications, rg, cpf, email, password, perfilImg, descUser, genre, likes, admin, autenticated, property, favorite);
+    }
 
     public Boolean getNotifications() {
         return notifications;
