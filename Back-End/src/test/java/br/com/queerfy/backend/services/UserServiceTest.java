@@ -92,30 +92,8 @@ public class UserServiceTest {
 			service.logoffUser(1);
 		});
 	}
-	
-	@Test
-	void whenCreateUserIsCalledThenReturnUser() throws UserAlreadyExistsException {
-		UserDTO newUser = UserBuilder.toUserDTO();
-		newUser.setCpf("222.222.222-22");
-		newUser.setEmail("teste@gmail.com");
-		
-		when(repository.findAll()).thenReturn(UserBuilder.toUserModelList());
-		when(repository.save(new User(newUser))).thenReturn(new User(newUser));
-		
-		UserDTO userDTO = service.create(newUser);
-		
-		assertEquals(userDTO.getCpf(), newUser.getCpf());
-		assertEquals(userDTO.getEmail(), newUser.getEmail());
-	}
-	
-	@Test
-	void whenCreateUserIsCalledWithExistentUserThenReturnError() {
-		when(repository.findAll()).thenReturn(UserBuilder.toUserModelList());
-		
-		assertThrows(UserAlreadyExistsException.class, () -> {
-			service.create(UserBuilder.toUserDTO());
-		});
-	}
+
+
 	
 	@Test
 	void whenUpdateUserIsCalledThenReturnUpdatedUser() throws UserNotFoundException {

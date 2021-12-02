@@ -57,19 +57,7 @@ public class UserControllerTest {
 				.andExpect(jsonPath("$").isArray())
 				.andExpect(jsonPath("$", Matchers.hasSize(2)));
 	}
-	
-	@Test
-	void whenCreateUserIsCalledThenReturnStatusOk() throws Exception {
-		UserDTO user = UserBuilder.toUserDTO();
-		
-		when(service.create(user)).thenReturn(user);
-		
-		mockMvc.perform(MockMvcRequestBuilders.post(USERS_PATH)
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(asJsonString(user)))
-				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.id", is(user.getId())));
-	}
+
 	
 	@Test
 	void whenAuthenticateUserIsCalledThenReturnUserAuthenticated() throws Exception {

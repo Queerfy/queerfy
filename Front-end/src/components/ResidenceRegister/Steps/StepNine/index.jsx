@@ -32,7 +32,7 @@ export const StepNine = () => {
           }
         );
       }
-    }else {
+    } else {
       for (let i = 0; i < 5; i++) {
         const { data } = await api.get(
           `/properties/image${i + 1}/${residenceData.id}`
@@ -56,8 +56,8 @@ export const StepNine = () => {
     try {
       if (
         userApp &&
-        userApp.editResidence.editing &&
-        userApp.editResidence.idHouse !== undefined
+        userApp?.editResidence?.editing !== undefined &&
+        userApp?.editResidence?.idHouse !== undefined
       ) {
         const house = await api.put(
           `/properties/${userApp.editResidence.idHouse}`,
@@ -82,9 +82,9 @@ export const StepNine = () => {
   };
 
   useEffect(() => {
-    if(images.length > 0) {
+    if (images.length > 0) {
       console.log(images);
-     /*  let image = btoa(
+      /*  let image = btoa(
         new Uint8Array(images[0][0]).reduce(
           (data, byte) => data + String.fromCharCode(byte),
           ''
@@ -99,7 +99,7 @@ export const StepNine = () => {
       <HeaderMobile />
       <h1>Este anúncio ficará visível aos hóspedes imediatamente.</h1>
       <Content>
-        <img src="city-example.jpg" alt="casa" />
+        <img src="homePhoto.jpg" alt="casa" />
         <h1>{residenceData.name}</h1>
         <p>{residenceData.description}</p>
         <Divider />
@@ -162,7 +162,7 @@ export const StepNine = () => {
       </Content>
       <GeneralButton
         text="Continuar"
-        bgColor='linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)'
+        bgColor="linear-gradient(180deg, #f26b9c 0%, #f15356 80.21%)"
         onClick={handleSubmit}
       />
       <span onClick={backStep}>Voltar</span>

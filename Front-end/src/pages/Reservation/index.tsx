@@ -93,7 +93,7 @@ const Reservation: NextPage = () => {
     handleUsersChatJoin(usersJoined);
     setTimeout(() => {
       router.push('/Chat');
-    }, 1500);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -154,9 +154,12 @@ const Reservation: NextPage = () => {
           <Date>
             <h2>Datas</h2>
             <p>
-              {moment(confirmReservation?.checkIn).locale('pt-br').format('ll')}.
-              -
-              {moment(confirmReservation?.checkOut).locale('pt-br').format('ll')}.
+              {moment(confirmReservation?.checkIn).locale('pt-br').format('ll')}
+              . -
+              {moment(confirmReservation?.checkOut)
+                .locale('pt-br')
+                .format('ll')}
+              .
             </p>
           </Date>
 
@@ -167,13 +170,15 @@ const Reservation: NextPage = () => {
                 {house?.dailyPrice.toLocaleString('pt-br', {
                   style: 'currency',
                   currency: 'BRL',
-                })} x {confirmReservation?.totalDays}{' '}
-                diárias
+                })}{' '}
+                x {confirmReservation?.totalDays} diárias
               </p>
-              <strong>{confirmReservation?.total.toLocaleString('pt-br', {
-                style: 'currency',
-                currency: 'BRL',
-              })} </strong>
+              <strong>
+                {confirmReservation?.total.toLocaleString('pt-br', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}{' '}
+              </strong>
             </DailyValue>
             <AdditionalValues>
               <p>Taxa de serviço</p>
@@ -181,10 +186,15 @@ const Reservation: NextPage = () => {
             </AdditionalValues>
           </BoxPrice>
           <TotalValue>
-            <h2>Total: <span>{(confirmReservation?.total + 10).toLocaleString('pt-br', {
-              style: 'currency',
-              currency: 'BRL',
-            })}</span></h2>
+            <h2>
+              Total:{' '}
+              <span>
+                {(confirmReservation?.total + 10).toLocaleString('pt-br', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </span>
+            </h2>
             <GeneralButton
               text="Enviar proposta"
               bgColor={theme.colors.blue}
@@ -247,7 +257,6 @@ const Reservation: NextPage = () => {
           </BoxConfirm>
         </Payments>
       </ContentPanel> */}
-
 
       <Footer />
       <NavbarMobile />
