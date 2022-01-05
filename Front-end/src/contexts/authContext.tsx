@@ -22,14 +22,9 @@ const socket = io('http://localhost:3333');
 
 export const AuthProvider = ({ children }) => {
   const [userApp, setUserApp] = useState(null);
-  const [userJoinChat, setJoinChat] = useState(null);
-  const [messagesNotification, setMessagesNotification] = useState([]);
-  const [messagesReceiver, setMessageReceiver] = useState();
-  const [confirmReservation, setConfirmReservation] =
-    useState<IConfirmReservation>();
   const [proposals, setProposals] = useState();
   const [search, setSearch] = useState();
-  const [ user, setUser ] = useState()
+  const [user, setUser] = useState();
 
   const router = useRouter();
 
@@ -72,6 +67,31 @@ export const AuthProvider = ({ children }) => {
           .post('/users/autenticate', data)
           .then((res) => {
             setUserApp(res.data);
+
+            const userSender = {
+              name: res.data.name,
+              email: res.data.email,
+              rg: res.data.rg,
+              cpf: res.data.cpf,
+              password: res.data.password,
+              perfilImg: res.data.perfilImg,
+              descUser: res.data.descUser,
+              genre: res.data.genre,
+              likes: res.data.likes,
+              birthDate: res.data.birthDate,
+              admin: res.data.admin,
+            };
+
+            socket.emit('entry_sistem', userSender);
+
+            /* socket.emit('check_messages', userSender, (messagesList) => {
+              if (messagesList.length > 0) {
+                return toast.success(
+                  `Você tem ${messagesList.length} mensagens não lidas.`
+                );
+              }
+            }); */
+
             localStorage.setItem(
               'user',
               JSON.stringify({
@@ -101,30 +121,9 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogout = () => {
     socket.emit('logout_sistem', { email: userApp.email });
-    setConfirmReservation(null);
     setUserApp(null);
-    setJoinChat(null);
-    setMessagesNotification(null);
-    setMessageReceiver(null);
     localStorage.clear();
     router.push('/Login');
-  };
-
-  const loadUsersJoin = () => {
-    const storagedUsersJoin = localStorage.getItem('usersJoin');
-
-    if (storagedUsersJoin) {
-      setJoinChat(JSON.parse(storagedUsersJoin));
-    }
-  };
-
-  const handleUsersChatJoin = (usersJoins) => {
-    localStorage.setItem('usersJoin', JSON.stringify(usersJoins));
-    setJoinChat(usersJoins);
-  };
-
-  const handleConfirmReservation = (reservationDate: IConfirmReservation) => {
-    setConfirmReservation(reservationDate);
   };
 
   const handleSearch = (objectSearch) => {
@@ -161,89 +160,34 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleUserApp = async (id, userData) => {
-    api.put(`/users/update/${id}`, userData).then(res => {
-      api.get(`/users/${id}`).then(response => {
-        localStorage.setItem('user', JSON.stringify(response.data))
-        setUserApp(response.data);
-        return toast.success('Atualizado com sucesso!');
-      }).catch(err => {
-        console.log(err);
+    api
+      .put(`/users/update/${id}`, userData)
+      .then((res) => {
+        api
+          .get(`/users/${id}`)
+          .then((response) => {
+            localStorage.setItem('user', JSON.stringify(response.data));
+            setUserApp(response.data);
+            return toast.success('Atualizado com sucesso!');
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
-    }).catch(err => {
-      console.log(err);
-    })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
+    toast.info('Carregou as informações do UserApp!');
     loadStorageData();
   }, []);
 
   useEffect(() => {
     if (userApp) {
-      const userSender = {
-        name: userApp.name,
-        email: userApp.email,
-        rg: userApp.rg,
-        cpf: userApp.cpf,
-        password: userApp.password,
-        perfilImg: userApp.perfilImg,
-        descUser: userApp.descUser,
-        genre: userApp.genre,
-        likes: userApp.likes,
-        birthDate: userApp.birthDate,
-        admin: userApp.admin,
-      };
-      socket.emit('entry_sistem', userSender);
-      const pathName = router.pathname;
-      if (pathName != '/Chat') {
-        setTimeout(() => {
-          socket.emit('check_messages', userSender, (messagesList) => {
-            if (messagesList.length > 0) {
-              return toast.success(
-                `Você tem ${messagesList.length} mensagens não lidas.`
-              );
-            }
-          });
-        }, 2000);
-      }
-    }
-  }, [userApp]);
-
-  useEffect(() => {
-    socket.on('user_receiver_message', (message) => {
-      const { text, name, userSender, userReceiver } = message;
-      setMessageReceiver(message);
-      const pathName = router.pathname;
-      if (pathName != '/Chat') {
-        return toast.info(`${name} te mandou uma mensagem.`, {
-          onClick: () => {
-            const newUserSender = userReceiver.user; //Trocando pra quem recebeu para quem vai mandar a mensagem agora
-            const newUserReceiver = userSender.user; //Trocando para quem mandou para quem vai recebcer a mensagem agora
-            const params = {
-              userSender: newUserSender,
-              userReceiver: newUserReceiver,
-            };
-            localStorage.setItem('usersJoin', JSON.stringify(params));
-            setJoinChat(params);
-            router.push('/Chat');
-          },
-        });
-      }
-    });
-
-    //Implementar a notificação de proposta corretamente
-    socket.on('response_proposal', (params) => {
-      const { acceptProposal } = params;
-
-      return toast.info(
-        `Sua foi proposta foi ${acceptProposal ? 'aceita' : 'recusada'}.`
-      );
-    });
-  }, [messagesNotification]);
-
-  useEffect(() => {
-    if (userApp) {
-      const userReceiver = {
+      toast.info('Chamado segundo userApp!');
+      /* const userReceiver = {
         name: userApp.name,
         email: userApp.email,
         rg: userApp.rg,
@@ -276,7 +220,7 @@ export const AuthProvider = ({ children }) => {
             });
           });
         }
-      });
+      }); */
     }
   }, [userApp]);
 
@@ -285,15 +229,9 @@ export const AuthProvider = ({ children }) => {
       value={{
         signed: !!userApp,
         userApp,
-        userJoinChat,
-        messagesReceiver,
-        confirmReservation,
         search,
         handleLogin,
         handleLogout,
-        handleUsersChatJoin,
-        loadUsersJoin,
-        handleConfirmReservation,
         handleSearch,
         getLastSearch,
         handleFavorites,

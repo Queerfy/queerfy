@@ -59,6 +59,7 @@ import {
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAuth } from '../../hooks/useAuth';
+import { useChat } from '../../hooks/useChat';
 
 import { api } from '../../services/api';
 import { useRouter } from 'next/router';
@@ -72,12 +73,10 @@ import {
 } from '../../interfaces';
 
 const House: NextPage = () => {
-  const {
-    userApp,
-    handleUsersChatJoin,
-    handleConfirmReservation,
-    handleFavorites,
-  } = useAuth();
+  const { userApp, handleFavorites } = useAuth();
+
+  const { handleUsersChatJoin, handleConfirmReservation } = useChat();
+
   const router = useRouter();
 
   const { id } = router.query;
@@ -118,7 +117,7 @@ const House: NextPage = () => {
   };
 
   const handleChat = async () => {
-    if ((userApp?.id === house?.idUser) == false) {
+    if (userApp && owner) {
       const userReceiver = {
         name: owner.name,
         email: owner.email,
@@ -154,11 +153,7 @@ const House: NextPage = () => {
 
       handleUsersChatJoin(usersJoined);
 
-      setTimeout(() => {
-        router.push('/Chat');
-      }, 2000);
-    } else {
-      toast.info('Você não pode acessar essa página.');
+      router.push('/Chat');
     }
   };
 

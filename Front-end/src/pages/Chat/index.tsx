@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import io from 'socket.io-client';
 
 import { useAuth } from '../../hooks/useAuth';
+import { useChat } from '../../hooks/useChat';
 
 import { toast } from 'react-toastify';
 
@@ -33,23 +34,21 @@ import { theme } from '../../styles/theme';
 const socket = io('http://localhost:3333');
 
 const Chat: NextPage = () => {
-  const {
-    userApp,
-    userJoinChat,
-    loadUsersJoin,
-    messagesReceiver,
-    handleUsersChatJoin,
-  } = useAuth();
+  const { userApp } = useAuth();
+  const { loadUsersJoin, messagesReceiver, userJoinChat } = useChat();
   const [messages, setMessages] = useState([]);
   const [statusProposal, setStatusProposal] = useState(false);
   const messageRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
+    toast.info('Chamado o UseEffect do loadUsersJoin!');
     loadUsersJoin();
   }, []);
 
   useEffect(() => {
-    const storagedUsersJoin = JSON.parse(localStorage.getItem('usersJoin'));
+    toast.info('Chamado o UseEffect o Primeiro UseEffect!');
+    console.log(userJoinChat);
+    /* const storagedUsersJoin = JSON.parse(localStorage.getItem('usersJoin'));
     if (storagedUsersJoin.proposal && storagedUsersJoin.proposal !== false) {
       const { idHouse, idOwer, total, totalDays, checkIn, checkOut } =
         storagedUsersJoin.confirmReservation;
@@ -98,11 +97,12 @@ const Chat: NextPage = () => {
 
     socket.emit('list_messages', params, (messagesList) => {
       setMessages(messagesList);
-    });
+    }); */
   }, []);
 
   useEffect(() => {
-    if (userJoinChat) {
+    toast.info('Chamado o UseEffect do messagesReceiver!');
+    /* if (userJoinChat) {
       const { userSender, userReceiver } = userJoinChat;
 
       const params = {
@@ -120,7 +120,7 @@ const Chat: NextPage = () => {
       socket.emit('list_messages', params, (messagesList) => {
         setMessages(messagesList);
       });
-    }
+    } */
   }, [messagesReceiver]);
 
   const handleMessage = () => {
@@ -193,7 +193,7 @@ const Chat: NextPage = () => {
             <MessageSquare /> Queerfy Chat
           </h1>
           <ContainerChat>
-            {messages.map((item, _) => (
+            {/* {messages.map((item, _) => (
               <>
                 {item.proposal != true && !item.acceptProposal ? (
                   <MessageUser
@@ -268,11 +268,11 @@ const Chat: NextPage = () => {
                   </>
                 )}
               </>
-            ))}
+            ))} */}
           </ContainerChat>
           <FooterChat>
             <FooterInput placeholder="Digite aqui..." ref={messageRef} />
-            <ButtonSendMessage onClick={handleMessage}>
+            <ButtonSendMessage /* onClick={handleMessage} */>
               <Send size={30} />
             </ButtonSendMessage>
           </FooterChat>
