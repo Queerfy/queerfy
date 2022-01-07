@@ -41,15 +41,25 @@ const Chat: NextPage = () => {
   const messageRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
-    toast.info('Chamado o UseEffect do loadUsersJoin!');
-    loadUsersJoin();
-  }, []);
-
-  useEffect(() => {
     toast.info('Chamado o UseEffect o Primeiro UseEffect!');
-    console.log(userJoinChat);
-    /* const storagedUsersJoin = JSON.parse(localStorage.getItem('usersJoin'));
-    if (storagedUsersJoin.proposal && storagedUsersJoin.proposal !== false) {
+    loadUsersJoin()
+      .then((result) => {
+        console.log(userJoinChat);
+        const params = {
+          userSender: userJoinChat.userSender,
+          userReceiver: userJoinChat.userReceiver,
+        };
+
+        socket.emit('list_messages', params, (messagesList) => {
+          setMessages(messagesList);
+        });
+      })
+      .catch((err) => {
+        toast.error('Erro ao carregar informações do usuario!');
+      });
+
+    /* const storagedUsersJoin = JSON.parse(localStorage.getItem('usersJoin')); */
+    /* if (storagedUsersJoin.proposal && storagedUsersJoin.proposal !== false) {
       const { idHouse, idOwer, total, totalDays, checkIn, checkOut } =
         storagedUsersJoin.confirmReservation;
 
@@ -86,18 +96,7 @@ const Chat: NextPage = () => {
       };
 
       handleUsersChatJoin(usersJoined);
-    }
-
-    const params = {
-      emailSender: storagedUsersJoin.userSender.email,
-      emailReceiver: storagedUsersJoin.userReceiver.email,
-      userSender: storagedUsersJoin.userSender,
-      userReceiver: storagedUsersJoin.userReceiver,
-    };
-
-    socket.emit('list_messages', params, (messagesList) => {
-      setMessages(messagesList);
-    }); */
+    } */
   }, []);
 
   useEffect(() => {
@@ -193,7 +192,7 @@ const Chat: NextPage = () => {
             <MessageSquare /> Queerfy Chat
           </h1>
           <ContainerChat>
-            {/* {messages.map((item, _) => (
+            {messages.map((item, _) => (
               <>
                 {item.proposal != true && !item.acceptProposal ? (
                   <MessageUser
@@ -248,12 +247,12 @@ const Chat: NextPage = () => {
                               <>
                                 <GeneralButton
                                   bgColor={theme.colors.red}
-                                  onClick={() => submitProposal(item, 'reject')}
+                                  /* onClick={() => submitProposal(item, 'reject')} */
                                   text="Rejeitar"
                                 />
                                 <GeneralButton
                                   bgColor={theme.colors.green}
-                                  onClick={() => submitProposal(item, 'accept')}
+                                  /* onClick={() => submitProposal(item, 'accept')} */
                                   text="Aceitar"
                                 />
                               </>
@@ -268,11 +267,11 @@ const Chat: NextPage = () => {
                   </>
                 )}
               </>
-            ))} */}
+            ))}
           </ContainerChat>
           <FooterChat>
             <FooterInput placeholder="Digite aqui..." ref={messageRef} />
-            <ButtonSendMessage /* onClick={handleMessage} */>
+            <ButtonSendMessage onClick={handleMessage}>
               <Send size={30} />
             </ButtonSendMessage>
           </FooterChat>

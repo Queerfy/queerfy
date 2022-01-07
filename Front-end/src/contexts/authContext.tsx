@@ -84,14 +84,6 @@ export const AuthProvider = ({ children }) => {
 
             socket.emit('entry_sistem', userSender);
 
-            /* socket.emit('check_messages', userSender, (messagesList) => {
-              if (messagesList.length > 0) {
-                return toast.success(
-                  `Você tem ${messagesList.length} mensagens não lidas.`
-                );
-              }
-            }); */
-
             localStorage.setItem(
               'user',
               JSON.stringify({
@@ -103,6 +95,14 @@ export const AuthProvider = ({ children }) => {
             toast.success('Logado com sucesso!');
 
             setTimeout(() => {
+              // Fazer uma variavel global para guardar as mensagens para criar a caixinha de notificações
+              socket.emit('check_messages', userSender, (messagesList) => {
+                if (messagesList.length > 0) {
+                  return toast.success(
+                    `Você tem ${messagesList.length} mensagens não lidas.`
+                  );
+                }
+              });
               router.push('/');
             }, 2000);
           })

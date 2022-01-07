@@ -16,12 +16,16 @@ export const ChatProvider = ({ children }) => {
   const [confirmReservation, setConfirmReservation] =
     useState<IConfirmReservation>();
 
-  const loadUsersJoin = () => {
-    const storagedUsersJoin = localStorage.getItem('usersJoin');
+  const loadUsersJoin = (): Promise<object> => {
+    return new Promise<object>((resolve, reject) => {
+      const storagedUsersJoin = localStorage.getItem('usersJoin');
 
-    if (storagedUsersJoin) {
+      if (!storagedUsersJoin) {
+        reject(null);
+      }
       setJoinChat(JSON.parse(storagedUsersJoin));
-    }
+      resolve(JSON.parse(storagedUsersJoin));
+    });
   };
 
   const handleUsersChatJoin = (usersJoins) => {
