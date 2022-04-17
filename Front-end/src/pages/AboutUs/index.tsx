@@ -18,7 +18,7 @@ import {
   Team,
   BoxContact,
   ButtonContact,
-} from './styles';
+} from '../../styles/aboutUs';
 
 const AboutUs: NextPage = () => {
   return (

@@ -15,9 +15,9 @@ import {
   CardHouse,
   ImageCard,
   DescribeResidence,
-} from './style';
+} from '../../styles/favorites';
 
-import { IconBack } from '../Register/style';
+import { IconBack } from '../../styles/register';
 import { Footer } from '../../components/Footer';
 
 import { useRouter } from 'next/router';
@@ -36,7 +36,7 @@ const ResidenceDescribe = ({ idProperty }) => {
     roomQuantity: number;
   }
 
-  const [ house, setHouse ] = useState<IHouseData>();
+  const [house, setHouse] = useState<IHouseData>();
 
   useEffect(() => {
     api.get(`/properties/${idProperty}`).then(res => {
@@ -51,7 +51,7 @@ const ResidenceDescribe = ({ idProperty }) => {
       {house && (
         <p>{house?.propertyType} - {house?.roomQuantity} quartos disponivel</p>
       )}
-      
+
     </>
   )
 }
@@ -69,13 +69,13 @@ const Favorites: NextPage = () => {
       api
         .get(`/users/${userApp.id}`)
         .then((response) => {
-          if(response.data.favorite.length === 0) {
+          if (response.data.favorite.length === 0) {
             toast.info("Nenhuma casa Favoritada")
             router.push('/')
-          }else {
+          } else {
             setFavoritesUser(response.data.favorite);
           }
-          
+
         })
         .catch((err) => {
           console.log(err);

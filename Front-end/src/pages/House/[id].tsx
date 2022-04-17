@@ -54,7 +54,7 @@ import {
   Container,
   Body,
   SlideContainer,
-} from './styles';
+} from '../../styles/house';
 
 import 'react-toastify/dist/ReactToastify.css';
 

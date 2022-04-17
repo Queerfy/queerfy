@@ -4,12 +4,12 @@ import { NextPage } from 'next';
 import { ArrowLeft, Eye, CornerDownLeft, Trash2, Home } from 'react-feather';
 import { Navbar } from '../../components/Navbar';
 import { NavbarMobile } from '../../components/NavbarMobile';
-import { ContainerMain, HeaderContainer } from '../Account/styles';
-import { ContainerColumn } from '../Account/Information/styles';
+import { ContainerMain, HeaderContainer } from '../../styles/account';
+import { ContainerColumn } from '../../styles/information';
 import { HeaderMobile } from '../../components/HeaderMobile';
 import { theme } from '../../styles/theme';
 import { HoveredImage, ImageBox } from '../../components/Residence/styles';
-import { Container, ContainerMyReservations } from '../MyReservations/style';
+import { Container, ContainerMyReservations } from '../../styles/myReservations';
 import Link from 'next/link';
 import {
   AdsInformation,
@@ -20,7 +20,7 @@ import {
   HeaderAds,
   IconButton,
   InformationText,
-} from './style';
+} from '../../styles/myAds';
 
 import { useRouter } from 'next/router';
 import { useAuth } from '../../hooks/useAuth';

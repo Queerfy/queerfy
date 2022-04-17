@@ -23,7 +23,7 @@ import {
   FooterChat,
   FooterInput,
   ButtonSendMessage,
-} from './style';
+} from '../../styles/chat';
 import { MessageSquare, Send } from 'react-feather';
 import { GeneralButton } from '../../components/GeneralButton';
 import { api } from '../../services/api';
@@ -239,7 +239,7 @@ const Chat: NextPage = () => {
                           <MessageBox>{item.message}</MessageBox>
                           <ContainerButtonsProposal>
                             {item.emailSender ==
-                            userJoinChat.userSender.email ? (
+                              userJoinChat.userSender.email ? (
                               <GeneralButton
                                 bgColor={theme.colors.green}
                                 text="Proposta enviada"

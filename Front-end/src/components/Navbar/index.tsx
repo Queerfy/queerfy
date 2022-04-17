@@ -19,7 +19,7 @@ export const Navbar = ({ accountNavbar }: NavbarProps) => {
 
   const router = useRouter();
 
-  const searchRef = useRef();
+  const searchRef = useRef<HTMLInputElement>();
 
   return (
     <Center>
