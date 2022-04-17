@@ -35,7 +35,7 @@ import {
   LabelInput,
   BoxConfirm,
   ContentPanel,
-} from './styles';
+} from '../../styles/reservation';
 
 import { IHouseData, IUserData, IConfirmReservation } from '../../interfaces';
 

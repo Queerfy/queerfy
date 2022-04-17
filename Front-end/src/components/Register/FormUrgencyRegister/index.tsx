@@ -13,7 +13,7 @@ import {
   ButtonContinue,
 } from './style';
 
-import { HeaderBox, TitleHeader } from '../../../pages/Register/style';
+import { HeaderBox, TitleHeader } from '../../../styles/register';
 import { LabelInputs, InputsBox, RowInputs } from '../FormRegister/style';
 
 import { registerUser } from '../../../utils/requestsUser';

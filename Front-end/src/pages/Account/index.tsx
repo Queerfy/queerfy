@@ -9,7 +9,7 @@ import {
   Container,
   ContainerMain,
   HeaderContainer,
-} from './styles';
+} from '../../styles/account';
 import { theme } from '../../styles/theme';
 import { Navbar } from '../../components/Navbar';
 import {

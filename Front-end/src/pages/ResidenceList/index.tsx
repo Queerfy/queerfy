@@ -7,7 +7,7 @@ import { api } from '../../services/api';
 
 import { useAuth } from '../../hooks/useAuth';
 
-import { Container, Categories, RoomRow, CategorieItem, Body } from './styles';
+import { Container, Categories, RoomRow, CategorieItem, Body } from '../../styles/residenceList';
 
 import { useRouter } from 'next/router';
 

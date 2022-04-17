@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Form } from '@unform/web';
 
-import { theme } from '../../../styles/theme';
+import { theme } from './theme';
 
-import { GeneralButton } from '../../../components/GeneralButton';
+import { GeneralButton } from '../components/GeneralButton';
 
 interface Colors {
   title?: string;

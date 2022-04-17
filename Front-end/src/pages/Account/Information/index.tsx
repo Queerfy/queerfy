@@ -5,8 +5,8 @@ import { Form } from '@unform/web';
 import Link from 'next/link';
 import Head from 'next/head';
 import { theme } from '../../../styles/theme';
-import { ContainerMain, HeaderContainer } from '../styles';
-import { ContainerMainInformation, ContainerInfo, ContainerColumn, Container, InputsBox } from './styles';
+import { ContainerMain, HeaderContainer } from '../../../styles/account';
+import { ContainerMainInformation, ContainerInfo, ContainerColumn, Container, InputsBox } from '../../../styles/information';
 import { Navbar } from '../../../components/Navbar';
 import {
   ArrowLeft,
@@ -23,7 +23,7 @@ import { HeaderMobile } from '../../../components/HeaderMobile';
 import InputMask from 'react-input-mask'
 import { useAuth } from '../../../hooks/useAuth';
 import moment from 'moment';
-import { ButtonAds, HeaderAds } from '../../MyAds/style';
+import { ButtonAds, HeaderAds } from '../../../styles/myAds';
 
 const InfoAccount: NextPage = () => {
   const { userApp, handleUserApp } = useAuth();

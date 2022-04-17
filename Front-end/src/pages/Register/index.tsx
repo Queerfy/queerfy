@@ -18,7 +18,7 @@ import {
   TextHeader,
   BoxButtons,
   ActionButton,
-} from './style';
+} from '../../styles/register';
 
 import 'react-toastify/dist/ReactToastify.css';
 

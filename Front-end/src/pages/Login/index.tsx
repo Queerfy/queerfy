@@ -20,7 +20,7 @@ import {
   InputsBox,
   LogoBox,
   ButtonRegister,
-} from './style';
+} from '../../styles/login';
 
 const Login: NextPage = () => {
   const { handleLogin } = useAuth();

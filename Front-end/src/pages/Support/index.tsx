@@ -9,7 +9,7 @@ import { NavbarMobile } from '../../components/NavbarMobile';
 
 import { Phone, Instagram, Mail } from 'react-feather';
 
-import { Header, BoxContent, InstagramButton, EmailButton } from './styles';
+import { Header, BoxContent, InstagramButton, EmailButton } from '../../styles/support';
 
 const Support: NextPage = () => {
   return (

@@ -7,12 +7,12 @@ import Link from 'next/link';
 import Switch from 'react-switch';
 
 import { theme } from '../../../styles/theme';
-import { ContainerLeft, ContainerNotification, ContainerRow } from './styles';
+import { ContainerLeft, ContainerNotification, ContainerRow } from '../../../styles/notification';
 import { Navbar } from '../../../components/Navbar';
 import { ArrowLeft, Mail, Bell, MessageSquare } from 'react-feather';
 import { NavbarMobile } from '../../../components/NavbarMobile';
 import { HeaderMobile } from '../../../components/HeaderMobile';
-import { ContainerMain, HeaderContainer } from '../Information/styles';
+import { ContainerMain, HeaderContainer } from '../../../styles/information';
 
 const NotificationPage: NextPage = () => {
   return (
@@ -38,7 +38,7 @@ const NotificationPage: NextPage = () => {
             </ContainerLeft>
             <Switch
               checked={true}
-              onChange={() => {}}
+              onChange={() => { }}
               onColor="#439EFA"
               offColor="#C4C4C4"
               checkedIcon={false}
@@ -53,7 +53,7 @@ const NotificationPage: NextPage = () => {
             </ContainerLeft>
             <Switch
               checked={true}
-              onChange={() => {}}
+              onChange={() => { }}
               onColor="#439EFA"
               offColor="#C4C4C4"
               checkedIcon={false}
@@ -68,7 +68,7 @@ const NotificationPage: NextPage = () => {
             </ContainerLeft>
             <Switch
               checked={false}
-              onChange={() => {}}
+              onChange={() => { }}
               onColor="#439EFA"
               offColor="#C4C4C4"
               checkedIcon={false}

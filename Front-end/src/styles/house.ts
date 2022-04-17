@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { theme } from '../../styles/theme';
+import { theme } from './theme';
 
 export const SlideContainer = styled.div`
   width: 100%;
