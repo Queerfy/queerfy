@@ -21,7 +21,7 @@ public class LeaseDTO {
     public LeaseDTO(Lease entity){
         this.id = entity.getId();
         this.idProperty = entity.getProperty().getid();
-        this.idUser = entity.getProperty().getid();
+        this.idUser = entity.getUser().getId();
         this.checkIn = entity.getCheckIn();
         this.checkOut = entity.getCheckOut();
         this.totalValue = entity.getTotalValue();
